@@ -80,10 +80,11 @@ export default function CartPage() {
           window.location.href = '/';
           return;
         }
+        setUserId(userData.user.id);
 
         const { data: cartData, error: cartErr } = await supabase
           .from('cart_items')
-          .select('id, listing_id, quantity, selected_color, created_at')
+          .select('id, listing_id, quantity, selected_color, selected_size, created_at')
           .order('created_at', { ascending: true });
         if (cartErr) throw cartErr;
 
@@ -373,8 +374,8 @@ export default function CartPage() {
               >
                 Ir a pagar
               </Link>
-              <p className="mt-3 text-xs font-medium text-brand-emerald">
-                No te quedes con las ganas procede al pago y sigue disfrutando de tus compras en rosa
+              <p className="mt-3 text-[11px] font-bold text-brand-emerald leading-tight">
+                🔥 ¡No te quedes con las ganas! Completa tu pedido ahora y asegura tus productos antes de que se agoten.
               </p>
             </div>
           </aside>
@@ -399,7 +400,7 @@ export default function CartPage() {
             </li>
             <li className="flex gap-2">
               <span className="shrink-0 font-bold text-amber-700">3.</span>
-              <span>Solicita al vendedor usar <strong>Envíos Go Pocket</strong>, ya que son envíos asegurados. Los envíos por cuenta del vendedor son responsabilidad del vendedor; en caso de cualquier situación, él deberá hacerse cargo.</span>
+              <span>Solicita al vendedor usar <strong>Envíos GoVendy</strong>, ya que son envíos asegurados. Los envíos por cuenta del vendedor son responsabilidad del vendedor; en caso de cualquier situación, él deberá hacerse cargo.</span>
             </li>
             <li className="flex gap-2">
               <span className="shrink-0 font-bold text-amber-700">4.</span>
