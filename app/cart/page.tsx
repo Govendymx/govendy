@@ -159,7 +159,7 @@ export default function CartPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-5xl px-4 py-10">
           <div className="h-12 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-72 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -169,7 +169,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -180,7 +180,7 @@ export default function CartPage() {
               </svg>
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 Carrito
               </div>
               <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Tu carrito</h1>

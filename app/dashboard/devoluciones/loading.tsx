@@ -3,7 +3,7 @@ import { SkeletonBox } from '@/components/ui/Skeletons';
 /** Generic dashboard page skeleton for simple list/Q&A pages */
 export default function DashboardGenericLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-6 sm:px-6">
+        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-3xl space-y-4">
                 <SkeletonBox className="h-7 w-36" />
                 {Array.from({ length: 6 }).map((_, i) => (

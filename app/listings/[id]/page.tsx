@@ -1241,7 +1241,7 @@ export default function ListingDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -1731,7 +1731,7 @@ export default function ListingDetailPage() {
             <div className="lg:col-span-5 space-y-6">
               <section className="rounded-[2.5rem] bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                     {listing.status === 'active' ? 'Disponible' : 'No disponible'}
                   </div>
                   {coupon && (
@@ -1919,7 +1919,7 @@ export default function ListingDetailPage() {
                 {(sellerIsManufacturer || sellerIsWholesaler) && (
                   <div className="mt-3 flex flex-wrap gap-2">
                     {sellerIsManufacturer && (
-                      <span className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-pink-600 via-rose-500 to-pink-600 px-4 py-2 text-xs font-black text-white shadow-lg shadow-pink-500/30 ring-1 ring-pink-400/30">
+                      <span className="inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-emerald-600 via-rose-500 to-emerald-600 px-4 py-2 text-xs font-black text-white shadow-lg shadow-emerald-500/30 ring-1 ring-emerald-400/30">
                         🏭 Fabricante Verificado
                       </span>
                     )}

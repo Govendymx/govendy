@@ -2,7 +2,7 @@ import { SkeletonBox } from '@/components/ui/Skeletons';
 
 export default function PerfilLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-6 sm:px-6">
+        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-2xl space-y-6">
                 <SkeletonBox className="h-7 w-28" />
                 {/* Avatar + name */}

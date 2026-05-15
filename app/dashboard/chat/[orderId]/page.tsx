@@ -166,7 +166,7 @@ export default function DashboardChatPage() {
   }, [messages.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -235,11 +235,11 @@ export default function DashboardChatPage() {
                     <div key={m.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
                       <div
                         className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${
-                          mine ? 'bg-brand-emerald text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
+                          mine ? 'bg-brand-emerald text-white ring-emerald-200' : 'bg-white text-gray-900 ring-black/5'
                         }`}
                       >
                         <div className="whitespace-pre-wrap break-words">{m.body}</div>
-                        <div className={`mt-1 text-[11px] ${mine ? 'text-pink-100' : 'text-gray-500'}`}>{formatDateTime(m.created_at)}</div>
+                        <div className={`mt-1 text-[11px] ${mine ? 'text-emerald-100' : 'text-gray-500'}`}>{formatDateTime(m.created_at)}</div>
                       </div>
                     </div>
                   );

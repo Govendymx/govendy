@@ -2,7 +2,7 @@ import { SkeletonBox, SkeletonOrderCard } from '@/components/ui/Skeletons';
 
 export default function VentasLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-6 sm:px-6">
+        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-3xl space-y-5">
                 {/* Header */}
                 <div className="flex items-center justify-between">

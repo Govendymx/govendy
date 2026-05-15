@@ -188,7 +188,7 @@ function PlacementSelector({
             onClick={() => onChange(it.key)}
             className={classNames(
               'rounded-2xl border p-4 text-left shadow-sm transition',
-              active ? 'border-pink-200 bg-pink-50 ring-2 ring-brand-emerald/40' : 'border-black/5 bg-white hover:bg-gray-50',
+              active ? 'border-emerald-200 bg-emerald-50 ring-2 ring-brand-emerald/40' : 'border-black/5 bg-white hover:bg-gray-50',
             )}
           >
             <div className="flex items-start justify-between gap-3">
@@ -199,7 +199,7 @@ function PlacementSelector({
               <span
                 className={classNames(
                   'shrink-0 rounded-full px-2 py-1 text-[11px] font-extrabold ring-1',
-                  active ? 'bg-white text-brand-emerald ring-pink-200' : 'bg-gray-100 text-gray-700 ring-black/5',
+                  active ? 'bg-white text-brand-emerald ring-emerald-200' : 'bg-gray-100 text-gray-700 ring-black/5',
                 )}
               >
                 {it.key}
@@ -568,7 +568,7 @@ export default function AdminBannersPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-5xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -578,10 +578,10 @@ export default function AdminBannersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Admin
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Banners del Home</h1>

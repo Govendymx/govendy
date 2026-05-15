@@ -899,7 +899,7 @@ export default function HomePage() {
           <div className="grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
             {[
               { id: '1', name: 'Tecnología', icon: '💻', color: 'bg-blue-50 text-blue-600', link: '/categorias?q=tecnologia' },
-              { id: '2', name: 'Moda', icon: '👗', color: 'bg-pink-50 text-pink-600', link: '/categorias?q=moda' },
+              { id: '2', name: 'Moda', icon: '👗', color: 'bg-emerald-50 text-emerald-600', link: '/categorias?q=moda' },
               { id: '3', name: 'Hogar', icon: '🛋️', color: 'bg-amber-50 text-amber-600', link: '/categorias?q=hogar' },
               { id: '4', name: 'Deportes', icon: '⚽', color: 'bg-emerald-50 text-emerald-600', link: '/categorias?q=deportes' },
               { id: '5', name: 'Belleza', icon: '✨', color: 'bg-purple-50 text-purple-600', link: '/categorias?q=belleza' },
@@ -1418,7 +1418,7 @@ export default function HomePage() {
                             </div>
                           )}
                           {p.condition === 'casi_nuevo' && (
-                            <div className="rounded-lg bg-pink-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
+                            <div className="rounded-lg bg-emerald-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
                               Casi Nuevo
                             </div>
                           )}

@@ -131,7 +131,7 @@ export default function DashboardReputacionPage() {
   const buyerReviews = useMemo(() => ((rep as any)?.reviews?.buyer ?? []) as PublicReview[], [rep]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -228,7 +228,7 @@ export default function DashboardReputacionPage() {
             <div className="mt-6 text-sm text-gray-600">No se pudo cargar la reputación.</div>
           )}
 
-          <div className="mt-6 rounded-2xl bg-pink-50 px-4 py-3 text-sm text-gray-700 ring-1 ring-pink-100">
+          <div className="mt-6 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-gray-700 ring-1 ring-emerald-100">
             - Como comprador: confirma “Ya recibí el artículo” en <span className="font-semibold">Dashboard → Compras</span> para liberar pago y calificar.<br />
             - Como vendedor: cuando el comprador confirme, podrás calificar en <span className="font-semibold">Dashboard → Ventas</span>.
           </div>

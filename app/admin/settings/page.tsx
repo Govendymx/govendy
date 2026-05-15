@@ -607,7 +607,7 @@ export default function AdminSettingsPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-4xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
@@ -617,11 +617,11 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Configuración</h1>

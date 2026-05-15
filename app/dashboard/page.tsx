@@ -72,7 +72,7 @@ function NavCard({ item }: { item: NavItem }) {
     : 'shadow-sm';
   const styles =
     tone === 'pink'
-      ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90'
+      ? 'border-emerald-200 bg-emerald-50 text-brand-emerald hover:opacity-90'
       : tone === 'danger'
         ? 'border-black/10 bg-gray-900 text-white hover:bg-black'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
@@ -187,10 +187,10 @@ function DashboardCharts({ userId }: { userId: string | null }) {
               <div className="mt-1 text-2xl font-extrabold text-gray-900">{perf?.total_views ?? 0}</div>
               <div className="mt-0.5 text-xs text-gray-600">en {perf?.total_listings ?? 0} artículos</div>
             </div>
-            <div className="rounded-2xl border border-pink-100 bg-pink-50 px-4 py-3">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-pink-700">Ventas (30 días)</div>
-              <div className="mt-1 text-2xl font-extrabold text-pink-900">{perf?.sales_last_30_days ?? 0}</div>
-              <div className="mt-0.5 text-xs text-pink-700">{formatMoney(perf?.sales_total_30 ?? 0)}</div>
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Ventas (30 días)</div>
+              <div className="mt-1 text-2xl font-extrabold text-emerald-900">{perf?.sales_last_30_days ?? 0}</div>
+              <div className="mt-0.5 text-xs text-emerald-700">{formatMoney(perf?.sales_total_30 ?? 0)}</div>
             </div>
             <div className="rounded-2xl border border-blue-100 bg-blue-50 px-4 py-3">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-blue-700">Compras (30 días)</div>
@@ -239,10 +239,10 @@ function DashboardCharts({ userId }: { userId: string | null }) {
                     <div className="text-xs font-bold text-gray-700">{m.label}</div>
                     <div className="mt-2 flex gap-2">
                       <div className="flex-1">
-                        <div className="text-[10px] text-pink-600">Ventas</div>
+                        <div className="text-[10px] text-emerald-600">Ventas</div>
                         <div className="h-5 w-full overflow-hidden rounded bg-gray-200">
                           <div
-                            className="h-full rounded bg-pink-400"
+                            className="h-full rounded bg-emerald-400"
                             style={{ width: `${Math.min(100, (m.sales_count / maxMonth) * 100)}%` }}
                           />
                         </div>
@@ -810,7 +810,7 @@ export default function DashboardPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
           <div className="mt-6 h-32 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
@@ -825,14 +825,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       {/* Navbar */}
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-3 hover:opacity-95">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-emerald text-white shadow-sm">
-              <span className="text-sm font-bold">P</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy Logo" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">GoVendy</div>
               <div className="text-xs text-gray-500">Panel principal</div>
@@ -927,7 +925,7 @@ export default function DashboardPage() {
             <section className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                     Bienvenido a GoVendy
                   </div>
                   <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -955,7 +953,7 @@ export default function DashboardPage() {
               </div>
 
               {needsIneUpload && (
-                <div className="mt-6 rounded-2xl border border-pink-200 bg-pink-50 px-4 py-3 text-sm text-pink-900">
+                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
                   Aún no detecto documentos subidos en tu perfil. Si ya subiste tu INE, asegúrate de guardar las URLs en
                   tu tabla <span className="font-semibold">profiles</span>. Si no, puedes subirlo ahora.
                 </div>
@@ -993,7 +991,7 @@ export default function DashboardPage() {
             {userId && <PlanWidget userId={userId} />}
 
             {/* Control: ventas, preguntas, respuestas, operaciones, disputas, pagos */}
-            <section className="mt-6 rounded-3xl border-2 border-pink-200 bg-white p-5 shadow-sm ring-1 ring-pink-100 sm:p-6">
+            <section className="mt-6 rounded-3xl border-2 border-emerald-200 bg-white p-5 shadow-sm ring-1 ring-emerald-100 sm:p-6">
               <h2 className="text-base font-bold text-gray-900">Control de tu cuenta</h2>
               <p className="mt-1 text-sm text-gray-600">
                 Gestiona tus ventas, preguntas, respuestas, operaciones y pagos desde un solo lugar.
@@ -1001,7 +999,7 @@ export default function DashboardPage() {
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Link
                   href="/dashboard/ventas"
-                  className="flex items-center justify-between rounded-2xl border border-pink-100 bg-pink-50/50 px-4 py-3 transition hover:border-pink-300 hover:bg-pink-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-emerald-100 bg-emerald-50/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">Ventas</span>
                   <span className="flex items-center gap-2">
@@ -1078,7 +1076,7 @@ export default function DashboardPage() {
                 </Link>
                 <Link
                   href="/dashboard/monedero"
-                  className="flex items-center justify-between rounded-2xl border border-brand-emerald bg-pink-50/50 px-4 py-3 transition hover:border-pink-300 hover:bg-pink-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-brand-emerald bg-emerald-50/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">PocketCash</span>
                   <span className="text-xs font-bold text-gray-400">→</span>
@@ -1101,7 +1099,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="mt-1 text-xs text-gray-500">Ventas y compras registradas</div>
                   </div>
-                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-emerald ring-1 ring-pink-100">
+                  <div className="rounded-2xl bg-emerald-50 p-3 text-brand-emerald ring-1 ring-emerald-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M4 7h16M6 11h12M8 15h8M10 19h4"
@@ -1121,7 +1119,7 @@ export default function DashboardPage() {
                     <div className="mt-2 text-3xl font-bold text-gray-900">{documentsUploaded}</div>
                     <div className="mt-1 text-xs text-gray-500">Detectados desde tu perfil (INE frente/reverso)</div>
                   </div>
-                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-emerald ring-1 ring-pink-100">
+                  <div className="rounded-2xl bg-emerald-50 p-3 text-brand-emerald ring-1 ring-emerald-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M8 3h6l4 4v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
@@ -1194,11 +1192,11 @@ export default function DashboardPage() {
 
               <Link
                 href="/dashboard/monedero"
-                className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl"
+                className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-emerald-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl"
               >
                 {/* Decorative Elements */}
                 <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/10 blur-3xl"></div>
-                <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-pink-900/20 blur-3xl"></div>
+                <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-emerald-900/20 blur-3xl"></div>
 
                 {/* Card Header */}
                 <div className="relative z-10 flex items-start justify-between">
@@ -1265,7 +1263,7 @@ export default function DashboardPage() {
                   {menuBanner.image_url ? (
                     <img src={menuBanner.image_url} alt={menuBanner.title} className="absolute inset-0 h-full w-full object-cover" />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-pink-500 to-purple-600" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-purple-600" />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -1338,7 +1336,7 @@ export default function DashboardPage() {
         <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8" data-tour="my-store">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 Mi tienda
               </div>
               <h2 className="mt-3 text-lg font-bold text-gray-900">Ventas y cupones</h2>
@@ -1528,14 +1526,14 @@ export default function DashboardPage() {
                     const carrier = String((o as any).shipping_carrier || '').trim();
                     const liberado = isSale && !!(o as any).paid_to_seller_at;
                     return (
-                      <div key={o.id} className="p-4 hover:bg-pink-50/30">
+                      <div key={o.id} className="p-4 hover:bg-emerald-50/30">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
                               <span
                                 className={classNames(
                                   'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
-                                  isSale ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-gray-100 text-gray-700 ring-black/5',
+                                  isSale ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-gray-100 text-gray-700 ring-black/5',
                                 )}
                               >
                                 {isSale ? 'Venta' : 'Compra'}

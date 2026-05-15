@@ -627,21 +627,21 @@ function AdminSoporteContent() {
             <button
               type="button"
               onClick={() => setTab('all')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Todos
             </button>
             <button
               type="button"
               onClick={() => setTab('unassigned')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Sin asignar
             </button>
             <button
               type="button"
               onClick={() => setTab('mine')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Mis chats
             </button>
@@ -701,10 +701,10 @@ function AdminSoporteContent() {
                       setActiveId(c.id);
                       void loadChat(c.id);
                     }}
-                    className={`w-full text-left p-4 hover:bg-pink-50/30 ${active ? 'bg-pink-50/40' : 'bg-white'}`}
+                    className={`w-full text-left p-4 hover:bg-emerald-50/30 ${active ? 'bg-emerald-50/40' : 'bg-white'}`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-50 text-brand-emerald ring-1 ring-pink-100 text-sm font-extrabold">
+                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-brand-emerald ring-1 ring-emerald-100 text-sm font-extrabold">
                         {initials(name)}
                         {presenceDot(online)}
                       </div>
@@ -859,7 +859,7 @@ function AdminSoporteContent() {
                                 <>
                                   <span>·</span>
                                   <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${cls}`}>{lbl}</span>
-                                  <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-semibold text-pink-700 ring-1 ring-pink-200">SLA {sla}</span>
+                                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-emerald-200">SLA {sla}</span>
                                 </>
                               );
                             })()}
@@ -1028,7 +1028,7 @@ function AdminSoporteContent() {
                       return (
                         <div key={m.id} className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}>
                           <div
-                            className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${isAdmin ? 'bg-brand-emerald text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
+                            className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${isAdmin ? 'bg-brand-emerald text-white ring-emerald-200' : 'bg-white text-gray-900 ring-black/5'
                               }`}
                           >
                             <div className={`mb-1 text-[11px] font-extrabold ${isAdmin ? 'text-white/85' : 'text-gray-600'}`}>
@@ -1119,7 +1119,7 @@ function AdminSoporteContent() {
                         ],
                       },
                       {
-                        id: 'planes', label: '👑 Planes', color: 'bg-pink-50 text-pink-700 ring-pink-200',
+                        id: 'planes', label: '👑 Planes', color: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
                         replies: [
                           { title: 'Info planes', text: '📋 GoVendy ofrece 3 planes:\n\n🟢 Básico (Gratis): 50 publicaciones, 15 subastas, 25 cupones/mes, comisión 23%, retiro cada 7 días.\n\n🔵 Pro: Publicaciones y subastas ilimitadas, envío por vendedor, Lives (con créditos), comisión 18%, retiro cada 48 hrs.\n\n👑 Platinum: Todo lo de Pro + entrega personal, 2 hrs gratis de Lives/día, publicaciones destacadas ilimitadas, retiro cada 24 hrs.\n\nCambia tu plan en Mi cuenta → Pro.' },
                           { title: 'Plan expirado', text: '⏰ Tu plan [PRO/PLATINUM] ha expirado y tu cuenta ha vuelto al plan Básico. Para renovarlo, ve a Mi cuenta → Pro y selecciona tu plan. Los beneficios se activan al instante.' },
@@ -1190,7 +1190,7 @@ function AdminSoporteContent() {
                                     setReply(r.text);
                                     document.getElementById('quick-replies-panel')?.classList.add('hidden');
                                   }}
-                                  className="w-full rounded-xl border border-black/5 bg-gray-50 px-3 py-2 text-left text-xs text-gray-700 hover:bg-pink-50 hover:ring-1 hover:ring-pink-200 transition-all"
+                                  className="w-full rounded-xl border border-black/5 bg-gray-50 px-3 py-2 text-left text-xs text-gray-700 hover:bg-emerald-50 hover:ring-1 hover:ring-emerald-200 transition-all"
                                 >
                                   <span className="font-bold text-gray-900">{r.title}</span>
                                   <span className="ml-1.5 text-gray-500">{r.text.slice(0, 80)}…</span>

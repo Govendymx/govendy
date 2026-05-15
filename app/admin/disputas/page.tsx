@@ -135,7 +135,7 @@ function AdminDisputasContent() {
   return (
     <div className="space-y-6">
       {/* Header moderno */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600 via-rose-600 to-pink-600 p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-600 via-rose-600 to-emerald-600 p-8 shadow-xl">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="rounded-xl bg-white/20 backdrop-blur-sm p-3">
@@ -241,7 +241,7 @@ function AdminDisputasContent() {
                   const last = d?.last_message;
                   const snippet = String(last?.body || '').trim().slice(0, 120) || '—';
                   return (
-                    <div key={id} className="block hover:bg-pink-50/30">
+                    <div key={id} className="block hover:bg-emerald-50/30">
                       <div className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">

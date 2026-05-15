@@ -1396,7 +1396,7 @@ export default function DashboardComprasPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -2122,7 +2122,7 @@ export default function DashboardComprasPage() {
                                           <div className="mt-1 flex items-center gap-2 text-xs text-gray-600">
                                             <span className="font-semibold">Cantidad: x{quantity}</span>
                                             {it.selected_size && (
-                                              <span className="rounded-full bg-pink-100 px-2 py-0.5 text-pink-800 text-[10px] font-semibold">Talla: {it.selected_size}</span>
+                                              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-emerald-800 text-[10px] font-semibold">Talla: {it.selected_size}</span>
                                             )}
                                             {it.selected_color && (
                                               <span className="rounded-full bg-blue-100 px-2 py-0.5 text-blue-800 text-[10px] font-semibold">Color: {it.selected_color}</span>
@@ -2165,13 +2165,13 @@ export default function DashboardComprasPage() {
                               {/* Informaci�n de estado de pago y producto enviado */}
                               {status === 'pending_payment' ? (
                                 <div className="mt-3 space-y-2">
-                                  <div className="rounded-lg border border-pink-200 bg-pink-50/80 p-2.5">
+                                  <div className="rounded-lg border border-emerald-200 bg-emerald-50/80 p-2.5">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                       <div className="flex items-start gap-2">
                                         <span className="text-lg">??</span>
                                         <div>
-                                          <h4 className="text-[11px] font-bold text-pink-900">Finaliza tu compra</h4>
-                                          <p className="text-[10px] text-pink-800/80 leading-snug max-w-md">
+                                          <h4 className="text-[11px] font-bold text-emerald-900">Finaliza tu compra</h4>
+                                          <p className="text-[10px] text-emerald-800/80 leading-snug max-w-md">
                                             Orden reservada. Paga para que te env�en tus productos.
                                           </p>
                                         </div>
@@ -2205,7 +2205,7 @@ export default function DashboardComprasPage() {
                                         {checkoutSessionByOrderId[orderId] && (
                                           <Link
                                             href={`/pago/${checkoutSessionByOrderId[orderId]}`}
-                                            className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-pink-50 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                                            className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-emerald-50 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
                                           >
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -2217,7 +2217,7 @@ export default function DashboardComprasPage() {
                                         )}
                                       </div>
                                     </div>
-                                    <p className="mt-2 text-[9px] text-pink-700/50 flex items-center gap-1">
+                                    <p className="mt-2 text-[9px] text-emerald-700/50 flex items-center gap-1">
                                       <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
@@ -2386,7 +2386,7 @@ export default function DashboardComprasPage() {
                                         setHasUnreadByOrderId((p) => ({ ...p, [orderId]: false }));
                                       }}
                                       className={`inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white px-2.5 py-2.5 text-[11px] font-semibold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-emerald' : 'ring-black/5'
-                                        } ${isPaid && !alreadyRated ? 'animate-pulse ring-brand-emerald bg-pink-50' : ''
+                                        } ${isPaid && !alreadyRated ? 'animate-pulse ring-brand-emerald bg-emerald-50' : ''
                                         }`}
                                     >
                                       Chat
@@ -2999,7 +2999,7 @@ export default function DashboardComprasPage() {
                         key={v}
                         type="button"
                         onClick={() => setRateStars(v)}
-                        className={`h-9 w-9 rounded-xl text-sm font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-pink-50'
+                        className={`h-9 w-9 rounded-xl text-sm font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-emerald-50'
                           }`}
                         aria-label={`${v} estrellas`}
                       >
@@ -3089,7 +3089,7 @@ export default function DashboardComprasPage() {
                 )}
 
                 {showAuctionShippingChoice && (
-                  <div className="rounded-2xl border-2 border-blue-200 bg-gradient-to-br from-blue-50/80 via-white to-pink-50/60 p-4 shadow-sm">
+                  <div className="rounded-2xl border-2 border-blue-200 bg-gradient-to-br from-blue-50/80 via-white to-emerald-50/60 p-4 shadow-sm">
                     {/* Header */}
                     <div className="flex items-center justify-between gap-3 mb-4">
                       <div className="flex items-center gap-2">
@@ -3203,7 +3203,7 @@ export default function DashboardComprasPage() {
                 </label>
 
                 {/* PocketCash */}
-                <label className={`flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition-all ${selectedMethod === 'pocketcash' ? 'border-brand-emerald bg-pink-50 ring-1 ring-brand-emerald' : 'border-gray-200 hover:bg-gray-50'} ${walletBalance < payOrderData.total ? 'opacity-60' : ''}`}>
+                <label className={`flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition-all ${selectedMethod === 'pocketcash' ? 'border-brand-emerald bg-emerald-50 ring-1 ring-brand-emerald' : 'border-gray-200 hover:bg-gray-50'} ${walletBalance < payOrderData.total ? 'opacity-60' : ''}`}>
                   <input
                     type="radio"
                     name="payment_method"

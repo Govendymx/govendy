@@ -1132,7 +1132,7 @@ export default function DashboardVentasPage() {
   }, [disputeInfoByOrderId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pb-10">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white pb-10">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3">
           <div className="flex items-center gap-3">
@@ -1612,7 +1612,7 @@ export default function DashboardVentasPage() {
                                           {t}
                                         </Link>
                                         {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                          <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-pink-100 animate-pulse">
+                                          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
                                             Subasta
                                           </span>
                                         ) : null}
@@ -1625,7 +1625,7 @@ export default function DashboardVentasPage() {
                                         {t}
                                       </span>
                                       {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                        <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-pink-100 animate-pulse">
+                                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
                                           Subasta
                                         </span>
                                       ) : null}
@@ -1729,7 +1729,7 @@ export default function DashboardVentasPage() {
 
                                   if (status === 'pending_payment') {
                                     return (
-                                      <div className="rounded-lg bg-pink-50 p-2 text-center text-[11px] font-bold text-pink-700 animate-pulse border border-pink-200">
+                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         1- Felicidades Recibiste una compra Espera a que se acredite el pago
                                       </div>
                                     );
@@ -1738,13 +1738,13 @@ export default function DashboardVentasPage() {
                                   if (status === 'paid') {
                                     if (isProofDownloaded) {
                                       return (
-                                        <div className="rounded-lg bg-pink-50 p-2 text-center text-[11px] font-bold text-pink-700 animate-pulse border border-pink-200">
+                                        <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                           3- Verifica Sigue las Instrucciones de la Constancia de Entrega Personal y Sube La Evidencia para liberar tu pago.
                                         </div>
                                       );
                                     }
                                     return (
-                                      <div className="rounded-lg bg-pink-50 p-2 text-center text-[11px] font-bold text-pink-700 animate-pulse border border-pink-200">
+                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         2- El Pago a sido acreditado Contacta al comprador por chat y descarga la constancia de entrega
                                       </div>
                                     );
@@ -1752,7 +1752,7 @@ export default function DashboardVentasPage() {
 
                                   if (status === 'shipped' || status === 'delivered') {
                                     return (
-                                      <div className="rounded-lg bg-pink-50 p-2 text-center text-[11px] font-bold text-pink-700 animate-pulse border border-pink-200">
+                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         4- No olvides Solicitar a tu comprador te califique para liberar tu dinero.
                                       </div>
                                     );
@@ -2078,8 +2078,8 @@ export default function DashboardVentasPage() {
                               ) : !isDigitalOrder && (canMarkShipped || isPickupOrder || (isSellerManagedOrder && !sellerManagedAllComplete)) ? (
                                 <div className="space-y-2 relative">
                                   {isPickupOrder && (
-                                    <div className="rounded-lg border border-pink-200 bg-pink-50 px-2 py-1.5">
-                                      <div className="text-[10px] text-pink-900 leading-tight">
+                                    <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-2 py-1.5">
+                                      <div className="text-[10px] text-emerald-900 leading-tight">
                                         Sube la evidencia para procesar el pago.
                                       </div>
                                     </div>
@@ -2429,7 +2429,7 @@ export default function DashboardVentasPage() {
                       key={v}
                       type="button"
                       onClick={() => setRateStars(v)}
-                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-pink-50'
+                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-emerald-50'
                         }`}
                     >
                       {v}

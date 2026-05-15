@@ -1057,7 +1057,7 @@ export default function CheckoutPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-5xl px-4 py-10">
           <div className="h-12 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -1067,11 +1067,11 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Checkout
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Pagar</h1>
@@ -1116,7 +1116,7 @@ export default function CheckoutPage() {
                   {enabledMethods.map((m) => (
                     <label
                       key={m.key}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-pink-50' : 'border-black/5 bg-white'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-emerald-50' : 'border-black/5 bg-white'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1214,7 +1214,7 @@ export default function CheckoutPage() {
                   {shippingOptions.map((option) => (
                     <label
                       key={option.id}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-pink-50' : 'border-black/5 bg-white hover:bg-gray-50'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-emerald-50' : 'border-black/5 bg-white hover:bg-gray-50'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1495,7 +1495,7 @@ export default function CheckoutPage() {
               <div className="mt-6 w-full space-y-3">
                 <Link
                   href="/dashboard/compras"
-                  className="flex w-full items-center justify-center rounded-xl bg-brand-emerald px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 active:scale-95"
+                  className="flex w-full items-center justify-center rounded-xl bg-brand-emerald px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-emerald-600 active:scale-95"
                 >
                   Ver mis compras
                 </Link>

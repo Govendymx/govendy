@@ -985,7 +985,7 @@ function KPICard({ title, value, change, subtitle, accent = 'gray', help }: {
     title: string; value: string; change?: number; subtitle?: string; accent?: string; help?: string;
 }) {
     const accentMap: Record<string, string> = {
-        pink: 'border-pink-300 bg-pink-50/50',
+        pink: 'border-emerald-300 bg-emerald-50/50',
         blue: 'border-blue-300 bg-blue-50/50',
         green: 'border-green-300 bg-green-50/50',
         orange: 'border-orange-300 bg-orange-50/50',

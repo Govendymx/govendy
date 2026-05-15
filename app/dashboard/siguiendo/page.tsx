@@ -216,7 +216,7 @@ export default function SiguiendoPage() {
                                         {/* Avatar */}
                                         <Link
                                             href={`/tienda/${s.seller_id}`}
-                                            className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-emerald to-pink-400 text-white font-black text-xl shadow-sm overflow-hidden"
+                                            className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-emerald to-emerald-400 text-white font-black text-xl shadow-sm overflow-hidden"
                                         >
                                             {s.avatar_url ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
@@ -372,7 +372,7 @@ export default function SiguiendoPage() {
                                                     {/* "Ver más" card */}
                                                     <Link
                                                         href={`/tienda/${s.seller_id}`}
-                                                        className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-pink-50 to-white p-3 text-center ring-1 ring-pink-100 transition-all hover:shadow-md hover:scale-[1.02]"
+                                                        className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-emerald-50 to-white p-3 text-center ring-1 ring-emerald-100 transition-all hover:shadow-md hover:scale-[1.02]"
                                                     >
                                                         <span className="text-2xl">🛍️</span>
                                                         <span className="text-[11px] font-bold text-brand-emerald">Ver tienda completa</span>

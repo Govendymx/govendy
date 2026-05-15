@@ -167,7 +167,7 @@ export default function AdminAvisosPage() {
     <div className="mx-auto max-w-5xl">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Panel Admin
           </div>
           <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">Avisos a usuarios</h1>
@@ -246,7 +246,7 @@ export default function AdminAvisosPage() {
                           onClick={() => togglePick(u)}
                           className={classNames(
                             'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-sm font-semibold shadow-sm transition',
-                            active ? 'border-pink-200 bg-pink-50 text-brand-emerald' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
+                            active ? 'border-emerald-200 bg-emerald-50 text-brand-emerald' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
                           )}
                         >
                           <span className="truncate">{displayName(u)}</span>

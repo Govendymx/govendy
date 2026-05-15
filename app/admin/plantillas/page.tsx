@@ -249,7 +249,7 @@ export default function AdminTemplatesPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -259,7 +259,7 @@ export default function AdminTemplatesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <AdminTopMenu />
       <div className="mx-auto max-w-6xl px-4 py-8">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
@@ -283,7 +283,7 @@ export default function AdminTemplatesPage() {
               type="button"
               onClick={() => void seedDefaults()}
               disabled={!isAdmin || isSeeding || isLoading}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50 disabled:opacity-60"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50 disabled:opacity-60"
             >
               {isSeeding ? 'Creando…' : 'Generar Defaults'}
             </button>
@@ -314,7 +314,7 @@ export default function AdminTemplatesPage() {
                   <div className="text-lg font-extrabold text-gray-900">Globales</div>
                   <div className="mt-1 text-sm text-gray-600">Se muestran a todos los usuarios (si están activas).</div>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   {globals.length} total
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function AdminTemplatesPage() {
                   </div>
                 ))}
                 {globals.length === 0 ? (
-                  <div className="rounded-3xl border border-pink-200 bg-pink-50 p-5 ring-1 ring-pink-100">
+                  <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 ring-1 ring-emerald-100">
                     <div className="text-sm font-extrabold text-gray-900">Aún no hay plantillas globales</div>
                     <div className="mt-1 text-sm text-gray-700">
                       Crea una con <span className="font-semibold">“+ Nueva global”</span> o genera ejemplos PRO automáticamente.

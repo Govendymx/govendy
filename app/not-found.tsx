@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-3xl px-4 py-10">
         <div className="rounded-3xl bg-white p-10 text-center shadow-sm ring-1 ring-black/5">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">

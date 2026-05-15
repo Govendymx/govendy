@@ -305,7 +305,7 @@ export default function AdminCorreoPage() {
                     <li
                       key={e.uid}
                       onClick={() => void loadEmail(e.uid)}
-                      className={`cursor-pointer px-4 py-3 transition hover:bg-gray-50 ${selected?.uid === e.uid ? 'bg-pink-50' : ''}`}
+                      className={`cursor-pointer px-4 py-3 transition hover:bg-gray-50 ${selected?.uid === e.uid ? 'bg-emerald-50' : ''}`}
                     >
                       <div className="flex justify-between gap-2">
                         <div className="flex items-center gap-1 truncate text-sm font-medium text-gray-900">

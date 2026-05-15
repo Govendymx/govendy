@@ -310,7 +310,7 @@ function AdminPagosContent() {
 
     if (isPocketCash && isPending) {
       return (
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-500 px-4 py-1.5 text-xs font-bold text-white shadow-md">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-500 to-rose-500 px-4 py-1.5 text-xs font-bold text-white shadow-md">
           <span>💳</span>
           Pago Pocketcash
         </span>
@@ -542,7 +542,7 @@ function AdminPagosContent() {
   return (
     <div className="space-y-6">
       {/* Header moderno */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 via-pink-600 to-rose-600 p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600 via-emerald-600 to-rose-600 p-8 shadow-xl">
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-2">
             <div className="rounded-xl bg-white/20 backdrop-blur-sm p-3">

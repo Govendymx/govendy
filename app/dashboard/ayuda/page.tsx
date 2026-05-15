@@ -519,7 +519,7 @@ export default function DashboardAyudaPage() {
             <p className="mt-1 text-gray-600">
               GoVendy te mantiene informado con un sistema de <strong>alertas en tiempo real</strong>. El <strong>punto rosa parpadeante</strong> en el menú superior te indica que tienes alertas nuevas sin leer. Haz clic en él para ver un resumen rápido.
             </p>
-            <div className="mt-2 rounded-xl bg-pink-50 p-3 text-xs text-gray-700">
+            <div className="mt-2 rounded-xl bg-emerald-50 p-3 text-xs text-gray-700">
               <strong>Te notificamos sobre:</strong>
               <ul className="mt-1 ml-4 list-disc space-y-1">
                 <li>🛒 <strong>Nuevas ventas</strong> — Alguien compró tu producto</li>
@@ -672,8 +672,8 @@ export default function DashboardAyudaPage() {
                 <div className="flex items-center gap-2 font-bold text-violet-800">🤝 Entrega Personal</div>
                 <p className="mt-1 text-xs text-gray-600">Comprador y vendedor coordinan la entrega en persona. No hay costo de envío. Disponible exclusivamente para el plan <strong>Platinum</strong>. En subastas, todos los planes pueden ofrecer entrega personal.</p>
               </div>
-              <div className="rounded-xl border border-pink-200 bg-pink-50/50 p-3">
-                <div className="flex items-center gap-2 font-bold text-pink-800">💻 Producto Digital</div>
+              <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-3">
+                <div className="flex items-center gap-2 font-bold text-emerald-800">💻 Producto Digital</div>
                 <p className="mt-1 text-xs text-gray-600">No requiere envío físico. El vendedor entrega códigos, licencias, seriales o links de descarga directamente desde su panel de Ventas. El comprador los ve en su panel de Compras.</p>
               </div>
             </div>
@@ -1031,7 +1031,7 @@ export default function DashboardAyudaPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">

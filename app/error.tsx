@@ -16,7 +16,7 @@ export default function ErrorPage({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="mx-auto max-w-3xl px-4 py-10">
         <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-black/5">
           <div className="flex items-center gap-3">

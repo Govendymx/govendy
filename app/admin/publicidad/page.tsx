@@ -34,7 +34,7 @@ export default function AdminFeaturedPage() {
     }
   };
 
-  if (loading) return <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-pink-600" /></div>;
+  if (loading) return <div className="p-10 flex justify-center"><Loader2 className="animate-spin text-emerald-600" /></div>;
 
   return (
     <div className="p-6">

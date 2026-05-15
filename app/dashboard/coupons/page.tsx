@@ -513,7 +513,7 @@ export default function CouponsPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-5xl px-4 py-10">
           <div className="h-12 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -523,7 +523,7 @@ export default function CouponsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -694,7 +694,7 @@ export default function CouponsPage() {
               <div>
                 <div className="text-sm font-semibold text-gray-900">Aplicar a publicaciones</div>
                 {myListings.length > 0 ? (
-                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-emerald/30 bg-pink-50/50 px-4 py-3">
+                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-emerald/30 bg-emerald-50/50 px-4 py-3">
                     <input
                       type="checkbox"
                       checked={applyToAllListings}

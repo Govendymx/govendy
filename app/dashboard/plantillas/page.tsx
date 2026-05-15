@@ -223,7 +223,7 @@ export default function DashboardTemplatesPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -233,7 +233,7 @@ export default function DashboardTemplatesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -294,7 +294,7 @@ export default function DashboardTemplatesPage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={r.preview_image_url} alt={r.title} className="h-28 w-full object-cover" draggable={false} />
                     ) : (
-                      <div className="h-28 bg-gradient-to-r from-pink-100 via-pink-100 to-pink-200" />
+                      <div className="h-28 bg-gradient-to-r from-emerald-100 via-emerald-100 to-emerald-200" />
                     )}
                     <div className="p-4">
                       <div className="flex items-start justify-between gap-3">
@@ -333,7 +333,7 @@ export default function DashboardTemplatesPage() {
                 <div className="text-lg font-extrabold text-gray-900">Mis plantillas</div>
                 <div className="mt-1 text-sm text-gray-600">Crea tus diseños y aplícalos al publicar.</div>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 {mine.length} total
               </div>
             </div>

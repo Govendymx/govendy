@@ -175,7 +175,7 @@ export default function AdminOfficialStoresPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="flex items-center justify-center gap-2 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-pink-600 hover:shadow-md"
+          className="flex items-center justify-center gap-2 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-emerald-600 hover:shadow-md"
         >
           <Plus className="h-4 w-4" />
           Nueva Tienda
@@ -387,7 +387,7 @@ export default function AdminOfficialStoresPage() {
                 <button
                   onClick={handleSaveStore}
                   disabled={!selectedUser || !formData.storeName}
-                  className="w-full rounded-xl bg-brand-emerald py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-xl bg-brand-emerald py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isEditing ? 'Guardar Cambios' : 'Confirmar Tienda Oficial'}
                 </button>

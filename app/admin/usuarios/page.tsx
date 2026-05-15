@@ -845,7 +845,7 @@ export default function AdminUsuariosPage() {
             className={`rounded-xl px-4 py-2 text-sm font-bold ring-1 transition-all ${userFilter === f
                 ? f === 'suspended'
                   ? 'bg-red-500 text-white ring-red-300'
-                  : 'bg-brand-emerald text-white ring-pink-200'
+                  : 'bg-brand-emerald text-white ring-emerald-200'
                 : 'bg-white text-gray-700 ring-black/10 hover:bg-gray-50'
               }`}
           >
@@ -984,7 +984,7 @@ export default function AdminUsuariosPage() {
                           <Link
                             href={`/perfil/${u.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
+                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50"
                           >
                             Ver →
                           </Link>
@@ -1014,7 +1014,7 @@ export default function AdminUsuariosPage() {
                   <Link
                     href={`/perfil/${selected.id}`}
                     target="_blank"
-                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
+                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50"
                   >
                     Abrir perfil público →
                   </Link>
@@ -1225,9 +1225,9 @@ export default function AdminUsuariosPage() {
                           type="checkbox"
                           checked={auditIsManufacturer}
                           onChange={e => setAuditIsManufacturer(e.target.checked)}
-                          className="rounded border-pink-300 text-pink-600 focus:ring-pink-500"
+                          className="rounded border-emerald-300 text-emerald-600 focus:ring-emerald-500"
                         />
-                        <span className="text-sm font-semibold text-pink-800">🏭 Fabricante Verificado</span>
+                        <span className="text-sm font-semibold text-emerald-800">🏭 Fabricante Verificado</span>
                       </label>
                     </div>
 
@@ -1300,7 +1300,7 @@ export default function AdminUsuariosPage() {
                   <div className="text-sm font-semibold text-gray-900">Calificaciones recibidas</div>
                   <div className="mt-2 max-h-48 space-y-2 overflow-y-auto">
                     {editingRating ? (
-                      <div className="rounded-2xl border border-brand-emerald bg-pink-50/50 p-3">
+                      <div className="rounded-2xl border border-brand-emerald bg-emerald-50/50 p-3">
                         <div className="text-xs font-semibold text-gray-700">Editar: {editingRating.rater_name} · {editingRating.stars}/10</div>
                         <div className="mt-2 flex gap-2">
                           <input
@@ -1493,7 +1493,7 @@ export default function AdminUsuariosPage() {
                         type="button"
                         onClick={() => updatePlan('pro')}
                         disabled={isSaving || detail?.user?.profile?.plan_type === 'pro'}
-                        className="rounded-xl bg-gradient-to-r from-brand-emerald to-pink-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                        className="rounded-xl bg-gradient-to-r from-brand-emerald to-emerald-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
                       >
                         PRO
                       </button>

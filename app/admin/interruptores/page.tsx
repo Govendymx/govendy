@@ -125,7 +125,7 @@ export default function AdminInterruptoresPage() {
 
   if (booting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-10">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-10">
         <div className="mx-auto max-w-2xl h-40 animate-pulse rounded-2xl bg-white/80 ring-1 ring-black/5" />
       </div>
     );
@@ -133,18 +133,18 @@ export default function AdminInterruptoresPage() {
 
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-10">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-10">
         <div className="mx-auto max-w-2xl rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-10">
       <div className="mx-auto max-w-2xl">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Interruptores</h1>

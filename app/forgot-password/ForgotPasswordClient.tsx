@@ -56,7 +56,7 @@ export function ForgotPasswordClient() {
 
   if (success) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-white flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
             <div className="flex items-center gap-3">
@@ -99,7 +99,7 @@ export function ForgotPasswordClient() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-white flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
           <div className="flex items-center gap-3">

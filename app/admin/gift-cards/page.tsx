@@ -105,7 +105,7 @@ export default function AdminGiftCardsPage() {
 
                 {/* Gift Card Store Settings Panel */}
                 {showSettings && (
-                    <div className="mb-6 rounded-2xl bg-gradient-to-br from-orange-50 via-pink-50 to-purple-50 p-6 ring-1 ring-orange-200/50 shadow-sm">
+                    <div className="mb-6 rounded-2xl bg-gradient-to-br from-orange-50 via-emerald-50 to-purple-50 p-6 ring-1 ring-orange-200/50 shadow-sm">
                         <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                             🏪 Configuración de Tienda Gift Cards
                         </h2>

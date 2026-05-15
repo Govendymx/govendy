@@ -531,7 +531,7 @@ function SupervisionContent() {
           <div className="mt-1 text-2xl font-extrabold text-green-900">{stats.released}</div>
           <div className="mt-0.5 text-[10px] text-green-700">Métricas y payouts →</div>
         </Link>
-        <div className="rounded-2xl border border-brand-emerald/20 bg-pink-50 px-4 py-3">
+        <div className="rounded-2xl border border-brand-emerald/20 bg-emerald-50 px-4 py-3">
           <div className="text-[11px] font-semibold text-brand-emerald">Cobradas (retiradas)</div>
           <div className="mt-1 text-2xl font-extrabold text-brand-emerald">{stats.withdrawn}</div>
         </div>
@@ -678,7 +678,7 @@ function SupervisionContent() {
                 const st = String(o?.status || '').trim().toLowerCase();
                 const d = o?.dispute;
                 return (
-                  <tr key={oid || Math.random()} className="border-b border-black/5 hover:bg-pink-50/30">
+                  <tr key={oid || Math.random()} className="border-b border-black/5 hover:bg-emerald-50/30">
                     <td className="px-4 py-2 font-mono text-xs text-gray-600" title={oid}>
                       {oid ? (
                         <button
@@ -767,7 +767,7 @@ function SupervisionContent() {
                         <span className="text-gray-500">—</span>
                       )}
                       {o?.withdrawn ? (
-                        <div className="mt-1 rounded bg-pink-100 px-2 py-0.5 font-semibold text-brand-emerald">Cobrado</div>
+                        <div className="mt-1 rounded bg-emerald-100 px-2 py-0.5 font-semibold text-brand-emerald">Cobrado</div>
                       ) : null}
                     </td>
                     <td className="px-4 py-2">

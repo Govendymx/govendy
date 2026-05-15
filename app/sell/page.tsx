@@ -41,7 +41,7 @@ export default function SellPage() {
 
   if (vState === 'loading') {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white flex items-center justify-center">
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent" />
       </div>
     );
@@ -53,7 +53,7 @@ export default function SellPage() {
 
   // Gate: show verification status and redirect
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">

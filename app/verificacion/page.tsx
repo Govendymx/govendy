@@ -242,7 +242,7 @@ export default function VerificacionPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-3xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-96 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -252,7 +252,7 @@ export default function VerificacionPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -273,7 +273,7 @@ export default function VerificacionPage() {
 
       <main className="mx-auto max-w-3xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Paso obligatorio
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Completa tu verificación</h1>

@@ -323,8 +323,8 @@ export default function ProPage() {
             onClick={() => handleSwitch('pro')}
             disabled={plan === 'pro' || updating}
             className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all ${plan === 'pro'
-              ? 'bg-pink-100 text-brand-emerald cursor-default border-2 border-brand-emerald/20'
-              : 'bg-brand-emerald text-white hover:bg-pink-600 shadow-md hover:shadow-lg'
+              ? 'bg-emerald-100 text-brand-emerald cursor-default border-2 border-brand-emerald/20'
+              : 'bg-brand-emerald text-white hover:bg-emerald-600 shadow-md hover:shadow-lg'
               }`}
           >
             {plan === 'pro' ? '✓ Tu plan actual' : currentPlanIndex > 1 ? 'Cambiar a PRO' : 'Obtener Plan PRO'}
@@ -443,7 +443,7 @@ export default function ProPage() {
                 </div>
 
                 <div className="mb-6 space-y-4">
-                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-pink-50 border-pink-100'}`}>
+                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-100'}`}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-semibold text-gray-900">
                         Plan {selectedPlan === 'platinum' ? 'Platinum' : 'PRO'} Mensual
@@ -478,7 +478,7 @@ export default function ProPage() {
                   onClick={simulatePayment}
                   className={`w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] ${selectedPlan === 'platinum'
                     ? 'bg-gradient-to-r from-amber-500 to-yellow-500 shadow-amber-200 hover:from-amber-600 hover:to-yellow-600'
-                    : 'bg-brand-emerald shadow-pink-200 hover:bg-pink-600'
+                    : 'bg-brand-emerald shadow-emerald-200 hover:bg-emerald-600'
                     }`}
                 >
                   Pagar ${prices[selectedPlan].toLocaleString('es-MX')}.00 y Activar

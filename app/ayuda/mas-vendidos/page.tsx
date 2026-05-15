@@ -49,7 +49,7 @@ export default function MasVendidosPage() {
       categoryLink="/ayuda"
       lastUpdated="8 de febrero de 2026"
     >
-      <div className="mb-10 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 p-6 text-white shadow-lg">
+      <div className="mb-10 rounded-2xl bg-gradient-to-r from-emerald-500 to-purple-600 p-6 text-white shadow-lg">
         <h4 className="mb-2 flex items-center text-xl font-bold">
           <TrendingUp className="mr-2 h-6 w-6" />
           Tendencias de Febrero 2026

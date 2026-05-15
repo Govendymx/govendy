@@ -1106,7 +1106,7 @@ function OperationsView() {
                               </Link>
                               <div className="flex flex-wrap gap-1">
                                 {t.is_auction && (
-                                  <span className="inline-flex items-center rounded-sm bg-pink-50 px-1 py-0.5 text-[10px] font-medium text-pink-700 ring-1 ring-inset ring-pink-600/20">
+                                  <span className="inline-flex items-center rounded-sm bg-emerald-50 px-1 py-0.5 text-[10px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
                                     Subasta
                                   </span>
                                 )}

@@ -656,7 +656,7 @@ function AdminLogisticaContent() {
             </div>
             <Link
               href="/admin/pagos"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-purple-600 hover:to-pink-700 transition-all"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-purple-600 hover:to-emerald-700 transition-all"
             >
               <span>💳</span>
               Pagos
@@ -919,7 +919,7 @@ function AdminLogisticaContent() {
 export default function AdminLogisticaPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald mx-auto"></div>
           <p className="mt-4 text-sm text-gray-600">Cargando...</p>

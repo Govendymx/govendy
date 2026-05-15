@@ -308,7 +308,7 @@ export default function PagoOfflinePage() {
             <div className="space-y-6">
               {/* Concepto / Referencia - THE MOST IMPORTANT PART */}
               <div className="rounded-3xl bg-white p-1 shadow-sm ring-1 ring-black/5 overflow-hidden">
-                <div className="bg-gradient-to-r from-brand-emerald to-pink-600 px-6 py-6 text-white text-center rounded-t-[20px]">
+                <div className="bg-gradient-to-r from-brand-emerald to-emerald-600 px-6 py-6 text-white text-center rounded-t-[20px]">
                   <p className="text-sm font-medium opacity-90 mb-1">Concepto / Referencia</p>
                   <p className="text-xs opacity-75">Incluye este código en tu transferencia</p>
                 </div>

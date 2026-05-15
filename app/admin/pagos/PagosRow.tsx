@@ -211,7 +211,7 @@ export function PagosRow({
                                                     {(Boolean((r as any).is_auction) || String((r as any).order_source || '').toLowerCase() === 'auction') && (r as any).is_digital ? (
                                                         <span className="rounded px-1.5 py-0.5 text-[10px] font-bold bg-indigo-100 text-indigo-700 border border-indigo-200">📱🔨 Subasta Producto Digital</span>
                                                     ) : (Boolean((r as any).is_auction) || String((r as any).order_source || '').toLowerCase() === 'auction') ? (
-                                                        <span className="rounded px-1.5 py-0.5 text-[10px] font-bold bg-pink-100 text-pink-700 border border-pink-200">🔨 Subasta</span>
+                                                        <span className="rounded px-1.5 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">🔨 Subasta</span>
                                                     ) : (r as any).is_digital ? (
                                                         <span className="rounded px-1.5 py-0.5 text-[10px] font-bold bg-indigo-100 text-indigo-700 border border-indigo-200">📱 Producto Digital</span>
                                                     ) : (isOrder || (r as any).product_id) ? (

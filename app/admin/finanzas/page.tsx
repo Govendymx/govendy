@@ -113,7 +113,7 @@ export default function AdminFinanzasPage() {
                         key={p}
                         onClick={() => setPeriod(p)}
                         className={`rounded-2xl px-5 py-2.5 text-sm font-bold transition-all duration-300 ${period === p
-                            ? 'bg-gradient-to-r from-pink-500 to-rose-500 text-white shadow-lg shadow-pink-200/50 scale-105'
+                            ? 'bg-gradient-to-r from-emerald-500 to-rose-500 text-white shadow-lg shadow-emerald-200/50 scale-105'
                             : 'bg-white text-gray-600 ring-1 ring-black/5 hover:bg-gray-50 hover:scale-[1.02]'
                             }`}
                     >
@@ -444,7 +444,7 @@ function SummaryCard({
     const colors: Record<string, string> = {
         green: 'from-emerald-500 to-green-600 shadow-emerald-200/50',
         amber: 'from-amber-500 to-orange-500 shadow-amber-200/50',
-        pink: 'from-pink-500 to-rose-500 shadow-pink-200/50',
+        pink: 'from-emerald-500 to-rose-500 shadow-emerald-200/50',
     };
     return (
         <div className={`rounded-3xl bg-gradient-to-br ${colors[accent] || colors.pink} p-5 text-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl`}>

@@ -346,7 +346,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-6">
       {/* Header moderno con control de vista */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 shadow-xl">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-purple-600 to-emerald-600 p-8 shadow-xl">
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
@@ -672,14 +672,14 @@ export default function AdminDashboardPage() {
                         <Link
                           href={k.href}
                           className={`group relative overflow-hidden block h-full rounded-xl border-2 p-5 shadow-lg transition-all hover:scale-105 hover:shadow-xl ${isHighlighted
-                            ? 'border-purple-500 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 ring-2 ring-purple-500/30'
+                            ? 'border-purple-500 bg-gradient-to-br from-purple-50 via-emerald-50 to-rose-50 ring-2 ring-purple-500/30'
                             : k.alert
                               ? 'border-amber-400 bg-gradient-to-br from-amber-50 to-orange-50 ring-2 ring-amber-400/30'
                               : 'border-gray-200 bg-white hover:border-gray-300'
                             }`}
                         >
                           <div className={`text-3xl font-extrabold mb-2 ${isHighlighted
-                            ? 'bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent'
+                            ? 'bg-gradient-to-r from-purple-600 to-emerald-600 bg-clip-text text-transparent'
                             : 'text-gray-900'
                             }`}>
                             {String(k.value)}
@@ -727,11 +727,11 @@ export default function AdminDashboardPage() {
                     <Link
                       href={q.href}
                       className={`group relative overflow-hidden flex h-full items-start gap-4 rounded-xl border-2 p-5 shadow-md transition-all hover:scale-[1.02] hover:shadow-xl ${q.badge && q.badge > 0
-                        ? 'border-purple-400 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 ring-2 ring-purple-400/30 hover:ring-purple-500/40'
-                        : 'border-gray-200 bg-white hover:border-purple-300 hover:bg-gradient-to-br hover:from-purple-50/50 hover:to-pink-50/50'
+                        ? 'border-purple-400 bg-gradient-to-br from-purple-50 via-emerald-50 to-rose-50 ring-2 ring-purple-400/30 hover:ring-purple-500/40'
+                        : 'border-gray-200 bg-white hover:border-purple-300 hover:bg-gradient-to-br hover:from-purple-50/50 hover:to-emerald-50/50'
                         }`}
                     >
-                      <div className="rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 p-2.5 shadow-md group-hover:scale-110 transition-transform">
+                      <div className="rounded-lg bg-gradient-to-br from-purple-500 to-emerald-600 p-2.5 shadow-md group-hover:scale-110 transition-transform">
                         <span className="text-xl">📋</span>
                       </div>
                       <div className="min-w-0 flex-1">
@@ -740,7 +740,7 @@ export default function AdminDashboardPage() {
                             {q.label}
                           </div>
                           {q.badge && q.badge > 0 ? (
-                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-2.5 py-0.5 text-xs font-bold text-white shadow-md">
+                            <span className="inline-flex items-center rounded-full bg-gradient-to-r from-purple-600 to-emerald-600 px-2.5 py-0.5 text-xs font-bold text-white shadow-md">
                               {q.badge}
                             </span>
                           ) : null}

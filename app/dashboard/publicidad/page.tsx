@@ -172,7 +172,7 @@ export default function FeaturedListingsPage() {
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <Loader2 className="h-8 w-8 animate-spin text-pink-600" />
+        <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
       </div>
     );
   }
@@ -189,7 +189,7 @@ export default function FeaturedListingsPage() {
 
           <div className="flex items-center gap-4 rounded-xl bg-white px-4 py-2 shadow-sm border border-gray-100">
             <div className="flex items-center gap-2">
-              <Wallet className="h-5 w-5 text-pink-600" />
+              <Wallet className="h-5 w-5 text-emerald-600" />
               <span className="text-sm font-medium text-gray-600">Saldo PocketCash:</span>
             </div>
             <span className="text-lg font-bold text-gray-900">
@@ -197,7 +197,7 @@ export default function FeaturedListingsPage() {
             </span>
             <button
               onClick={() => router.push('/dashboard/wallet')}
-              className="text-xs font-semibold text-pink-600 hover:text-pink-700 hover:underline"
+              className="text-xs font-semibold text-emerald-600 hover:text-emerald-700 hover:underline"
             >
               Recargar
             </button>
@@ -301,7 +301,7 @@ export default function FeaturedListingsPage() {
             <p className="mt-2 text-gray-500">Crea una publicación para poder destacarla.</p>
             <button
               onClick={() => router.push('/vender')}
-              className="mt-6 rounded-lg bg-pink-600 px-4 py-2 text-white hover:bg-pink-700 transition-colors"
+              className="mt-6 rounded-lg bg-emerald-600 px-4 py-2 text-white hover:bg-emerald-700 transition-colors"
             >
               Vender ahora
             </button>
@@ -360,7 +360,7 @@ export default function FeaturedListingsPage() {
                       ) : (
                         <button
                           onClick={() => setSelectedListing(listing)}
-                          className="w-full rounded-lg bg-pink-50 py-2.5 text-sm font-semibold text-pink-600 hover:bg-pink-100 transition-colors flex items-center justify-center gap-2"
+                          className="w-full rounded-lg bg-emerald-50 py-2.5 text-sm font-semibold text-emerald-600 hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2"
                         >
                           <TrendingUp className="h-4 w-4" />
                           Destacar Publicación
@@ -379,7 +379,7 @@ export default function FeaturedListingsPage() {
       {selectedListing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
           <div className="w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-2xl animate-in fade-in zoom-in duration-200">
-            <div className="bg-gradient-to-r from-pink-600 to-rose-500 px-6 py-6 text-white">
+            <div className="bg-gradient-to-r from-emerald-600 to-rose-500 px-6 py-6 text-white">
               <h2 className="text-xl font-bold">Destacar Publicación</h2>
               <p className="mt-1 opacity-90 truncate">{selectedListing.title}</p>
             </div>
@@ -395,15 +395,15 @@ export default function FeaturedListingsPage() {
                     key={key}
                     onClick={() => setSelectedPlan(key)}
                     className={`relative w-full rounded-xl border p-4 text-left transition-all ${selectedPlan === key
-                        ? 'border-pink-600 bg-pink-50 ring-1 ring-pink-600'
-                        : 'border-gray-200 hover:border-pink-300 hover:bg-gray-50'
+                        ? 'border-emerald-600 bg-emerald-50 ring-1 ring-emerald-600'
+                        : 'border-gray-200 hover:border-emerald-300 hover:bg-gray-50'
                       }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className={`font-semibold ${selectedPlan === key ? 'text-pink-900' : 'text-gray-900'}`}>
+                      <span className={`font-semibold ${selectedPlan === key ? 'text-emerald-900' : 'text-gray-900'}`}>
                         {PLANS[key].label}
                       </span>
-                      <span className={`text-lg font-bold ${selectedPlan === key ? 'text-pink-600' : 'text-gray-900'}`}>
+                      <span className={`text-lg font-bold ${selectedPlan === key ? 'text-emerald-600' : 'text-gray-900'}`}>
                         ${PLANS[key].price}
                       </span>
                     </div>
@@ -438,7 +438,7 @@ export default function FeaturedListingsPage() {
                 <button
                   onClick={handlePromote}
                   disabled={processing || (walletBalance ?? 0) < PLANS[selectedPlan].price}
-                  className="flex-1 rounded-xl bg-pink-600 py-3 text-sm font-semibold text-white hover:bg-pink-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {processing ? (
                     <>

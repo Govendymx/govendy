@@ -44,7 +44,7 @@ export default function CualEsMiIpPage() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-            ¿Cuál es mi <span className="text-pink-600">IP</span>?
+            ¿Cuál es mi <span className="text-emerald-600">IP</span>?
           </h1>
           <p className="mt-4 text-xl text-gray-500">
             Herramienta de geolocalización y diagnóstico de red
@@ -53,7 +53,7 @@ export default function CualEsMiIpPage() {
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-600 mb-4"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-emerald-600 mb-4"></div>
             <p className="text-gray-600">Rastreando señal...</p>
           </div>
         ) : error ? (
@@ -64,7 +64,7 @@ export default function CualEsMiIpPage() {
           <div className="space-y-8">
             {/* Main IP Card */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all hover:scale-[1.01]">
-              <div className="bg-gradient-to-r from-pink-600 to-purple-600 p-8 text-white text-center">
+              <div className="bg-gradient-to-r from-emerald-600 to-purple-600 p-8 text-white text-center">
                 <div className="text-sm font-medium opacity-90 uppercase tracking-wider mb-2">Tu Dirección IP Pública es</div>
                 <div className="text-5xl md:text-6xl font-black font-mono tracking-tight">{data.ip}</div>
                 <div className="mt-4 flex items-center justify-center space-x-2 bg-white/20 rounded-full px-4 py-1 w-fit mx-auto backdrop-blur-sm">
@@ -89,7 +89,7 @@ export default function CualEsMiIpPage() {
                   {/* Details Grid */}
                   <div className="grid grid-cols-1 gap-4 content-center">
                     <InfoCard 
-                      icon={<MapPin className="text-pink-500" />} 
+                      icon={<MapPin className="text-emerald-500" />} 
                       label="Ubicación" 
                       value={`${data.city}, ${data.region}`} 
                       subValue={data.country_name}

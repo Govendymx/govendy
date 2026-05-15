@@ -12,7 +12,7 @@ function CompraExitosaContent() {
   const isEstafeta = type === 'estafeta';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
@@ -66,7 +66,7 @@ function CompraExitosaContent() {
 export default function CompraExitosaPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald mx-auto"></div>
           <p className="mt-4 text-sm text-gray-600">Cargando...</p>

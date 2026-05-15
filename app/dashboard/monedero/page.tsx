@@ -1059,10 +1059,10 @@ export default function MonederoPage() {
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Balance Card */}
           <div className="lg:col-span-1">
-            <div className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl">
+            <div className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-emerald-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl">
               {/* Decorative Elements */}
               <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/10 blur-3xl"></div>
-              <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-pink-900/20 blur-3xl"></div>
+              <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-emerald-900/20 blur-3xl"></div>
 
               {/* Card Header */}
               <div className="relative z-10 flex items-start justify-between">
@@ -1541,7 +1541,7 @@ export default function MonederoPage() {
                           <div className="font-bold text-gray-900">+{formatMoney(topup.amount)}</div>
                           <button
                             onClick={() => generateOfflinePaymentNote(topup.id, topup.amount, getMethodFromMetadata(topup.mercadopago_preference_id), getInstructionFromMetadata(topup.mercadopago_preference_id))}
-                            className="text-xs font-medium text-brand-emerald hover:text-pink-700 underline"
+                            className="text-xs font-medium text-brand-emerald hover:text-emerald-700 underline"
                           >
                             Descargar Ficha
                           </button>
@@ -1606,7 +1606,7 @@ export default function MonederoPage() {
                         </div>
                         <button
                           onClick={() => generateTransactionReceipt(tx)}
-                          className="mt-1 text-xs font-medium text-brand-emerald hover:text-pink-700 underline flex items-center justify-end gap-1 ml-auto"
+                          className="mt-1 text-xs font-medium text-brand-emerald hover:text-emerald-700 underline flex items-center justify-end gap-1 ml-auto"
                         >
                           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -1654,7 +1654,7 @@ export default function MonederoPage() {
                 <button
                   onClick={handleWithdraw}
                   disabled={isWithdrawLoading || (wallet?.balance || 0) < 0.01}
-                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isWithdrawLoading ? 'Procesando...' : 'Confirmar Retiro'}
                 </button>
@@ -1772,7 +1772,7 @@ export default function MonederoPage() {
                 <button
                   type="submit"
                   disabled={transferLoading || !transferRecipient || !transferAmount}
-                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   {transferLoading ? (
                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

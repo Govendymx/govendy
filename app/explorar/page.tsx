@@ -309,7 +309,7 @@ function ExplorarContent() {
                               </div>
                             )}
                             {p.condition === 'casi_nuevo' && (
-                              <div className="rounded-lg bg-pink-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
+                              <div className="rounded-lg bg-emerald-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
                                 Casi Nuevo
                               </div>
                             )}

@@ -390,7 +390,7 @@ export default function DashboardPerfilPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
         <div className="mx-auto max-w-4xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 ring-1 ring-black/5" />
@@ -402,7 +402,7 @@ export default function DashboardPerfilPage() {
   const healthy = docsCount >= 2;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -640,7 +640,7 @@ export default function DashboardPerfilPage() {
                 </div>
               </div>
               {profile?.plan_type === 'pro' ? (
-                <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-pink-100">
+                <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-emerald-100">
                   PRO
                 </div>
               ) : (
@@ -717,7 +717,7 @@ export default function DashboardPerfilPage() {
           </div>
 
           {/* ── Seudónimo PRO / Platinum ── */}
-          <div className="rounded-2xl border border-pink-100 bg-pink-50/30 p-5 ring-1 ring-pink-100">
+          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 ring-1 ring-emerald-100">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2">
@@ -838,7 +838,7 @@ export default function DashboardPerfilPage() {
             </div>
           </div>
 
-          <div id="datos-cobro" className="mt-4 rounded-3xl border border-pink-100 bg-pink-50/40 p-5 ring-1 ring-pink-100" data-tour="payout-info">
+          <div id="datos-cobro" className="mt-4 rounded-3xl border border-emerald-100 bg-emerald-50/40 p-5 ring-1 ring-emerald-100" data-tour="payout-info">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="text-sm font-extrabold text-gray-900">Datos de cobro (para liberación de dinero)</div>
@@ -846,7 +846,7 @@ export default function DashboardPerfilPage() {
                   Estos datos se usan para que soporte/admin pueda pagarte cuando se liberen tus ventas. (Ejemplo México: CLABE)
                 </div>
               </div>
-              <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-pink-100">PRO</div>
+              <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-emerald-100">PRO</div>
             </div>
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">

@@ -2,7 +2,7 @@ import { SkeletonBox } from '@/components/ui/Skeletons';
 
 export default function FavoritosLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white px-4 py-6 sm:px-6">
+        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-3xl space-y-5">
                 <SkeletonBox className="h-7 w-32" />
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">

@@ -82,7 +82,7 @@ export default function DashboardDisputasPage() {
   }, [isImpersonating, targetUserId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -139,7 +139,7 @@ export default function DashboardDisputasPage() {
                   <Link
                     key={id}
                     href={`/dashboard/disputas/${id}`}
-                    className="block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm hover:bg-pink-50/30"
+                    className="block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm hover:bg-emerald-50/30"
                   >
                     <div className="p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2">

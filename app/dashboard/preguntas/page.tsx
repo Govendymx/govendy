@@ -818,7 +818,7 @@ export default function DashboardPreguntasPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -921,14 +921,14 @@ Ver detalles completos en la consola (F12)`;
         {success && <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>}
 
         {/* Banner / hero */}
-        <div className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-pink-100 via-pink-100 to-pink-200 text-gray-900 shadow-sm ring-1 ring-pink-200">
+        <div className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-100 via-emerald-100 to-emerald-200 text-gray-900 shadow-sm ring-1 ring-emerald-200">
           <div className="relative p-6 sm:p-8">
             <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-emerald/15 blur-3xl" aria-hidden="true" />
             <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-brand-emerald/15 blur-3xl" aria-hidden="true" />
 
             <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
               <div className="rounded-3xl bg-white/70 p-5 ring-1 ring-black/5 backdrop-blur sm:p-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   Panel de vendedor
                 </div>
                 <div className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Responde rápido y vende más</div>
@@ -1021,7 +1021,7 @@ Ver detalles completos en la consola (F12)`;
             </div>
             <div className="flex items-center gap-2">
               {activeTab === 'preguntas' && (
-                <span className="hidden sm:inline-flex rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
+                <span className="hidden sm:inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   Responde en <span className="ml-1 font-extrabold">menos de 1 hora</span>, si puedes.
                 </span>
               )}

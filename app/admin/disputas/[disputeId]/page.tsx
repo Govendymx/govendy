@@ -529,7 +529,7 @@ export default function AdminDisputeChatPage() {
     adminNameOk;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="leading-tight">
@@ -694,7 +694,7 @@ export default function AdminDisputeChatPage() {
                     key={`pending-${idx}`}
                     type="button"
                     onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                    className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-pink-100 hover:opacity-90"
+                    className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-emerald-100 hover:opacity-90"
                   >
                     {String(p?.name || 'Adjunto')} ×
                   </button>
