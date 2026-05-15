@@ -75,12 +75,12 @@ export function CategoryDropdownMenu() {
           {/* Dropdown menu rosa transparente */}
           {openMenu === gender.label && (
             <div
-              className="absolute left-0 top-full z-50 mt-1 min-w-[300px] max-w-md rounded-2xl bg-gradient-to-br from-pink-500/95 to-pink-600/95 backdrop-blur-md shadow-2xl ring-1 ring-pink-300/50 animate-slide-down"
+              className="absolute left-0 top-full z-50 mt-1 min-w-[300px] max-w-md rounded-2xl bg-gradient-to-br from-brand-emerald/95 to-teal-600/95 backdrop-blur-md shadow-2xl ring-1 ring-brand-emerald/30 animate-slide-down"
               onMouseEnter={() => setOpenMenu(gender.label)}
               onMouseLeave={() => setOpenMenu(null)}
             >
               {/* Flecha apuntando hacia arriba */}
-              <div className="absolute -top-2 left-6 h-4 w-4 rotate-45 bg-pink-500/95 ring-1 ring-pink-300/50" />
+              <div className="absolute -top-2 left-6 h-4 w-4 rotate-45 bg-brand-emerald/95 ring-1 ring-brand-emerald/30" />
               <div className="relative p-4">
                 <div className="mb-3 border-b border-white/20 pb-2">
                   <div className="text-sm font-extrabold uppercase tracking-wider text-white">{gender.label}</div>
