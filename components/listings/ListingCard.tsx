@@ -512,7 +512,7 @@ export function ListingCard({ p, badge, mediaOverlay, meta, showDescription = fa
                                     type="button"
                                     onClick={addToCart}
                                     disabled={isAdding || (typeof (p as any).stock === 'number' && (p as any).stock <= 0)}
-                                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-orange-500 text-white shadow-md shadow-orange-500/30 transition-all hover:bg-orange-600 hover:shadow-orange-600/40 hover:scale-110 active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed relative z-30"
+                                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-mango text-white shadow-md shadow-brand-mango/30 transition-all hover:opacity-90 hover:scale-110 active:scale-90 disabled:opacity-40 disabled:cursor-not-allowed relative z-30"
                                     aria-label="Agregar al carrito"
                                     title="Agregar al carrito"
                                 >

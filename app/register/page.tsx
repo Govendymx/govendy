@@ -38,7 +38,9 @@ export default function RegisterPage() {
     confirmPassword: '',
     // Paso 2: Datos personales
     first_name: '',
-    last_name: '',
+    apellido_paterno: '',
+    apellido_materno: '',
+    last_name: '', // computed from apellido_paterno + apellido_materno
     nickname: '',
     phone: '',
     rfc: '',
@@ -93,8 +95,8 @@ export default function RegisterPage() {
       }
     }
     if (step === 2) {
-      if (!form.first_name || !form.last_name || !form.phone) {
-        setError('Nombre, apellidos y teléfono son obligatorios.'); return false;
+      if (!form.first_name || !form.apellido_paterno || !form.phone) {
+        setError('Nombre(s), apellido paterno y teléfono son obligatorios.'); return false;
       }
     }
     if (step === 3) {
@@ -118,7 +120,8 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      const full_name = `${form.first_name.trim()} ${form.last_name.trim()}`.trim();
+      const last_name = `${form.apellido_paterno.trim()} ${form.apellido_materno.trim()}`.trim();
+      const full_name = `${form.first_name.trim()} ${last_name}`.trim();
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: form.email.trim(),
         password: form.password,
@@ -144,11 +147,12 @@ export default function RegisterPage() {
       }
 
       // Guardar perfil completo en la tabla profiles
+      const last_name_final = `${form.apellido_paterno.trim()} ${form.apellido_materno.trim()}`.trim();
       await supabase.from('profiles').upsert([{
         id: data.user.id,
         full_name,
         first_name: form.first_name.trim() || null,
-        last_name: form.last_name.trim() || null,
+        last_name: last_name_final || null,
         phone: form.phone.trim() || null,
         rfc: form.rfc.trim().toUpperCase() || null,
         nickname: form.nickname.trim() || null,
@@ -339,12 +343,17 @@ export default function RegisterPage() {
                         <div>
                           <label htmlFor="first_name" className={labelClass}>Nombre(s) <span className="text-red-500">*</span></label>
                           <input id="first_name" type="text" value={form.first_name} onChange={set('first_name')}
-                            placeholder="Tu nombre" className={inputClass} />
+                            placeholder="Tu(s) nombre(s)" className={inputClass} />
                         </div>
                         <div>
-                          <label htmlFor="last_name" className={labelClass}>Apellidos <span className="text-red-500">*</span></label>
-                          <input id="last_name" type="text" value={form.last_name} onChange={set('last_name')}
-                            placeholder="Tus apellidos" className={inputClass} />
+                          <label htmlFor="apellido_paterno" className={labelClass}>Apellido Paterno <span className="text-red-500">*</span></label>
+                          <input id="apellido_paterno" type="text" value={form.apellido_paterno} onChange={set('apellido_paterno')}
+                            placeholder="Apellido paterno" className={inputClass} />
+                        </div>
+                        <div>
+                          <label htmlFor="apellido_materno" className={labelClass}>Apellido Materno <span className="text-red-500">*</span></label>
+                          <input id="apellido_materno" type="text" value={form.apellido_materno} onChange={set('apellido_materno')}
+                            placeholder="Apellido materno" className={inputClass} />
                         </div>
                       </div>
                       <div>
