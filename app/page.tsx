@@ -72,45 +72,77 @@ function FeatureCard({
   subtitle,
   href,
   icon,
-  bgColor = 'from-pink-50 to-pink-100',
+  accentColor = '#1FB59B',
+  badge,
 }: {
   title: string;
   subtitle: string;
   href?: string;
   icon: ReactNode;
-  bgColor?: string;
+  accentColor?: string;
+  badge?: string;
 }) {
   const content = (
-    <div className="group relative h-full overflow-hidden rounded-3xl bg-white p-4 transition-all duration-300 hover:shadow-xl hover:shadow-brand-emerald/5 hover:-translate-y-1 ring-1 ring-black/5 hover:ring-brand-emerald/20">
-      <div className="flex items-center gap-4">
-        {/* Icon Container */}
-        <div className={`relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${bgColor} shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-          <div className="flex items-center justify-center [&>svg]:h-12 [&>svg]:w-12 [&>svg]:drop-shadow-sm transition-transform duration-300 group-hover:scale-110">
-            {icon}
-          </div>
+    <div
+      className="group relative h-full overflow-hidden rounded-2xl bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ring-1 ring-black/[0.07] cursor-pointer"
+    >
+      {/* Top accent bar */}
+      <div
+        className="absolute top-0 inset-x-0 h-[3px] rounded-t-2xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+        style={{ background: `linear-gradient(90deg, ${accentColor}, ${accentColor}66)` }}
+      />
+
+      <div className="flex items-center gap-4 p-5">
+        {/* Icon container */}
+        <div
+          className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 shadow-sm"
+          style={{
+            background: `${accentColor}15`,
+            border: `1.5px solid ${accentColor}25`,
+          }}
+        >
+          <div style={{ color: accentColor }}>{icon}</div>
         </div>
 
-        {/* Text Content */}
-        <div className="flex flex-1 flex-col justify-center min-w-0 py-1">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="truncate text-[15px] font-extrabold text-gray-900 group-hover:text-brand-emerald transition-colors duration-300">
+        {/* Text */}
+        <div className="flex flex-1 flex-col min-w-0">
+          <div className="flex items-center gap-2">
+            <h3
+              className="text-[13.5px] font-bold text-gray-800 leading-tight truncate transition-colors duration-200"
+              style={{ color: undefined }}
+            >
               {title}
             </h3>
-
-            {/* Action Arrow */}
-            <div className="flex h-6 w-6 shrink-0 -translate-x-2 items-center justify-center rounded-full bg-gray-50 text-gray-300 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-hover:bg-brand-emerald group-hover:text-white">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-            </div>
+            {badge && (
+              <span
+                className="shrink-0 rounded-full px-2 py-[2px] text-[9px] font-black uppercase tracking-wider text-white"
+                style={{ background: accentColor }}
+              >
+                {badge}
+              </span>
+            )}
           </div>
-
-          <p className="mt-0.5 text-xs font-medium leading-relaxed text-gray-500 line-clamp-2 pr-1">
+          <p className="mt-[3px] text-[11.5px] leading-relaxed text-gray-500 line-clamp-2">
             {subtitle}
           </p>
         </div>
+
+        {/* Arrow */}
+        <div
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"
+          style={{ background: accentColor }}
+        >
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
 
-      {/* Decorative Glow */}
-      <div className="absolute -right-6 -bottom-6 h-24 w-24 rounded-full bg-gradient-to-br from-brand-emerald/10 to-transparent blur-2xl transition-opacity opacity-0 group-hover:opacity-100" />
+      {/* Glow */}
+      <div
+        className="absolute -right-6 -bottom-6 h-24 w-24 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: `${accentColor}18` }}
+      />
     </div>
   );
   return href ? <Link href={href} className="block h-full">{content}</Link> : content;
@@ -875,33 +907,14 @@ export default function HomePage() {
               title="Envío gratis"
               subtitle="Beneficio por ser tu primera compra."
               href="/envio-gratis"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#1FB59B"
+              badge="GRATIS"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Camión con flecha de retorno - Estilo flat rosa */}
-                  {/* Círculo con flecha de refresh */}
-                  <circle cx="30" cy="28" r="18" fill="#1FB59B" />
-                  <path d="M30 18c-5.5 0-10 4.5-10 10h4c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6v4c5.5 0 10-4.5 10-10s-4.5-10-10-10z" fill="white" />
-                  <path d="M38 28l-4-4v8l4-4z" fill="white" />
-
-                  {/* Cuerpo del camión */}
-                  <rect x="8" y="45" width="50" height="30" rx="4" fill="none" stroke="#1FB59B" strokeWidth="5" />
-
-                  {/* Cabina */}
-                  <path d="M58 55h20c4 0 6 2 8 6l6 8v6H58V55z" fill="none" stroke="#1FB59B" strokeWidth="5" />
-
-                  {/* Ventana cabina */}
-                  <rect x="68" y="58" width="12" height="10" rx="2" fill="none" stroke="#1FB59B" strokeWidth="3" />
-
-                  {/* Líneas velocidad */}
-                  <rect x="2" y="52" width="8" height="3" rx="1.5" fill="#1FB59B" />
-                  <rect x="0" y="60" width="10" height="3" rx="1.5" fill="#1FB59B" />
-
-                  {/* Ruedas */}
-                  <circle cx="22" cy="78" r="8" fill="none" stroke="#1FB59B" strokeWidth="5" />
-                  <circle cx="22" cy="78" r="3" fill="#1FB59B" />
-                  <circle cx="78" cy="78" r="8" fill="none" stroke="#1FB59B" strokeWidth="5" />
-                  <circle cx="78" cy="78" r="3" fill="#1FB59B" />
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
+                  <rect x="9" y="11" width="14" height="10" rx="2" />
+                  <circle cx="12" cy="21" r="1" />
+                  <circle cx="20" cy="21" r="1" />
                 </svg>
               }
             />
@@ -909,60 +922,22 @@ export default function HomePage() {
               title="Tienda Estafeta"
               subtitle="Calcula el costo de tu envío y compra tu guía."
               href="/estafeta/cotizar"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#6366F1"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Tienda con toldo - Estilo flat rosa */}
-                  {/* Toldo superior */}
-                  <path d="M10 15h80l-5 25H15L10 15z" fill="#1FB59B" />
-                  {/* Líneas del toldo */}
-                  <path d="M25 15v25M40 15v25M55 15v25M70 15v25" stroke="white" strokeWidth="3" />
-                  {/* Ondas del toldo */}
-                  <path d="M10 40q10 10 20 0t20 0t20 0t20 0" fill="#1FB59B" />
-
-                  {/* Cuerpo de la tienda */}
-                  <rect x="10" y="40" width="80" height="50" fill="#1FB59B" />
-
-                  {/* Puerta */}
-                  <rect x="25" y="50" width="20" height="35" rx="2" fill="white" stroke="#1FB59B" strokeWidth="2" />
-                  <circle cx="40" cy="68" r="2" fill="#1FB59B" />
-
-                  {/* Ventana */}
-                  <rect x="55" y="55" width="25" height="18" rx="2" fill="white" stroke="#1FB59B" strokeWidth="2" />
-
-                  {/* Base */}
-                  <rect x="5" y="88" width="90" height="6" rx="2" fill="#1FB59B" />
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
               }
             />
             <FeatureCard
               title="Productos destacados"
-              subtitle="Más vistos"
+              subtitle="Los más vistos y mejor valorados."
               href="/productos-destacados"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#F0B130"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Iconos de redes sociales - Estilo bicolor rosa/morado */}
-                  {/* Chat central */}
-                  <rect x="30" y="35" width="40" height="30" rx="6" fill="none" stroke="#5B21B6" strokeWidth="4" />
-                  <path d="M40 55l-10 12v-12" fill="none" stroke="#5B21B6" strokeWidth="4" strokeLinejoin="round" />
-                  <path d="M42 47h16M42 53h10" stroke="#5B21B6" strokeWidth="3" strokeLinecap="round" />
-
-                  {/* Corazón - arriba izquierda */}
-                  <circle cx="22" cy="22" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M22 30c-8-8-8-12 0-16 8 4 8 8 0 16z" fill="#1FB59B" />
-
-                  {/* Play - arriba derecha */}
-                  <circle cx="78" cy="22" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M73 15l12 7-12 7z" fill="none" stroke="#1FB59B" strokeWidth="3" strokeLinejoin="round" />
-
-                  {/* Imagen - abajo izquierda */}
-                  <circle cx="22" cy="78" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M12 82l8-10 6 5 8-8" stroke="#5B21B6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-
-                  {/* Plus - abajo derecha */}
-                  <circle cx="78" cy="78" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M78 70v16M70 78h16" stroke="#1FB59B" strokeWidth="3" strokeLinecap="round" />
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                 </svg>
               }
             />
@@ -970,93 +945,42 @@ export default function HomePage() {
               title="Subastas"
               subtitle="Todas las subastas, ordenadas por finalización."
               href="/subastas"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#EF4444"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Martillo de subasta con monedas - Estilo flat rosa */}
-                  {/* Monedas con $ */}
-                  <circle cx="20" cy="18" r="12" fill="#1FB59B" />
-                  <text x="20" y="23" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">$</text>
-
-                  <circle cx="55" cy="12" r="10" fill="#1FB59B" />
-                  <text x="55" y="17" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">$</text>
-
-                  <circle cx="85" cy="25" r="11" fill="#1FB59B" />
-                  <text x="85" y="30" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">$</text>
-
-                  {/* Martillo */}
-                  <g transform="rotate(-45 50 55)">
-                    {/* Cabeza */}
-                    <rect x="25" y="40" width="30" height="18" rx="4" fill="#1FB59B" />
-                    {/* Bandas */}
-                    <rect x="30" y="40" width="4" height="18" fill="white" fillOpacity="0.3" />
-                    <rect x="46" y="40" width="4" height="18" fill="white" fillOpacity="0.3" />
-                    {/* Mango */}
-                    <rect x="36" y="58" width="8" height="35" rx="3" fill="#1FB59B" />
-                  </g>
-
-                  {/* Líneas de impacto */}
-                  <path d="M15 70l-8 5M20 78l-5 8" stroke="#1FB59B" strokeWidth="4" strokeLinecap="round" />
-
-                  {/* Base */}
-                  <rect x="5" y="85" width="30" height="5" rx="2" fill="#1FB59B" />
-                  <rect x="10" y="80" width="20" height="5" rx="1" fill="#1FB59B" />
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z" />
+                  <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+                  <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z" />
+                  <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z" />
+                  <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z" />
+                  <path d="M15.5 9H14v1.5c0 .83.67 1.5 1.5 1.5 .83 0 1.5-.67 1.5-1.5S16.33 9 15.5 9z" />
+                  <path d="M10 9.5c0-.83-.67-1.5-1.5-1.5H3.5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z" />
+                  <path d="M8.5 15H10v-1.5c0-.83-.67-1.5-1.5-1.5-.83 0-1.5.67-1.5 1.5S7.67 15 8.5 15z" />
                 </svg>
               }
             />
             <FeatureCard
               title="Más vistos"
-              subtitle="Artículos con más vistas/compartidos."
+              subtitle="Artículos con más vistas y compartidos."
               href="/mas-vistos"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#8B5CF6"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Chat con corazón - Estilo flat rosa */}
-                  {/* Burbuja de chat */}
-                  <rect x="10" y="10" width="80" height="60" rx="15" fill="none" stroke="#1FB59B" strokeWidth="6" />
-                  {/* Cola del chat */}
-                  <path d="M25 70v22l20-22" fill="white" stroke="#1FB59B" strokeWidth="6" strokeLinejoin="round" />
-                  <path d="M25 70h20" stroke="white" strokeWidth="8" />
-
-                  {/* Corazón centrado */}
-                  <path d="M50 25c-8-15-30-5-20 20 10 15 20 20 20 20s10-5 20-20c10-25-12-35-20-20z" fill="#1FB59B" />
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
                 </svg>
               }
             />
             <FeatureCard
               title="Compra protegida"
-              subtitle="Te explicamos cómo funciona."
+              subtitle="Tu dinero seguro hasta recibir tu pedido."
               href="/compra-protegida"
-              bgColor="from-rose-50 via-pink-50 to-white"
+              accentColor="#059669"
+              badge="100% SEGURO"
               icon={
-                <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Escudo con check y moneda - Estilo flat rosa */}
-                  {/* Escudo principal */}
-                  <path d="M50 5L15 20v25c0 28 35 45 35 45s35-17 35-45V20L50 5z" fill="#1FB59B" />
-
-                  {/* Borde interior del escudo */}
-                  <path d="M50 12L22 25v20c0 22 28 36 28 36s28-14 28-36V25L50 12z" fill="none" stroke="white" strokeWidth="3" />
-
-                  {/* Check mark */}
-                  <path d="M35 45l10 10 20-20" fill="none" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-
-                  {/* Moneda con engranaje */}
-                  <g transform="translate(65, 60)">
-                    <circle cx="15" cy="15" r="18" fill="#1FB59B" stroke="white" strokeWidth="3" />
-                    {/* Dientes del engranaje */}
-                    <g stroke="white" strokeWidth="2">
-                      <rect x="13" y="-2" width="4" height="6" fill="white" />
-                      <rect x="13" y="30" width="4" height="6" fill="white" />
-                      <rect x="-2" y="13" width="6" height="4" fill="white" />
-                      <rect x="30" y="13" width="6" height="4" fill="white" />
-                      <rect x="2" y="2" width="5" height="4" transform="rotate(45 4 4)" fill="white" />
-                      <rect x="24" y="24" width="5" height="4" transform="rotate(45 26 26)" fill="white" />
-                      <rect x="24" y="2" width="5" height="4" transform="rotate(-45 26 4)" fill="white" />
-                      <rect x="2" y="24" width="5" height="4" transform="rotate(-45 4 26)" fill="white" />
-                    </g>
-                    <circle cx="15" cy="15" r="10" fill="#1FB59B" stroke="white" strokeWidth="2" />
-                    <text x="15" y="20" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">$</text>
-                  </g>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <polyline points="9 12 11 14 15 10" />
                 </svg>
               }
             />
