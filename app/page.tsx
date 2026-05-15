@@ -28,7 +28,7 @@ type HomeBanner = {
   // - mid3: banners extra (sección adicional)
   // - mid4: banners extra (sección adicional)
   // - mid5: banners extra (sección adicional)
-  placement?: 'hero' | 'top' | 'mid' | 'mid2' | 'mid3' | 'mid4' | 'mid5' | 'bottom' | 'floating' | 'estafeta';
+  placement?: 'hero' | 'top' | 'mid' | 'mid2' | 'mid3' | 'mid4' | 'mid5' | 'bottom' | 'floating' | 'estafeta' | 'monedero' | 'dashboard_menu' | 'listing_sidebar' | 'live_dashboard' | 'quick_category';
   image_fit?: 'cover' | 'contain';
   image_position?: 'center' | 'top' | 'bottom' | 'left' | 'right';
   floating_frequency?: 'session' | '24h' | '7d';
