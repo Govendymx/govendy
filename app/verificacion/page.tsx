@@ -5,6 +5,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 
 type ProfileRow = {
+  first_name: string;
+  apellido_paterno: string;
+  apellido_materno: string;
+  rfc: string;
+  curp: string;
   full_name: string;
   address_street: string;
   ext_number: string;
@@ -66,6 +71,11 @@ export default function VerificacionPage() {
   };
 
   const [form, setForm] = useState<ProfileRow>({
+    first_name: '',
+    apellido_paterno: '',
+    apellido_materno: '',
+    rfc: '',
+    curp: '',
     full_name: '',
     address_street: '',
     ext_number: '',
@@ -87,7 +97,11 @@ export default function VerificacionPage() {
   const canSave = useMemo(() => {
     return (
       isFilled(email) &&
-      isFilled(form.full_name) &&
+      isFilled(form.first_name) &&
+      isFilled(form.apellido_paterno) &&
+      isFilled(form.apellido_materno) &&
+      isFilled(form.rfc) &&
+      isFilled(form.curp) &&
       isFilled(form.phone) &&
       isFilled(form.address_street) &&
       isFilled(form.ext_number) &&
@@ -121,7 +135,7 @@ export default function VerificacionPage() {
         const { data: profile, error: profileErr } = await supabase
           .from('profiles')
           .select(
-            'full_name,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,phone,ine_front_url,ine_back_url,selfie_ine_url,is_verified,verification_status,verification_rejection_reason',
+            'first_name,apellido_paterno,apellido_materno,rfc,curp,full_name,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,phone,ine_front_url,ine_back_url,selfie_ine_url,is_verified,verification_status,verification_rejection_reason',
           )
           .eq('id', userData.user.id)
           .maybeSingle();
@@ -148,6 +162,11 @@ export default function VerificacionPage() {
         }
         if (!cancelled && profile) {
           setForm({
+            first_name: (profile as any).first_name ?? '',
+            apellido_paterno: (profile as any).apellido_paterno ?? '',
+            apellido_materno: (profile as any).apellido_materno ?? '',
+            rfc: (profile as any).rfc ?? '',
+            curp: (profile as any).curp ?? '',
             full_name: (profile as any).full_name ?? '',
             address_street: (profile as any).address_street ?? '',
             ext_number: (profile as any).ext_number ?? '',
@@ -203,8 +222,15 @@ export default function VerificacionPage() {
       if (ineBackFile) backUrl = await uploadFile(ineBackFile);
       if (selfieFile) selfieUrl = await uploadFile(selfieFile);
 
+      const computedFullName = `${form.first_name.trim()} ${form.apellido_paterno.trim()} ${form.apellido_materno.trim()}`.trim();
+
       const payload: Record<string, unknown> = {
-        full_name: form.full_name.trim(),
+        first_name: form.first_name.trim(),
+        apellido_paterno: form.apellido_paterno.trim(),
+        apellido_materno: form.apellido_materno.trim(),
+        rfc: form.rfc.trim().toUpperCase(),
+        curp: form.curp.trim().toUpperCase(),
+        full_name: computedFullName,
         address_street: form.address_street.trim(),
         ext_number: form.ext_number.trim(),
         int_number: form.int_number.trim(),
@@ -336,11 +362,47 @@ export default function VerificacionPage() {
                 <div className="mt-1 text-xs text-gray-500">Obligatorio. Configúralo en Mi perfil si falta.</div>
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Nombre completo <span className="text-red-600">*</span></label>
+                <label className="block text-sm font-medium text-gray-700">Nombre(s) <span className="text-red-600">*</span></label>
                 <input
-                  value={form.full_name}
-                  onChange={(e) => setForm((p) => ({ ...p, full_name: e.target.value }))}
+                  value={form.first_name}
+                  onChange={(e) => setForm((p) => ({ ...p, first_name: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Apellido Paterno <span className="text-red-600">*</span></label>
+                <input
+                  value={form.apellido_paterno}
+                  onChange={(e) => setForm((p) => ({ ...p, apellido_paterno: e.target.value }))}
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Apellido Materno <span className="text-red-600">*</span></label>
+                <input
+                  value={form.apellido_materno}
+                  onChange={(e) => setForm((p) => ({ ...p, apellido_materno: e.target.value }))}
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">RFC <span className="text-red-600">*</span></label>
+                <input
+                  value={form.rfc}
+                  onChange={(e) => setForm((p) => ({ ...p, rfc: e.target.value }))}
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald uppercase"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">CURP <span className="text-red-600">*</span></label>
+                <input
+                  value={form.curp}
+                  onChange={(e) => setForm((p) => ({ ...p, curp: e.target.value }))}
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald uppercase"
                   required
                 />
               </div>
