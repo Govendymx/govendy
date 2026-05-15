@@ -207,18 +207,63 @@ export default function SubirInePage() {
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl items-center justify-center px-4 py-10">
         <div className="w-full max-w-2xl">
           <div className="mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
-              Documentos
+            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+              Verificación de identidad
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">
-              Sube tu INE <span className="text-brand-emerald">(frente y reverso)</span>
+              Verificación de vendedor
             </h1>
-            <p className="mt-2 text-sm text-gray-600">
-              Asegúrate de que las fotos sean claras, sin reflejos y con toda la información visible.
+            <p className="mt-2 text-sm text-gray-500">
+              Este paso garantiza la seguridad de todos los miembros de nuestra comunidad.
             </p>
           </div>
 
+          {/* Info Banner */}
+          <div className="mb-5 rounded-2xl border border-amber-100 bg-amber-50 p-5">
+            <div className="flex gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-100">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-amber-800">
+                  Verificación requerida para vendedores
+                </p>
+                <p className="mt-1 text-sm text-amber-700 leading-relaxed">
+                  Para mantener una comunidad segura y confiable, <strong>todos los usuarios que deseen publicar y vender productos</strong> deberán verificar su identidad con su INE vigente (frente y reverso).
+                </p>
+                <p className="mt-2 text-sm text-amber-700 leading-relaxed">
+                  Si por el momento <strong>solo deseas explorar y comprar</strong>, puedes continuar sin este paso. Cuando decidas vender, podrás completar tu verificación desde tu perfil.
+                </p>
+              </div>
+            </div>
+            <div className="mt-4 border-t border-amber-200 pt-4">
+              <button
+                onClick={() => { window.location.href = '/dashboard'; }}
+                className="flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+                Continuar como comprador sin verificar
+              </button>
+            </div>
+          </div>
+
           <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-6 sm:p-8 space-y-6">
+            <div className="flex items-center gap-3 pb-2 border-b border-gray-100">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-emerald/10">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1FB59B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
+                </svg>
+              </div>
+              <div>
+                <p className="text-sm font-bold text-gray-900">Sube tu INE (frente y reverso)</p>
+                <p className="text-xs text-gray-500">Asegúrate de que las fotos sean claras, sin reflejos y con toda la información visible.</p>
+              </div>
+            </div>
+
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-black/5 bg-gray-50 px-4 py-3">
                 <div className="text-xs font-semibold text-gray-700">Consejo</div>
