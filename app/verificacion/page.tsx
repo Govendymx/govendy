@@ -91,13 +91,10 @@ export default function VerificacionPage() {
       isFilled(form.phone) &&
       isFilled(form.address_street) &&
       isFilled(form.ext_number) &&
-      isFilled(form.int_number) &&
       isFilled(form.neighborhood) &&
       isFilled(form.zip_code) &&
       isFilled(form.state) &&
       isFilled(form.city) &&
-      isFilled(form.references) &&
-      isFilled(form.cross_streets) &&
       (isFilled(form.ine_front_url) || Boolean(ineFrontFile)) &&
       (isFilled(form.ine_back_url) || Boolean(ineBackFile)) &&
       (isFilled(form.selfie_ine_url) || Boolean(selfieFile)) &&
@@ -339,7 +336,7 @@ export default function VerificacionPage() {
                 <div className="mt-1 text-xs text-gray-500">Obligatorio. Configúralo en Mi perfil si falta.</div>
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Nombre completo</label>
+                <label className="block text-sm font-medium text-gray-700">Nombre completo <span className="text-red-600">*</span></label>
                 <input
                   value={form.full_name}
                   onChange={(e) => setForm((p) => ({ ...p, full_name: e.target.value }))}
@@ -348,7 +345,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Calle</label>
+                <label className="block text-sm font-medium text-gray-700">Calle <span className="text-red-600">*</span></label>
                 <input
                   value={form.address_street}
                   onChange={(e) => setForm((p) => ({ ...p, address_street: e.target.value }))}
@@ -357,7 +354,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Número exterior</label>
+                <label className="block text-sm font-medium text-gray-700">Número exterior <span className="text-red-600">*</span></label>
                 <input
                   value={form.ext_number}
                   onChange={(e) => setForm((p) => ({ ...p, ext_number: e.target.value }))}
@@ -374,7 +371,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Colonia</label>
+                <label className="block text-sm font-medium text-gray-700">Colonia <span className="text-red-600">*</span></label>
                 <input
                   value={form.neighborhood}
                   onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
@@ -383,7 +380,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Código postal</label>
+                <label className="block text-sm font-medium text-gray-700">Código postal <span className="text-red-600">*</span></label>
                 <input
                   value={form.zip_code}
                   onChange={(e) => setForm((p) => ({ ...p, zip_code: e.target.value }))}
@@ -392,7 +389,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Estado</label>
+                <label className="block text-sm font-medium text-gray-700">Estado <span className="text-red-600">*</span></label>
                 <input
                   value={form.state}
                   onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))}
@@ -401,7 +398,7 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Municipio</label>
+                <label className="block text-sm font-medium text-gray-700">Municipio <span className="text-red-600">*</span></label>
                 <input
                   value={form.city}
                   onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
@@ -415,7 +412,6 @@ export default function VerificacionPage() {
                   value={form.cross_streets}
                   onChange={(e) => setForm((p) => ({ ...p, cross_streets: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                  required
                 />
               </div>
               <div className="sm:col-span-2">
@@ -424,11 +420,10 @@ export default function VerificacionPage() {
                   value={form.references}
                   onChange={(e) => setForm((p) => ({ ...p, references: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                  required
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Teléfono</label>
+                <label className="block text-sm font-medium text-gray-700">Teléfono <span className="text-red-600">*</span></label>
                 <input
                   value={form.phone}
                   onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}

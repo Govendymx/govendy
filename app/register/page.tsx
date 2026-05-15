@@ -146,9 +146,9 @@ export default function RegisterPage() {
         return;
       }
 
-      // Guardar perfil completo en la tabla profiles (con apellidos como columnas separadas)
-      await supabase.from('profiles').upsert([{
-        id: data.user.id,
+      // Guardar perfil completo en la tabla profiles
+      // Usamos .update en lugar de .upsert porque el trigger de DB ya crea la fila base al registrarse
+      const { error: profileError } = await supabase.from('profiles').update({
         full_name,
         first_name: form.first_name.trim() || null,
         apellido_paterno: form.apellido_paterno.trim() || null,
@@ -166,7 +166,12 @@ export default function RegisterPage() {
         city: form.city.trim() || null,
         references: form.references.trim() || null,
         cross_streets: form.cross_streets.trim() || null,
-      }]);
+      }).eq('id', data.user.id);
+
+      if (profileError) {
+        console.error('Error guardando el perfil:', profileError);
+        // No bloqueamos el flujo porque el usuario ya se creó, pero los datos extra no se guardaron.
+      }
 
       // Email de bienvenida
       try {
