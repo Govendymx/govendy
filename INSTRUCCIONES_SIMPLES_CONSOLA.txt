@@ -1,0 +1,105 @@
+═══════════════════════════════════════════════════════════════
+  CÓMO USAR LA CONSOLA DEL NAVEGADOR - INSTRUCCIONES SIMPLES
+═══════════════════════════════════════════════════════════════
+
+PASO 1: ABRIR HERRAMIENTAS DE DESARROLLADOR
+─────────────────────────────────────────────
+  • Presiona la tecla F12 en tu teclado
+  • O haz clic derecho en la página → "Inspeccionar"
+
+PASO 2: IR A LA PESTAÑA "CONSOLE"
+──────────────────────────────────
+  • En la parte superior verás pestañas: Elements, Console, Network...
+  • Haz clic en la pestaña "Console" (NO en "Elements")
+
+PASO 3: ENCONTRAR EL CAMPO DE TEXTO
+────────────────────────────────────
+  • Busca un símbolo ">" o ">>" seguido de un cursor parpadeante
+  • Ese es el lugar donde escribes/pegas el código
+  • Si no lo ves, haz clic en cualquier parte de la consola
+
+PASO 4: PEGAR EL CÓDIGO
+────────────────────────
+  • Copia este código:
+  
+    localStorage.clear();
+    sessionStorage.clear();
+    window.dispatchEvent(new CustomEvent('notifications-updated', { detail: { forceRefresh: true } }));
+    setTimeout(() => location.reload(true), 1000);
+
+  • Haz clic en el campo de texto (donde está el >)
+  • Pega el código (Ctrl + V)
+  • Presiona Enter
+
+PASO 5: ESPERAR
+───────────────
+  • Verás mensajes en la consola
+  • La página se recargará automáticamente en 1 segundo
+  • El contador debería desaparecer
+
+═══════════════════════════════════════════════════════════════
+  ALTERNATIVA MÁS FÁCIL (SIN CONSOLA)
+═══════════════════════════════════════════════════════════════
+
+MÉTODO 1: TECLADO
+─────────────────
+  • Presiona: Ctrl + Shift + R
+  • La página se recarga sin caché
+
+MÉTODO 2: MOUSE
+───────────────
+  • Busca el botón de recargar (ícono circular con flecha)
+  • Clic derecho en ese botón
+  • Selecciona: "Vaciar caché y volver a cargar de forma forzada"
+
+═══════════════════════════════════════════════════════════════
+  NOTIFICACIONES AL COMPRADOR (respuesta del vendedor)
+═══════════════════════════════════════════════════════════════
+
+Al responder una pregunta en /dashboard/preguntas, en la CONSOLA (F12)
+deberías ver algo como:
+
+  [ANSWER] notified: true  | notify_reason: ok
+  [ANSWER] ✅ Respuesta guardada exitosamente en el servidor: ...
+
+• Si sale "notified: true" → se creó la notificación para el comprador.
+• Si sale "notified: false" y "asker_id_missing" → la pregunta no tiene
+  asker_id en la BD; no se puede notificar.
+• Si sale "notified: false" y "insert_failed" → falló el insert;
+  revisa los logs del servidor (terminal donde corre "npm run dev").
+
+Si el comprador no ve la notificación pero en consola sale "notified: true",
+revisa: campana de notificaciones, /dashboard/respuestas, y que Realtime
+esté activo para la tabla "notifications" en Supabase.
+
+═══════════════════════════════════════════════════════════════
+  ARRANCAR EL PROYECTO (sin usar npm / scripts bloqueados)
+═══════════════════════════════════════════════════════════════
+
+Desde la carpeta del proyecto (PowerShell):
+
+  1) Con run-dev.ps1 (recomendado):
+     powershell -ExecutionPolicy Bypass -File .\run-dev.ps1
+
+  2) Directo con Node:
+     node node_modules\next\dist\bin\next dev
+
+Luego abre:  http://localhost:3000
+
+Si el puerto ya está en uso, cierra la otra ventana donde corre Next.js
+o mata el proceso que use el puerto 3000.
+
+═══════════════════════════════════════════════════════════════
+  "FAILED TO LOAD STYLESHEET" / layout.css
+═══════════════════════════════════════════════════════════════
+
+Si ves "Verify stylesheet URLs" o "failed to load layout.css":
+
+  1) Borra la caché de Next: elimina la carpeta .next-dev (en la raíz del proyecto).
+  2) Reinicia el servidor (run-dev.ps1 o node next dev).
+  3) Recarga la página con Ctrl+Shift+R (sin caché).
+
+Si usas mensajes flotantes con HTML, no incluyas <link rel="stylesheet">:
+  ya se filtran para evitar URLs rotas.
+
+═══════════════════════════════════════════════════════════════

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <rect width="200" height="80" fill="white"/>
+  <text x="100" y="52" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="42" letter-spacing="-1">
+    <tspan fill="#4D148C">Fed</tspan><tspan fill="#FF6600">Ex</tspan>
+  </text>
+</svg>

@@ -1,0 +1,49 @@
+--- TARGETED DIAGNOSTIC ---
+Targeted Listings: [
+  {
+    "id": "77402a98-2353-4c65-be11-48ae1249339a",
+    "public_id": "PCK-77402A9823",
+    "title": "Cerveza Heineken 24 Latas De 355ml",
+    "status": "paused",
+    "sale_type": "direct",
+    "expires_at": "2026-03-13T12:29:04.287+00:00",
+    "updated_at": "2026-02-11T12:29:04.499516+00:00",
+    "seller_id": "9a8ae70d-5500-4976-a315-688850781ab0"
+  },
+  {
+    "id": "52b4562a-d5f6-4262-85fa-82670fa81dc3",
+    "public_id": "PCK-52B4562AD5",
+    "title": "Cerveza Heineken 24 Latas De 355ml",
+    "status": "paused",
+    "sale_type": "direct",
+    "expires_at": "2026-03-13T12:30:30.627+00:00",
+    "updated_at": "2026-02-11T12:30:30.859556+00:00",
+    "seller_id": "9a8ae70d-5500-4976-a315-688850781ab0"
+  },
+  {
+    "id": "aa5c5afe-3f76-49ad-919e-d8b9a30da47b",
+    "public_id": "PCK-AA5C5AFE3F",
+    "title": "Cerveza Heineken 24 Latas De 355ml (copia)",
+    "status": "paused",
+    "sale_type": "direct",
+    "expires_at": "2026-03-13T12:29:02.406+00:00",
+    "updated_at": "2026-02-11T12:29:02.613035+00:00",
+    "seller_id": "9a8ae70d-5500-4976-a315-688850781ab0"
+  }
+]
+Local Node Time: Wed Feb 11 2026 06:43:25 GMT-0600 (hora estándar central)
+Server Time ISO: 2026-02-11T12:43:25.033Z
+Recent Admin Logs: [
+  {
+    "id": "05f75bbe-49e7-4375-af38-ee63b07351ee",
+    "admin_id": "84fcaca5-3e25-465a-baeb-c771bc497df8",
+    "action": "activate_user",
+    "target_user_id": "9a8ae70d-5500-4976-a315-688850781ab0",
+    "target_entity_type": null,
+    "target_entity_id": null,
+    "notes": "Usuario reactivado",
+    "metadata": {},
+    "created_at": "2026-02-11T10:19:00.142+00:00"
+  }
+]
+--- END ---

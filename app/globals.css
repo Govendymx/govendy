@@ -1,0 +1,802 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  /* Slate 900 */
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 248, 250, 252;
+  /* Slate 50 */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+/* ── Mobile overflow prevention ─────────────────────────────────────────── */
+/* Prevent any element from causing horizontal scroll on mobile */
+html {
+  overflow-x: clip;      /* clip (not hidden) keeps position:fixed working */
+  max-width: 100%;
+}
+
+/* Images and embeds never exceed their container */
+img, video, iframe, svg {
+  max-width: 100%;
+}
+
+/* Eliminate the 300ms tap delay on mobile for all buttons/links */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+
+
+@layer base {
+  html {
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(227, 18, 125, 0.18);
+  }
+}
+
+@layer components {
+
+  /* Layout */
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-3xl bg-white shadow-sm ring-1 ring-black/5;
+  }
+
+  .card-soft {
+    @apply rounded-3xl bg-white/80 shadow-sm ring-1 ring-black/5 backdrop-blur;
+  }
+
+  /* Typography helpers */
+  .h1 {
+    @apply text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl;
+  }
+
+  .h2 {
+    @apply text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl;
+  }
+
+  .p-muted {
+    @apply text-sm text-gray-600;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brand-pink focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-sm {
+    @apply px-3 py-2 text-[13px];
+  }
+
+  .btn-primary {
+    @apply bg-brand-pink text-white shadow-lg hover:opacity-90;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50;
+  }
+
+  .btn-dark {
+    @apply bg-gray-900 text-white hover:bg-black;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-gray-700 hover:bg-black/5;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-brand-pink focus:ring-4 focus:ring-brand-pink/10;
+  }
+
+  .textarea {
+    @apply w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-all duration-200 placeholder:text-gray-400 focus:border-brand-pink focus:ring-4 focus:ring-brand-pink/10;
+  }
+
+  .select {
+    @apply w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition-all duration-200 focus:border-brand-pink focus:ring-4 focus:ring-brand-pink/10;
+  }
+
+  /* Badges / chips */
+  .badge {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1;
+  }
+
+  .badge-pink {
+    @apply bg-pink-50 text-brand-pink ring-pink-100;
+  }
+
+  .badge-green {
+    @apply bg-green-50 text-green-800 ring-green-200;
+  }
+
+  .badge-gray {
+    @apply bg-gray-50 text-gray-700 ring-black/5;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Punto rosa: parpadeo cuando hay alertas */
+  @keyframes blink {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  .animate-blink {
+    animation: blink 0.8s ease-in-out infinite;
+  }
+
+  /* Scrollbar visible estilo WhatsApp (Windows friendly) */
+  .scrollbar-wa {
+    scrollbar-gutter: stable both-edges;
+    /* Firefox: "thin" puede verse casi invisible (overlay). */
+    scrollbar-width: auto;
+    scrollbar-color: rgba(17, 24, 39, 0.6) rgba(17, 24, 39, 0.14);
+  }
+
+  .scrollbar-wa::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .scrollbar-wa::-webkit-scrollbar-track {
+    background: rgba(17, 24, 39, 0.14);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-wa::-webkit-scrollbar-thumb {
+    background: rgba(17, 24, 39, 0.6);
+    border-radius: 9999px;
+    border: 2px solid rgba(17, 24, 39, 0.14);
+  }
+
+  .scrollbar-wa::-webkit-scrollbar-thumb:hover {
+    background: rgba(17, 24, 39, 0.5);
+  }
+
+  /* Scrollbar sutil y discreta */
+  .scrollbar-subtle {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .scrollbar-subtle::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-subtle::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-subtle::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  /* Scrollbar muy discreta para menús */
+  .scrollbar-menu {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  }
+
+  .scrollbar-menu::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  .scrollbar-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  /* Scrollbar visible para listas de ventas/compras (no reduce tamaño) */
+  .scrollbar-visible {
+    scrollbar-gutter: stable;
+    scrollbar-width: auto;
+    scrollbar-color: rgba(107, 114, 128, 0.5) rgba(243, 244, 246, 0.8);
+  }
+
+  .scrollbar-visible::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  .scrollbar-visible::-webkit-scrollbar-track {
+    background: rgba(243, 244, 246, 0.8);
+    border-radius: 6px;
+  }
+
+  .scrollbar-visible::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.5);
+    border-radius: 6px;
+    border: 2px solid rgba(243, 244, 246, 0.8);
+  }
+
+  .scrollbar-visible::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.7);
+  }
+
+  /* ========================================
+     ANIMACIONES PARA MENÚS
+     ======================================== */
+
+  /* Animación de gradiente sutil para elementos rosa */
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  /* Animación de pulso para anillos activos */
+  @keyframes pulse-ring {
+
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgba(227, 18, 125, 0.4);
+    }
+
+    50% {
+      box-shadow: 0 0 0 4px rgba(227, 18, 125, 0.1);
+    }
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 2s ease-in-out infinite;
+  }
+
+  /* Animación de pulso lento para logos y badges */
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.95;
+      transform: scale(1.02);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  /* Animación de gradiente rotativo para logos */
+  @keyframes gradient-rotate {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient-rotate {
+    background-size: 200% 200%;
+    animation: gradient-rotate 4s ease infinite;
+  }
+
+  /* Animación de pulso para gradientes */
+  @keyframes gradient-pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.9;
+    }
+  }
+
+  .animate-gradient-pulse {
+    animation: gradient-pulse 2s ease-in-out infinite;
+  }
+
+  /* Animación de brillo/shimmer */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-shimmer {
+    background-image: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Animación de flotación sutil */
+  @keyframes float-subtle {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-3px);
+    }
+  }
+
+  .animate-float-subtle {
+    animation: float-subtle 4s ease-in-out infinite;
+  }
+
+  /* Animación de rebote lento */
+  @keyframes bounce-slow {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 2s ease-in-out infinite;
+  }
+
+  /* Animación de brillo sutil */
+  @keyframes glow-subtle {
+
+    0%,
+    100% {
+      box-shadow: 0 0 5px rgba(227, 18, 125, 0.1);
+    }
+
+    50% {
+      box-shadow: 0 0 10px rgba(227, 18, 125, 0.2);
+    }
+  }
+
+  .animate-glow-subtle {
+    animation: glow-subtle 2s ease-in-out infinite;
+  }
+
+  /* Animación de deslizamiento hacia abajo para dropdowns */
+  @keyframes slide-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.3s ease-out;
+  }
+
+  /* ========================================
+     ANIMACIONES PARA BOTONES Y PRECIOS
+     ======================================== */
+
+  /* Animación de borde giratorio con destello para botones de "Agregar al carrito" */
+  @keyframes rotating-border {
+    0% {
+      background-position: 0% 50%;
+      box-shadow: 0 0 20px rgba(227, 18, 125, 0.4), 0 0 40px rgba(227, 18, 125, 0.2);
+    }
+
+    25% {
+      box-shadow: 0 0 25px rgba(227, 18, 125, 0.5), 0 0 50px rgba(227, 18, 125, 0.3);
+    }
+
+    50% {
+      background-position: 100% 50%;
+      box-shadow: 0 0 30px rgba(227, 18, 125, 0.6), 0 0 60px rgba(227, 18, 125, 0.4);
+    }
+
+    75% {
+      box-shadow: 0 0 25px rgba(227, 18, 125, 0.5), 0 0 50px rgba(227, 18, 125, 0.3);
+    }
+
+    100% {
+      background-position: 0% 50%;
+      box-shadow: 0 0 20px rgba(227, 18, 125, 0.4), 0 0 40px rgba(227, 18, 125, 0.2);
+    }
+  }
+
+  .animate-rotating-border {
+    position: relative;
+    background: linear-gradient(90deg,
+        rgba(227, 18, 125, 1) 0%,
+        rgba(255, 105, 180, 1) 25%,
+        rgba(227, 18, 125, 1) 50%,
+        rgba(255, 105, 180, 1) 75%,
+        rgba(227, 18, 125, 1) 100%);
+    background-size: 200% 100%;
+    animation: rotating-border 3s linear infinite;
+  }
+
+  /* Animación de destello que recorre el borde */
+  @keyframes border-glow-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-border-glow::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: inherit;
+    padding: 3px;
+    background: linear-gradient(45deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(255, 255, 255, 0.8) 50%,
+        transparent 60%,
+        transparent 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-glow-spin 2s linear infinite;
+    pointer-events: none;
+  }
+
+
+
+  /* ========================================
+     ANIMACIONES PARA MEDALLITAS DE VENDEDOR
+     ======================================== */
+
+  /* Animación de destello metálico para medallitas */
+  @keyframes medal-shine {
+
+    0%,
+    100% {
+      background-position: -200% center;
+    }
+
+    50% {
+      background-position: 200% center;
+    }
+  }
+
+  /* Animación de pulso sutil para medallitas */
+  @keyframes medal-pulse-subtle {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.02);
+    }
+  }
+
+  /* Medallita Platinum - Efecto metálico cromado */
+  .seller-badge-platinum {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg,
+        #e8e8e8 0%,
+        #ffffff 25%,
+        #d4d4d4 50%,
+        #ffffff 75%,
+        #e8e8e8 100%);
+    background-size: 200% 100%;
+    color: #1f2937;
+    font-weight: 700;
+    font-size: 0.75rem;
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: medal-shine 60s linear infinite, medal-pulse-subtle 60s ease-in-out infinite;
+  }
+
+  .seller-badge-platinum::before {
+    content: '🏆';
+    font-size: 1rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  /* Medallita Gold - Dorado metálico mejorado */
+  .seller-badge-gold {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg,
+        #d4af37 0%,
+        #f9e79f 25%,
+        #d4af37 50%,
+        #f9e79f 75%,
+        #d4af37 100%);
+    background-size: 200% 100%;
+    color: #78350f;
+    font-weight: 700;
+    font-size: 0.75rem;
+    box-shadow:
+      0 2px 8px rgba(212, 175, 55, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 235, 59, 0.3);
+    animation: medal-shine 60s linear infinite, medal-pulse-subtle 60s ease-in-out infinite;
+  }
+
+  .seller-badge-gold::before {
+    content: '🥇';
+    font-size: 1rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  /* Medallita Plata - Plateado metálico mejorado */
+  .seller-badge-plata {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(135deg,
+        #94a3b8 0%,
+        #cbd5e1 25%,
+        #94a3b8 50%,
+        #cbd5e1 75%,
+        #94a3b8 100%);
+    background-size: 200% 100%;
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 0.75rem;
+    box-shadow:
+      0 2px 8px rgba(148, 163, 184, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(203, 213, 225, 0.5);
+    animation: medal-shine 60s linear infinite, medal-pulse-subtle 60s ease-in-out infinite;
+  }
+
+  .seller-badge-plata::before {
+    font-size: 1rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  }
+
+  /* ========================================
+     ANIMACIONES PARA CARRUSEL
+     ======================================== */
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-delay {
+
+    0%,
+    20% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in-delay-2 {
+
+    0%,
+    40% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fade-in-delay 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fade-in-delay-2 1s ease-out forwards;
+  }
+
+  /* ========================================
+     ANIMACIONES PARA LOGOS DE PAGO
+     ======================================== */
+
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    50%,
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* ========================================
+     NUEVAS ANIMACIONES MODERNAS
+     ======================================== */
+
+  /* Hover effect para cards - Elevación suave */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* Hover effect con scale para imágenes */
+  .image-hover {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  .image-hover:hover {
+    @apply scale-105;
+  }
+
+  /* Fade in con scroll - usar con IntersectionObserver */
+  .fade-in-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Skeleton loader con shimmer effect */
+  .skeleton {
+    @apply bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 bg-[length:1000px_100%] animate-shimmer rounded;
+  }
+
+  /* Hover glow effect sutil */
+  .hover-glow {
+    @apply transition-shadow duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(227, 18, 125, 0.15);
+  }
+
+  /* Stagger delays para animaciones en lista */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+}

@@ -1,0 +1,44 @@
+export * from './core/types';
+export * from './core/registry';
+export * from './core/permissions';
+export * from './adapters/payments';
+export * from './adapters/supervision';
+export * from './adapters/logistics';
+export * from './adapters/pocketcash';
+export * from './adapters/disputes';
+export * from './adapters/support';
+export * from './adapters/withdrawals';
+export * from './adapters/returns';
+export * from './adapters/users';
+export * from './adapters/listings';
+export * from './adapters/estafeta';
+export * from './adapters/security';
+export * from './engine/sync';
+
+// Register default adapters
+import { integrationRegistry } from './core/registry';
+import { paymentsAdapter } from './adapters/payments';
+import { supervisionAdapter } from './adapters/supervision';
+import { logisticsAdapter } from './adapters/logistics';
+import { pocketCashAdapter } from './adapters/pocketcash';
+import { disputesAdapter } from './adapters/disputes';
+import { supportAdapter } from './adapters/support';
+import { withdrawalsAdapter } from './adapters/withdrawals';
+import { returnsAdapter } from './adapters/returns';
+import { usersAdapter } from './adapters/users';
+import { listingsAdapter } from './adapters/listings';
+import { estafetaAdapter } from './adapters/estafeta';
+import { securityAdapter } from './adapters/security';
+
+integrationRegistry.register(paymentsAdapter);
+integrationRegistry.register(supervisionAdapter);
+integrationRegistry.register(logisticsAdapter);
+integrationRegistry.register(pocketCashAdapter);
+integrationRegistry.register(disputesAdapter);
+integrationRegistry.register(supportAdapter);
+integrationRegistry.register(withdrawalsAdapter);
+integrationRegistry.register(returnsAdapter);
+integrationRegistry.register(usersAdapter);
+integrationRegistry.register(listingsAdapter);
+integrationRegistry.register(estafetaAdapter);
+integrationRegistry.register(securityAdapter);

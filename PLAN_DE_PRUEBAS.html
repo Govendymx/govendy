@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Pruebas Integral - Pocket App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #16a085;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        .note {
+            background-color: #f8f9fa;
+            border-left: 4px solid #f1c40f;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+        .critical {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Plan de Pruebas Integral - Pocket App</h1>
+    <p>Este documento detalla los escenarios de prueba para verificar la operatividad completa de la plataforma Pocket App.</p>
+
+    <h2>1. Autenticación y Sesión</h2>
+    <ul>
+        <li><strong>Registro de Usuario Nuevo</strong>: Registrarse con un email nuevo. Verificar correo de bienvenida.</li>
+        <li><strong>Inicio de Sesión</strong>: Loguearse con credenciales correctas.</li>
+        <li><strong>Recuperación de Contraseña</strong>: Solicitar reset de password y verificar flujo.</li>
+        <li><strong>Persistencia de Sesión</strong>: Cerrar pestaña y volver a abrir (debe seguir logueado).</li>
+        <li><strong>Timeout de Sesión</strong>: Dejar la pestaña inactiva 10 min y verificar que los botones siguen funcionando (prueba del SessionWatcher).</li>
+    </ul>
+
+    <h2>2. Panel de Vendedor (Gestión de Publicaciones)</h2>
+    <ul>
+        <li><strong>Crear Publicación Simple</strong>: Precio bajo (<$299), envío a cargo del comprador.</li>
+        <li><strong>Crear Publicación con Envío Gratis</strong>: Precio >$299, verificar que marque "Envío Gratis".</li>
+        <li><strong>Validación de Precio/Envío</strong>: Intentar poner Envío Gratis en un producto de $50 (Debería bloquear o advertir pérdida).</li>
+        <li><strong>Edición de Publicación</strong>: Cambiar precio y stock. Verificar reflejo en "Explorar".</li>
+        <li><strong>Pausar/Eliminar</strong>: Pausar una publicación y verificar que no aparece en búsquedas.</li>
+    </ul>
+
+    <h2>3. Interacción (Preguntas y Respuestas)</h2>
+    <ul>
+        <li><strong>Realizar Pregunta</strong>: (Como Comprador A) Preguntar en un artículo de Vendedor B.</li>
+        <li><strong>Notificación de Pregunta</strong>: (Como Vendedor B) Verificar notificación en campana y email.</li>
+        <li><strong>Responder Pregunta</strong>: (Como Vendedor B) Responder la pregunta.</li>
+        <li><strong>Notificación de Respuesta</strong>: (Como Comprador A) Verificar notificación de respuesta.</li>
+        <li><strong>Bloqueo de Palabras</strong>: Intentar enviar datos de contacto (teléfono, email) en preguntas.</li>
+    </ul>
+
+    <h2>4. Flujo de Compra (Checkout) - Escenarios Críticos</h2>
+    
+    <h3>A. Compra Estándar</h3>
+    <ul>
+        <li><strong>Producto</strong>: Artículo de $150.</li>
+        <li><strong>Envío</strong>: A cargo del comprador ($99 aprox).</li>
+        <li><strong>Total</strong>: $150 + $99 = $249.</li>
+        <li><strong>Pago</strong>: Tarjeta de Crédito (Test).</li>
+    </ul>
+
+    <h3>B. Compra con Envío Gratis (Vendedor Paga)</h3>
+    <ul>
+        <li><strong>Producto</strong>: Artículo de $500.</li>
+        <li><strong>Envío</strong>: Gratis para el comprador.</li>
+        <li><strong>Verificación</strong>: El vendedor debe recibir ($500 - Comisión - CostoEnvío).</li>
+    </ul>
+
+    <h3>C. Compra con Subsidio (Plataforma)</h3>
+    <ul>
+        <li><strong>Condición</strong>: Configurar (si aplica) regla de subsidio en admin o usar cupón de envío.</li>
+        <li><strong>Verificación</strong>: Comprador paga envío $0 o reducido. Vendedor no paga envío completo (la plataforma absorbe).</li>
+    </ul>
+
+    <h3>D. El "Supremo": Envío Gratis + Cupón + Subsidio <span class="critical">(CRÍTICO)</span></h3>
+    <ul>
+        <li><strong>Preparación</strong>:
+            <ol>
+                <li>Publicación de $600 (Envío Gratis mandatorio por precio).</li>
+                <li>Crear Cupón de Descuento del 10% (<code>DESC10</code>).</li>
+            </ol>
+        </li>
+        <li><strong>Flujo</strong>:
+            <ol>
+                <li>Agregar al carrito.</li>
+                <li>Aplicar cupón <code>DESC10</code> -> Nuevo precio $540.</li>
+                <li>Verificar que Envío sigue siendo Gratis.</li>
+            </ol>
+        </li>
+        <li><strong>Resultado Esperado</strong>:
+            <ul>
+                <li>Comprador paga: $540.</li>
+                <li>Vendedor recibe: $540 - Comisión - Envío (si no hay subsidio extra).</li>
+                <li><strong>Verificar que no haya saldo negativo</strong> para la plataforma si no es intencional.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>5. Métodos de Pago</h2>
+    <ul>
+        <li><strong>Tarjeta Crédito/Débito</strong>: MercadoPago Test Cards.</li>
+        <li><strong>Pago en OXXO (Offline)</strong>: Generar ficha, verificar redirección correcta y "pendiente de pago".</li>
+        <li><strong>Pago con Monedero (PocketCash)</strong>:
+            <ol>
+                <li>Tener saldo en wallet.</li>
+                <li>Pagar compra 100% con saldo.</li>
+                <li>Verificar descuento inmediato del saldo.</li>
+            </ol>
+        </li>
+        <li><strong>Pago Mixto</strong>: (Si está habilitado) Saldo parcial + Tarjeta.</li>
+    </ul>
+
+    <h2>6. Gestión de Pedidos (Post-Venta)</h2>
+    <h3>Lado Vendedor</h3>
+    <ul>
+        <li><strong>Nueva Venta</strong>: Verificar notificación y estado "Pendiente de Envío".</li>
+        <li><strong>Imprimir Etiqueta</strong>: Generar y descargar guía de envío (PDF Estafeta/Paquetexpress).</li>
+        <li><strong>Marcar Enviado</strong>: Confirmar despacho.</li>
+    </ul>
+
+    <h3>Lado Comprador</h3>
+    <ul>
+        <li><strong>Seguimiento</strong>: Verificar número de guía en "Mis Compras".</li>
+        <li><strong>Confirmar Recepción</strong>: Botón "Ya lo tengo".</li>
+        <li><strong>Calificar</strong>: Dejar estrellas y comentario.</li>
+    </ul>
+
+    <h2>7. Monedero (PocketCash) y Recargas</h2>
+    <ul>
+        <li><strong>Solicitar Recarga Offline</strong>:
+            <ol>
+                <li>Ir a Monedero -> Recargar -> Transferencia/OXXO.</li>
+                <li>Subir comprobante (imagen o PDF).</li>
+            </ol>
+        </li>
+        <li><strong>Verificación Admin</strong>:
+            <ol>
+                <li>Ir a Admin -> PocketCash.</li>
+                <li>Ver la solicitud "Pendiente".</li>
+                <li><strong>Probar botón "Ver Datos"</strong> (Verificar que abre modal con info de usuario).</li>
+                <li>Aprobar recarga.</li>
+            </ol>
+        </li>
+        <li><strong>Confirmación Usuario</strong>: Verificar que el saldo se refleje en el perfil del usuario.</li>
+    </ul>
+
+    <h2>8. Panel de Administrador (Super Admin)</h2>
+    <ul>
+        <li><strong>Dashboard General</strong>: Verificar métricas de ventas y visitas.</li>
+        <li><strong>Gestión de Usuarios</strong>: Buscar usuario, ver detalles, bloquear/desbloquear.</li>
+        <li><strong>Gestión de Publicaciones</strong>: Moderar/Eliminar publicación ilegal.</li>
+        <li><strong>Disputas</strong>:
+            <ol>
+                <li>Crear disputa como Comprador (ej: "llegó roto").</li>
+                <li>Ver disputa en Admin.</li>
+                <li>Intervenir en chat de disputa.</li>
+                <li>Resolver a favor de Comprador (Reembolso) o Vendedor (Liberar dinero).</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h2>9. Pruebas de Estrés y Bordes</h2>
+    <ul>
+        <li><strong>Carrito Múltiple</strong>: Comprar 3 productos de 3 vendedores diferentes en un solo checkout. (Verificar desglose de envíos).</li>
+        <li><strong>Stock Cero</strong>: Intentar comprar un producto con stock 1 cuando otro usuario ya lo compró (Race condition).</li>
+        <li><strong>Imágenes Pesadas</strong>: Subir producto con imágenes de 5MB+ (Verificar optimización/carga).</li>
+    </ul>
+
+    <div class="note">
+        <strong>Nota para el Tester:</strong> Si algún paso falla, anota: URL exacta, paso realizado, y mensaje de error (si hubo). Toma captura de pantalla si es visual.
+    </div>
+
+</body>
+</html>

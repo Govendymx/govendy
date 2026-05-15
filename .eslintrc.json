@@ -1,0 +1,12 @@
+{
+  "extends": "next/core-web-vitals",
+  "ignorePatterns": ["app/admin/metricas/page.tsx", "types_db.ts"],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-img-element": "off",
+    "no-console": "off"
+  }
+}

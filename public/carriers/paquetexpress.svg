@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80">
+  <rect width="240" height="80" fill="white"/>
+  <text x="120" y="36" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="28" fill="#003B71" letter-spacing="-0.5">PAQUETE</text>
+  <text x="120" y="62" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="28" fill="#D4A017" letter-spacing="-0.5">EXPRESS</text>
+</svg>

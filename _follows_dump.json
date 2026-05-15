@@ -1,0 +1,47 @@
+[
+  {
+    "follower_id": "a036f83d-9f84-42e6-91b0-1c08d3cfc635",
+    "seller_id": "e8f5fdda-f686-417e-a9b3-cc84c90e4de3",
+    "created_at": "2026-02-19T10:12:47.215775+00:00"
+  },
+  {
+    "follower_id": "a036f83d-9f84-42e6-91b0-1c08d3cfc635",
+    "seller_id": "b5736fb7-3e82-4b03-ab3e-5fa4e6203842",
+    "created_at": "2026-02-19T10:12:31.166577+00:00"
+  },
+  {
+    "follower_id": "90ed0a5a-40bf-4540-9133-d7fe3447715e",
+    "seller_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "created_at": "2026-02-19T10:08:13.170768+00:00"
+  },
+  {
+    "follower_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "seller_id": "90ed0a5a-40bf-4540-9133-d7fe3447715e",
+    "created_at": "2026-02-19T09:57:56.259773+00:00"
+  },
+  {
+    "follower_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "seller_id": "b5736fb7-3e82-4b03-ab3e-5fa4e6203842",
+    "created_at": "2026-02-19T09:49:18.902746+00:00"
+  },
+  {
+    "follower_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "seller_id": "e8f5fdda-f686-417e-a9b3-cc84c90e4de3",
+    "created_at": "2026-02-19T09:23:30.828172+00:00"
+  },
+  {
+    "follower_id": "84fcaca5-3e25-465a-baeb-c771bc497df8",
+    "seller_id": "303ecb30-01df-4ee9-b7f9-0db9591e9396",
+    "created_at": "2026-02-19T09:20:49.632951+00:00"
+  },
+  {
+    "follower_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "seller_id": "a036f83d-9f84-42e6-91b0-1c08d3cfc635",
+    "created_at": "2026-02-18T06:23:09.385107+00:00"
+  },
+  {
+    "follower_id": "a036f83d-9f84-42e6-91b0-1c08d3cfc635",
+    "seller_id": "86f3aca0-5d8d-41e6-923c-bd5e014c9abd",
+    "created_at": "2026-02-18T04:08:01.190085+00:00"
+  }
+]

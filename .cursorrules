@@ -1,0 +1,17 @@
+# Reglas de Despliegue para Cursor AI (GoPocket-app)
+
+Cuando el usuario te pida "subir a producción", "desplegar", "guardar los cambios" o hacer "push y deploy", DEBES ejecutar el siguiente flujo de trabajo obligatoriamente:
+
+## 1. Subida Segura a GitHub (Git Push)
+- **CRÍTICO:** NUNCA debes hacer `git add` ni commit de ningún archivo relacionado con variables de entorno o claves (ej. `.env`, `.env.local`, `.env.vercel-check`, `RESPALDO_CLAVES.env`). GitHub Secret Scanning bloqueará la subida si lo haces.
+- Usa `git status` para revisar qué archivos se van a subir.
+- Haz commit de los cambios con un mensaje profesional y claro.
+- Sube los cambios al repositorio remoto con `git push origin main` (o la rama correspondiente).
+
+## 2. Despliegue a Vercel (Producción)
+- **CRÍTICO:** NO uses el comando global instalado `vercel`. El entorno local de este proyecto tiene un conflicto conocido de red (Node 24 IPv6 - `ECONNREFUSED`) con la CLI antigua de Vercel.
+- **COMANDO OBLIGATORIO:** Para subir a Vercel siempre debes ejecutar:
+  `npx vercel@latest deploy --prod --yes`
+- *(Si el usuario indica que se necesita un token, concatena `--token <TOKEN_PROPORCIONADO>` al final del comando).*
+
+Notifica al usuario paso a paso qué estás haciendo en la terminal para que sepa el estado del despliegue.

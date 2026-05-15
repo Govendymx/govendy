@@ -1,0 +1,40 @@
+﻿Ôû▓ Next.js 16.1.6 (webpack)
+- Environments: .env.production.local, .env.local
+- Experiments (use with caution):
+  Ô£ô webpackBuildWorker
+
+node.exe : ÔÜá The "middleware" file convention is 
+deprecated. Please use "proxy" instead. Learn more: 
+https://nextjs.org/docs/messages/middleware-to-proxy
+En línea: 1 Carácter: 1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ÔÜá The "   
+ middle...leware-to-proxy:String) [], RemoteExcepti    on
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 38.6s
+  Running TypeScript ...
+Failed to compile.
+
+./temp_sell_3db468f.tsx:170:9
+Type error: Cannot redeclare block-scoped variable 
+'currentSubcategoryConfig'.
+
+[0m [90m 168 |[39m
+ [90m 169 |[39m   [90m// Derived: Current subcategory 
+config[39m
+[31m[1m>[22m[39m[90m 170 |[39m   [36mconst[39m 
+currentSubcategoryConfig [33m=[39m useMemo(() 
+[33m=>[39m {
+ [90m     |[39m         [31m[1m^[22m[39m
+ [90m 171 |[39m     [36mif[39m 
+([33m![39msubcategory) [36mreturn[39m 
+[36mnull[39m[33m;[39m
+ [90m 172 |[39m     
+ [90m 173 |[39m     [90m// Search in all 
+categories[39m[0m
+Next.js build worker exited with code: 1 and signal: null
