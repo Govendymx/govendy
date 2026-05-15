@@ -7,7 +7,7 @@ export default function HomeLoading() {
             <div className="h-9 bg-emerald-400 animate-pulse" />
 
             {/* Header */}
-            <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
+            <header className="sticky top-0 z-40 border-b border-black/5 bg-white">
                 <div className="mx-auto max-w-6xl px-4 py-3">
                     <div className="flex items-center gap-4">
                         <SkeletonBox className="h-10 w-24 rounded-xl" />
@@ -90,3 +90,4 @@ export default function HomeLoading() {
         </div>
     );
 }
+

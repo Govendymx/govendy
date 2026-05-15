@@ -599,6 +599,7 @@ export default function HomePage() {
   const mid5Banners = useMemo(() => banners.filter((b) => (b.placement ?? 'hero') === 'mid5'), [banners]);
   const bottomBanners = useMemo(() => banners.filter((b) => (b.placement ?? 'hero') === 'bottom'), [banners]);
   const floatingBanners = useMemo(() => banners.filter((b) => (b.placement ?? 'hero') === 'floating'), [banners]);
+  const quickCategoryBanners = useMemo(() => banners.filter((b) => (b.placement ?? 'hero') === 'quick_category'), [banners]);
 
   // Persistir banners flotantes cerrados (X)
   useEffect(() => {
@@ -804,7 +805,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link href="/" className="flex items-center gap-3">
@@ -893,29 +894,102 @@ export default function HomePage() {
       )}
 
       <main className="mx-auto max-w-7xl px-4 py-8">
-
         {/* 🚀 Quick Categories (Estilo Shopee / ML) */}
-        <section className="mb-10">
-          <div className="grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
-            {[
-              { id: '1', name: 'Tecnología', icon: '💻', color: 'bg-blue-50 text-blue-600', link: '/categorias?q=tecnologia' },
-              { id: '2', name: 'Moda', icon: '👗', color: 'bg-emerald-50 text-emerald-600', link: '/categorias?q=moda' },
-              { id: '3', name: 'Hogar', icon: '🛋️', color: 'bg-amber-50 text-amber-600', link: '/categorias?q=hogar' },
-              { id: '4', name: 'Deportes', icon: '⚽', color: 'bg-emerald-50 text-emerald-600', link: '/categorias?q=deportes' },
-              { id: '5', name: 'Belleza', icon: '✨', color: 'bg-purple-50 text-purple-600', link: '/categorias?q=belleza' },
-              { id: '6', name: 'Juguetes', icon: '🎮', color: 'bg-red-50 text-red-600', link: '/categorias?q=juguetes' },
-              { id: '7', name: 'Herramientas', icon: '🔧', color: 'bg-gray-100 text-gray-700', link: '/categorias?q=herramientas' },
-              { id: '8', name: 'Ver todo', icon: '👉', color: 'bg-brand-emerald/10 text-brand-emerald', link: '/categorias' },
-            ].map((cat) => (
-              <Link key={cat.id} href={cat.link} className="group flex flex-col items-center gap-2">
-                <div className={`flex h-[72px] w-[72px] items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shadow-sm ring-1 ring-black/5 ${cat.color}`}>
-                  <span className="text-3xl">{cat.icon}</span>
+        <section className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-900 tracking-tight">Categorías destacadas</h2>
+            <Link href="/categorias" className="text-sm font-bold text-brand-emerald hover:underline">Ver todas</Link>
+          </div>
+          <div className="grid grid-cols-4 gap-6 sm:grid-cols-6 md:grid-cols-8">
+            {(quickCategoryBanners.length > 0 
+              ? quickCategoryBanners.map(b => ({
+                  id: b.id,
+                  name: b.title,
+                  image: b.image_url,
+                  link: b.cta_href
+                }))
+              : [
+                  { id: '1', name: 'Tecnología', image: '/categories/tecnologia.png', link: '/categorias?q=tecnologia' },
+                  { id: '2', name: 'Moda', image: '/categories/moda.png', link: '/categorias?q=moda' },
+                  { id: '3', name: 'Hogar', image: '/categories/hogar.png', link: '/categories?q=hogar' },
+                  { id: '4', name: 'Deportes', image: '/categories/deportes.png', link: '/categorias?q=deportes' },
+                  { id: '5', name: 'Belleza', image: '/categories/belleza.png', link: '/categorias?q=belleza' },
+                  { id: '6', name: 'Juguetes', image: '/categories/juguetes.png', link: '/categorias?q=juguetes' },
+                  { id: '7', name: 'Herramientas', image: '/categories/herramientas.png', link: '/categories?q=herramientas' },
+                  { id: '8', name: 'Ver todo', image: '/categories/ver_todo.png', link: '/categorias' },
+                ]
+            ).map((cat) => (
+              <Link key={cat.id} href={cat.link} className="group flex flex-col items-center gap-3">
+                <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-500 group-hover:scale-110 shadow-md ring-1 ring-black/5 group-hover:ring-brand-emerald/30 group-hover:shadow-xl">
+                  <img 
+                    src={cat.image} 
+                    alt={cat.name} 
+                    className="h-full w-full object-cover p-3"
+                  />
+                  <div className="absolute inset-0 bg-brand-emerald/0 transition-colors duration-300 group-hover:bg-brand-emerald/5" />
                 </div>
-                <span className="text-center text-[12px] font-semibold text-gray-700 group-hover:text-brand-emerald">{cat.name}</span>
+                <span className="text-center text-[13px] font-bold text-gray-800 transition-colors group-hover:text-brand-emerald">{cat.name}</span>
               </Link>
             ))}
           </div>
         </section>
+
+        {/* 📱 Category Spotlight (Estilo Premium) */}
+        {midBanners.length > 0 && (
+          <section className="mb-14">
+            <div className="grid gap-6 lg:grid-cols-[1fr_420px]">
+              {/* Banner Principal */}
+              <div className="group relative overflow-hidden rounded-[2rem] bg-gray-900 shadow-2xl ring-1 ring-black/5">
+                <Link href={midBanners[0].cta_href} className="block h-[400px]">
+                  <img 
+                    src={midBanners[0].image_url} 
+                    alt={midBanners[0].title} 
+                    className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent p-10 flex flex-col justify-center">
+                    <div className="inline-flex mb-4 items-center gap-2 rounded-full bg-brand-volt px-3 py-1 text-[10px] font-black tracking-widest text-black uppercase animate-pulse">
+                      Oferta Exclusiva
+                    </div>
+                    <h2 className="text-4xl font-black text-white sm:text-5xl leading-[1.1]">{midBanners[0].title}</h2>
+                    <p className="mt-4 text-xl font-medium text-white/90 max-w-sm">{midBanners[0].subtitle}</p>
+                    <div className="mt-8">
+                      <div className="inline-flex rounded-2xl bg-white px-8 py-4 text-sm font-black text-black shadow-xl transition-all hover:bg-brand-emerald hover:text-white hover:scale-105 active:scale-95">
+                        {midBanners[0].cta_text}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Grid Secundario */}
+              <div className="grid grid-cols-2 gap-4">
+                {(mid2Banners.length > 0 ? mid2Banners.slice(0, 4) : [
+                  { id: 'p1', title: 'Smartwatches', subtitle: 'Hasta 40% OFF', image: 'https://images.unsplash.com/photo-1544117518-30ed5f8a0f5d?w=400&q=80', href: '/categorias?q=reloj' },
+                  { id: 'p2', title: 'Audio Pro', subtitle: 'Premium Sound', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80', href: '/categorias?q=audio' },
+                  { id: 'p3', title: 'Gaming Gear', subtitle: 'Next Gen', image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&q=80', href: '/categorias?q=gaming' },
+                  { id: 'p4', title: 'Home Office', subtitle: 'Ergonomía Top', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=400&q=80', href: '/categorias?q=hogar' },
+                ]).map((b: any) => (
+                  <Link key={b.id} href={b.cta_href || b.href} className="group relative flex flex-col overflow-hidden rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5 transition-all hover:shadow-lg hover:ring-brand-emerald/20">
+                    <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-50">
+                      <img 
+                        src={b.image_url || b.image} 
+                        alt={b.title} 
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                      />
+                      <div className="absolute top-2 right-2 rounded-lg bg-black/60 px-2 py-1 text-[9px] font-black text-white backdrop-blur-md">
+                        HOT
+                      </div>
+                    </div>
+                    <div className="mt-3 px-1">
+                      <div className="text-xs font-black text-gray-900 group-hover:text-brand-emerald">{b.title}</div>
+                      <div className="text-[10px] font-bold text-gray-500 mt-0.5">{b.subtitle}</div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* 🔴 Lives activos */}
         <LiveCarousel />

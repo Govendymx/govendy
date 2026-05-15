@@ -219,7 +219,7 @@ export default function ListingsClient({
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 
       {/* Search Header */}
-      <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur-md">
+      <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-4 flex-1">
             <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -455,3 +455,4 @@ export default function ListingsClient({
     </div>
   );
 }
+

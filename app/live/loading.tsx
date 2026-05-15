@@ -3,7 +3,7 @@ import { SkeletonBox } from '@/components/ui/Skeletons';
 export default function LiveLoading() {
     return (
         <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
-            <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
+            <header className="sticky top-0 z-40 border-b border-black/5 bg-white">
                 <div className="mx-auto max-w-6xl px-4 py-3 flex items-center gap-4">
                     <SkeletonBox className="h-10 w-24 rounded-xl" />
                     <SkeletonBox className="h-10 flex-1 rounded-2xl" />
@@ -29,3 +29,4 @@ export default function LiveLoading() {
         </div>
     );
 }
+

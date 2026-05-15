@@ -8,7 +8,7 @@ export const metadata = {
 export default function TerminosYCondicionesPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
-      <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
+      <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
             <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
@@ -232,3 +232,4 @@ export default function TerminosYCondicionesPage() {
     </div>
   );
 }
+

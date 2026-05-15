@@ -460,7 +460,7 @@ export default function PagoOfflinePage() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={proofUrl} alt="Comprobante" className="w-full h-auto object-contain max-h-96" />
                       <div className="absolute top-2 right-2">
-                        <a href={proofUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-white/90 backdrop-blur px-3 py-1.5 text-xs font-semibold text-gray-900 shadow-sm hover:bg-white">
+                        <a href={proofUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-gray-900 shadow-sm hover:bg-white">
                           <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                           Ver original
                         </a>

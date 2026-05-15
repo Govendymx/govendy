@@ -12,7 +12,7 @@ type BannerRow = {
   cta_href: string;
   sort_order: number;
   is_active: boolean;
-  placement?: 'hero' | 'top' | 'mid' | 'mid2' | 'mid3' | 'mid4' | 'mid5' | 'bottom' | 'floating' | 'estafeta' | 'monedero' | 'dashboard_menu' | 'listing_sidebar' | 'live_dashboard';
+  placement?: 'hero' | 'top' | 'mid' | 'mid2' | 'mid3' | 'mid4' | 'mid5' | 'bottom' | 'floating' | 'estafeta' | 'monedero' | 'dashboard_menu' | 'listing_sidebar' | 'live_dashboard' | 'quick_category';
   image_fit?: 'cover' | 'contain';
   image_position?: 'center' | 'top' | 'bottom' | 'left' | 'right';
   floating_frequency?: 'session' | '24h' | '7d';
@@ -146,6 +146,13 @@ const PLACEMENT_GUIDE: Record<
     recommended: 'Recomendado: 400×400 o 400×600.',
     tips: ['Ideal para ofertas cruzadas o publicidad directa.', 'Usa poco texto.'],
   },
+  quick_category: {
+    label: 'Categoría Rápida (Home)',
+    where: 'Iconos circulares debajo del carrusel principal.',
+    aspect: 'Cuadrado (1:1).',
+    recommended: 'Recomendado: 400×400.',
+    tips: ['Usa imágenes con fondo blanco o transparente.', 'Ideal para navegación por categorías.'],
+  },
 };
 
 const PLACEMENT_PREVIEW_ASPECT: Record<Placement, string> = {
@@ -163,6 +170,7 @@ const PLACEMENT_PREVIEW_ASPECT: Record<Placement, string> = {
   dashboard_menu: 'aspect-square',
   live_dashboard: 'aspect-[24/7]',
   listing_sidebar: 'aspect-square',
+  quick_category: 'aspect-square',
 };
 
 function classNames(...parts: Array<string | false | null | undefined>) {

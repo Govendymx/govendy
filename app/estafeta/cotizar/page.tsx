@@ -658,7 +658,7 @@ export default function EstafetaCotizarPage() {
         </div>
       )}
 
-      <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
+      <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-4">
             {/* Logo de Estafeta en el header */}
@@ -1188,3 +1188,4 @@ export default function EstafetaCotizarPage() {
     </div>
   );
 }
+
