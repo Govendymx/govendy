@@ -149,14 +149,11 @@ export default function SubirInePage() {
 
       const { error: upsertErr } = await supabase
         .from('profiles')
-        .upsert(
-          {
-            id: user.id,
-            ine_front_url: frontUrl,
-            ine_back_url: backUrl,
-          },
-          { onConflict: 'id' },
-        );
+        .update({
+          ine_front_url: frontUrl,
+          ine_back_url: backUrl,
+        })
+        .eq('id', user.id);
       if (upsertErr) throw upsertErr;
 
       setSuccess(true);
@@ -165,11 +162,7 @@ export default function SubirInePage() {
       }, 800);
     } catch (err: unknown) {
       console.error('Error al subir imágenes:', err);
-      setError(
-        `Error: ${
-          err instanceof Error ? err.message : 'Error al subir las imágenes. Por favor, intenta de nuevo.'
-        }`,
-      );
+      setError(`Error: ${formatUnknownError(err, 'Error al subir las imágenes. Por favor, intenta de nuevo.')}`);
     } finally {
       setIsLoading(false);
     }

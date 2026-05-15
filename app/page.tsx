@@ -728,7 +728,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gray-50/50">
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} initialView={authModalView} />
       {/* Banners flotantes (cerrables) */}
       {visibleFloating.length > 0 ? (
@@ -888,11 +888,30 @@ export default function HomePage() {
       {/* Carrusel Principal (Mercado Libre Style) - Combina hero y top */}
       {(heroBanners.length > 0 || topBanners.length > 0) && (
         <section className="w-full">
-          <BannerCarousel banners={[...heroBanners, ...topBanners].filter(b => !!b.image_url)} />
-        </section>
-      )}
+          <BannerCarousel banners={[...heroBanners, ...topBanners].filter(b => !!b      <main className="mx-auto max-w-7xl px-4 py-8">
 
-      <main className="mx-auto max-w-6xl px-4 py-8">
+        {/* 🚀 Quick Categories (Estilo Shopee / ML) */}
+        <section className="mb-10">
+          <div className="grid grid-cols-4 gap-4 sm:grid-cols-6 md:grid-cols-8">
+            {[
+              { id: '1', name: 'Tecnología', icon: '💻', color: 'bg-blue-50 text-blue-600', link: '/categorias?q=tecnologia' },
+              { id: '2', name: 'Moda', icon: '👗', color: 'bg-pink-50 text-pink-600', link: '/categorias?q=moda' },
+              { id: '3', name: 'Hogar', icon: '🛋️', color: 'bg-amber-50 text-amber-600', link: '/categorias?q=hogar' },
+              { id: '4', name: 'Deportes', icon: '⚽', color: 'bg-emerald-50 text-emerald-600', link: '/categorias?q=deportes' },
+              { id: '5', name: 'Belleza', icon: '✨', color: 'bg-purple-50 text-purple-600', link: '/categorias?q=belleza' },
+              { id: '6', name: 'Juguetes', icon: '🎮', color: 'bg-red-50 text-red-600', link: '/categorias?q=juguetes' },
+              { id: '7', name: 'Herramientas', icon: '🔧', color: 'bg-gray-100 text-gray-700', link: '/categorias?q=herramientas' },
+              { id: '8', name: 'Ver todo', icon: '👉', color: 'bg-brand-emerald/10 text-brand-emerald', link: '/categorias' },
+            ].map((cat) => (
+              <Link key={cat.id} href={cat.link} className="group flex flex-col items-center gap-2">
+                <div className={`flex h-[72px] w-[72px] items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-110 shadow-sm ring-1 ring-black/5 ${cat.color}`}>
+                  <span className="text-3xl">{cat.icon}</span>
+                </div>
+                <span className="text-center text-[12px] font-semibold text-gray-700 group-hover:text-brand-emerald">{cat.name}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
         {/* 🔴 Lives activos */}
         <LiveCarousel />
@@ -900,89 +919,54 @@ export default function HomePage() {
         {/* Tiendas Oficiales Carousel */}
         <OfficialStoresCarousel />
 
-        {/* Accesos rápidos (tarjetas como Mercado Libre) */}
-        <section className="mb-6">
+        {/* 🛡️ Trust Badges & Accesos rápidos */}
+        <section className="mb-10 mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <FeatureCard
-              title="Envío gratis"
-              subtitle="Beneficio por ser tu primera compra."
+              title="Envío gratis desde $299"
+              subtitle="Solo agregando al carrito productos marcados."
               href="/envio-gratis"
               accentColor="#1FB59B"
-              badge="GRATIS"
+              badge="NUEVO"
               icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
                   <rect x="9" y="11" width="14" height="10" rx="2" />
-                  <circle cx="12" cy="21" r="1" />
-                  <circle cx="20" cy="21" r="1" />
+                  <circle cx="12" cy="21" r="1.5" />
+                  <circle cx="20" cy="21" r="1.5" />
+                  <path d="M15 5h3l3 4v2" />
                 </svg>
               }
             />
             <FeatureCard
-              title="Tienda Estafeta"
-              subtitle="Calcula el costo de tu envío y compra tu guía."
-              href="/estafeta/cotizar"
-              accentColor="#6366F1"
-              icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              }
-            />
-            <FeatureCard
-              title="Productos destacados"
-              subtitle="Los más vistos y mejor valorados."
-              href="/productos-destacados"
-              accentColor="#F0B130"
-              icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              }
-            />
-            <FeatureCard
-              title="Subastas"
-              subtitle="Todas las subastas, ordenadas por finalización."
-              href="/subastas"
-              accentColor="#EF4444"
-              icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z" />
-                  <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-                  <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z" />
-                  <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z" />
-                  <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z" />
-                  <path d="M15.5 9H14v1.5c0 .83.67 1.5 1.5 1.5 .83 0 1.5-.67 1.5-1.5S16.33 9 15.5 9z" />
-                  <path d="M10 9.5c0-.83-.67-1.5-1.5-1.5H3.5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z" />
-                  <path d="M8.5 15H10v-1.5c0-.83-.67-1.5-1.5-1.5-.83 0-1.5.67-1.5 1.5S7.67 15 8.5 15z" />
-                </svg>
-              }
-            />
-            <FeatureCard
-              title="Más vistos"
-              subtitle="Artículos con más vistas y compartidos."
-              href="/mas-vistos"
-              accentColor="#8B5CF6"
-              icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              }
-            />
-            <FeatureCard
-              title="Compra protegida"
-              subtitle="Tu dinero seguro hasta recibir tu pedido."
+              title="Compra Protegida"
+              subtitle="Recibe el producto que esperabas o te devolvemos tu dinero."
               href="/compra-protegida"
               accentColor="#059669"
               badge="100% SEGURO"
               icon={
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                  <polyline points="9 12 11 14 15 10" />
+                  <path d="m9 12 2 2 4-4" />
                 </svg>
               }
+            />
+            <FeatureCard
+              title="Paga a MSI"
+              subtitle="Con tarjetas participantes usando Mercado Pago o Stripe."
+              href="#"
+              accentColor="#3B82F6"
+              icon={
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                  <path d="M7 15h.01" />
+                  <path d="M11 15h2" />
+                </svg>
+              }
+            />
+          </div>
+        </section>      }
             />
           </div>
         </section>
