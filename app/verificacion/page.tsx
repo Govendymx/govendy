@@ -144,7 +144,7 @@ export default function VerificacionPage() {
               "Ejecuta el SQL `supabase_profiles_address_migration.sql` en Supabase (SQL Editor) y vuelve a intentar.",
             );
           }
-          throw profileErr;
+          throw new Error(msg || 'Error al cargar tu perfil en la base de datos.');
         }
         if (!cancelled && profile) {
           setForm({

@@ -104,9 +104,7 @@ export function AccountTopMenu() {
   const [planStart, setPlanStart] = useState<string | null>(null);
   const [planEnd, setPlanEnd] = useState<string | null>(null);
 
-  // Antes lo ocultábamos en dashboard para reducir carga, pero eso hacía que el usuario
-  // “no viera” el punto rosa en submenús. Solo lo ocultamos en admin.
-  const hide = pathname.startsWith('/admin');
+  const hide = false; // A petición del usuario, siempre mostrar la barra superior
 
   useEffect(() => setMounted(true), []);
 
