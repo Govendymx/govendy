@@ -484,7 +484,7 @@ export default function CartPage() {
             </div>
 
             {/* Botón de Reporte de Estafa */}
-            <div className="mt-8 flex justify-center border-t border-gray-100 pt-6">
+            <div className="mt-8 flex justify-center border-t border-gray-100 pt-6 pb-6">
               <button
                 type="button"
                 onClick={() => setIsScamModalOpen(true)}
