@@ -498,8 +498,6 @@ export default function CartPage() {
             </div>
           </div>
         </div>
-      </div>
-
       <ReportScamModal 
         isOpen={isScamModalOpen} 
         onClose={() => setIsScamModalOpen(false)} 
