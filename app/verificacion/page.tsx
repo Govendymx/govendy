@@ -73,6 +73,13 @@ export default function VerificacionPage() {
     await supabase.from('profiles').update({ [field]: '' }).eq('id', user.id);
   };
 
+  useEffect(() => {
+    // Si el usuario ya tiene un código postal guardado de 5 dígitos al cargar, buscamos sus colonias.
+    if (form.zip_code?.length === 5 && coloniasOptions.length === 0 && !cpLoading) {
+      lookupPostalCode(form.zip_code);
+    }
+  }, [form.zip_code]); // Solo se ejecutará si cambia el zip_code o al inicio si ya viene lleno
+
   const lookupPostalCode = async (cp: string) => {
     if (!/^\d{5}$/.test(cp)) return;
     try {
@@ -473,27 +480,6 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Colonia <span className="text-red-600">*</span></label>
-                {coloniasOptions.length > 0 ? (
-                  <select
-                    value={form.neighborhood}
-                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                    required
-                  >
-                    <option value="">Selecciona tu colonia...</option>
-                    {coloniasOptions.map(c => <option key={c} value={c}>{c}</option>)}
-                  </select>
-                ) : (
-                  <input
-                    value={form.neighborhood}
-                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                    required
-                  />
-                )}
-              </div>
-              <div>
                 <label className="block text-sm font-medium text-gray-700">Código postal <span className="text-red-600">*</span></label>
                 <div className="relative">
                   <input
@@ -516,7 +502,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.state}
                   onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -525,10 +511,32 @@ export default function VerificacionPage() {
                 <input
                   value={form.city}
                   onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Colonia <span className="text-red-600">*</span></label>
+                {coloniasOptions.length > 0 ? (
+                  <select
+                    value={form.neighborhood}
+                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                    required
+                  >
+                    <option value="">Selecciona tu colonia...</option>
+                    {coloniasOptions.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                ) : (
+                  <input
+                    value={form.neighborhood}
+                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                    required
+                  />
+                )}
+              </div>
+
               <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">Entre calles</label>
                 <input
