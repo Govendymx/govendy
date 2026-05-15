@@ -226,8 +226,8 @@ export function SupportBot() {
 
                   {/* Notification dot */}
                   <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-orange opacity-75" />
-                    <span className="relative inline-flex rounded-full h-4 w-4 bg-brand-orange" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald opacity-75" />
+                    <span className="relative inline-flex rounded-full h-4 w-4 bg-brand-emerald" />
                   </span>
                 </motion.div>
 
@@ -252,7 +252,7 @@ export function SupportBot() {
                 className="flex items-center justify-between px-5 py-4 cursor-grab active:cursor-grabbing"
               >
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-10 w-10 items-center justify-center rounded-full overflow-hidden bg-gradient-to-tr from-brand-orange/80 to-purple-500/80 shadow-lg backdrop-blur-md">
+                  <div className="relative flex h-10 w-10 items-center justify-center rounded-full overflow-hidden bg-gradient-to-tr from-brand-emerald/80 to-purple-500/80 shadow-lg backdrop-blur-md">
                     <Image
                       src="/pocket-robot.png"
                       alt="Pocky"
@@ -304,7 +304,7 @@ export function SupportBot() {
                       >
                         <div
                           className={`max-w-[85%] px-5 py-3 rounded-2xl text-sm shadow-sm backdrop-blur-md ${m.role === 'user'
-                            ? 'bg-brand-orange/80 text-white rounded-br-none shadow-brand-orange/20'
+                            ? 'bg-brand-emerald/80 text-white rounded-br-none shadow-brand-emerald/20'
                             : 'bg-white/60 text-gray-800 rounded-bl-none border border-white/50 shadow-gray-200/50'
                             }`}
                         >
@@ -318,7 +318,7 @@ export function SupportBot() {
                   <div className="p-4 bg-transparent">
                     <form
                       onSubmit={send}
-                      className="relative flex items-center bg-white/40 backdrop-blur-xl border border-white/60 rounded-full p-1 shadow-lg transition-all focus-within:bg-white/60 focus-within:shadow-xl focus-within:ring-2 focus-within:ring-brand-orange/20"
+                      className="relative flex items-center bg-white/40 backdrop-blur-xl border border-white/60 rounded-full p-1 shadow-lg transition-all focus-within:bg-white/60 focus-within:shadow-xl focus-within:ring-2 focus-within:ring-brand-emerald/20"
                     >
                       <input
                         type="text"
@@ -330,7 +330,7 @@ export function SupportBot() {
                       <button
                         type="submit"
                         disabled={!input.trim()}
-                        className="absolute right-1.5 p-2 bg-brand-orange text-white rounded-full shadow-md hover:scale-110 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all duration-300"
+                        className="absolute right-1.5 p-2 bg-brand-emerald text-white rounded-full shadow-md hover:scale-110 active:scale-95 disabled:opacity-50 disabled:hover:scale-100 transition-all duration-300"
                       >
                         <Send className="h-4 w-4" />
                       </button>

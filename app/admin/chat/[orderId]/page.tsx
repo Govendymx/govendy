@@ -24,9 +24,7 @@ export default function AdminOrderChatPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Admin · Chat</div>
               <div className="flex items-center gap-1 text-xs text-gray-500">
@@ -34,7 +32,7 @@ export default function AdminOrderChatPage() {
                 {orderId && (
                   <button
                     onClick={() => copyToClipboard(orderId, 'order')}
-                    className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                    className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                     title="Copiar ID"
                   >
                     {copiedId === 'order' ? '✅' : '📋'}
@@ -62,7 +60,7 @@ export default function AdminOrderChatPage() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="mt-4 rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+            className="mt-4 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
           >
             Abrir chat
           </button>

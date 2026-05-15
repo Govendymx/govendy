@@ -468,16 +468,14 @@ export default function DashboardPagosPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Pagos</div>
               <div className="text-xs text-gray-500">Retiros y liberación de dinero</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -629,9 +627,9 @@ export default function DashboardPagosPage() {
           {balance && (balance.disponible ?? 0) >= 0.01 && !(balance.can_withdraw ?? false) && !(balance.mercadopago_configured ?? !!mercadopagoAccount) && (
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 ring-1 ring-amber-200">
               <p className="text-sm font-semibold text-amber-900">
-                Tienes <span className="font-extrabold text-brand-orange">{formatMoney(balance.disponible)}</span> disponibles para retiro.
+                Tienes <span className="font-extrabold text-brand-emerald">{formatMoney(balance.disponible)}</span> disponibles para retiro.
                 Para poder solicitar el retiro, configura tu cuenta de Mercado Pago en{' '}
-                <Link href="/dashboard/perfil#datos-cobro" className="font-extrabold text-brand-orange underline hover:opacity-90">
+                <Link href="/dashboard/perfil#datos-cobro" className="font-extrabold text-brand-emerald underline hover:opacity-90">
                   Mi perfil → Datos de cobro
                 </Link>
                 .
@@ -661,7 +659,7 @@ export default function DashboardPagosPage() {
               : 'border-black/5 bg-pink-50 ring-pink-100'
               }`}>
               <div className="text-[11px] font-semibold text-gray-600">Disponible para retiro</div>
-              <div className={`mt-1 text-2xl font-extrabold ${balance && balance.disponible < 0 ? 'text-red-600' : 'text-brand-orange'
+              <div className={`mt-1 text-2xl font-extrabold ${balance && balance.disponible < 0 ? 'text-red-600' : 'text-brand-emerald'
                 }`}>
                 {balance ? formatMoney(balance.disponible) : '—'}
               </div>
@@ -710,16 +708,16 @@ export default function DashboardPagosPage() {
               <span className="font-semibold text-gray-900">{pct}%</span>
             </div>
             <div className="mt-2 h-2 overflow-hidden rounded-full bg-gray-200">
-              <div className="h-full bg-brand-orange" style={{ width: `${pct}%` }} />
+              <div className="h-full bg-brand-emerald" style={{ width: `${pct}%` }} />
             </div>
           </div>
 
           <div className="mt-4 grid gap-2 sm:grid-cols-2">
             <div className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-xs text-gray-700">
-              <span className="font-extrabold text-brand-orange">Tip:</span> el dinero se libera cuando el comprador confirma recepción o cuando Admin marca la orden como entregada en Logística. Entonces se activa «Solicitar retiro».
+              <span className="font-extrabold text-brand-emerald">Tip:</span> el dinero se libera cuando el comprador confirma recepción o cuando Admin marca la orden como entregada en Logística. Entonces se activa «Solicitar retiro».
             </div>
             <div className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-xs text-gray-700">
-              <span className="font-extrabold text-brand-orange">Tip:</span> sube rastreo en <span className="font-semibold">Ventas</span> para acelerar entregas y liberación.
+              <span className="font-extrabold text-brand-emerald">Tip:</span> sube rastreo en <span className="font-semibold">Ventas</span> para acelerar entregas y liberación.
             </div>
           </div>
         </div>
@@ -733,7 +731,7 @@ export default function DashboardPagosPage() {
                 onClick={() => setTab(k)}
                 className={[
                   'rounded-2xl px-4 py-2 text-sm font-extrabold ring-1',
-                  tab === k ? 'bg-brand-orange text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
+                  tab === k ? 'bg-brand-emerald text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
                 ].join(' ')}
               >
                 {k === 'resumen' ? 'Resumen' : k === 'por_liberar' ? 'Por liberar' : k === 'liberados' ? 'Liberados' : 'Todo'}
@@ -745,7 +743,7 @@ export default function DashboardPagosPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Buscar por orden, estado o artículo…"
-              className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+              className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
             />
           </div>
         </div>
@@ -775,7 +773,7 @@ export default function DashboardPagosPage() {
                 <div className="mt-1 text-xs text-gray-700">Esperando entrega y confirmación.</div>
               </div>
               <div className="rounded-2xl bg-pink-50 px-4 py-3 ring-1 ring-pink-100">
-                <div className="text-xs font-extrabold text-brand-orange">Entregado</div>
+                <div className="text-xs font-extrabold text-brand-emerald">Entregado</div>
                 <div className="mt-1 text-xs text-gray-700">Pago liberado. Usa «Solicitar retiro» cuando tengas saldo disponible.</div>
               </div>
             </div>
@@ -821,7 +819,7 @@ export default function DashboardPagosPage() {
                           </div>
                           <div className="text-right">
                             <div className="text-xs text-gray-600">Total del mes</div>
-                            <div className="text-lg font-extrabold text-brand-orange">{formatMoney(monthTotal)}</div>
+                            <div className="text-lg font-extrabold text-brand-emerald">{formatMoney(monthTotal)}</div>
                             <div className="mt-1 text-xs text-gray-500">
                               Liberado: {formatMoney(monthReleased)} · Por liberar: {formatMoney(monthToRelease)}
                             </div>
@@ -1106,7 +1104,7 @@ export default function DashboardPagosPage() {
               <div className="mt-4">
                 <label className="block text-xs font-bold text-gray-700">Datos de la cuenta (Banco, CLABE, Nombre, etc.)</label>
                 <textarea
-                  className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm"
+                  className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
                   rows={4}
                   placeholder="Ej: Banco XYZ, CLABE: 1234..., Nombre: Juan Pérez"
                   value={withdrawAccount}

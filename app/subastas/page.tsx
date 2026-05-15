@@ -150,7 +150,7 @@ export default function SubastasPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -178,7 +178,7 @@ export default function SubastasPage() {
               <div className="text-lg font-bold text-gray-900">Selección: Subastas</div>
               <div className="mt-1 text-sm text-gray-600">Ve primero las que acaban antes.</div>
             </div>
-            <Link href="/listings" className="text-sm font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/listings" className="text-sm font-semibold text-brand-emerald hover:opacity-90">
               Explorar todo
             </Link>
           </div>
@@ -202,7 +202,7 @@ export default function SubastasPage() {
                   }
                   mediaOverlay={
                     p.auction_end_at ? (
-                      <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 rounded-full bg-brand-orange/95 px-3 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur-sm">
+                      <div className="absolute bottom-3 left-3 z-20 flex items-center gap-2 rounded-full bg-brand-emerald/95 px-3 py-1.5 text-xs font-bold text-white shadow-lg backdrop-blur-sm">
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>

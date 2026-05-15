@@ -154,9 +154,7 @@ export default function NotificacionesPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Notificaciones</div>
               <div className="text-xs text-gray-500">{unreadCount > 0 ? `${unreadCount} sin leer` : 'Al día'}</div>
@@ -243,7 +241,7 @@ export default function NotificacionesPage() {
                 return (
                   <div
                     key={n.id}
-                    className={`flex w-full items-start gap-3 rounded-xl px-4 py-3 ${styleByType(k)} ${unread ? 'border-l-4 border-l-brand-orange' : ''}`}
+                    className={`flex w-full items-start gap-3 rounded-xl px-4 py-3 ${styleByType(k)} ${unread ? 'border-l-4 border-l-brand-emerald' : ''}`}
                   >
                     <button
                       type="button"
@@ -258,13 +256,13 @@ export default function NotificacionesPage() {
                         <div className="flex items-center gap-2">
                           <span className="text-sm font-semibold">{n.title || 'Notificación'}</span>
                           {unread && (
-                            <span className="shrink-0 rounded-full bg-brand-orange/20 px-2 py-0.5 text-[10px] font-bold text-brand-orange">Nuevo</span>
+                            <span className="shrink-0 rounded-full bg-brand-emerald/20 px-2 py-0.5 text-[10px] font-bold text-brand-emerald">Nuevo</span>
                           )}
                         </div>
                         {n.body && <p className="mt-0.5 line-clamp-2 text-xs opacity-90">{n.body}</p>}
                         <p className="mt-1 text-[11px] opacity-70">{formatTime(n.created_at)}</p>
                       </div>
-                      {link && <span className="shrink-0 text-xs font-semibold text-brand-orange">→</span>}
+                      {link && <span className="shrink-0 text-xs font-semibold text-brand-emerald">→</span>}
                     </button>
                     <button
                       type="button"

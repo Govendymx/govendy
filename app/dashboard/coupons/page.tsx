@@ -527,16 +527,14 @@ export default function CouponsPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Cupones</div>
               <div className="text-xs text-gray-500">Solo para tus publicaciones</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -618,7 +616,7 @@ export default function CouponsPage() {
                   <input
                     value={code}
                     onChange={(e) => setCode(e.target.value.toUpperCase())}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     placeholder="EJ: GOPOCKET10"
                     required
                   />
@@ -628,7 +626,7 @@ export default function CouponsPage() {
                   <select
                     value={discountType}
                     onChange={(e) => setDiscountType(e.target.value as any)}
-                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   >
                     <option value="percent">% descuento</option>
                     <option value="fixed">$ fijo</option>
@@ -646,7 +644,7 @@ export default function CouponsPage() {
                     onChange={(e) => setDiscountValueInput(normalizeDigits(e.target.value))}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     placeholder={discountType === 'percent' ? '10' : '25'}
                     required
                   />
@@ -658,7 +656,7 @@ export default function CouponsPage() {
                     onChange={(e) => setMaxRedemptionsInput(normalizeDigits(e.target.value))}
                     inputMode="numeric"
                     pattern="[0-9]*"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     placeholder="0"
                   />
                 </div>
@@ -671,7 +669,7 @@ export default function CouponsPage() {
                     type="datetime-local"
                     value={startsAt}
                     onChange={(e) => setStartsAt(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
                 <div>
@@ -680,7 +678,7 @@ export default function CouponsPage() {
                     type="datetime-local"
                     value={endsAt}
                     onChange={(e) => setEndsAt(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
               </div>
@@ -696,12 +694,12 @@ export default function CouponsPage() {
               <div>
                 <div className="text-sm font-semibold text-gray-900">Aplicar a publicaciones</div>
                 {myListings.length > 0 ? (
-                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-orange/30 bg-pink-50/50 px-4 py-3">
+                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-emerald/30 bg-pink-50/50 px-4 py-3">
                     <input
                       type="checkbox"
                       checked={applyToAllListings}
                       onChange={(e) => handleApplyToAllChange(e.target.checked)}
-                      className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                     />
                     <div>
                       <div className="text-sm font-semibold text-gray-900">Aplicar a todas mis publicaciones</div>
@@ -779,7 +777,7 @@ export default function CouponsPage() {
                 <button
                   type="submit"
                   disabled={!canSave}
-                  className={`${editingCoupon ? 'flex-1' : 'w-full'} rounded-xl bg-brand-orange px-4 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60`}
+                  className={`${editingCoupon ? 'flex-1' : 'w-full'} rounded-xl bg-brand-emerald px-4 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60`}
                 >
                   {isSaving ? (editingCoupon ? 'Actualizando…' : 'Creando…') : (editingCoupon ? 'Actualizar cupón' : 'Crear cupón')}
                 </button>

@@ -252,7 +252,7 @@ function AdminDisputasContent() {
                               >
                                 Orden: {orderId.slice(0, 8)}…
                               </Link>
-                              <CopyButton text={orderId} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-orange" />
+                              <CopyButton text={orderId} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-emerald" />
                             </div>
                             {(() => {
                               const relatedOrder = orders.find(o => o.id === orderId);

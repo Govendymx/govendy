@@ -627,21 +627,21 @@ function AdminSoporteContent() {
             <button
               type="button"
               onClick={() => setTab('all')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-pink-50 text-brand-orange ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Todos
             </button>
             <button
               type="button"
               onClick={() => setTab('unassigned')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-pink-50 text-brand-orange ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Sin asignar
             </button>
             <button
               type="button"
               onClick={() => setTab('mine')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-pink-50 text-brand-orange ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Mis chats
             </button>
@@ -652,7 +652,7 @@ function AdminSoporteContent() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Buscar por asunto o usuario…"
-              className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+              className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
             />
             <select
               value={statusFilter}
@@ -704,7 +704,7 @@ function AdminSoporteContent() {
                     className={`w-full text-left p-4 hover:bg-pink-50/30 ${active ? 'bg-pink-50/40' : 'bg-white'}`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-50 text-brand-orange ring-1 ring-pink-100 text-sm font-extrabold">
+                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-pink-50 text-brand-emerald ring-1 ring-pink-100 text-sm font-extrabold">
                         {initials(name)}
                         {presenceDot(online)}
                       </div>
@@ -720,7 +720,7 @@ function AdminSoporteContent() {
                                   e.stopPropagation();
                                   copyToClipboard(c.id, `list-${c.id}`);
                                 }}
-                                className="text-gray-400 hover:text-brand-orange"
+                                className="text-gray-400 hover:text-brand-emerald"
                                 title="Copiar ID de conversación"
                               >
                                 {copiedId === `list-${c.id}` ? (
@@ -752,7 +752,7 @@ function AdminSoporteContent() {
                             {preview ? `${who}${preview}` : '—'}
                           </div>
                           {(unread > 0 || needs) ? (
-                            <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-orange px-2 text-[11px] font-extrabold text-white">
+                            <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-brand-emerald px-2 text-[11px] font-extrabold text-white">
                               {unread > 0 ? unread : 1}
                             </span>
                           ) : null}
@@ -796,7 +796,7 @@ function AdminSoporteContent() {
                               <button
                                 type="button"
                                 onClick={() => copyToClipboard(uid, `user-${uid}`)}
-                                className="text-gray-400 hover:text-brand-orange"
+                                className="text-gray-400 hover:text-brand-emerald"
                                 title="Copiar ID de usuario"
                               >
                                 {copiedId === `user-${uid}` ? (
@@ -825,7 +825,7 @@ function AdminSoporteContent() {
                             <button
                               type="button"
                               onClick={() => copyToClipboard(activeId, `header-${activeId}`)}
-                              className="text-gray-400 hover:text-brand-orange"
+                              className="text-gray-400 hover:text-brand-emerald"
                               title="Copiar ID de conversación"
                             >
                               {copiedId === `header-${activeId}` ? (
@@ -890,7 +890,7 @@ function AdminSoporteContent() {
                       type="button"
                       onClick={() => void takeOrRelease('take')}
                       disabled={isUpdating}
-                      className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                      className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                     >
                       Tomar chat
                     </button>
@@ -913,7 +913,7 @@ function AdminSoporteContent() {
                       type="button"
                       onClick={() => void setStatus('open')}
                       disabled={isUpdating}
-                      className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                      className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                     >
                       Reabrir
                     </button>
@@ -1028,7 +1028,7 @@ function AdminSoporteContent() {
                       return (
                         <div key={m.id} className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}>
                           <div
-                            className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${isAdmin ? 'bg-brand-orange text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
+                            className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${isAdmin ? 'bg-brand-emerald text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
                               }`}
                           >
                             <div className={`mb-1 text-[11px] font-extrabold ${isAdmin ? 'text-white/85' : 'text-gray-600'}`}>
@@ -1227,7 +1227,7 @@ function AdminSoporteContent() {
                         void broadcastTyping(Boolean(e.target.value.trim().length));
                       }}
                       placeholder="Responder como soporte… (sin links ni teléfonos)"
-                      className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       onKeyDown={(e) => {
                         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
                           e.preventDefault();

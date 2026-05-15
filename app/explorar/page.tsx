@@ -327,7 +327,7 @@ function ExplorarContent() {
                         </div>
                         <div className="p-4">
                           <div className="line-clamp-1 text-sm font-semibold text-gray-900">{p.title}</div>
-                          <div className="mt-1 text-sm font-extrabold text-brand-orange">{formatMoney(price)}</div>
+                          <div className="mt-1 text-sm font-extrabold text-brand-emerald">{formatMoney(price)}</div>
                           {/* Tags Preview (Optional) */}
                           {p.tags && p.tags.length > 0 && (
                             <div className="mt-2 flex flex-wrap gap-1">
@@ -380,7 +380,7 @@ function ExplorarContent() {
                           href={`/explorar?page=${pageNum}`}
                           className={`rounded-xl px-4 py-2 text-sm font-semibold shadow-sm ring-1 transition-colors ${
                             pageNum === currentPage
-                              ? 'bg-brand-orange text-white ring-brand-orange'
+                              ? 'bg-brand-emerald text-white ring-brand-emerald'
                               : 'bg-white text-gray-900 ring-black/5 hover:bg-gray-50'
                           }`}
                         >

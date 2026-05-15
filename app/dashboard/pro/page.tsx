@@ -239,9 +239,9 @@ export default function ProPage() {
         </div>
 
         {/* Plan PRO */}
-        <div className={`rounded-3xl border-2 bg-white p-8 relative hover:shadow-xl transition-all ${plan === 'pro' ? 'border-brand-orange shadow-xl ring-2 ring-brand-orange/20' : 'border-brand-orange/30'}`}>
+        <div className={`rounded-3xl border-2 bg-white p-8 relative hover:shadow-xl transition-all ${plan === 'pro' ? 'border-brand-emerald shadow-xl ring-2 ring-brand-emerald/20' : 'border-brand-emerald/30'}`}>
           {plan === 'pro' ? (
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-3 bg-brand-orange text-white text-xs font-bold px-4 py-1 rounded-full flex flex-col items-center">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-3 bg-brand-emerald text-white text-xs font-bold px-4 py-1 rounded-full flex flex-col items-center">
               <span>Plan Actual</span>
               {dates?.end && (
                 <span className="text-[9px] opacity-80 normal-case font-normal">
@@ -250,13 +250,13 @@ export default function ProPage() {
               )}
             </div>
           ) : (
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-3 bg-brand-orange text-white text-xs font-bold px-4 py-1 rounded-full">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -mt-3 bg-brand-emerald text-white text-xs font-bold px-4 py-1 rounded-full">
               Popular
             </div>
           )}
 
           <div className="flex items-center gap-2 mb-4">
-            <Zap className="w-6 h-6 text-brand-orange" />
+            <Zap className="w-6 h-6 text-brand-emerald" />
             <h2 className="text-2xl font-bold text-gray-900">PRO</h2>
           </div>
 
@@ -264,23 +264,23 @@ export default function ProPage() {
             <span className="text-4xl font-extrabold text-gray-900">$699</span>
             <span className="ml-1 text-lg text-gray-500">/ mes</span>
           </div>
-          <p className="text-brand-orange font-bold mt-1 text-sm uppercase tracking-wide">GRATIS (TIEMPO LIMITADO)</p>
+          <p className="text-brand-emerald font-bold mt-1 text-sm uppercase tracking-wide">GRATIS (TIEMPO LIMITADO)</p>
 
           <ul className="mt-6 space-y-3 text-sm text-gray-600 mb-6">
             <li className="flex items-center gap-2.5">
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-orange text-white font-bold text-xs">∞</span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-emerald text-white font-bold text-xs">∞</span>
               <span>Subastas <strong>ILIMITADAS</strong></span>
             </li>
             <li className="flex items-center gap-2.5">
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-orange text-white font-bold text-xs">∞</span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-emerald text-white font-bold text-xs">∞</span>
               <span>Publicaciones <strong>ILIMITADAS</strong></span>
             </li>
             <li className="flex items-center gap-2.5">
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-orange text-white font-bold text-xs">∞</span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full bg-brand-emerald text-white font-bold text-xs">∞</span>
               <span>Cupones <strong>ILIMITADOS</strong></span>
             </li>
             <li className="flex items-center gap-2.5">
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-md bg-brand-orange/10 text-brand-orange font-bold text-xs">{PLAN_LIMITS.pro.featured}</span>
+              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-md bg-brand-emerald/10 text-brand-emerald font-bold text-xs">{PLAN_LIMITS.pro.featured}</span>
               <span><strong>Destacados</strong> activos</span>
             </li>
 
@@ -289,7 +289,7 @@ export default function ProPage() {
               <span>Envíos con guías GoVendy</span>
             </li>
             <li className="flex items-center gap-2.5 text-green-600">
-              <Check className="w-5 h-5 shrink-0 text-brand-orange" />
+              <Check className="w-5 h-5 shrink-0 text-brand-emerald" />
               <span><strong>Envíos gestionados por vendedor</strong></span>
             </li>
             <li className="flex items-center gap-2.5 text-gray-400">
@@ -302,7 +302,7 @@ export default function ProPage() {
             </li>
 
             <li className="flex items-center gap-2.5 text-green-600">
-              <Check className="w-5 h-5 shrink-0 text-brand-orange" />
+              <Check className="w-5 h-5 shrink-0 text-brand-emerald" />
               <span>Logo en tu tienda</span>
             </li>
             <li className="flex items-center gap-2.5 text-green-600">
@@ -323,8 +323,8 @@ export default function ProPage() {
             onClick={() => handleSwitch('pro')}
             disabled={plan === 'pro' || updating}
             className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all ${plan === 'pro'
-              ? 'bg-pink-100 text-brand-orange cursor-default border-2 border-brand-orange/20'
-              : 'bg-brand-orange text-white hover:bg-pink-600 shadow-md hover:shadow-lg'
+              ? 'bg-pink-100 text-brand-emerald cursor-default border-2 border-brand-emerald/20'
+              : 'bg-brand-emerald text-white hover:bg-pink-600 shadow-md hover:shadow-lg'
               }`}
           >
             {plan === 'pro' ? '✓ Tu plan actual' : currentPlanIndex > 1 ? 'Cambiar a PRO' : 'Obtener Plan PRO'}
@@ -448,7 +448,7 @@ export default function ProPage() {
                       <span className="font-semibold text-gray-900">
                         Plan {selectedPlan === 'platinum' ? 'Platinum' : 'PRO'} Mensual
                       </span>
-                      <span className={`font-bold ${selectedPlan === 'platinum' ? 'text-amber-600' : 'text-brand-orange'}`}>
+                      <span className={`font-bold ${selectedPlan === 'platinum' ? 'text-amber-600' : 'text-brand-emerald'}`}>
                         ${prices[selectedPlan].toLocaleString('es-MX')}.00 MXN
                       </span>
                     </div>
@@ -456,16 +456,16 @@ export default function ProPage() {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-orange transition-colors">
-                      <input type="radio" name="payment" defaultChecked className="text-brand-orange focus:ring-brand-orange" />
+                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-emerald transition-colors">
+                      <input type="radio" name="payment" defaultChecked className="text-brand-emerald focus:ring-brand-emerald" />
                       <div className="flex-1">
                         <div className="font-medium text-gray-900">Tarjeta de Crédito/Débito</div>
                         <div className="text-xs text-gray-500">Procesado seguro por MercadoPago</div>
                       </div>
                     </label>
 
-                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-orange transition-colors">
-                      <input type="radio" name="payment" className="text-brand-orange focus:ring-brand-orange" />
+                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-emerald transition-colors">
+                      <input type="radio" name="payment" className="text-brand-emerald focus:ring-brand-emerald" />
                       <div className="flex-1">
                         <div className="font-medium text-gray-900">PocketCash</div>
                         <div className="text-xs text-gray-500">Paga con tu saldo disponible</div>
@@ -478,7 +478,7 @@ export default function ProPage() {
                   onClick={simulatePayment}
                   className={`w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] ${selectedPlan === 'platinum'
                     ? 'bg-gradient-to-r from-amber-500 to-yellow-500 shadow-amber-200 hover:from-amber-600 hover:to-yellow-600'
-                    : 'bg-brand-orange shadow-pink-200 hover:bg-pink-600'
+                    : 'bg-brand-emerald shadow-pink-200 hover:bg-pink-600'
                     }`}
                 >
                   Pagar ${prices[selectedPlan].toLocaleString('es-MX')}.00 y Activar
@@ -491,7 +491,7 @@ export default function ProPage() {
 
             {paymentStep === 'processing' && (
               <div className="flex flex-col items-center justify-center py-8">
-                <div className={`h-12 w-12 animate-spin rounded-full border-4 border-t-transparent mb-4 ${selectedPlan === 'platinum' ? 'border-amber-500' : 'border-brand-orange'
+                <div className={`h-12 w-12 animate-spin rounded-full border-4 border-t-transparent mb-4 ${selectedPlan === 'platinum' ? 'border-amber-500' : 'border-brand-emerald'
                   }`}></div>
                 <h3 className="text-lg font-bold text-gray-900">Procesando pago...</h3>
                 <p className="text-sm text-gray-500">No cierres esta ventana.</p>

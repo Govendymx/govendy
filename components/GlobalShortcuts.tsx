@@ -107,10 +107,10 @@ export function GlobalShortcuts() {
           onClick={() => {
             if (!dragMoved.current) router.push('/dashboard');
           }}
-          className="group relative flex items-center gap-2.5 rounded-2xl bg-white/95 px-4 py-3 text-sm font-bold text-gray-800 shadow-lg ring-1 ring-black/[0.08] backdrop-blur-xl hover:bg-white hover:shadow-xl hover:ring-brand-orange/30 transition-all duration-300"
+          className="group relative flex items-center gap-2.5 rounded-2xl bg-white/95 px-4 py-3 text-sm font-bold text-gray-800 shadow-lg ring-1 ring-black/[0.08] backdrop-blur-xl hover:bg-white hover:shadow-xl hover:ring-brand-emerald/30 transition-all duration-300"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gray-100 group-hover:bg-brand-orange/10 transition-colors">
-            <User className="h-4 w-4 text-gray-600 group-hover:text-brand-orange transition-colors" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gray-100 group-hover:bg-brand-emerald/10 transition-colors">
+            <User className="h-4 w-4 text-gray-600 group-hover:text-brand-emerald transition-colors" />
           </div>
           <span>Mi cuenta</span>
         </button>
@@ -123,7 +123,7 @@ export function GlobalShortcuts() {
           onClick={() => {
             if (!dragMoved.current) router.push('/');
           }}
-          className="group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-brand-orange to-pink-500 px-4 py-3 text-sm font-extrabold text-white shadow-lg shadow-brand-orange/25 hover:shadow-xl hover:shadow-brand-orange/40 hover:scale-[1.02] transition-all duration-300"
+          className="group relative flex items-center gap-2.5 rounded-2xl bg-gradient-to-r from-brand-emerald to-pink-500 px-4 py-3 text-sm font-extrabold text-white shadow-lg shadow-brand-emerald/25 hover:shadow-xl hover:shadow-brand-emerald/40 hover:scale-[1.02] transition-all duration-300"
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/20 backdrop-blur">
             <Home className="h-4 w-4 text-white" />
@@ -149,7 +149,7 @@ export function GlobalShortcuts() {
         }}
         className={`relative flex h-14 w-14 cursor-grab active:cursor-grabbing items-center justify-center rounded-2xl shadow-xl ring-1 ring-black/[0.08] transition-all duration-300 ${isExpanded
             ? 'bg-gray-800 text-white shadow-gray-800/25 rotate-45'
-            : 'bg-gradient-to-br from-brand-orange to-pink-500 text-white shadow-brand-orange/30 hover:shadow-brand-orange/50 hover:scale-105'
+            : 'bg-gradient-to-br from-brand-emerald to-pink-500 text-white shadow-brand-emerald/30 hover:shadow-brand-emerald/50 hover:scale-105'
           }`}
         aria-label="Menú rápido"
       >
@@ -166,7 +166,7 @@ export function GlobalShortcuts() {
 
         {/* Pulsing ring when collapsed */}
         {!isExpanded && (
-          <span className="absolute inset-0 rounded-2xl animate-ping bg-brand-orange/20 pointer-events-none" />
+          <span className="absolute inset-0 rounded-2xl animate-ping bg-brand-emerald/20 pointer-events-none" />
         )}
       </div>
     </div>

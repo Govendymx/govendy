@@ -1245,7 +1245,7 @@ export default function ListingDetailPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -1255,7 +1255,7 @@ export default function ListingDetailPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -1325,7 +1325,7 @@ export default function ListingDetailPage() {
             <div className="mt-6">
               <Link
                 href="/listings"
-                className="inline-flex rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+                className="inline-flex rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
               >
                 Volver a explorar
               </Link>
@@ -1627,7 +1627,7 @@ export default function ListingDetailPage() {
                       <div className="text-sm font-semibold text-gray-900">Preguntas al vendedor</div>
                       <div className="mt-1 text-xs text-gray-600">Visibles para todos.</div>
                     </div>
-                    <Link href="/dashboard/preguntas" className="text-xs font-semibold text-brand-orange hover:opacity-90">
+                    <Link href="/dashboard/preguntas" className="text-xs font-semibold text-brand-emerald hover:opacity-90">
                       Soy vendedor →
                     </Link>
                   </div>
@@ -1647,7 +1647,7 @@ export default function ListingDetailPage() {
                               value={questionInput}
                               onChange={(e) => setQuestionInput(e.target.value)}
                               rows={3}
-                              className="flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="flex-1 rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                               placeholder="Ej. ¿Cuál es la medida, viene con etiqueta, aceptas cambios?"
                             />
                             <div className="flex items-start pt-2">
@@ -1664,7 +1664,7 @@ export default function ListingDetailPage() {
                               type="button"
                               onClick={askQuestion}
                               disabled={isAsking}
-                              className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60"
+                              className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60"
                             >
                               {isAsking ? 'Enviando…' : 'Enviar pregunta'}
                             </button>
@@ -1680,7 +1680,7 @@ export default function ListingDetailPage() {
                           <button
                             type="button"
                             onClick={() => redirectToLogin()}
-                            className="font-semibold text-brand-orange hover:opacity-90"
+                            className="font-semibold text-brand-emerald hover:opacity-90"
                           >
                             Iniciar sesión →
                           </button>
@@ -1707,7 +1707,7 @@ export default function ListingDetailPage() {
                             <div className="mt-1 text-sm text-gray-700 whitespace-pre-wrap">{q.question_text}</div>
                             {q.answer_text ? (
                               <div className="mt-3 rounded-2xl bg-white px-4 py-3 ring-1 ring-black/5">
-                                <div className="text-sm font-semibold text-brand-orange">Respuesta del vendedor</div>
+                                <div className="text-sm font-semibold text-brand-emerald">Respuesta del vendedor</div>
                                 <div className="mt-1 text-sm text-gray-800 whitespace-pre-wrap">{q.answer_text}</div>
                               </div>
                             ) : (
@@ -1731,7 +1731,7 @@ export default function ListingDetailPage() {
             <div className="lg:col-span-5 space-y-6">
               <section className="rounded-[2.5rem] bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                     {listing.status === 'active' ? 'Disponible' : 'No disponible'}
                   </div>
                   {coupon && (
@@ -1815,7 +1815,7 @@ export default function ListingDetailPage() {
                       type="button"
                       onClick={toggleFavorite}
                       disabled={isFavLoading}
-                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5 hover:bg-gray-50 disabled:opacity-60 transition-colors ${isFav ? 'text-brand-orange' : 'text-gray-700'
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5 hover:bg-gray-50 disabled:opacity-60 transition-colors ${isFav ? 'text-brand-emerald' : 'text-gray-700'
                         }`}
                       aria-label={isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'}
                       title={isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'}
@@ -1872,7 +1872,7 @@ export default function ListingDetailPage() {
                           {hasTierDiscount && (
                             <span className="text-lg text-gray-400 line-through">{formatMoney(price)}</span>
                           )}
-                          <span className="text-2xl font-extrabold text-brand-orange animate-price-highlight animate-price-glow">
+                          <span className="text-2xl font-extrabold text-brand-emerald animate-price-highlight animate-price-glow">
                             {isAuction ? `Puja actual: ${formatMoney(highestBid)}` : formatMoney(effectivePrice)}
                           </span>
                           {hasTierDiscount && (
@@ -2042,7 +2042,7 @@ export default function ListingDetailPage() {
                         <div className="text-[11px] font-bold uppercase tracking-wider text-amber-600">Va ganando</div>
                         <Link
                           href={`/perfil/${listing.auction_highest_bidder_id}`}
-                          className="text-sm font-extrabold text-gray-900 hover:text-brand-orange transition-colors truncate block"
+                          className="text-sm font-extrabold text-gray-900 hover:text-brand-emerald transition-colors truncate block"
                         >
                           {bidHistory[0]?.bidder_name || 'Usuario'}
                         </Link>
@@ -2051,7 +2051,7 @@ export default function ListingDetailPage() {
                         <div className="text-lg font-black text-amber-700">{formatMoney(highestBid)}</div>
                         <Link
                           href={`/perfil/${listing.auction_highest_bidder_id}`}
-                          className="text-[10px] font-semibold text-amber-600 hover:text-brand-orange"
+                          className="text-[10px] font-semibold text-amber-600 hover:text-brand-emerald"
                         >
                           Ver reputación →
                         </Link>
@@ -2164,7 +2164,7 @@ export default function ListingDetailPage() {
                           <select
                             value={selectedSize || sizeVariants[0] || ''}
                             onChange={(e) => setSelectedSize(e.target.value)}
-                            className="rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/20"
+                            className="rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald/20"
                           >
                             {sizeVariants.map((v) => (
                               <option key={v} value={v}>{v}</option>
@@ -2191,7 +2191,7 @@ export default function ListingDetailPage() {
                             value={selectedColor || variants[0] || ''}
                             onChange={(e) => setSelectedColor(e.target.value)}
                             required
-                            className="rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/20"
+                            className="rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald/20"
                           >
                             <option value="">Selecciona</option>
                             {variants.map((v) => (
@@ -2319,7 +2319,7 @@ export default function ListingDetailPage() {
 
                 <div className="mt-3 rounded-2xl border border-black/5 bg-gray-50 px-4 py-3">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <Link href={`/perfil/${listing.seller_id}`} className="text-sm font-semibold text-gray-900 hover:text-brand-orange">
+                    <Link href={`/perfil/${listing.seller_id}`} className="text-sm font-semibold text-gray-900 hover:text-brand-emerald">
                       Termómetro de comportamiento →
                     </Link>
                     {sellerBadgeLabel && (
@@ -2352,7 +2352,7 @@ export default function ListingDetailPage() {
                       />
                       {/* Círculo completo que sale de la franja y parpadea */}
                       <div
-                        className="absolute top-1/2 h-6 w-6 -translate-y-1/2 animate-blink rounded-full bg-white ring-2 ring-brand-orange/50 shadow-md"
+                        className="absolute top-1/2 h-6 w-6 -translate-y-1/2 animate-blink rounded-full bg-white ring-2 ring-brand-emerald/50 shadow-md"
                         style={{ left: `calc(${Math.max(0, Math.min(100, sellerRatingPercent))}% - 12px)` }}
                         aria-hidden="true"
                       />
@@ -2425,7 +2425,7 @@ export default function ListingDetailPage() {
                             step={1}
                             value={bidAmount}
                             onChange={(e) => setBidAmount(Number(e.target.value))}
-                            className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                            className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                           />
                           <div className="mt-1 text-xs text-gray-600">
                             Mínimo: {formatMoney(highestBid + Math.max(bidIncrement, 1))}
@@ -2436,7 +2436,7 @@ export default function ListingDetailPage() {
                             type="button"
                             onClick={placeBid}
                             disabled={isBidding || listing.status !== 'active' || listing.seller_id === viewerId}
-                            className="w-full rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                            className="w-full rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                           >
                             {listing.seller_id === viewerId
                               ? 'Es tu subasta'
@@ -2457,7 +2457,7 @@ export default function ListingDetailPage() {
                           <span className="text-base">📋</span>
                           <span className="text-sm font-bold text-gray-900">Historial de pujas</span>
                           {bidHistory.length > 0 && (
-                            <span className="rounded-full bg-brand-orange/10 px-2 py-0.5 text-[10px] font-black text-brand-orange">
+                            <span className="rounded-full bg-brand-emerald/10 px-2 py-0.5 text-[10px] font-black text-brand-emerald">
                               {bidHistory.length}
                             </span>
                           )}
@@ -2509,7 +2509,7 @@ export default function ListingDetailPage() {
                                     <div className="flex-1 min-w-0">
                                       <Link
                                         href={`/perfil/${bid.bidder_id}`}
-                                        className="text-xs font-bold text-gray-900 hover:text-brand-orange transition-colors truncate block"
+                                        className="text-xs font-bold text-gray-900 hover:text-brand-emerald transition-colors truncate block"
                                       >
                                         {bid.bidder_name}
                                       </Link>
@@ -2521,7 +2521,7 @@ export default function ListingDetailPage() {
                                       </div>
                                       <Link
                                         href={`/perfil/${bid.bidder_id}`}
-                                        className="text-[9px] font-semibold text-gray-400 hover:text-brand-orange"
+                                        className="text-[9px] font-semibold text-gray-400 hover:text-brand-emerald"
                                       >
                                         Reputación →
                                       </Link>
@@ -2541,7 +2541,7 @@ export default function ListingDetailPage() {
                       type="button"
                       onClick={addToCart}
                       disabled={isAdding || listing.status !== 'active' || listing.seller_id === viewerId}
-                      className="relative w-full rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 overflow-hidden animate-rotating-border animate-border-glow"
+                      className="relative w-full rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 overflow-hidden animate-rotating-border animate-border-glow"
                     >
                       {listing.seller_id === viewerId
                         ? 'Es tu publicación'
@@ -2574,7 +2574,7 @@ export default function ListingDetailPage() {
                   <div>
                     <div className="text-xs font-semibold text-gray-900">
                       Más publicaciones de{' '}
-                      <Link href={`/perfil/${listing.seller_id}`} className="font-semibold text-brand-orange hover:opacity-90">
+                      <Link href={`/perfil/${listing.seller_id}`} className="font-semibold text-brand-emerald hover:opacity-90">
                         {sellerName}
                       </Link>
                     </div>
@@ -2613,14 +2613,14 @@ export default function ListingDetailPage() {
                           </div>
                           <div className="p-2">
                             <div className="line-clamp-1 text-[10px] font-semibold text-gray-900">{r.title}</div>
-                            <div className="mt-0.5 text-[11px] font-extrabold text-brand-orange">{formatMoney(price2)}</div>
+                            <div className="mt-0.5 text-[11px] font-extrabold text-brand-emerald">{formatMoney(price2)}</div>
                           </div>
                         </Link>
                       );
                     })}
                   </div>
                 )}
-                <Link href={`/perfil/${listing.seller_id}`} className="mt-3 block text-center text-[10px] font-bold text-brand-orange hover:opacity-80">
+                <Link href={`/perfil/${listing.seller_id}`} className="mt-3 block text-center text-[10px] font-bold text-brand-emerald hover:opacity-80">
                   Ver todas las publicaciones →
                 </Link>
               </div>

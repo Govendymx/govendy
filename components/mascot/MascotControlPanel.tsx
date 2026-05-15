@@ -28,7 +28,7 @@ export function MascotControlPanel() {
     <div className="fixed bottom-4 right-4 z-[10001]">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-brand-orange text-white rounded-full p-3 shadow-lg hover:bg-brand-orange/90 transition-colors"
+        className="bg-brand-emerald text-white rounded-full p-3 shadow-lg hover:bg-brand-emerald/90 transition-colors"
       >
         {isOpen ? 'Close' : 'Mascot Lab'}
       </button>
@@ -80,7 +80,7 @@ export function MascotControlPanel() {
                       onClick={() => setEmotion(emo as MascotEmotion)}
                       className={`text-xs py-1 px-2 rounded border ${
                         emotion === emo 
-                          ? 'bg-brand-orange text-white border-brand-orange' 
+                          ? 'bg-brand-emerald text-white border-brand-emerald' 
                           : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-50'
                       }`}
                     >
@@ -102,7 +102,7 @@ export function MascotControlPanel() {
                   step="0.05"
                   value={eyeConfig.pupilSize}
                   onChange={(e) => setEyeConfig({...eyeConfig, pupilSize: parseFloat(e.target.value)})}
-                  className="w-full accent-brand-orange h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-brand-emerald h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                 />
               </div>
 

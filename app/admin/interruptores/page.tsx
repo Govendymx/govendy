@@ -30,8 +30,8 @@ function Switch({
       aria-checked={checked}
       disabled={disabled}
       onClick={() => !disabled && onChange(!checked)}
-      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-        checked ? 'bg-brand-orange' : 'bg-gray-200'
+      className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
+        checked ? 'bg-brand-emerald' : 'bg-gray-200'
       }`}
     >
       <span
@@ -144,7 +144,7 @@ export default function AdminInterruptoresPage() {
       <div className="mx-auto max-w-2xl">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Interruptores</h1>
@@ -203,7 +203,7 @@ export default function AdminInterruptoresPage() {
               type="button"
               onClick={() => void onSave()}
               disabled={saving}
-              className="rounded-xl bg-brand-orange px-5 py-2 text-sm font-bold text-white shadow-sm hover:opacity-95 disabled:opacity-50"
+              className="rounded-xl bg-brand-emerald px-5 py-2 text-sm font-bold text-white shadow-sm hover:opacity-95 disabled:opacity-50"
             >
               {saving ? 'Guardando…' : 'Guardar cambios'}
             </button>

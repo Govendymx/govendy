@@ -87,7 +87,7 @@ export function SmartCategorySelector({ value, onChange, categories, onPropose, 
         <input
           type="text"
           disabled={disabled}
-          className={`w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange pr-10 ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : ''}`}
+          className={`w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald pr-10 ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : ''}`}
           placeholder={disabled ? 'Detectando automáticamente...' : 'Selecciona o escribe una categoría...'}
           value={inputValue}
           onChange={(e) => {
@@ -120,14 +120,14 @@ export function SmartCategorySelector({ value, onChange, categories, onPropose, 
               }}
             >
               {cat}
-              {value === cat && <Check className="h-4 w-4 text-brand-orange" />}
+              {value === cat && <Check className="h-4 w-4 text-brand-emerald" />}
             </button>
           ))}
 
           {showCreateOption && (
             <button
               type="button"
-              className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-brand-orange hover:bg-pink-50 font-medium border-t border-gray-100"
+              className="flex w-full items-center gap-2 px-4 py-2 text-left text-sm text-brand-emerald hover:bg-pink-50 font-medium border-t border-gray-100"
               onClick={() => {
                 onPropose(inputValue.trim());
                 setOpen(false);

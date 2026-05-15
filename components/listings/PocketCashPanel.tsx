@@ -8,7 +8,7 @@ export function PocketCashPanel() {
     <div className="rounded-3xl border border-pink-100/50 bg-gradient-to-br from-white to-pink-50/30 p-6 shadow-sm ring-1 ring-black/5">
       <div className="flex items-center gap-2 mb-5">
         <div className="rounded-full bg-pink-100 p-2">
-          <Wallet className="h-5 w-5 text-brand-orange" />
+          <Wallet className="h-5 w-5 text-brand-emerald" />
         </div>
         <h3 className="text-base font-extrabold text-gray-900">PocketCash</h3>
       </div>
@@ -17,7 +17,7 @@ export function PocketCashPanel() {
         <div className="flex gap-4">
           <div className="shrink-0 mt-0.5">
             <div className="rounded-full bg-pink-50 p-2">
-              <Zap className="h-5 w-5 text-brand-orange" />
+              <Zap className="h-5 w-5 text-brand-emerald" />
             </div>
           </div>
           <div className="flex-1">
@@ -31,7 +31,7 @@ export function PocketCashPanel() {
         <div className="flex gap-4">
           <div className="shrink-0 mt-0.5">
             <div className="rounded-full bg-pink-50 p-2">
-              <CheckCircle2 className="h-5 w-5 text-brand-orange" />
+              <CheckCircle2 className="h-5 w-5 text-brand-emerald" />
             </div>
           </div>
           <div className="flex-1">

@@ -122,7 +122,7 @@ export default function AdminSaludPage() {
     return (
       <div className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
         <div className="flex justify-center py-12">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-orange border-t-transparent" />
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-emerald border-t-transparent" />
         </div>
       </div>
     );
@@ -226,7 +226,7 @@ export default function AdminSaludPage() {
               value={errorSearch}
               onChange={(e) => setErrorSearch(e.target.value)}
               placeholder="Buscar error (ID, mensaje, etapa)..."
-              className="w-full max-w-xs rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+              className="w-full max-w-xs rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
             />
           </div>
           <div className="mt-4 space-y-2">

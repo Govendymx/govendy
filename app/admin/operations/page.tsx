@@ -98,7 +98,7 @@ function OperationViewContent() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald"></div>
       </div>
     );
   }
@@ -108,7 +108,7 @@ function OperationViewContent() {
       <div className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5">
         <div className="text-center py-12">
           <p className="text-gray-600">No se encontró la operación solicitada.</p>
-          <Link href="/admin" className="mt-4 inline-block text-brand-orange hover:underline">
+          <Link href="/admin" className="mt-4 inline-block text-brand-emerald hover:underline">
             Volver al dashboard
           </Link>
         </div>
@@ -174,7 +174,7 @@ function OperationViewContent() {
                       href={topup.metadata.proof_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-brand-orange hover:underline"
+                      className="text-sm text-brand-emerald hover:underline"
                     >
                       Ver imagen
                     </a>
@@ -295,7 +295,7 @@ function OperationViewContent() {
                           }, 1000);
                         }
                       }}
-                      className="hover:text-brand-orange hover:underline focus:outline-none text-left"
+                      className="hover:text-brand-emerald hover:underline focus:outline-none text-left"
                     >
                       <span id={`oid-${order.id}`}>{order.id}</span>
                     </button>
@@ -363,7 +363,7 @@ function OperationViewContent() {
                       href={order.shipping_label_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-brand-orange hover:underline"
+                      className="text-sm text-brand-emerald hover:underline"
                     >
                       Ver guía
                     </a>
@@ -383,7 +383,7 @@ function OperationViewContent() {
                               href={url.trim()}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-sm text-brand-orange hover:underline"
+                              className="text-sm text-brand-emerald hover:underline"
                             >
                               {label}
                             </a>
@@ -426,7 +426,7 @@ function OperationViewContent() {
                 <div className="pt-3 border-t">
                   <Link
                     href={`/admin/logistica?orderId=${order.id}`}
-                    className="text-sm text-brand-orange hover:underline"
+                    className="text-sm text-brand-emerald hover:underline"
                   >
                     Ver en logística →
                   </Link>
@@ -446,7 +446,7 @@ function OperationViewContent() {
                     <span className="text-sm font-mono">{payment.reference_code || payment.id}</span>
                     <CopyButton
                       text={payment.reference_code || payment.id}
-                      className="text-gray-400 hover:text-brand-orange"
+                      className="text-gray-400 hover:text-brand-emerald"
                       size="sm"
                     />
                   </div>
@@ -467,7 +467,7 @@ function OperationViewContent() {
                 <div className="pt-3 border-t">
                   <Link
                     href={`/admin/pagos?paymentId=${payment.id}`}
-                    className="text-sm text-brand-orange hover:underline"
+                    className="text-sm text-brand-emerald hover:underline"
                   >
                     Ver en pagos →
                   </Link>
@@ -497,7 +497,7 @@ function OperationViewContent() {
                           }, 1000);
                         }
                       }}
-                      className="hover:text-brand-orange hover:underline focus:outline-none text-left"
+                      className="hover:text-brand-emerald hover:underline focus:outline-none text-left"
                     >
                       <span id={`did-${dispute.id}`}>{dispute.id.slice(0, 8)}</span>
                     </button>
@@ -519,7 +519,7 @@ function OperationViewContent() {
                 <div className="pt-3 border-t">
                   <Link
                     href={`/admin/disputas/${dispute.id}`}
-                    className="text-sm text-brand-orange hover:underline"
+                    className="text-sm text-brand-emerald hover:underline"
                   >
                     Ver disputa completa →
                   </Link>
@@ -544,7 +544,7 @@ export default function OperationsPage() {
   return (
     <Suspense fallback={
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald"></div>
       </div>
     }>
       <OperationViewContent />

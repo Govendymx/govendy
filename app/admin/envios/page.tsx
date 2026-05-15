@@ -290,7 +290,7 @@ export default function AdminEnviosPage() {
             placeholder="Buscar paquetería..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+            className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald"
           />
           <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
           {searchTerm && (
@@ -314,7 +314,7 @@ export default function AdminEnviosPage() {
           <p className="text-sm text-gray-500 mt-1">Intenta con otro término de búsqueda</p>
           <button 
             onClick={() => setSearchTerm('')}
-            className="mt-4 text-sm text-brand-orange hover:underline"
+            className="mt-4 text-sm text-brand-emerald hover:underline"
           >
             Limpiar búsqueda
           </button>
@@ -343,7 +343,7 @@ export default function AdminEnviosPage() {
                     <button
                       type="button"
                       onClick={() => copyToClipboard(opt.id, opt.id)}
-                      className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-xs font-mono text-gray-500 hover:bg-gray-100 hover:text-brand-orange transition-colors"
+                      className="flex items-center gap-1 rounded-md bg-gray-50 px-2 py-1 text-xs font-mono text-gray-500 hover:bg-gray-100 hover:text-brand-emerald transition-colors"
                       title="Copiar ID"
                     >
                       <span>{opt.id.slice(0, 8)}...</span>
@@ -370,7 +370,7 @@ export default function AdminEnviosPage() {
                     value={opt.name}
                     onChange={(e) => updateOption(index, { name: e.target.value })}
                     placeholder="Ej: Estafeta, FedEx, DHL"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -383,7 +383,7 @@ export default function AdminEnviosPage() {
                     value={opt.cost}
                     onChange={(e) => updateOption(index, { cost: Number(e.target.value) || 0 })}
                     placeholder="0.00"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -395,7 +395,7 @@ export default function AdminEnviosPage() {
                     value={opt.delivery_days}
                     onChange={(e) => updateOption(index, { delivery_days: Math.max(1, Number(e.target.value) || 1) })}
                     placeholder="1"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -408,7 +408,7 @@ export default function AdminEnviosPage() {
                     value={opt.max_weight_kg || ''}
                     onChange={(e) => updateOption(index, { max_weight_kg: e.target.value ? Number(e.target.value) : null })}
                     placeholder="Sin límite (dejar vacío)"
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                   <div className="mt-1 text-xs text-gray-500">Deja vacío si no hay límite de peso</div>
                 </div>
@@ -457,7 +457,7 @@ export default function AdminEnviosPage() {
                       type="checkbox"
                       checked={opt.is_active}
                       onChange={(e) => updateOption(index, { is_active: e.target.checked })}
-                      className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                     />
                     <span className="text-sm font-medium text-gray-700">Activa (visible en checkout)</span>
                   </label>
@@ -469,7 +469,7 @@ export default function AdminEnviosPage() {
                   type="button"
                   onClick={() => saveOption(index, opt)}
                   disabled={isSaving || !opt.name.trim()}
-                  className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                  className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
                 >
                   {isSaving ? 'Guardando...' : opt.id ? 'Actualizar' : 'Guardar'}
                 </button>

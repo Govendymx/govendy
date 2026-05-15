@@ -156,7 +156,7 @@ export function AdvancedMetrics({ initialPeriod = '30d' }: AdvancedMetricsProps)
   const SectionHeader = ({ title, icon: Icon, onExport }: any) => (
     <div className="flex items-center justify-between mb-4">
       <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-        <Icon className="w-5 h-5 text-brand-orange" />
+        <Icon className="w-5 h-5 text-brand-emerald" />
         {title}
       </h3>
       <button 
@@ -174,8 +174,8 @@ export function AdvancedMetrics({ initialPeriod = '30d' }: AdvancedMetricsProps)
       {/* Controls */}
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl bg-white p-4 shadow-sm border border-gray-100 sticky top-4 z-10">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-brand-orange/10 rounded-lg">
-            <TrendingUp className="w-6 h-6 text-brand-orange" />
+          <div className="p-2 bg-brand-emerald/10 rounded-lg">
+            <TrendingUp className="w-6 h-6 text-brand-emerald" />
           </div>
           <div>
             <h2 className="text-xl font-bold text-gray-800">Métricas Avanzadas</h2>
@@ -193,7 +193,7 @@ export function AdvancedMetrics({ initialPeriod = '30d' }: AdvancedMetricsProps)
               onClick={() => setPeriod(p)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-all ${
                 period === p 
-                  ? 'bg-white text-brand-orange shadow-sm' 
+                  ? 'bg-white text-brand-emerald shadow-sm' 
                   : 'text-gray-500 hover:text-gray-900'
               }`}
             >

@@ -67,7 +67,7 @@ export function BlocksRenderer({ blocks }: { blocks: TemplateBlock[] }) {
           return (
             <div
               key={idx}
-              className="prose prose-sm sm:prose-base max-w-none text-gray-700 prose-img:rounded-xl prose-img:shadow-sm prose-headings:font-bold prose-a:text-brand-orange prose-a:no-underline hover:prose-a:underline"
+              className="prose prose-sm sm:prose-base max-w-none text-gray-700 prose-img:rounded-xl prose-img:shadow-sm prose-headings:font-bold prose-a:text-brand-emerald prose-a:no-underline hover:prose-a:underline"
               dangerouslySetInnerHTML={{ __html: cleanHtml }}
             />
           );
@@ -107,7 +107,7 @@ export function BlocksRenderer({ blocks }: { blocks: TemplateBlock[] }) {
           const tone = b.tone ?? 'pink';
 
           const styles: Record<string, { box: string; title: string }> = {
-            pink: { box: 'border-pink-200 bg-pink-50', title: 'text-brand-orange' },
+            pink: { box: 'border-pink-200 bg-pink-50', title: 'text-brand-emerald' },
             neutral: { box: 'border-black/10 bg-gray-50', title: 'text-gray-900' },
             success: { box: 'border-green-200 bg-green-50', title: 'text-green-800' },
             blue: { box: 'border-blue-200 bg-blue-50', title: 'text-blue-800' },

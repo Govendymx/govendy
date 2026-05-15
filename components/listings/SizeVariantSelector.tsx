@@ -73,7 +73,7 @@ export function SizeVariantSelector({
                                 onStockChange({});
                             }}
                             className={`px-4 py-2 rounded-xl font-semibold transition-all ${sizeType === 'clothing'
-                                ? 'bg-brand-orange text-white shadow-lg'
+                                ? 'bg-brand-emerald text-white shadow-lg'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
                         >
@@ -89,7 +89,7 @@ export function SizeVariantSelector({
                                 onStockChange({});
                             }}
                             className={`px-4 py-2 rounded-xl font-semibold transition-all ${sizeType === 'shoes'
-                                ? 'bg-brand-orange text-white shadow-lg'
+                                ? 'bg-brand-emerald text-white shadow-lg'
                                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
                         >
@@ -106,7 +106,7 @@ export function SizeVariantSelector({
                         type="button"
                         onClick={() => setShoeCategory('babies')}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${shoeCategory === 'babies'
-                            ? 'bg-pink-100 text-brand-orange'
+                            ? 'bg-pink-100 text-brand-emerald'
                             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                             }`}
                     >
@@ -116,7 +116,7 @@ export function SizeVariantSelector({
                         type="button"
                         onClick={() => setShoeCategory('kids')}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${shoeCategory === 'kids'
-                            ? 'bg-pink-100 text-brand-orange'
+                            ? 'bg-pink-100 text-brand-emerald'
                             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                             }`}
                     >
@@ -126,7 +126,7 @@ export function SizeVariantSelector({
                         type="button"
                         onClick={() => setShoeCategory('women')}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${shoeCategory === 'women'
-                            ? 'bg-pink-100 text-brand-orange'
+                            ? 'bg-pink-100 text-brand-emerald'
                             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                             }`}
                     >
@@ -136,7 +136,7 @@ export function SizeVariantSelector({
                         type="button"
                         onClick={() => setShoeCategory('men')}
                         className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${shoeCategory === 'men'
-                            ? 'bg-pink-100 text-brand-orange'
+                            ? 'bg-pink-100 text-brand-emerald'
                             : 'bg-gray-50 text-gray-600 hover:bg-gray-100'
                             }`}
                     >
@@ -157,8 +157,8 @@ export function SizeVariantSelector({
                             type="button"
                             onClick={() => toggleSize(size)}
                             className={`px-4 py-2 rounded-xl font-bold transition-all ${selectedSizes.includes(size)
-                                ? 'bg-brand-orange text-white shadow-lg ring-2 ring-brand-orange/20'
-                                : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-brand-orange hover:text-brand-orange'
+                                ? 'bg-brand-emerald text-white shadow-lg ring-2 ring-brand-emerald/20'
+                                : 'bg-white text-gray-700 border-2 border-gray-200 hover:border-brand-emerald hover:text-brand-emerald'
                                 }`}
                         >
                             {size}
@@ -187,7 +187,7 @@ export function SizeVariantSelector({
                                         const val = e.target.value === '' ? 0 : parseInt(e.target.value);
                                         updateStock(size, isNaN(val) ? 0 : val);
                                     }}
-                                    className="w-full rounded-xl border-gray-200 px-3 py-2 text-sm font-semibold focus:border-brand-orange focus:ring-brand-orange"
+                                    className="w-full rounded-xl border-gray-200 px-3 py-2 text-sm font-semibold focus:border-brand-emerald focus:ring-brand-emerald"
                                     placeholder="Stock"
                                 />
                             </div>

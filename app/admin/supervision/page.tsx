@@ -419,7 +419,7 @@ function SupervisionContent() {
           ) : null}
           <Link
             href="/admin"
-            className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+            className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
           >
             Ir al panel
           </Link>
@@ -531,9 +531,9 @@ function SupervisionContent() {
           <div className="mt-1 text-2xl font-extrabold text-green-900">{stats.released}</div>
           <div className="mt-0.5 text-[10px] text-green-700">Métricas y payouts →</div>
         </Link>
-        <div className="rounded-2xl border border-brand-orange/20 bg-pink-50 px-4 py-3">
-          <div className="text-[11px] font-semibold text-brand-orange">Cobradas (retiradas)</div>
-          <div className="mt-1 text-2xl font-extrabold text-brand-orange">{stats.withdrawn}</div>
+        <div className="rounded-2xl border border-brand-emerald/20 bg-pink-50 px-4 py-3">
+          <div className="text-[11px] font-semibold text-brand-emerald">Cobradas (retiradas)</div>
+          <div className="mt-1 text-2xl font-extrabold text-brand-emerald">{stats.withdrawn}</div>
         </div>
         <Link
           href="/admin/estafeta?status=paid"
@@ -621,7 +621,7 @@ function SupervisionContent() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar ID, guía, nombre..."
-            className="rounded-xl border border-gray-300 bg-white px-4 py-2 pl-10 text-sm font-medium text-gray-900 outline-none focus:ring-2 focus:ring-brand-orange w-64 shadow-sm"
+            className="rounded-xl border border-gray-300 bg-white px-4 py-2 pl-10 text-sm font-medium text-gray-900 outline-none focus:ring-2 focus:ring-brand-emerald w-64 shadow-sm"
           />
           <svg className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -630,7 +630,7 @@ function SupervisionContent() {
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 outline-none focus:ring-2 focus:ring-brand-orange"
+          className="rounded-xl border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 outline-none focus:ring-2 focus:ring-brand-emerald"
         >
           {STATUS_OPTIONS.map((o) => (
             <option key={o.value || 'all'} value={o.value}>
@@ -643,7 +643,7 @@ function SupervisionContent() {
             type="checkbox"
             checked={hasDispute}
             onChange={(e) => setHasDispute(e.target.checked)}
-            className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+            className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
           />
           <span className="text-sm font-medium text-gray-700">Solo con disputa</span>
         </label>
@@ -652,7 +652,7 @@ function SupervisionContent() {
       <div className="mt-6 overflow-x-auto rounded-2xl border border-black/5 bg-white">
         {isLoading ? (
           <div className="flex justify-center py-16">
-            <div className="h-10 w-10 animate-spin rounded-full border-2 border-brand-orange border-t-transparent" />
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-brand-emerald border-t-transparent" />
           </div>
         ) : ops.length === 0 ? (
           <div className="py-16 text-center text-sm text-gray-500">No hay operaciones con los filtros actuales.</div>
@@ -695,7 +695,7 @@ function SupervisionContent() {
                               }, 1000);
                             }
                           }}
-                          className="hover:text-brand-orange hover:underline focus:outline-none text-left"
+                          className="hover:text-brand-emerald hover:underline focus:outline-none text-left"
                         >
                           <span id={`id-${oid}`}>{oid.slice(0, 8)}…</span>
                         </button>
@@ -706,7 +706,7 @@ function SupervisionContent() {
                     <td className="px-4 py-2 text-gray-700">{fmtDate(o?.created_at)}</td>
                     <td className="px-4 py-2">
                       {o?.buyer_id ? (
-                        <Link href={`/perfil/${o.buyer_id}`} className="font-medium text-brand-orange hover:underline">
+                        <Link href={`/perfil/${o.buyer_id}`} className="font-medium text-brand-emerald hover:underline">
                           {o?.buyer_name || `${String(o.buyer_id).slice(0, 8)}…`}
                         </Link>
                       ) : (
@@ -715,7 +715,7 @@ function SupervisionContent() {
                     </td>
                     <td className="px-4 py-2">
                       {o?.seller_id ? (
-                        <Link href={`/perfil/${o.seller_id}`} className="font-medium text-brand-orange hover:underline">
+                        <Link href={`/perfil/${o.seller_id}`} className="font-medium text-brand-emerald hover:underline">
                           {o?.seller_name || `${String(o.seller_id).slice(0, 8)}…`}
                         </Link>
                       ) : (
@@ -767,7 +767,7 @@ function SupervisionContent() {
                         <span className="text-gray-500">—</span>
                       )}
                       {o?.withdrawn ? (
-                        <div className="mt-1 rounded bg-pink-100 px-2 py-0.5 font-semibold text-brand-orange">Cobrado</div>
+                        <div className="mt-1 rounded bg-pink-100 px-2 py-0.5 font-semibold text-brand-emerald">Cobrado</div>
                       ) : null}
                     </td>
                     <td className="px-4 py-2">

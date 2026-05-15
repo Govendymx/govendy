@@ -212,7 +212,7 @@ export default function DisputeChatPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard/disputas" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -312,11 +312,11 @@ export default function DisputeChatPage() {
                         ? buyerName ? `Comprador · ${buyerName}` : 'Comprador'
                         : role === 'seller'
                           ? sellerId
-                            ? <>Vendido por <Link href={`/perfil/${sellerId}`} className="font-semibold text-brand-orange hover:opacity-90 hover:underline">{sellerName || 'Vendedor'}</Link></>
+                            ? <>Vendido por <Link href={`/perfil/${sellerId}`} className="font-semibold text-brand-emerald hover:opacity-90 hover:underline">{sellerName || 'Vendedor'}</Link></>
                             : sellerName ? `Vendedor · ${sellerName}` : 'Vendedor'
                           : roleLabel((m as any)?.sender_role);
                   const bubble = mine
-                    ? 'bg-brand-orange text-white ring-pink-200'
+                    ? 'bg-brand-emerald text-white ring-pink-200'
                     : role === 'admin'
                       ? 'bg-white text-gray-900 ring-amber-200'
                       : 'bg-white text-gray-900 ring-black/5';
@@ -376,7 +376,7 @@ export default function DisputeChatPage() {
                     key={`pending-${idx}`}
                     type="button"
                     onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                    className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-orange ring-1 ring-pink-100 hover:opacity-90"
+                    className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-pink-100 hover:opacity-90"
                   >
                     {String(p?.name || 'Adjunto')} ×
                   </button>
@@ -390,7 +390,7 @@ export default function DisputeChatPage() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escribe tu mensaje… (sin links ni teléfonos)"
-                  className="min-h-[70px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="min-h-[70px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
                 <div className="mt-1 text-[11px] text-gray-500">Puedes adjuntar fotos (archivo o cámara) o PDF como evidencia.</div>
               </div>

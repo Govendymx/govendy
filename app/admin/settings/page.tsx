@@ -45,13 +45,13 @@ function TestEmailSection() {
             value={testEmail}
             onChange={(e) => setTestEmail(e.target.value)}
             placeholder="email@ejemplo.com"
-            className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+            className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
           />
           <button
             type="button"
             onClick={handleTestEmail}
             disabled={isSending}
-            className="rounded-lg bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {isSending ? 'Enviando...' : 'Enviar prueba'}
           </button>
@@ -621,7 +621,7 @@ export default function AdminSettingsPage() {
       <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Configuración</h1>
@@ -728,7 +728,7 @@ export default function AdminSettingsPage() {
                     }
                   }}
                   disabled={deploying}
-                  className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                  className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                 >
                   {deploying ? 'Desplegando…' : 'Desplegar a producción'}
                 </button>
@@ -766,7 +766,7 @@ export default function AdminSettingsPage() {
                   <input
                     value={adminEmailInput}
                     onChange={(e) => setAdminEmailInput(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     placeholder="usuario@correo.com"
                   />
                 </div>
@@ -775,7 +775,7 @@ export default function AdminSettingsPage() {
                   <input
                     value={adminUserIdInput}
                     onChange={(e) => setAdminUserIdInput(e.target.value)}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
                   />
                 </div>
@@ -788,7 +788,7 @@ export default function AdminSettingsPage() {
                   type="password"
                   value={adminPasswordInput}
                   onChange={(e) => setAdminPasswordInput(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ingresa tu contraseña para confirmar"
                   required
                 />
@@ -798,7 +798,7 @@ export default function AdminSettingsPage() {
                 <button
                   type="button"
                   onClick={grantAdmin}
-                  className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+                  className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
                 >
                   Agregar administrador
                 </button>
@@ -812,7 +812,7 @@ export default function AdminSettingsPage() {
                     value={adminSearch}
                     onChange={(e) => setAdminSearch(e.target.value)}
                     placeholder="Buscar admin..."
-                    className="w-64 rounded-xl border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-orange"
+                    className="w-64 rounded-xl border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs outline-none focus:bg-white focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
                 <div className="mt-3 space-y-2">
@@ -837,7 +837,7 @@ export default function AdminSettingsPage() {
                               <button
                                 type="button"
                                 onClick={() => copyToClipboard(a.user_id, a.user_id)}
-                                className="ml-1 hover:text-brand-orange focus:outline-none"
+                                className="ml-1 hover:text-brand-emerald focus:outline-none"
                                 title="Copiar ID"
                               >
                                 {copiedId === a.user_id ? '✅' : '📋'}
@@ -896,7 +896,7 @@ export default function AdminSettingsPage() {
                             setAdminUsersError(null);
                           }
                         }}
-                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         placeholder="Ingresa tu contraseña"
                         autoFocus
                       />
@@ -943,7 +943,7 @@ export default function AdminSettingsPage() {
                       ...p,
                       cashback_enabled: !p.cashback_enabled
                     }))}
-                    className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 ${settings.cashback_enabled ? 'bg-brand-orange' : 'bg-gray-200'
+                    className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 ${settings.cashback_enabled ? 'bg-brand-emerald' : 'bg-gray-200'
                       }`}
                   >
                     <span
@@ -968,7 +968,7 @@ export default function AdminSettingsPage() {
                         ...p,
                         cashback_percent: Number(e.target.value)
                       }))}
-                      className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     />
                     <div className="mt-1 text-xs text-gray-500">
                       Porcentaje del valor de la compra que se devuelve al usuario.
@@ -987,7 +987,7 @@ export default function AdminSettingsPage() {
                             ...p,
                             cashback_start_date: e.target.value ? new Date(e.target.value).toISOString() : null
                           }))}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-2 py-2 text-xs outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-2 py-2 text-xs outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                       <div>
@@ -999,7 +999,7 @@ export default function AdminSettingsPage() {
                             ...p,
                             cashback_end_date: e.target.value ? new Date(e.target.value).toISOString() : null
                           }))}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-2 py-2 text-xs outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-2 py-2 text-xs outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                     </div>
@@ -1083,7 +1083,7 @@ export default function AdminSettingsPage() {
                     min="0"
                     value={(settings as any).verification_price || 50}
                     onChange={(e) => setSettings((p) => ({ ...p, verification_price: Number(e.target.value) } as any))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                   <div className="mt-1 text-xs text-gray-500">Precio que los usuarios pagan para obtener verificación</div>
                 </div>
@@ -1097,7 +1097,7 @@ export default function AdminSettingsPage() {
                     max="1"
                     value={settings.cancel_penalty_rate}
                     onChange={(e) => setSettings((p) => ({ ...p, cancel_penalty_rate: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                   <div className="mt-1 text-xs text-gray-500">Equivale a {computedPenaltyPct}%</div>
                 </div>
@@ -1110,7 +1110,7 @@ export default function AdminSettingsPage() {
                     min="0"
                     value={settings.shipping_base}
                     onChange={(e) => setSettings((p) => ({ ...p, shipping_base: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -1122,7 +1122,7 @@ export default function AdminSettingsPage() {
                     min="0"
                     value={settings.shipping_extended}
                     onChange={(e) => setSettings((p) => ({ ...p, shipping_extended: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -1135,7 +1135,7 @@ export default function AdminSettingsPage() {
                     max="100"
                     value={settings.shipping_markup_percent}
                     onChange={(e) => setSettings((p) => ({ ...p, shipping_markup_percent: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     placeholder="0"
                   />
                   <div className="mt-1 text-xs text-gray-500">Ej. 10 = 10% sobre el costo (T1, Envia, base).</div>
@@ -1149,7 +1149,7 @@ export default function AdminSettingsPage() {
                     min="0"
                     value={settings.shipping_markup_fixed}
                     onChange={(e) => setSettings((p) => ({ ...p, shipping_markup_fixed: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     placeholder="0"
                   />
                   <div className="mt-1 text-xs text-gray-500">Se suma al costo. Ej. 20 → $170 + 20 = $190.</div>
@@ -1163,7 +1163,7 @@ export default function AdminSettingsPage() {
                     min="0"
                     value={settings.featured_price}
                     onChange={(e) => setSettings((p) => ({ ...p, featured_price: Number(e.target.value) }))}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
               </div>
@@ -1190,7 +1190,7 @@ export default function AdminSettingsPage() {
                 <textarea
                   value={settings.favorites_message || ''}
                   onChange={(e) => setSettings((p) => ({ ...p, favorites_message: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   rows={3}
                   placeholder="No esperas mas y aprovecha estas ofertas antes de que te las ganen"
                 />
@@ -1239,7 +1239,7 @@ export default function AdminSettingsPage() {
                                 },
                               }));
                             }}
-                            className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                            className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                           />
                           <span className="text-sm text-gray-700">Activo</span>
                         </label>
@@ -1260,7 +1260,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm font-mono outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm font-mono outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                               rows={6}
                               placeholder="<p>Tu mensaje HTML aquí</p>"
                             />
@@ -1276,7 +1276,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                               rows={3}
                               placeholder="Escribe tu mensaje aquí..."
                             />
@@ -1295,7 +1295,7 @@ export default function AdminSettingsPage() {
                                     },
                                   }));
                                 }}
-                                className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                                className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                               />
                               <span className="text-xs text-gray-600">Permitir HTML</span>
                             </label>
@@ -1320,7 +1320,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             />
                           </div>
                           <div>
@@ -1340,7 +1340,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             />
                           </div>
                         </div>
@@ -1366,7 +1366,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                             />
                           </div>
                           <div>
@@ -1389,7 +1389,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                             />
                           </div>
                           <div>
@@ -1412,7 +1412,7 @@ export default function AdminSettingsPage() {
                                   },
                                 }));
                               }}
-                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                              className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                             />
                           </div>
                         </div>
@@ -1427,7 +1427,7 @@ export default function AdminSettingsPage() {
               <h2 className="text-lg font-bold text-gray-900">Integración T1 Envíos</h2>
               <p className="mt-1 text-sm text-gray-600">
                 Configura las credenciales de T1 Envíos para cotización automática y generación de guías. Contacta a{' '}
-                <a href="mailto:soporte@t1envios.com" className="text-brand-orange hover:underline">
+                <a href="mailto:soporte@t1envios.com" className="text-brand-emerald hover:underline">
                   soporte@t1envios.com
                 </a>{' '}
                 para obtener acceso a la API.
@@ -1449,7 +1449,7 @@ export default function AdminSettingsPage() {
                           t1_envios_config: { ...(p.t1_envios_config ?? { enabled: false, api_key: '', api_secret: '', endpoint_url: '', test_mode: true }), enabled: e.target.checked },
                         }))
                       }
-                      className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                     />
                     <span className="text-sm font-medium text-gray-700">{settings.t1_envios_config?.enabled ? 'Activado' : 'Desactivado'}</span>
                   </label>
@@ -1469,7 +1469,7 @@ export default function AdminSettingsPage() {
                           }))
                         }
                         placeholder="https://api.t1envios.com/v1"
-                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       />
                       <div className="mt-1 text-xs text-gray-500">URL base de la API de T1 Envíos (te la proporcionará T1).</div>
                     </div>
@@ -1486,7 +1486,7 @@ export default function AdminSettingsPage() {
                           }))
                         }
                         placeholder="Tu API Key de T1"
-                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       />
                       <div className="mt-1 text-xs text-gray-500">API Key proporcionada por T1 Envíos.</div>
                     </div>
@@ -1503,7 +1503,7 @@ export default function AdminSettingsPage() {
                           }))
                         }
                         placeholder="Tu API Secret de T1"
-                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       />
                       <div className="mt-1 text-xs text-gray-500">API Secret proporcionada por T1 Envíos.</div>
                     </div>
@@ -1523,7 +1523,7 @@ export default function AdminSettingsPage() {
                               t1_envios_config: { ...(p.t1_envios_config ?? { enabled: true, api_key: '', api_secret: '', endpoint_url: '', test_mode: true }), test_mode: e.target.checked },
                             }))
                           }
-                          className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                          className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                         />
                         <span className="text-sm font-medium text-gray-700">{settings.t1_envios_config?.test_mode ? 'Pruebas' : 'Producción'}</span>
                       </label>
@@ -1555,7 +1555,7 @@ export default function AdminSettingsPage() {
                 </div>
                 <Link
                   href="/admin/correo"
-                  className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                  className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
                 >
                   Abrir buzón →
                 </Link>
@@ -1613,7 +1613,7 @@ export default function AdminSettingsPage() {
                                 type="checkbox"
                                 checked={mb.imap_secure}
                                 onChange={(e) => setMb((m) => ({ ...m, imap_secure: e.target.checked }))}
-                                className="rounded border-gray-300 text-brand-orange"
+                                className="rounded border-gray-300 text-brand-emerald"
                               />
                               <span className="text-xs text-gray-600">SSL</span>
                             </label>
@@ -1640,7 +1640,7 @@ export default function AdminSettingsPage() {
                                 type="checkbox"
                                 checked={mb.smtp_secure}
                                 onChange={(e) => setMb((m) => ({ ...m, smtp_secure: e.target.checked }))}
-                                className="rounded border-gray-300 text-brand-orange"
+                                className="rounded border-gray-300 text-brand-emerald"
                               />
                               <span className="text-xs text-gray-600">SSL</span>
                             </label>
@@ -1739,7 +1739,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Banco (ej. BBVA)"
                     />
                     <input
@@ -1753,7 +1753,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Titular"
                     />
                     <input
@@ -1767,7 +1767,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                       placeholder="CLABE"
                     />
                     <textarea
@@ -1781,7 +1781,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                       rows={3}
                       placeholder="Instrucciones de transferencia"
                     />
@@ -1825,7 +1825,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Banco (ej. Banorte)"
                     />
                     <input
@@ -1839,7 +1839,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Titular"
                     />
                     <input
@@ -1853,7 +1853,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                       placeholder="Número de cuenta"
                     />
                     <textarea
@@ -1867,7 +1867,7 @@ export default function AdminSettingsPage() {
                           },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                       rows={3}
                       placeholder="Instrucciones de depósito"
                     />
@@ -1904,7 +1904,7 @@ export default function AdminSettingsPage() {
                           payment_methods: { ...p.payment_methods, oxxo: { ...p.payment_methods.oxxo, instructions: e.target.value } },
                         }))
                       }
-                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       rows={3}
                       placeholder="Instrucciones para pago en OXXO"
                     />
@@ -1991,7 +1991,7 @@ export default function AdminSettingsPage() {
                               },
                             }));
                           }}
-                          className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                          className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
                         >
                           + Agregar rango
                         </button>
@@ -2064,7 +2064,7 @@ export default function AdminSettingsPage() {
                                         },
                                       }));
                                     }}
-                                    className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                    className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                                   />
                                   <div className="mt-0.5 text-[10px] text-gray-500">
                                     {prevRange ? `Desde ${prevRange.max_weight_kg + 0.01} kg` : 'Desde 0.01 kg'}
@@ -2088,7 +2088,7 @@ export default function AdminSettingsPage() {
                                         },
                                       }));
                                     }}
-                                    className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                    className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                                   />
                                 </div>
                               </div>
@@ -2129,7 +2129,7 @@ export default function AdminSettingsPage() {
               <button
                 type="submit"
                 disabled={isSaving}
-                className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSaving ? 'Guardando…' : 'Guardar cambios'}
               </button>

@@ -122,7 +122,7 @@ export function BannerCarousel({ banners, autoPlayInterval = 5000 }: BannerCarou
             <div className="relative h-full w-full bg-gray-200">
               {currentBanner.image_url && !isImageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-brand-orange" />
+                  <div className="h-10 w-10 animate-spin rounded-full border-4 border-gray-300 border-t-brand-emerald" />
                 </div>
               )}
               {currentBanner.image_url ? (

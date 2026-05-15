@@ -165,7 +165,7 @@ export default function RegisterPage() {
       <div className="mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10">
         <div className="grid w-full items-stretch gap-8 lg:grid-cols-2">
           <section className="hidden lg:flex">
-            <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange via-liverpool-700 to-liverpool-900 p-10 text-white shadow-2xl">
+            <div className="relative w-full overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald via-liverpool-700 to-liverpool-900 p-10 text-white shadow-2xl">
               <div className="absolute inset-0 opacity-30">
                 <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/25 blur-2xl" />
                 <div className="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-white/15 blur-2xl" />
@@ -207,7 +207,7 @@ export default function RegisterPage() {
             <div className="w-full">
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-orange text-white shadow-sm">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">
                     <span className="text-sm font-extrabold tracking-tight">GO</span>
                   </div>
                   <div className="leading-tight">
@@ -253,7 +253,7 @@ export default function RegisterPage() {
                         onChange={handleChange}
                         placeholder="tu@email.com"
                         required
-                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       />
                     </div>
 
@@ -270,7 +270,7 @@ export default function RegisterPage() {
                           onChange={handleChange}
                           placeholder="Tu nombre"
                           required
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
 
@@ -286,7 +286,7 @@ export default function RegisterPage() {
                           onChange={handleChange}
                           placeholder="Ej. juan123"
                           required
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                     </div>
@@ -305,7 +305,7 @@ export default function RegisterPage() {
                           placeholder="Mínimo 6 caracteres"
                           required
                           minLength={6}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-10 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-10 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                         <button
                           type="button"
@@ -335,7 +335,7 @@ export default function RegisterPage() {
                           placeholder="Repite tu contraseña"
                           required
                           minLength={6}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-10 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-10 text-gray-900 outline-none transition-all placeholder:text-gray-400 focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                         <button
                           type="button"
@@ -355,7 +355,7 @@ export default function RegisterPage() {
                       type="submit"
                       disabled={isLoading || success}
                       style={{ backgroundColor: '#FF6600' }}
-                      className="w-full rounded-xl py-3 font-semibold text-white shadow-lg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+                      className="w-full rounded-xl py-3 font-semibold text-white shadow-lg transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
                     >
                       {isLoading ? 'Creando cuenta...' : success ? '¡Registro exitoso!' : 'Crear cuenta'}
                     </button>

@@ -749,7 +749,7 @@ function AdminLogisticaContent() {
                                 <div>- Realiza una compra (se crean filas en la tabla <span className="font-semibold">orders</span>).</div>
                                 <div>
                                   - Si fue pago offline (transferencia/depósito/OXXO): marca la operación como pagada en{' '}
-                                  <Link href="/admin/pagos" className="font-semibold text-brand-orange hover:underline">
+                                  <Link href="/admin/pagos" className="font-semibold text-brand-emerald hover:underline">
                                     Admin → Pagos
                                   </Link>
                                   .
@@ -895,7 +895,7 @@ function AdminLogisticaContent() {
                   <button
                     type="button"
                     onClick={() => downloadRemitenteDestinatario(o)}
-                    className="rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                    className="rounded-xl bg-brand-emerald px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90"
                   >
                     Descargar .txt
                   </button>
@@ -921,7 +921,7 @@ export default function AdminLogisticaPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald mx-auto"></div>
           <p className="mt-4 text-sm text-gray-600">Cargando...</p>
         </div>
       </div>

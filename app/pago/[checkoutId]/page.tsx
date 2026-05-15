@@ -259,7 +259,7 @@ export default function PagoOfflinePage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-orange border-t-transparent mx-auto"></div>
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent mx-auto"></div>
           <p className="mt-4 text-sm text-gray-500">Cargando detalles del pago...</p>
         </div>
       </div>
@@ -272,7 +272,7 @@ export default function PagoOfflinePage() {
       <div className="bg-white border-b border-gray-200 px-4 py-4 sticky top-0 z-10 shadow-sm">
         <div className="mx-auto max-w-2xl flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange font-bold">
+            <div className="h-8 w-8 rounded-full bg-brand-emerald/10 flex items-center justify-center text-brand-emerald font-bold">
               GP
             </div>
             <span className="font-semibold text-gray-900">GoVendy</span>
@@ -308,7 +308,7 @@ export default function PagoOfflinePage() {
             <div className="space-y-6">
               {/* Concepto / Referencia - THE MOST IMPORTANT PART */}
               <div className="rounded-3xl bg-white p-1 shadow-sm ring-1 ring-black/5 overflow-hidden">
-                <div className="bg-gradient-to-r from-brand-orange to-pink-600 px-6 py-6 text-white text-center rounded-t-[20px]">
+                <div className="bg-gradient-to-r from-brand-emerald to-pink-600 px-6 py-6 text-white text-center rounded-t-[20px]">
                   <p className="text-sm font-medium opacity-90 mb-1">Concepto / Referencia</p>
                   <p className="text-xs opacity-75">Incluye este código en tu transferencia</p>
                 </div>
@@ -320,7 +320,7 @@ export default function PagoOfflinePage() {
                     <div className="text-2xl sm:text-3xl font-mono font-bold text-gray-900 tracking-wider break-all">
                       {reference || '—'}
                     </div>
-                    <div className="mt-2 text-xs font-semibold text-brand-orange flex items-center justify-center gap-1 group-hover:underline">
+                    <div className="mt-2 text-xs font-semibold text-brand-emerald flex items-center justify-center gap-1 group-hover:underline">
                       {copied === 'ref' ? (
                         <span className="text-green-600">¡Copiado!</span>
                       ) : (
@@ -367,7 +367,7 @@ export default function PagoOfflinePage() {
                         <span className="font-mono text-lg font-medium text-gray-900 truncate">{instructions.clabe}</span>
                         <button 
                           onClick={() => copyToClipboard(instructions.clabe, 'clabe')}
-                          className="shrink-0 p-2 text-gray-400 hover:text-brand-orange transition-colors"
+                          className="shrink-0 p-2 text-gray-400 hover:text-brand-emerald transition-colors"
                         >
                           {copied === 'clabe' ? (
                             <span className="text-xs font-bold text-green-600">Copiado</span>
@@ -386,7 +386,7 @@ export default function PagoOfflinePage() {
                         <span className="font-mono text-lg font-medium text-gray-900 truncate">{instructions.account_number}</span>
                         <button 
                           onClick={() => copyToClipboard(instructions.account_number, 'acc')}
-                          className="shrink-0 p-2 text-gray-400 hover:text-brand-orange transition-colors"
+                          className="shrink-0 p-2 text-gray-400 hover:text-brand-emerald transition-colors"
                         >
                           {copied === 'acc' ? (
                             <span className="text-xs font-bold text-green-600">Copiado</span>
@@ -426,7 +426,7 @@ export default function PagoOfflinePage() {
                   {canUploadProof ? (
                     <label className={`
                       relative flex flex-col items-center justify-center w-full h-32 rounded-2xl border-2 border-dashed transition-all cursor-pointer
-                      ${isUploadingProof ? 'bg-gray-50 border-gray-300 opacity-50' : 'bg-gray-50 border-gray-300 hover:bg-gray-100 hover:border-brand-orange'}
+                      ${isUploadingProof ? 'bg-gray-50 border-gray-300 opacity-50' : 'bg-gray-50 border-gray-300 hover:bg-gray-100 hover:border-brand-emerald'}
                     `}>
                       <div className="flex flex-col items-center justify-center pt-5 pb-6">
                         {isUploadingProof ? (

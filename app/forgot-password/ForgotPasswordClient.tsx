@@ -87,7 +87,7 @@ export function ForgotPasswordClient() {
             <div className="pt-4">
               <Link
                 href="/login"
-                className="block w-full text-center rounded-xl bg-brand-orange text-white py-3 font-semibold hover:opacity-90 transition-opacity shadow-lg"
+                className="block w-full text-center rounded-xl bg-brand-emerald text-white py-3 font-semibold hover:opacity-90 transition-opacity shadow-lg"
               >
                 Volver a iniciar sesión
               </Link>
@@ -103,7 +103,7 @@ export function ForgotPasswordClient() {
       <div className="w-full max-w-md">
         <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-orange text-white shadow-sm">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">
               <span className="text-sm font-extrabold">PO</span>
             </div>
             <div className="leading-tight">
@@ -133,7 +133,7 @@ export function ForgotPasswordClient() {
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
                 placeholder="tu@email.com"
               />
             </div>
@@ -141,7 +141,7 @@ export function ForgotPasswordClient() {
               type="submit"
               disabled={isLoading}
               style={{ backgroundColor: '#FF6600' }}
-              className="w-full text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              className="w-full text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
             >
               {isLoading ? 'Enviando…' : 'Enviar enlace de recuperación'}
             </button>
@@ -149,7 +149,7 @@ export function ForgotPasswordClient() {
 
           <p className="text-xs text-gray-600 text-center">
             ¿Recordaste tu contraseña?{' '}
-            <Link href="/login" className="font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/login" className="font-semibold text-brand-emerald hover:opacity-90">
               Iniciar sesión
             </Link>
           </p>

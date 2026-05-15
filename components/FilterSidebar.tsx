@@ -41,7 +41,7 @@ export function FilterSidebar({
         <h3 className="mb-3 text-sm font-bold text-gray-900 uppercase tracking-wider">Sección</h3>
         <div className="space-y-2">
           {ROOT_CATEGORIES.map((g) => (
-            <label key={g} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-orange transition-colors">
+            <label key={g} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-emerald transition-colors">
               <input
                 type="checkbox"
                 checked={selectedGenders.includes(g)}
@@ -51,7 +51,7 @@ export function FilterSidebar({
                   // For now, let's keep it simple: just toggle. 
                   // Logic in parent handles availability.
                 }}
-                className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange transition duration-150 ease-in-out"
+                className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald transition duration-150 ease-in-out"
               />
               {g}
             </label>
@@ -65,12 +65,12 @@ export function FilterSidebar({
           <h3 className="mb-3 text-sm font-bold text-gray-900 uppercase tracking-wider">Categoría</h3>
           <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-2">
             {availableCategories.map((c) => (
-              <label key={c.id} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-orange transition-colors">
+              <label key={c.id} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-emerald transition-colors">
                 <input
                   type="checkbox"
                   checked={selectedCategories.includes(c.label)}
                   onChange={() => toggleSelection(selectedCategories, c.label, setSelectedCategories)}
-                  className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange transition duration-150 ease-in-out"
+                  className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald transition duration-150 ease-in-out"
                 />
                 {c.label}
               </label>
@@ -85,12 +85,12 @@ export function FilterSidebar({
           <h3 className="mb-3 text-sm font-bold text-gray-900 uppercase tracking-wider">Subcategoría</h3>
           <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar pr-2">
             {availableSubcategories.map((s) => (
-              <label key={s.id} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-orange transition-colors">
+              <label key={s.id} className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer hover:text-brand-emerald transition-colors">
                 <input
                   type="checkbox"
                   checked={selectedSubcategories.includes(s.id)}
                   onChange={() => toggleSelection(selectedSubcategories, s.id, setSelectedSubcategories)}
-                  className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange transition duration-150 ease-in-out"
+                  className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald transition duration-150 ease-in-out"
                 />
                 {s.label}
               </label>

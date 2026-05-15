@@ -191,9 +191,7 @@ export default function SubirInePage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="hidden sm:block leading-tight">
               <div className="text-sm font-semibold text-gray-900">Subir INE</div>
               <div className="text-xs text-gray-500">Verificación de identidad</div>
@@ -201,7 +199,7 @@ export default function SubirInePage() {
           </div>
 
           <div className="text-xs text-gray-600">
-            <span className="font-semibold text-brand-orange">Paso 2</span> de 2
+            <span className="font-semibold text-brand-emerald">Paso 2</span> de 2
           </div>
         </div>
       </div>
@@ -209,11 +207,11 @@ export default function SubirInePage() {
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl items-center justify-center px-4 py-10">
         <div className="w-full max-w-2xl">
           <div className="mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
               Documentos
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">
-              Sube tu INE <span className="text-brand-orange">(frente y reverso)</span>
+              Sube tu INE <span className="text-brand-emerald">(frente y reverso)</span>
             </h1>
             <p className="mt-2 text-sm text-gray-600">
               Asegúrate de que las fotos sean claras, sin reflejos y con toda la información visible.
@@ -257,7 +255,7 @@ export default function SubirInePage() {
                 capture="environment"
                 onChange={handleFrontChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-transparent outline-none transition-all text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-orange file:text-white hover:file:opacity-90"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-emerald file:text-white hover:file:opacity-90"
               />
             </div>
 
@@ -273,14 +271,14 @@ export default function SubirInePage() {
                 capture="environment"
                 onChange={handleBackChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-transparent outline-none transition-all text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-orange file:text-white hover:file:opacity-90"
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-emerald focus:border-transparent outline-none transition-all text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold file:bg-brand-emerald file:text-white hover:file:opacity-90"
               />
             </div>
 
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-brand-orange text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              className="w-full bg-brand-emerald text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
             >
               {isLoading ? 'Subiendo...' : success ? '¡Subido exitosamente!' : 'Subir imágenes'}
             </button>

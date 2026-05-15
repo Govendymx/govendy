@@ -256,9 +256,7 @@ export default function VerificacionPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Verificación</div>
               <div className="text-xs text-gray-500">Requerida para vender</div>
@@ -275,7 +273,7 @@ export default function VerificacionPage() {
 
       <main className="mx-auto max-w-3xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
             Paso obligatorio
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Completa tu verificación</h1>
@@ -311,7 +309,7 @@ export default function VerificacionPage() {
 
         {!isBooting && !email.trim() && (
           <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-            El <span className="font-semibold">email</span> de tu cuenta es obligatorio para poder vender o publicar. Si no lo tienes configurado, actualízalo en <Link href="/dashboard/perfil" className="font-semibold text-brand-orange underline">Mi perfil</Link> y vuelve aquí.
+            El <span className="font-semibold">email</span> de tu cuenta es obligatorio para poder vender o publicar. Si no lo tienes configurado, actualízalo en <Link href="/dashboard/perfil" className="font-semibold text-brand-emerald underline">Mi perfil</Link> y vuelve aquí.
           </div>
         )}
         {error && (
@@ -345,7 +343,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.full_name}
                   onChange={(e) => setForm((p) => ({ ...p, full_name: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -354,7 +352,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.address_street}
                   onChange={(e) => setForm((p) => ({ ...p, address_street: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -363,7 +361,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.ext_number}
                   onChange={(e) => setForm((p) => ({ ...p, ext_number: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -372,7 +370,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.int_number}
                   onChange={(e) => setForm((p) => ({ ...p, int_number: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -380,7 +378,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.neighborhood}
                   onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -389,7 +387,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.zip_code}
                   onChange={(e) => setForm((p) => ({ ...p, zip_code: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -398,7 +396,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.state}
                   onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -407,7 +405,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.city}
                   onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -416,7 +414,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.cross_streets}
                   onChange={(e) => setForm((p) => ({ ...p, cross_streets: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -425,7 +423,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.references}
                   onChange={(e) => setForm((p) => ({ ...p, references: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -434,7 +432,7 @@ export default function VerificacionPage() {
                 <input
                   value={form.phone}
                   onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -452,7 +450,7 @@ export default function VerificacionPage() {
                   accept="image/*"
                   capture="environment"
                   onChange={(e) => setIneFrontFile(e.target.files?.[0] ?? null)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-orange file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-emerald file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
                 />
                 {isFilled(form.ine_front_url) && (
                   <div className="mt-2">
@@ -471,7 +469,7 @@ export default function VerificacionPage() {
                   accept="image/*"
                   capture="environment"
                   onChange={(e) => setIneBackFile(e.target.files?.[0] ?? null)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-orange file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-emerald file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
                 />
                 {isFilled(form.ine_back_url) && (
                   <div className="mt-2">
@@ -491,7 +489,7 @@ export default function VerificacionPage() {
                   accept="image/*"
                   capture="user"
                   onChange={(e) => setSelfieFile(e.target.files?.[0] ?? null)}
-                  className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-orange file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
+                  className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm file:mr-4 file:rounded-xl file:border-0 file:bg-brand-emerald file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:opacity-90"
                 />
                 {isFilled(form.selfie_ine_url) && (
                   <div className="mt-2">
@@ -511,7 +509,7 @@ export default function VerificacionPage() {
               <button
                 type="submit"
                 disabled={!canSave}
-                className="rounded-xl bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {isSaving ? 'Enviando…' : form.verification_status === 'rejected' ? 'Reenviar documentos' : 'Enviar para revisión'}
               </button>

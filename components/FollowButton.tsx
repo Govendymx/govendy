@@ -248,7 +248,7 @@ export function FollowButton({ sellerId, compact = false, className = '', onLogi
                 disabled={loading}
                 className={`group/follow relative z-30 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all duration-300 ${following
                     ? 'bg-pink-50 text-pink-600 ring-1 ring-pink-200 shadow-sm hover:bg-pink-100 hover:shadow-md'
-                    : 'bg-gray-900 text-white shadow-lg shadow-gray-900/25 hover:bg-brand-orange hover:shadow-brand-orange/25'
+                    : 'bg-gray-900 text-white shadow-lg shadow-gray-900/25 hover:bg-brand-emerald hover:shadow-brand-emerald/25'
                     } ${'hover:scale-105 active:scale-95'}`}
             >
                 {following ? (

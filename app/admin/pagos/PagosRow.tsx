@@ -180,7 +180,7 @@ export function PagosRow({
                                                 <>
                                                     <div className="text-sm font-bold text-gray-900">{profiles[uid]?.full_name || r.user?.full_name || (uid ? `${uid.slice(0, 8)}…` : '—')}</div>
                                                     <div className="text-[11px] text-gray-500">{profiles[uid]?.email || r.user?.email || ''}</div>
-                                                    {uid && <div className="flex items-center gap-1 text-[10px] text-gray-400 font-mono mt-0.5">ID: {uid.slice(0, 8)}… <CopyButton text={uid} className="text-gray-400 hover:text-brand-orange" iconSize={10} /></div>}
+                                                    {uid && <div className="flex items-center gap-1 text-[10px] text-gray-400 font-mono mt-0.5">ID: {uid.slice(0, 8)}… <CopyButton text={uid} className="text-gray-400 hover:text-brand-emerald" iconSize={10} /></div>}
                                                 </>
                                             );
                                         })()}
@@ -203,7 +203,7 @@ export function PagosRow({
                                                     const pslug = isOrder ? r.first_product_slug : (r as any).product_slug;
                                                     const ptitle = isOrder ? r.first_product_title : (r as any).product_title;
                                                     if (pid) {
-                                                        return <Link href={`/listings/${pslug || pid}`} target="_blank" className="text-xs text-brand-orange hover:underline font-medium">{ptitle || 'Sin título'}</Link>;
+                                                        return <Link href={`/listings/${pslug || pid}`} target="_blank" className="text-xs text-brand-emerald hover:underline font-medium">{ptitle || 'Sin título'}</Link>;
                                                     }
                                                     return <span className="text-xs text-gray-700">{ptitle || productTitle}</span>;
                                                 })()}

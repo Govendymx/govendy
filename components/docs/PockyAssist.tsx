@@ -98,7 +98,7 @@ export default function PockyAssist() {
             className="mb-4 w-80 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 sm:w-96"
           >
             {/* Header */}
-            <div className="bg-brand-orange p-4 text-white">
+            <div className="bg-brand-emerald p-4 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <div className="h-8 w-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -123,7 +123,7 @@ export default function PockyAssist() {
               <button
                 onClick={() => setActiveTab('chat')}
                 className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                  activeTab === 'chat' ? 'text-brand-orange border-b-2 border-brand-orange' : 'text-gray-500 hover:text-gray-700'
+                  activeTab === 'chat' ? 'text-brand-emerald border-b-2 border-brand-emerald' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 Chat en Vivo
@@ -131,7 +131,7 @@ export default function PockyAssist() {
               <button
                 onClick={() => setActiveTab('faq')}
                 className={`flex-1 py-3 text-sm font-medium transition-colors ${
-                  activeTab === 'faq' ? 'text-brand-orange border-b-2 border-brand-orange' : 'text-gray-500 hover:text-gray-700'
+                  activeTab === 'faq' ? 'text-brand-emerald border-b-2 border-brand-emerald' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 Recursos
@@ -145,11 +145,11 @@ export default function PockyAssist() {
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`flex items-start ${msg.type === 'user' ? 'justify-end' : ''}`}>
                       {msg.type === 'bot' && (
-                        <div className="mr-2 h-8 w-8 rounded-full bg-brand-orange/10 flex items-center justify-center text-xs shrink-0">🤖</div>
+                        <div className="mr-2 h-8 w-8 rounded-full bg-brand-emerald/10 flex items-center justify-center text-xs shrink-0">🤖</div>
                       )}
                       <div className={`max-w-[85%] rounded-2xl p-3 text-sm shadow-sm ${
                         msg.type === 'user' 
-                          ? 'bg-brand-orange text-white rounded-tr-none' 
+                          ? 'bg-brand-emerald text-white rounded-tr-none' 
                           : 'bg-white text-gray-700 rounded-tl-none ring-1 ring-black/5'
                       }`}>
                         <p>{msg.text}</p>
@@ -205,12 +205,12 @@ export default function PockyAssist() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder="Escribe tu mensaje..."
-                    className="w-full rounded-full border-gray-200 bg-gray-50 py-2 pl-4 pr-10 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                    className="w-full rounded-full border-gray-200 bg-gray-50 py-2 pl-4 pr-10 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                   />
                   <button 
                     type="submit"
                     disabled={!inputValue.trim()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-brand-orange hover:bg-pink-50 transition-colors disabled:opacity-50 disabled:hover:bg-transparent"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 text-brand-emerald hover:bg-pink-50 transition-colors disabled:opacity-50 disabled:hover:bg-transparent"
                   >
                     <Send className="h-4 w-4" />
                   </button>
@@ -225,7 +225,7 @@ export default function PockyAssist() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-orange text-white shadow-lg shadow-brand-orange/30 transition-colors hover:bg-pink-600"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-emerald text-white shadow-lg shadow-brand-emerald/30 transition-colors hover:bg-pink-600"
       >
         {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </motion.button>

@@ -28,7 +28,7 @@ function Stars({ value }: { value: number }) {
   return (
     <div className="flex items-center gap-2">
       <div className="h-2 w-24 overflow-hidden rounded-full bg-gray-200 ring-1 ring-black/5" aria-hidden="true">
-        <div className="h-full bg-brand-orange" style={{ width: `${pct}%` }} />
+        <div className="h-full bg-brand-emerald" style={{ width: `${pct}%` }} />
       </div>
       <div className="text-[11px] font-extrabold text-gray-900">{n}/10</div>
     </div>
@@ -47,7 +47,7 @@ export function ReviewsList({
   tone?: 'pink' | 'neutral';
 }) {
   const r = Array.isArray(reviews) ? reviews : [];
-  const headerTone = tone === 'neutral' ? 'text-gray-900' : 'text-brand-orange';
+  const headerTone = tone === 'neutral' ? 'text-gray-900' : 'text-brand-emerald';
 
   return (
     <div className="rounded-3xl border border-black/5 bg-white p-5 shadow-sm">
@@ -70,7 +70,7 @@ export function ReviewsList({
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="text-xs font-semibold text-gray-900">
                   {it.rater_id ? (
-                    <Link href={`/perfil/${it.rater_id}`} className="text-brand-orange hover:opacity-90 hover:underline">
+                    <Link href={`/perfil/${it.rater_id}`} className="text-brand-emerald hover:opacity-90 hover:underline">
                       {String(it.rater_name || 'Usuario')}
                     </Link>
                   ) : (

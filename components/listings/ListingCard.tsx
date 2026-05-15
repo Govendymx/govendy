@@ -397,7 +397,7 @@ export function ListingCard({ p, badge, mediaOverlay, meta, showDescription = fa
                         <button
                             onClick={addToCart}
                             disabled={isAdding}
-                            className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-orange py-2.5 text-xs font-black text-white shadow-xl hover:bg-brand-orange/90 transition-all active:scale-95 disabled:opacity-50"
+                            className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-emerald py-2.5 text-xs font-black text-white shadow-xl hover:bg-brand-emerald/90 transition-all active:scale-95 disabled:opacity-50"
                         >
                             {isAdding ? (
                                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
@@ -548,8 +548,8 @@ export function ListingCard({ p, badge, mediaOverlay, meta, showDescription = fa
                             </>
                         )}
                         {(sellerData?.hasCoupon || p.has_coupon) && (
-                            <div className="text-[11px] font-black uppercase text-brand-orange">
-                                <span className="bg-brand-orange/10 px-1 py-0.5 rounded">Cupón disponible</span>
+                            <div className="text-[11px] font-black uppercase text-brand-emerald">
+                                <span className="bg-brand-emerald/10 px-1 py-0.5 rounded">Cupón disponible</span>
                             </div>
                         )}
                     </div>

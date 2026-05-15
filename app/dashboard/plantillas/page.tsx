@@ -237,7 +237,7 @@ export default function DashboardTemplatesPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -246,7 +246,7 @@ export default function DashboardTemplatesPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -255,7 +255,7 @@ export default function DashboardTemplatesPage() {
             <button
               type="button"
               onClick={openNew}
-              className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90"
+              className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90"
             >
               + Nueva
             </button>
@@ -307,7 +307,7 @@ export default function DashboardTemplatesPage() {
                           <button
                             type="button"
                             onClick={() => void duplicate(r.id)}
-                            className="rounded-xl bg-brand-orange px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:opacity-90"
+                            className="rounded-xl bg-brand-emerald px-3 py-2 text-xs font-extrabold text-white shadow-sm hover:opacity-90"
                           >
                             Duplicar
                           </button>
@@ -333,7 +333,7 @@ export default function DashboardTemplatesPage() {
                 <div className="text-lg font-extrabold text-gray-900">Mis plantillas</div>
                 <div className="mt-1 text-sm text-gray-600">Crea tus diseños y aplícalos al publicar.</div>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                 {mine.length} total
               </div>
             </div>
@@ -412,7 +412,7 @@ export default function DashboardTemplatesPage() {
                         <input
                           value={draftTitle}
                           onChange={(e) => setDraftTitle(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                       <div>
@@ -420,7 +420,7 @@ export default function DashboardTemplatesPage() {
                         <input
                           value={draftPreviewUrl}
                           onChange={(e) => setDraftPreviewUrl(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                           placeholder="https://res.cloudinary.com/..."
                         />
                       </div>
@@ -433,7 +433,7 @@ export default function DashboardTemplatesPage() {
                           value={draftDesc}
                           onChange={(e) => setDraftDesc(e.target.value)}
                           rows={2}
-                          className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                       <label className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900">
@@ -456,7 +456,7 @@ export default function DashboardTemplatesPage() {
                         type="button"
                         onClick={() => void save()}
                         disabled={isSaving}
-                        className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                        className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                       >
                         {isSaving ? 'Guardando…' : 'Guardar'}
                       </button>

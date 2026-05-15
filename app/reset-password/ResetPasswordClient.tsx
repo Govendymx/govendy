@@ -208,7 +208,7 @@ export function ResetPasswordClient() {
         <div className="w-full max-w-md">
           <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
             <div className="text-center">
-              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-brand-orange"></div>
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-brand-emerald"></div>
               <p className="text-gray-600 text-sm mt-4">Validando enlace...</p>
             </div>
           </div>
@@ -244,7 +244,7 @@ export function ResetPasswordClient() {
             <div className="space-y-3">
               <Link
                 href="/forgot-password"
-                className="block w-full text-center rounded-xl bg-brand-orange text-white py-3 font-semibold hover:opacity-90 transition-opacity shadow-lg"
+                className="block w-full text-center rounded-xl bg-brand-emerald text-white py-3 font-semibold hover:opacity-90 transition-opacity shadow-lg"
               >
                 Solicitar nuevo enlace
               </Link>
@@ -266,7 +266,7 @@ export function ResetPasswordClient() {
       <div className="w-full max-w-md">
         <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-orange text-white shadow-sm">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">
               <span className="text-sm font-extrabold">PO</span>
             </div>
             <div className="leading-tight">
@@ -298,7 +298,7 @@ export function ResetPasswordClient() {
                   type={showPassword ? "text" : "password"}
                   required
                   minLength={6}
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
                   placeholder="Mínimo 6 caracteres"
                 />
                 <button
@@ -329,7 +329,7 @@ export function ResetPasswordClient() {
                   type={showConfirmPassword ? "text" : "password"}
                   required
                   minLength={6}
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-orange focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-emerald focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
                   placeholder="Confirma tu contraseña"
                 />
                 <button
@@ -355,14 +355,14 @@ export function ResetPasswordClient() {
               type="submit"
               disabled={isLoading}
               style={{ backgroundColor: '#FF6600' }}
-              className="w-full text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+              className="w-full text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
             >
               {isLoading ? 'Restableciendo…' : 'Restablecer contraseña'}
             </button>
           </form>
 
           <p className="text-xs text-gray-600 text-center">
-            <Link href="/login" className="font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/login" className="font-semibold text-brand-emerald hover:opacity-90">
               Volver a iniciar sesión
             </Link>
           </p>

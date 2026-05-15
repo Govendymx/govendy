@@ -106,7 +106,7 @@ export default function EditListingPage() {
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-white">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-orange border-t-transparent"></div>
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent"></div>
       </div>
     );
   }

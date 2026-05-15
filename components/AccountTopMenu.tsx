@@ -40,7 +40,7 @@ function NavRow({ item, onNavigate }: { item: NavItem; onNavigate: () => void })
     'group flex w-full items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-[13px] font-semibold transition-all duration-300 shadow-sm hover:scale-[1.02] hover:shadow-md';
   const styles =
     tone === 'pink'
-      ? 'border-pink-200 bg-pink-50 text-brand-orange hover:opacity-90 animate-gradient-shift'
+      ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
       : tone === 'danger'
         ? 'border-black/10 bg-gray-900 text-white hover:bg-black'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
@@ -50,7 +50,7 @@ function NavRow({ item, onNavigate }: { item: NavItem; onNavigate: () => void })
       <span className="truncate">{item.label}</span>
       <span className="inline-flex items-center gap-2">
         {typeof item.badge === 'number' && item.badge > 0 ? (
-          <span className="text-[12px] font-extrabold text-brand-orange">{item.badge > 99 ? '99+' : item.badge}</span>
+          <span className="text-[12px] font-extrabold text-brand-emerald">{item.badge > 99 ? '99+' : item.badge}</span>
         ) : null}
         <span className={classNames('text-xs font-bold transition-transform group-hover:translate-x-1', tone === 'danger' ? 'text-white/80' : 'text-gray-400')}>→</span>
       </span>
@@ -618,7 +618,7 @@ export function AccountTopMenu() {
         )}
         {(planType === 'pro' || planType === 'platinum') && (
           <div className="hidden sm:flex flex-col items-end mr-1 leading-tight">
-            <span className={`bg-clip-text text-transparent text-[10px] font-black uppercase tracking-wider ${planType === 'platinum' ? 'bg-gradient-to-r from-amber-500 to-yellow-500' : 'bg-gradient-to-r from-brand-orange to-pink-600'}`}>
+            <span className={`bg-clip-text text-transparent text-[10px] font-black uppercase tracking-wider ${planType === 'platinum' ? 'bg-gradient-to-r from-amber-500 to-yellow-500' : 'bg-gradient-to-r from-brand-emerald to-pink-600'}`}>
               {planType === 'platinum' ? '⭐ PLATINUM' : 'MEMBER PRO'}
             </span>
             <div className="flex flex-col items-end">
@@ -646,7 +646,7 @@ export function AccountTopMenu() {
                 // noop
               }
             }}
-            className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg animate-shimmer"
+            className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-all duration-300 hover:scale-105 hover:shadow-lg animate-shimmer"
             title="Volver al panel de administrador"
           >
             ⚙️ Panel Admin
@@ -758,7 +758,7 @@ export function AccountTopMenu() {
                               alert(`❌ Error al eliminar notificaciones: ${errorMsg}\n\nEjecuta DIAGNOSTICAR_Y_ELIMINAR_NOTIFICACIONES_ATORADAS.sql en Supabase para eliminarlas manualmente.`);
                             }
                           }}
-                          className="text-xs text-brand-orange hover:text-brand-orange/80 font-semibold"
+                          className="text-xs text-brand-emerald hover:text-brand-emerald/80 font-semibold"
                           title="Eliminar todas las notificaciones no leídas"
                         >
                           Limpiar
@@ -828,13 +828,13 @@ export function AccountTopMenu() {
                                   window.location.href = link;
                                 }
                               }}
-                              className="w-full rounded-2xl border-2 border-brand-orange bg-pink-50 px-3 py-2.5 text-left hover:bg-pink-100 transition-colors relative"
+                              className="w-full rounded-2xl border-2 border-brand-emerald bg-pink-50 px-3 py-2.5 text-left hover:bg-pink-100 transition-colors relative"
                             >
                               <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0 flex-1">
                                   <div className="flex items-center gap-2">
-                                    <span className="inline-flex h-2 w-2 shrink-0 rounded-full bg-brand-orange animate-pulse" />
-                                    <span className="text-[10px] font-extrabold text-brand-orange uppercase tracking-wide">Atención</span>
+                                    <span className="inline-flex h-2 w-2 shrink-0 rounded-full bg-brand-emerald animate-pulse" />
+                                    <span className="text-[10px] font-extrabold text-brand-emerald uppercase tracking-wide">Atención</span>
                                   </div>
                                   <div className="mt-1 text-[13px] font-extrabold text-gray-900 line-clamp-1">{n.title || 'Notificación'}</div>
                                   {n.body ? (
@@ -859,7 +859,7 @@ export function AccountTopMenu() {
                                     )}
                                   </div>
                                 </div>
-                                <span className="shrink-0 text-[11px] font-semibold text-brand-orange">→</span>
+                                <span className="shrink-0 text-[11px] font-semibold text-brand-emerald">→</span>
                               </div>
                             </button>
                           );
@@ -886,7 +886,7 @@ export function AccountTopMenu() {
                                   <div className="min-w-0 flex-1">
                                     <div className="text-[13px] font-extrabold text-gray-900">{a.label}</div>
                                     <div className="mt-0.5 text-[12px] text-gray-700">
-                                      <span className="font-extrabold text-brand-orange">{a.count}</span> {a.count === 1 ? 'nueva' : 'nuevas'}
+                                      <span className="font-extrabold text-brand-emerald">{a.count}</span> {a.count === 1 ? 'nueva' : 'nuevas'}
                                     </div>
                                   </div>
                                   <span className="shrink-0 text-[11px] font-semibold text-gray-500">Ver →</span>
@@ -924,7 +924,7 @@ export function AccountTopMenu() {
                 <div className="mb-2 rounded-2xl bg-gray-50 px-3 py-2 text-[11px] text-gray-600 ring-1 ring-black/5">
                   <div>Conectado como <span className="font-semibold text-gray-900">{displayName}</span></div>
                   {(planType === 'pro' || planType === 'platinum') && (
-                    <div className={`mt-1 flex items-center gap-1 font-bold ${planType === 'platinum' ? 'text-amber-600' : 'text-brand-orange'}`}>
+                    <div className={`mt-1 flex items-center gap-1 font-bold ${planType === 'platinum' ? 'text-amber-600' : 'text-brand-emerald'}`}>
                       <span>{planType === 'platinum' ? '⭐ PLATINUM' : '🌟 PRO'}</span>
                       {planEnd && (
                         <span className="text-[10px] font-normal text-gray-500">

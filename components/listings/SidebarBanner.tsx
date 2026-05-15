@@ -73,7 +73,7 @@ export function SidebarBanner() {
                         <div className="p-4 border-t border-black/5">
                             <div className="flex items-center justify-between gap-2">
                                 <span className="text-sm font-bold text-gray-900 line-clamp-1">{banner.title || 'Promo especial'}</span>
-                                <span className="text-xs font-bold text-brand-orange shrink-0">{banner.cta_text} →</span>
+                                <span className="text-xs font-bold text-brand-emerald shrink-0">{banner.cta_text} →</span>
                             </div>
                         </div>
                     )}

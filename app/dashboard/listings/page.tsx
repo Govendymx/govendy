@@ -508,16 +508,14 @@ export default function DashboardListingsPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Mis publicaciones</div>
               <div className="text-xs text-gray-500">Gestiona tus artículos</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -562,7 +560,7 @@ export default function DashboardListingsPage() {
               {filtered.length} publicaciones
             </span>
             {activeFilter !== 'all' && (
-              <span className="flex items-center gap-1 rounded-full bg-brand-orange px-3 py-1 text-xs font-bold text-white shadow">
+              <span className="flex items-center gap-1 rounded-full bg-brand-emerald px-3 py-1 text-xs font-bold text-white shadow">
                 {FILTER_OPTIONS.find((f) => f.key === activeFilter)?.icon}{' '}
                 {FILTER_OPTIONS.find((f) => f.key === activeFilter)?.label}
                 <button
@@ -581,7 +579,7 @@ export default function DashboardListingsPage() {
               className={[
                 'flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold shadow-sm ring-1 transition-all',
                 filtersOpen
-                  ? 'bg-brand-orange text-white ring-brand-orange shadow-pink-200'
+                  ? 'bg-brand-emerald text-white ring-brand-emerald shadow-pink-200'
                   : 'bg-white text-gray-700 ring-black/10 hover:bg-gray-50',
               ].join(' ')}
             >
@@ -595,7 +593,7 @@ export default function DashboardListingsPage() {
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange sm:w-60"
+              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald sm:w-60"
               placeholder="Buscar por título..."
             />
           </div>
@@ -618,7 +616,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold transition-all',
                             activeFilter === key
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-emerald text-white'
                               : 'text-gray-700 hover:bg-gray-50',
                           ].join(' ')}
                         >
@@ -644,7 +642,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold transition-all',
                             activeFilter === key
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-emerald text-white'
                               : 'text-gray-700 hover:bg-gray-50',
                           ].join(' ')}
                         >
@@ -670,7 +668,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold transition-all',
                             activeFilter === key
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-emerald text-white'
                               : 'text-gray-700 hover:bg-gray-50',
                           ].join(' ')}
                         >
@@ -696,7 +694,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold transition-all',
                             activeFilter === key
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-emerald text-white'
                               : 'text-gray-700 hover:bg-gray-50',
                           ].join(' ')}
                         >
@@ -722,7 +720,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-xs font-semibold transition-all',
                             activeFilter === key
-                              ? 'bg-brand-orange text-white'
+                              ? 'bg-brand-emerald text-white'
                               : 'text-gray-700 hover:bg-gray-50',
                           ].join(' ')}
                         >
@@ -741,7 +739,7 @@ export default function DashboardListingsPage() {
                 <button
                   type="button"
                   onClick={() => { setActiveFilter('all'); setFiltersOpen(false); }}
-                  className="text-xs font-bold text-brand-orange hover:underline"
+                  className="text-xs font-bold text-brand-emerald hover:underline"
                 >
                   Limpiar filtros
                 </button>
@@ -812,7 +810,7 @@ export default function DashboardListingsPage() {
                           </span>
                         ) : null}
                         {r.is_featured ? (
-                          <span className="rounded-full bg-pink-50 px-2 py-0.5 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                          <span className="rounded-full bg-pink-50 px-2 py-0.5 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                             Destacado
                           </span>
                         ) : null}
@@ -820,7 +818,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'rounded-full px-2 py-0.5 text-xs font-extrabold ring-1',
                             r.sale_type === 'auction'
-                              ? (auctionEnded ? 'bg-gray-100 text-gray-700 ring-gray-200' : 'bg-pink-50 text-brand-orange ring-pink-100 animate-pulse')
+                              ? (auctionEnded ? 'bg-gray-100 text-gray-700 ring-gray-200' : 'bg-pink-50 text-brand-emerald ring-pink-100 animate-pulse')
                               : 'bg-gray-100 text-gray-700 ring-black/5',
                           ].join(' ')}
                         >
@@ -961,7 +959,7 @@ export default function DashboardListingsPage() {
                             <div className="font-semibold text-gray-900">Va ganando</div>
                             <div className="text-gray-900 font-semibold">
                               {leaderId ? (
-                                <Link href={`/perfil/${leaderId}`} className="text-brand-orange hover:underline">
+                                <Link href={`/perfil/${leaderId}`} className="text-brand-emerald hover:underline">
                                   {leaderName}
                                 </Link>
                               ) : (
@@ -1019,7 +1017,7 @@ export default function DashboardListingsPage() {
                           type="button"
                           disabled={isUpdating}
                           onClick={() => cloneListing(r.id)}
-                          className="rounded-xl bg-brand-orange px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                          className="rounded-xl bg-brand-emerald px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                         >
                           Publicar similar
                         </button>

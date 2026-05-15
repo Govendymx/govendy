@@ -327,7 +327,7 @@ export function PageTour({ steps, pageId }: PageTourProps) {
           {rect && (
             <motion.div
               layoutId="tour-highlight"
-              className="fixed z-[9999] rounded-lg border-2 border-brand-orange shadow-[0_0_20px_rgba(236,72,153,0.5)]"
+              className="fixed z-[9999] rounded-lg border-2 border-brand-emerald shadow-[0_0_20px_rgba(236,72,153,0.5)]"
               initial={false}
               animate={{
                 top: rect.top - 4,
@@ -393,7 +393,7 @@ export function PageTour({ steps, pageId }: PageTourProps) {
     
                   {/* Header con botón de cerrar (Pausar) */}
                   <div className="mb-2 flex items-start justify-between">
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/10 text-xs font-bold text-brand-orange">
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-emerald/10 text-xs font-bold text-brand-emerald">
                           {currentStep + 1}
                       </span>
                       <div className="flex items-center gap-2">
@@ -422,7 +422,7 @@ export function PageTour({ steps, pageId }: PageTourProps) {
                   {/* Barra de progreso */}
                   <div className="mb-4 h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
                       <motion.div 
-                          className="h-full bg-brand-orange"
+                          className="h-full bg-brand-emerald"
                           initial={{ width: 0 }}
                           animate={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
                           transition={{ duration: 0.3 }}
@@ -444,7 +444,7 @@ export function PageTour({ steps, pageId }: PageTourProps) {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="flex items-center gap-2 rounded-xl bg-brand-orange px-5 py-2 text-sm font-bold text-white shadow-lg shadow-brand-orange/20 transition-all hover:scale-105 hover:bg-brand-orange/90 active:scale-95"
+                      className="flex items-center gap-2 rounded-xl bg-brand-emerald px-5 py-2 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition-all hover:scale-105 hover:bg-brand-emerald/90 active:scale-95"
                     >
                       {currentStep === steps.length - 1 ? '¡Listo!' : 'Siguiente'}
                       {currentStep < steps.length - 1 && (

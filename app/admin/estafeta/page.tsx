@@ -305,9 +305,7 @@ function AdminEstafetaContent() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Tienda Estafeta</div>
               <div className="text-xs text-gray-500">Gestiona las ventas de guías de envío</div>
@@ -372,7 +370,7 @@ function AdminEstafetaContent() {
             <button
               type="button"
               onClick={() => setFilterStatus('all')}
-              className={`rounded-xl px-3 py-1.5 text-xs font-bold transition ${filterStatus === 'all' ? 'bg-brand-orange text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              className={`rounded-xl px-3 py-1.5 text-xs font-bold transition ${filterStatus === 'all' ? 'bg-brand-emerald text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
             >
               Todas ({quotes.length})
@@ -496,7 +494,7 @@ function AdminEstafetaContent() {
                             <div className="mt-1 text-sm text-gray-900">
                               {quote.weight_kg} kg · {quote.length_cm}×{quote.width_cm}×{quote.height_cm} cm
                             </div>
-                            <div className="mt-2 text-lg font-extrabold text-brand-orange">{formatMoney(quote.calculated_cost)}</div>
+                            <div className="mt-2 text-lg font-extrabold text-brand-emerald">{formatMoney(quote.calculated_cost)}</div>
                           </div>
 
                           <div className="rounded-xl border border-gray-200 bg-gray-50 p-3">

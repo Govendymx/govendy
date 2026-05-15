@@ -103,7 +103,7 @@ export function LogisticaRow({
                                 const el = document.getElementById(`oid-${oid}`);
                                 if (el) { const orig = el.innerText; el.innerText = 'Copiado!'; setTimeout(() => { el.innerText = orig; }, 1000); }
                             }}
-                            className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                            className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                             title="Copiar ID completo"
                         >
                             <span id={`oid-${oid}`}>📋</span>
@@ -328,7 +328,7 @@ export function LogisticaRow({
                                     {o.delivery_proof_url.split(',').map((url: string, idx: number) => {
                                         const total = o.delivery_proof_url!.split(',').length;
                                         const lb = total > 1 ? (idx === 0 ? '📄 Constancia' : '🪪 INE') : 'Ver evidencia';
-                                        return <a key={idx} href={url.trim()} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-orange hover:underline">{lb}</a>;
+                                        return <a key={idx} href={url.trim()} target="_blank" rel="noopener noreferrer" className="text-xs text-brand-emerald hover:underline">{lb}</a>;
                                     })}
                                 </div>
                             )}
@@ -450,7 +450,7 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
                             const total = o.delivery_proof_url!.split(',').length;
                             const lb = total > 1 ? (idx === 0 ? '📄 Constancia' : '🪪 INE') : 'Ver evidencia';
                             return (
-                                <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
+                                <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
                                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                                     {lb}
                                 </a>
@@ -496,7 +496,7 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
                     const total = o.delivery_proof_url!.split(',').length;
                     const lb = total > 1 ? (idx === 0 ? '📄 Constancia' : '🪪 INE') : 'Ver evidencia';
                     return (
-                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
+                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                             {lb}
                         </a>
@@ -520,7 +520,7 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">ENVÍO POR VENDEDOR</div>
                 <div className="flex flex-col gap-1">
                     {String(o.delivery_proof_url).split(',').map((url: string, idx: number) => (
-                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
+                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50">
                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                             📄 Ver guía vendedor
                         </a>
@@ -590,7 +590,7 @@ function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploa
             />
             {labelStatus === 'pending' ? (
                 <>
-                    <label htmlFor={fileInputId} className={`inline-flex cursor-pointer rounded-xl bg-brand-orange px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+                    <label htmlFor={fileInputId} className={`inline-flex cursor-pointer rounded-xl bg-brand-emerald px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}>
                         {isUploading ? 'Subiendo…' : 'Upload guía'}
                     </label>
                     <div className="text-[11px] text-gray-600">Al subir se notifica al vendedor para que la descargue en <span className="font-semibold">Dashboard → Ventas</span>.</div>

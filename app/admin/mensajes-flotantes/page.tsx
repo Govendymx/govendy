@@ -462,9 +462,7 @@ export default function AdminFloatingMessagesPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Admin · Mensajes Flotantes</div>
               <div className="text-xs text-gray-500">Gestiona mensajes flotantes para todos los usuarios</div>
@@ -496,7 +494,7 @@ export default function AdminFloatingMessagesPage() {
                   type="text"
                   value={form.title}
                   onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
               </div>
@@ -505,7 +503,7 @@ export default function AdminFloatingMessagesPage() {
                 <select
                   value={form.message_type}
                   onChange={(e) => setForm((p) => ({ ...p, message_type: e.target.value as 'html' | 'image' }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 >
                   <option value="html">HTML</option>
                   <option value="image">Imagen</option>
@@ -520,7 +518,7 @@ export default function AdminFloatingMessagesPage() {
                   value={form.content_html}
                   onChange={(e) => setForm((p) => ({ ...p, content_html: e.target.value }))}
                   rows={6}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm font-mono outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm font-mono outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="<p>Tu mensaje HTML aquí</p>"
                   required
                 />
@@ -533,7 +531,7 @@ export default function AdminFloatingMessagesPage() {
                   type="url"
                   value={form.image_url}
                   onChange={(e) => setForm((p) => ({ ...p, image_url: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="https://ejemplo.com/imagen.jpg"
                   required
                 />
@@ -545,7 +543,7 @@ export default function AdminFloatingMessagesPage() {
               <select
                 value={form.section}
                 onChange={(e) => setForm((p) => ({ ...p, section: e.target.value }))}
-                className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               >
                 {sections.map((s) => (
                   <option key={s.value} value={s.value}>
@@ -571,7 +569,7 @@ export default function AdminFloatingMessagesPage() {
                       void searchUsers(e.target.value);
                     }}
                     placeholder="Buscar por email o nombre..."
-                    className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   {userSearchResults.length > 0 && (
                     <div className="absolute z-10 mt-1 w-full rounded-xl border border-gray-200 bg-white shadow-lg">
@@ -595,7 +593,7 @@ export default function AdminFloatingMessagesPage() {
                     {selectedUsers.map((user) => (
                       <div
                         key={user.id}
-                        className="flex items-center gap-2 rounded-lg bg-brand-orange/10 px-3 py-1.5 text-sm"
+                        className="flex items-center gap-2 rounded-lg bg-brand-emerald/10 px-3 py-1.5 text-sm"
                       >
                         <span className="font-medium text-gray-900">{user.name}</span>
                         <button
@@ -603,7 +601,7 @@ export default function AdminFloatingMessagesPage() {
                           onClick={() => {
                             navigator.clipboard.writeText(user.id);
                           }}
-                          className="text-gray-400 hover:text-brand-orange text-xs"
+                          className="text-gray-400 hover:text-brand-emerald text-xs"
                           title="Copiar ID"
                         >
                           📋
@@ -611,7 +609,7 @@ export default function AdminFloatingMessagesPage() {
                         <button
                           type="button"
                           onClick={() => removeSelectedUser(user.id)}
-                          className="text-brand-orange hover:text-brand-orange/80 ml-1"
+                          className="text-brand-emerald hover:text-brand-emerald/80 ml-1"
                         >
                           ×
                         </button>
@@ -636,7 +634,7 @@ export default function AdminFloatingMessagesPage() {
                 type="url"
                 value={form.redirect_url}
                 onChange={(e) => setForm((p) => ({ ...p, redirect_url: e.target.value }))}
-                className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 placeholder="https://ejemplo.com/pagina"
               />
               <div className="mt-1 text-xs text-gray-500">
@@ -654,7 +652,7 @@ export default function AdminFloatingMessagesPage() {
                       type="date"
                       value={form.starts_date}
                       onChange={(e) => setForm((p) => ({ ...p, starts_date: e.target.value }))}
-                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       required
                     />
                   </div>
@@ -664,7 +662,7 @@ export default function AdminFloatingMessagesPage() {
                       type="time"
                       value={form.starts_time}
                       onChange={(e) => setForm((p) => ({ ...p, starts_time: e.target.value }))}
-                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       required
                     />
                   </div>
@@ -679,7 +677,7 @@ export default function AdminFloatingMessagesPage() {
                       type="date"
                       value={form.ends_date}
                       onChange={(e) => setForm((p) => ({ ...p, ends_date: e.target.value }))}
-                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                   <div>
@@ -688,7 +686,7 @@ export default function AdminFloatingMessagesPage() {
                       type="time"
                       value={form.ends_time}
                       onChange={(e) => setForm((p) => ({ ...p, ends_time: e.target.value }))}
-                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>
@@ -708,7 +706,7 @@ export default function AdminFloatingMessagesPage() {
                     const val = parseInt(e.target.value) || 20;
                     setForm((p) => ({ ...p, position_x: Math.max(0, Math.min(10000, val)) }));
                   }}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -722,7 +720,7 @@ export default function AdminFloatingMessagesPage() {
                     const val = parseInt(e.target.value) || 20;
                     setForm((p) => ({ ...p, position_y: Math.max(0, Math.min(10000, val)) }));
                   }}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -736,7 +734,7 @@ export default function AdminFloatingMessagesPage() {
                     const val = parseInt(e.target.value) || 320;
                     setForm((p) => ({ ...p, width: Math.max(100, Math.min(2000, val)) }));
                   }}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
             </div>
@@ -748,7 +746,7 @@ export default function AdminFloatingMessagesPage() {
                   type="color"
                   value={form.background_color}
                   onChange={(e) => setForm((p) => ({ ...p, background_color: e.target.value }))}
-                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -757,7 +755,7 @@ export default function AdminFloatingMessagesPage() {
                   type="color"
                   value={form.text_color}
                   onChange={(e) => setForm((p) => ({ ...p, text_color: e.target.value }))}
-                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -766,7 +764,7 @@ export default function AdminFloatingMessagesPage() {
                   type="color"
                   value={form.border_color}
                   onChange={(e) => setForm((p) => ({ ...p, border_color: e.target.value }))}
-                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 h-10 w-full rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
             </div>
@@ -777,7 +775,7 @@ export default function AdminFloatingMessagesPage() {
                   type="checkbox"
                   checked={form.is_draggable}
                   onChange={(e) => setForm((p) => ({ ...p, is_draggable: e.target.checked }))}
-                  className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                  className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                 />
                 <span className="text-sm text-gray-700">Arrastrable</span>
               </label>
@@ -786,7 +784,7 @@ export default function AdminFloatingMessagesPage() {
                   type="checkbox"
                   checked={form.is_closable}
                   onChange={(e) => setForm((p) => ({ ...p, is_closable: e.target.checked }))}
-                  className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                  className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                 />
                 <span className="text-sm text-gray-700">Cerrable</span>
               </label>
@@ -795,7 +793,7 @@ export default function AdminFloatingMessagesPage() {
                   type="checkbox"
                   checked={form.is_active}
                   onChange={(e) => setForm((p) => ({ ...p, is_active: e.target.checked }))}
-                  className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                  className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                 />
                 <span className="text-sm text-gray-700">Activo</span>
               </label>
@@ -805,7 +803,7 @@ export default function AdminFloatingMessagesPage() {
               <button
                 type="submit"
                 disabled={isCreating}
-                className="rounded-xl bg-brand-orange px-6 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-6 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
               >
                 {isCreating ? 'Guardando…' : editingId ? 'Actualizar' : 'Crear mensaje'}
               </button>
@@ -861,7 +859,7 @@ export default function AdminFloatingMessagesPage() {
                 placeholder="Buscar mensajes..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
               />
               <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
             </div>
@@ -915,8 +913,8 @@ export default function AdminFloatingMessagesPage() {
                         <td className="whitespace-nowrap px-6 py-4">
                           <button
                             onClick={() => handleToggleActive(msg)}
-                            className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2 ${
-                              msg.is_active ? 'bg-brand-orange' : 'bg-gray-200'
+                            className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2 ${
+                              msg.is_active ? 'bg-brand-emerald' : 'bg-gray-200'
                             }`}
                           >
                             <span
@@ -958,7 +956,7 @@ export default function AdminFloatingMessagesPage() {
                                 e.stopPropagation();
                                 copyToClipboard(msg.id, msg.id);
                               }}
-                              className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                              className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                               title="Copiar ID"
                             >
                               {copiedId === msg.id ? '✅' : '📋'}
@@ -1001,7 +999,7 @@ export default function AdminFloatingMessagesPage() {
                           <div className="flex justify-end gap-2">
                             <button
                               onClick={() => handleEdit(msg)}
-                              className="text-brand-orange hover:text-brand-orange/80 font-semibold"
+                              className="text-brand-emerald hover:text-brand-emerald/80 font-semibold"
                             >
                               Editar
                             </button>

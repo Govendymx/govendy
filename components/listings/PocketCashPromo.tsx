@@ -4,7 +4,7 @@ import { ShoppingCart, CreditCard } from 'lucide-react';
 
 export function PocketCashPromo() {
   return (
-    <div className="overflow-hidden rounded-[2.5rem] bg-brand-orange p-6 text-white shadow-lg shadow-brand-orange/20">
+    <div className="overflow-hidden rounded-[2.5rem] bg-brand-emerald p-6 text-white shadow-lg shadow-brand-emerald/20">
       <div className="text-center">
         <h3 className="text-sm font-medium opacity-90">Paga tus compras con</h3>
         <div className="mt-1 text-3xl font-black tracking-tight">PocketCash</div>

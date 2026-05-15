@@ -5,7 +5,7 @@ export default function NotFound() {
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
       <div className="mx-auto max-w-3xl px-4 py-10">
         <div className="rounded-3xl bg-white p-10 text-center shadow-sm ring-1 ring-black/5">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-orange text-white shadow-sm">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">
             <span className="text-sm font-extrabold tracking-widest">P</span>
           </div>
           <div className="text-xl font-extrabold text-gray-900">Página no encontrada</div>
@@ -13,7 +13,7 @@ export default function NotFound() {
           <div className="mt-6 flex justify-center gap-2">
             <Link
               href="/"
-              className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+              className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
             >
               Ir al inicio
             </Link>

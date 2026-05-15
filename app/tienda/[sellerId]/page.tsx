@@ -155,7 +155,7 @@ export default function TiendaVendedorPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -189,7 +189,7 @@ export default function TiendaVendedorPage() {
                 </div>
                 {(sellerState || sellerCity) && (
                   <div className="mt-0.5 text-xs text-gray-500">
-                    Ubicado en <span className="font-semibold text-brand-orange">{[sellerState, sellerCity].filter(Boolean).join(', ').toUpperCase()}</span>
+                    Ubicado en <span className="font-semibold text-brand-emerald">{[sellerState, sellerCity].filter(Boolean).join(', ').toUpperCase()}</span>
                   </div>
                 )}
               </div>
@@ -197,7 +197,7 @@ export default function TiendaVendedorPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -303,7 +303,7 @@ export default function TiendaVendedorPage() {
             </div>
           </div>
           <div className="mt-4">
-            <Link href={`/perfil/${sellerId}`} className="text-sm font-semibold text-gray-900 hover:text-brand-orange">
+            <Link href={`/perfil/${sellerId}`} className="text-sm font-semibold text-gray-900 hover:text-brand-emerald">
               Termómetro de comportamiento →
             </Link>
           </div>

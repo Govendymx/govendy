@@ -208,7 +208,7 @@ export default function AdminCorreoPage() {
               placeholder="Buscar correo..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange"
+              className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald"
             />
             <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
             {searchTerm && (
@@ -226,7 +226,7 @@ export default function AdminCorreoPage() {
           <button
             type="button"
             onClick={() => setComposeOpen(true)}
-            className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+            className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
           >
             Redactar
           </button>
@@ -269,7 +269,7 @@ export default function AdminCorreoPage() {
 
       {mailboxes.length === 0 ? (
         <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-6 text-center text-sm text-amber-900">
-          No hay cuentas de correo configuradas. Ve a <Link href="/admin/settings" className="font-semibold text-brand-orange underline">Configuración</Link> → Buzón de correo y añade hasta 4 cuentas con dominio propio (IMAP + SMTP).
+          No hay cuentas de correo configuradas. Ve a <Link href="/admin/settings" className="font-semibold text-brand-emerald underline">Configuración</Link> → Buzón de correo y añade hasta 4 cuentas con dominio propio (IMAP + SMTP).
         </div>
       ) : (
         <>
@@ -318,7 +318,7 @@ export default function AdminCorreoPage() {
                               const email = emailMatch ? emailMatch[1] : e.from;
                               copyToClipboard(email || '', String(e.uid));
                             }}
-                            className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                            className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                             title="Copiar correo"
                           >
                             {copiedId === String(e.uid) ? '✅' : '📋'}
@@ -381,7 +381,7 @@ export default function AdminCorreoPage() {
                           setComposeBody(`\n\n--- Mensaje original ---\nDe: ${fullEmail.from}\nFecha: ${fullEmail.date ? fmtDate(fullEmail.date) : '—'}\nAsunto: ${fullEmail.subject}\n\n${fullEmail.text || fullEmail.html?.replace(/<[^>]*>/g, '') || ''}`);
                           setComposeOpen(true);
                         }}
-                        className="shrink-0 rounded-lg bg-brand-orange px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+                        className="shrink-0 rounded-lg bg-brand-emerald px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
                       >
                         Responder
                       </button>
@@ -454,7 +454,7 @@ export default function AdminCorreoPage() {
                 type="button"
                 onClick={() => void sendEmail()}
                 disabled={sending}
-                className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
               >
                 {sending ? 'Enviando…' : 'Enviar'}
               </button>

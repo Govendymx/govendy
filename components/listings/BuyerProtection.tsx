@@ -69,7 +69,7 @@ export function BuyerProtection() {
     <div className="h-full rounded-3xl border border-pink-100/50 bg-gradient-to-br from-white to-pink-50/30 p-5 shadow-sm ring-1 ring-black/5">
       <div className="flex items-center gap-2 mb-4">
         <div className="rounded-full bg-pink-100 p-1.5">
-          <ShieldCheck className="h-4 w-4 text-brand-orange" />
+          <ShieldCheck className="h-4 w-4 text-brand-emerald" />
         </div>
         <h3 className="text-sm font-extrabold text-gray-900 leading-tight">Protección al Comprador</h3>
       </div>
@@ -78,7 +78,7 @@ export function BuyerProtection() {
         <div className="flex gap-3">
           <div className="shrink-0 mt-0.5">
             <div className="rounded-full bg-pink-50 p-1.5">
-              <CreditCard className="h-4 w-4 text-brand-orange" />
+              <CreditCard className="h-4 w-4 text-brand-emerald" />
             </div>
           </div>
           <div className="flex-1 min-w-0">
@@ -93,7 +93,7 @@ export function BuyerProtection() {
         <div className="flex gap-3">
           <div className="shrink-0 mt-0.5">
             <div className="rounded-full bg-pink-50 p-1.5">
-              <RotateCcw className="h-4 w-4 text-brand-orange" />
+              <RotateCcw className="h-4 w-4 text-brand-emerald" />
             </div>
           </div>
           <div className="flex-1 min-w-0">

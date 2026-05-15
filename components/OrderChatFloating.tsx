@@ -387,7 +387,7 @@ export function OrderChatFloating({
 
   return (
     <div className="fixed bottom-24 right-5 z-[70] w-[320px] overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10 sm:w-[360px]">
-      <div className="flex items-center justify-between bg-gradient-to-r from-brand-orange to-liverpool-700 px-4 py-3 text-white">
+      <div className="flex items-center justify-between bg-gradient-to-r from-brand-emerald to-liverpool-700 px-4 py-3 text-white">
         <div className="flex items-center gap-3">
           {sellerInfo?.plan === 'pro' && sellerInfo.logo ? (
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white/20">
@@ -435,7 +435,7 @@ export function OrderChatFloating({
                 const atts = normalizeAttachments((m as any)?.attachments);
                 const r = roleLabel((m as any)?.sender_role);
                 const bubble = mine
-                  ? 'bg-brand-orange text-white ring-pink-200'
+                  ? 'bg-brand-emerald text-white ring-pink-200'
                   : String((m as any)?.sender_role || '').toLowerCase() === 'admin'
                     ? 'bg-white text-gray-900 ring-amber-200'
                     : 'bg-white text-gray-900 ring-black/5';
@@ -492,7 +492,7 @@ export function OrderChatFloating({
                 key={`pending-${idx}`}
                 type="button"
                 onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-orange ring-1 ring-pink-100 hover:opacity-90"
+                className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-pink-100 hover:opacity-90"
               >
                 {String(p?.name || 'Adjunto')} ×
               </button>
@@ -507,7 +507,7 @@ export function OrderChatFloating({
               onChange={(e) => setInput(e.target.value)}
               placeholder={orderStatus === 'pending_payment' ? 'El chat estará disponible cuando se acredite el pago' : 'Escribe… (sin links ni teléfonos)'}
               disabled={orderStatus === 'pending_payment'}
-              className="min-h-[62px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="min-h-[62px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald disabled:bg-gray-100 disabled:cursor-not-allowed"
             />
             {!canSend && input.trim().length > 0 ? (
               <div className="mt-1 text-[11px] text-gray-500">No se permiten teléfonos ni enlaces.</div>

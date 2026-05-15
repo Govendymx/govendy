@@ -88,7 +88,7 @@ export function TemplateSelector({ onSelect, onClose }: TemplateSelectorProps) {
                     {loading ? (
                         <div className="flex items-center justify-center py-12">
                             <div className="text-center">
-                                <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-brand-orange border-t-transparent"></div>
+                                <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent"></div>
                                 <p className="mt-4 text-sm text-gray-600">Cargando plantillas...</p>
                             </div>
                         </div>
@@ -107,11 +107,11 @@ export function TemplateSelector({ onSelect, onClose }: TemplateSelectorProps) {
                                     type="button"
                                     key={template.id}
                                     onClick={() => handleSelect(template)}
-                                    className="group rounded-2xl border-2 border-gray-200 bg-white p-4 text-left transition-all hover:border-brand-orange hover:shadow-lg"
+                                    className="group rounded-2xl border-2 border-gray-200 bg-white p-4 text-left transition-all hover:border-brand-emerald hover:shadow-lg"
                                 >
                                     <div className="flex items-start justify-between">
                                         <div className="flex-1">
-                                            <h3 className="font-bold text-gray-900 group-hover:text-brand-orange">
+                                            <h3 className="font-bold text-gray-900 group-hover:text-brand-emerald">
                                                 {template.title}
                                             </h3>
                                             <p className="mt-1 text-sm text-gray-600 line-clamp-2">
@@ -119,7 +119,7 @@ export function TemplateSelector({ onSelect, onClose }: TemplateSelectorProps) {
                                             </p>
                                         </div>
                                         {template.is_global && (
-                                            <span className="ml-2 rounded-full bg-brand-orange px-2 py-1 text-xs font-bold text-white">
+                                            <span className="ml-2 rounded-full bg-brand-emerald px-2 py-1 text-xs font-bold text-white">
                                                 Global
                                             </span>
                                         )}

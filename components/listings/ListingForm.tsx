@@ -1133,9 +1133,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">{isEdit ? 'Editar' : 'Vender'}</div>
               <div className="text-xs text-gray-500">{isEdit ? 'Actualizar publicación' : 'Crear publicación'}</div>
@@ -1303,7 +1301,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="button"
                       onClick={() => setDescriptionMode('richtext')}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${descriptionMode === 'richtext'
-                        ? 'bg-brand-orange text-white'
+                        ? 'bg-brand-emerald text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                     >
@@ -1313,7 +1311,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="button"
                       onClick={() => setDescriptionMode('blocks')}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${descriptionMode === 'blocks'
-                        ? 'bg-brand-orange text-white'
+                        ? 'bg-brand-emerald text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                     >
@@ -1354,7 +1352,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => setSaleType('direct')}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'direct'
-                      ? 'border-brand-orange bg-pink-50 text-brand-orange'
+                      ? 'border-brand-emerald bg-pink-50 text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >
@@ -1364,7 +1362,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => { setSaleType('auction'); setFreeShipping(false); setShippingSubsidy('0'); }}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'auction'
-                      ? 'border-brand-orange bg-pink-50 text-brand-orange'
+                      ? 'border-brand-emerald bg-pink-50 text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >
@@ -1555,7 +1553,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="button"
                         onClick={() => setCondition(c)}
                         className={`rounded-full px-4 py-2 text-xs font-bold transition-all ${condition === c
-                          ? 'bg-brand-orange text-white'
+                          ? 'bg-brand-emerald text-white'
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                           }`}
                       >
@@ -1961,7 +1959,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       className={`flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold transition-all ring-1 ${productType === pt
                         ? pt === 'digital'
                           ? 'bg-purple-600 text-white ring-purple-600 shadow-lg shadow-purple-200'
-                          : 'bg-brand-orange text-white ring-brand-orange shadow-lg shadow-pink-200'
+                          : 'bg-brand-emerald text-white ring-brand-emerald shadow-lg shadow-pink-200'
                         : 'bg-white text-gray-600 ring-gray-200 hover:bg-gray-50'
                         }`}
                     >
@@ -2075,7 +2073,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           checked={freeShipping}
                           disabled={saleType === 'auction'}
                           onChange={e => setFreeShipping(e.target.checked)}
-                          className="h-5 w-5 rounded border-gray-300 text-brand-orange focus:ring-brand-orange disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald disabled:opacity-40 disabled:cursor-not-allowed"
                         />
                       </div>
                     </div>
@@ -2090,7 +2088,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           type="checkbox"
                           checked={allowPersonalDelivery}
                           onChange={e => setAllowPersonalDelivery(e.target.checked)}
-                          className="h-5 w-5 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                          className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                         />
                       </div>
                       {allowPersonalDelivery && (
@@ -2188,13 +2186,13 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                               </div>
                               <div className="bg-white/60 p-3 rounded-xl border border-white">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Costo de Guía</p>
-                                <p className="text-sm font-black text-brand-orange">{shippingCost ? formatMoney(shippingCost) : '$ --'}</p>
+                                <p className="text-sm font-black text-brand-emerald">{shippingCost ? formatMoney(shippingCost) : '$ --'}</p>
                                 <p className="text-[9px] text-gray-400 mt-1 italic">* Sujeto a cobertura</p>
                               </div>
                               {/* Ocultar subsidio completamente en subastas (evita que el vendedor cubra el 100% del envío y genere pérdidas) */}
                               {saleType !== 'auction' && (
-                                <div className="bg-white p-3 rounded-xl border-2 border-brand-orange/20 shadow-sm">
-                                  <label className="text-[10px] font-bold text-brand-orange uppercase tracking-wider block mb-1">Tu Subsidio (MXN)</label>
+                                <div className="bg-white p-3 rounded-xl border-2 border-brand-emerald/20 shadow-sm">
+                                  <label className="text-[10px] font-bold text-brand-emerald uppercase tracking-wider block mb-1">Tu Subsidio (MXN)</label>
                                   <input
                                     type="number"
                                     value={shippingSubsidy}
@@ -2258,7 +2256,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="checkbox"
                         checked={shippingBySeller}
                         onChange={e => setShippingBySeller(e.target.checked)}
-                        className="h-5 w-5 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                        className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                       />
                     </div>
                     {shippingBySeller && (
@@ -2331,7 +2329,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       checked={isFeatured}
                       onChange={(e) => setIsFeatured(e.target.checked)}
                       disabled={!limitsUsage?.featured.allowed && !isFeatured && (!isEdit || !initialData?.is_featured)}
-                      className="h-4 w-4 rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                      className="h-4 w-4 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                     />
                   </div>
                   <div className="text-sm">
@@ -2362,7 +2360,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
             <button
               type="submit"
               disabled={!canSubmit || isSaving}
-              className="rounded-xl bg-brand-orange px-8 py-3 text-lg font-bold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-600 hover:shadow-xl disabled:opacity-50 disabled:shadow-none"
+              className="rounded-xl bg-brand-emerald px-8 py-3 text-lg font-bold text-white shadow-lg shadow-pink-200 transition-all hover:bg-pink-600 hover:shadow-xl disabled:opacity-50 disabled:shadow-none"
             >
               {isSaving ? 'Guardando...' : (isEdit ? 'Guardar Cambios' : 'Publicar Ahora')}
             </button>

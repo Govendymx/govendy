@@ -267,7 +267,7 @@ export function NotificationCenter({ hide = false, userId: userIdProp }: Props) 
     <div className="relative" ref={wrapperRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white text-gray-500 shadow-sm ring-1 ring-black/5 hover:bg-gray-50 hover:text-brand-orange transition-colors"
+        className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-white text-gray-500 shadow-sm ring-1 ring-black/5 hover:bg-gray-50 hover:text-brand-emerald transition-colors"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
@@ -285,7 +285,7 @@ export function NotificationCenter({ hide = false, userId: userIdProp }: Props) 
           <div className="flex items-center justify-between border-b border-gray-100 bg-gray-50/50 px-4 py-3">
             <h3 className="text-sm font-semibold text-gray-900">Notificaciones</h3>
             {rows.length > 0 && (
-              <button onClick={markAllRead} className="text-xs font-medium text-brand-orange hover:text-pink-700">
+              <button onClick={markAllRead} className="text-xs font-medium text-brand-emerald hover:text-pink-700">
                 Marcar leídas
               </button>
             )}
@@ -294,7 +294,7 @@ export function NotificationCenter({ hide = false, userId: userIdProp }: Props) 
           <div className="max-h-[60vh] overflow-y-auto">
             {loading && rows.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-8 text-gray-400">
-                <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-brand-orange" />
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-gray-300 border-t-brand-emerald" />
               </div>
             ) : rows.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-8 text-center">
@@ -321,7 +321,7 @@ export function NotificationCenter({ hide = false, userId: userIdProp }: Props) 
                           {ic}
                         </div>
                         {!row.is_read && (
-                          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-brand-orange ring-2 ring-white" />
+                          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-brand-emerald ring-2 ring-white" />
                         )}
                       </div>
 
@@ -344,7 +344,7 @@ export function NotificationCenter({ hide = false, userId: userIdProp }: Props) 
                             {formatTime(row.created_at)}
                           </p>
                           {hasLink && (
-                            <p className="mt-0.5 text-[10px] font-medium text-brand-orange/80 break-all">
+                            <p className="mt-0.5 text-[10px] font-medium text-brand-emerald/80 break-all">
                               {link}
                             </p>
                           )}

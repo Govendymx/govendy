@@ -47,7 +47,7 @@ export function EmojiPicker({ onEmojiSelect, className = '', popupClassName = 'l
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-lg shadow-sm ring-1 ring-black/10 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-orange touch-manipulation"
+        className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-lg shadow-sm ring-1 ring-black/10 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-brand-emerald touch-manipulation"
         title="Agregar emoji"
       >
         😊
@@ -62,7 +62,7 @@ export function EmojiPicker({ onEmojiSelect, className = '', popupClassName = 'l
                 type="button"
                 onClick={() => setActiveCategory(category as keyof typeof EMOJI_CATEGORIES)}
                 className={`flex-shrink-0 px-4 py-2.5 text-xs font-semibold transition-colors whitespace-nowrap touch-manipulation ${activeCategory === category
-                  ? 'bg-brand-orange text-white'
+                  ? 'bg-brand-emerald text-white'
                   : 'text-gray-700 hover:bg-gray-50'
                   }`}
               >
@@ -79,7 +79,7 @@ export function EmojiPicker({ onEmojiSelect, className = '', popupClassName = 'l
                   onClick={() => {
                     handleEmojiClick(emoji);
                   }}
-                  className="flex h-10 w-10 items-center justify-center rounded-xl text-xl hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange touch-manipulation"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl text-xl hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-emerald touch-manipulation"
                   title={emoji}
                 >
                   {emoji}

@@ -539,7 +539,7 @@ export default function AdminDisputeChatPage() {
                 <span>ID: {disputeId.slice(0, 8)}…</span>
                 <button
                   onClick={() => copyToClipboard(disputeId, 'dispute')}
-                  className="hover:text-brand-orange"
+                  className="hover:text-brand-emerald"
                   title="Copiar ID Disputa"
                 >
                   {copiedId === 'dispute' ? '✅' : '📋'}
@@ -550,7 +550,7 @@ export default function AdminDisputeChatPage() {
                   <span>Orden: {orderId.slice(0, 8)}…</span>
                   <button
                     onClick={() => copyToClipboard(orderId, 'order')}
-                    className="hover:text-brand-orange"
+                    className="hover:text-brand-emerald"
                     title="Copiar ID Orden"
                   >
                     {copiedId === 'order' ? '✅' : '📋'}
@@ -694,7 +694,7 @@ export default function AdminDisputeChatPage() {
                     key={`pending-${idx}`}
                     type="button"
                     onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                    className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-orange ring-1 ring-pink-100 hover:opacity-90"
+                    className="rounded-full bg-pink-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-pink-100 hover:opacity-90"
                   >
                     {String(p?.name || 'Adjunto')} ×
                   </button>
@@ -729,7 +729,7 @@ export default function AdminDisputeChatPage() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Escribe como soporte…"
-                  className="min-h-[70px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="min-h-[70px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
 
@@ -876,7 +876,7 @@ export default function AdminDisputeChatPage() {
                   }
                   setPartialAmount('');
                 }}
-                className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               >
                 <option value="release">Liberar pago al vendedor</option>
                 <option value="refund">Reembolsar al comprador</option>
@@ -911,7 +911,7 @@ export default function AdminDisputeChatPage() {
                       value={partialAmount}
                       onChange={(e) => setPartialAmount(e.target.value)}
                       placeholder="0.00"
-                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>
@@ -931,7 +931,7 @@ export default function AdminDisputeChatPage() {
                       value={partialAmount}
                       onChange={(e) => setPartialAmount(e.target.value)}
                       placeholder="0.00"
-                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>
@@ -959,7 +959,7 @@ export default function AdminDisputeChatPage() {
                       value={partialAmount}
                       onChange={(e) => setPartialAmount(e.target.value)}
                       placeholder="Ej: 20.00 si bajan de 249 a 229"
-                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                     {splitBuyerRefund > 0 || splitSellerNet > 0 ? (
                       <div className="mt-3 grid gap-2 rounded-2xl bg-gray-50 p-3 text-[11px] text-gray-800 ring-1 ring-gray-200">
@@ -1008,7 +1008,7 @@ export default function AdminDisputeChatPage() {
                     value={returnTracking}
                     onChange={(e) => setReturnTracking(e.target.value)}
                     placeholder="Ej: 7158588384-770721270743"
-                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   <div className="mt-1 text-[10px] text-gray-500">
                     El comprador debe devolver el producto usando esta guía. Una vez recibido, se procesará el reembolso.
@@ -1048,7 +1048,7 @@ export default function AdminDisputeChatPage() {
                       value={returnTracking}
                       onChange={(e) => setReturnTracking(e.target.value)}
                       placeholder="Ej: 7158588384-770721270743"
-                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                     <div className="mt-1 text-[10px] text-gray-500">
                       La guía y el rastreo estarán disponibles para descargar en el panel de disputa (comprador y vendedor).
@@ -1062,7 +1062,7 @@ export default function AdminDisputeChatPage() {
                       value={guideCost}
                       onChange={(e) => setGuideCost(e.target.value.replace(/[^0-9.,]/g, ''))}
                       placeholder="Ej: 150.00"
-                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                     <div className="mt-1 text-[10px] text-gray-500">
                       Este monto se descontará del reembolso (comprador) o del pago al vendedor, según corresponda.
@@ -1082,7 +1082,7 @@ export default function AdminDisputeChatPage() {
                     value={adminNameConfirm}
                     onChange={(e) => setAdminNameConfirm(e.target.value)}
                     placeholder="Ej: Juan Pérez"
-                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   <div className="mt-1 text-[10px] text-gray-500">
                     Escribe tu nombre tal como aparece en tu perfil para confirmar esta resolución.
@@ -1094,7 +1094,7 @@ export default function AdminDisputeChatPage() {
                 value={resolveNote}
                 onChange={(e) => setResolveNote(e.target.value)}
                 placeholder="Explica la resolución para ambas partes."
-                className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               />
             </div>
             <div className="flex items-center justify-end gap-2 border-t border-black/5 px-5 py-4">

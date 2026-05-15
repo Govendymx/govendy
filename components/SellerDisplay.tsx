@@ -75,7 +75,7 @@ export function SellerDisplay({
     : 'font-semibold hover:opacity-90';
 
   const nameColor = (isOfficialStore && officialStoreBrandColor) ? officialStoreBrandColor : undefined;
-  const nameClass = nameColor ? '' : 'text-brand-orange';
+  const nameClass = nameColor ? '' : 'text-brand-emerald';
 
   return (
     <div className={`${className} ${showLogo ? 'flex items-start gap-3' : ''}`}>
@@ -109,7 +109,7 @@ export function SellerDisplay({
         {hasUbicado && ubicado && (
           <div className={`mt-1 ${textSize}`}>
             <span className="text-gray-600">Ubicado en </span>
-            <span className="font-semibold text-brand-orange">{ubicado}</span>
+            <span className="font-semibold text-brand-emerald">{ubicado}</span>
           </div>
         )}
       </div>

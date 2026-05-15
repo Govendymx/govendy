@@ -108,7 +108,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
                                     updateTier(i, 'min', v);
                                 }
                             }}
-                            className="w-16 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/20"
+                            className="w-16 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald/20"
                         />
                         <span className="font-medium">a</span>
                         <input
@@ -134,7 +134,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
                                 }
                             }}
                             placeholder="∞"
-                            className="w-16 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/20"
+                            className="w-16 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald/20"
                         />
                         <span className="font-medium">pzas →</span>
                     </div>
@@ -153,7 +153,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
                                     updateTier(i, 'price', v);
                                 }
                             }}
-                            className="w-20 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-orange focus:ring-1 focus:ring-brand-orange/20"
+                            className="w-20 rounded-lg border border-gray-300 bg-white px-2 py-1 text-xs font-bold text-gray-900 text-center outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald/20"
                         />
                         <span className="text-xs text-gray-500">c/u</span>
                     </div>
@@ -172,7 +172,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
                 <button
                     type="button"
                     onClick={addTier}
-                    className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50 transition-colors"
+                    className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50 transition-colors"
                 >
                     + Agregar rango
                 </button>

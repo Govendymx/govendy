@@ -124,7 +124,7 @@ export default function ReportsPage() {
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <FileText className="text-brand-orange" />
+            <FileText className="text-brand-emerald" />
             Reportes y Transacciones
           </h1>
           <p className="text-sm text-gray-500 mt-1">
@@ -140,7 +140,7 @@ export default function ReportsPage() {
           </button>
           <button 
             onClick={exportToExcel}
-            className="flex items-center gap-2 bg-brand-orange text-white px-4 py-2 rounded-lg hover:bg-brand-orange/90 transition-colors shadow-sm"
+            className="flex items-center gap-2 bg-brand-emerald text-white px-4 py-2 rounded-lg hover:bg-brand-emerald/90 transition-colors shadow-sm"
             disabled={loading || reports.length === 0}
           >
             <Download size={18} />
@@ -159,7 +159,7 @@ export default function ReportsPage() {
         <select 
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="bg-transparent text-sm border border-gray-200 rounded-md px-2 py-1 focus:ring-brand-orange focus:border-brand-orange text-gray-700 cursor-pointer"
+          className="bg-transparent text-sm border border-gray-200 rounded-md px-2 py-1 focus:ring-brand-emerald focus:border-brand-emerald text-gray-700 cursor-pointer"
         >
           <option value="all">Todos los estados</option>
           <option value="paid">Pagado</option>
@@ -174,7 +174,7 @@ export default function ReportsPage() {
         <select 
           value={filterPeriod}
           onChange={(e) => setFilterPeriod(e.target.value)}
-          className="bg-transparent text-sm border border-gray-200 rounded-md px-2 py-1 focus:ring-brand-orange focus:border-brand-orange text-gray-700 cursor-pointer"
+          className="bg-transparent text-sm border border-gray-200 rounded-md px-2 py-1 focus:ring-brand-emerald focus:border-brand-emerald text-gray-700 cursor-pointer"
         >
           <option value="24h">Últimas 24 horas</option>
           <option value="7d">Últimos 7 días</option>

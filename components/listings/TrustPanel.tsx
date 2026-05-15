@@ -11,20 +11,20 @@ export function TrustPanel() {
         <div className="flex flex-col gap-4 border-b border-gray-100 pb-6">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
-              <ShieldCheck className="h-7 w-7 text-brand-orange" />
+              <ShieldCheck className="h-7 w-7 text-brand-emerald" />
             </div>
             <div>
-              <div className="text-lg font-extrabold text-brand-orange leading-none">GoVendy</div>
-              <div className="text-sm font-bold text-brand-orange">Compra Segura</div>
+              <div className="text-lg font-extrabold text-brand-emerald leading-none">GoVendy</div>
+              <div className="text-sm font-bold text-brand-emerald">Compra Segura</div>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
-              <Truck className="h-6 w-6 text-brand-orange" />
+              <Truck className="h-6 w-6 text-brand-emerald" />
             </div>
             <div>
-              <div className="text-lg font-extrabold text-brand-orange leading-none">Envios Seguros</div>
+              <div className="text-lg font-extrabold text-brand-emerald leading-none">Envios Seguros</div>
               <div className="relative h-7 w-28">
                 <Image
                   src="/estafeta-logo.svg"

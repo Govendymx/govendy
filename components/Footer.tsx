@@ -13,25 +13,25 @@ export function Footer() {
           <div className="flex flex-wrap items-center gap-4 text-xs">
             <Link
               href="/terminos-y-condiciones"
-              className="text-gray-600 hover:text-brand-orange hover:underline"
+              className="text-gray-600 hover:text-brand-emerald hover:underline"
             >
               Términos y Condiciones
             </Link>
             <Link
               href="/politica-privacidad"
-              className="text-gray-600 hover:text-brand-orange hover:underline"
+              className="text-gray-600 hover:text-brand-emerald hover:underline"
             >
               Política de Privacidad
             </Link>
             <Link
               href="/reglas-plataforma"
-              className="text-gray-600 hover:text-brand-orange hover:underline"
+              className="text-gray-600 hover:text-brand-emerald hover:underline"
             >
               Reglas de la Plataforma
             </Link>
             <Link
               href="/dashboard/ayuda"
-              className="text-gray-600 hover:text-brand-orange hover:underline"
+              className="text-gray-600 hover:text-brand-emerald hover:underline"
             >
               Ayuda
             </Link>

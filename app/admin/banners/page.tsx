@@ -188,7 +188,7 @@ function PlacementSelector({
             onClick={() => onChange(it.key)}
             className={classNames(
               'rounded-2xl border p-4 text-left shadow-sm transition',
-              active ? 'border-pink-200 bg-pink-50 ring-2 ring-brand-orange/40' : 'border-black/5 bg-white hover:bg-gray-50',
+              active ? 'border-pink-200 bg-pink-50 ring-2 ring-brand-emerald/40' : 'border-black/5 bg-white hover:bg-gray-50',
             )}
           >
             <div className="flex items-start justify-between gap-3">
@@ -199,7 +199,7 @@ function PlacementSelector({
               <span
                 className={classNames(
                   'shrink-0 rounded-full px-2 py-1 text-[11px] font-extrabold ring-1',
-                  active ? 'bg-white text-brand-orange ring-pink-200' : 'bg-gray-100 text-gray-700 ring-black/5',
+                  active ? 'bg-white text-brand-emerald ring-pink-200' : 'bg-gray-100 text-gray-700 ring-black/5',
                 )}
               >
                 {it.key}
@@ -581,7 +581,7 @@ export default function AdminBannersPage() {
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
             Admin
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Banners del Home</h1>
@@ -643,14 +643,14 @@ export default function AdminBannersPage() {
                 <input
                   value={draft.title}
                   onChange={(e) => setDraft((p) => ({ ...p, title: e.target.value }))}
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Título"
                   required
                 />
                 <input
                   value={draft.subtitle}
                   onChange={(e) => setDraft((p) => ({ ...p, subtitle: e.target.value }))}
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Subtítulo"
                 />
 
@@ -712,7 +712,7 @@ export default function AdminBannersPage() {
                 <input
                   value={draft.image_url}
                   onChange={(e) => setDraft((p) => ({ ...p, image_url: e.target.value }))}
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                   placeholder="URL de imagen (Cloudinary o externa)"
                 />
 
@@ -746,13 +746,13 @@ export default function AdminBannersPage() {
                 <input
                   value={draft.cta_text}
                   onChange={(e) => setDraft((p) => ({ ...p, cta_text: e.target.value }))}
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Texto del botón (CTA)"
                 />
                 <input
                   value={draft.cta_href}
                   onChange={(e) => setDraft((p) => ({ ...p, cta_href: e.target.value }))}
-                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ruta (ej. /listings)"
                   required
                 />
@@ -761,7 +761,7 @@ export default function AdminBannersPage() {
                     type="number"
                     value={draft.sort_order}
                     onChange={(e) => setDraft((p) => ({ ...p, sort_order: Number(e.target.value) }))}
-                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                     placeholder="Orden"
                   />
                   <label className="inline-flex items-center gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-700">
@@ -798,7 +798,7 @@ export default function AdminBannersPage() {
                         <select
                           value={draft.image_fit || 'cover'}
                           onChange={(e) => setDraft((p) => ({ ...p, image_fit: e.target.value as any }))}
-                          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         >
                           <option value="cover">Recortar (cover) · recomendado</option>
                           <option value="contain">Ajustar (contain) · sin recorte</option>
@@ -812,7 +812,7 @@ export default function AdminBannersPage() {
                         <select
                           value={draft.image_position || 'center'}
                           onChange={(e) => setDraft((p) => ({ ...p, image_position: e.target.value as any }))}
-                          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         >
                           <option value="center">Centro</option>
                           <option value="top">Arriba</option>
@@ -836,7 +836,7 @@ export default function AdminBannersPage() {
                       <select
                         value={draft.floating_frequency || '7d'}
                         onChange={(e) => setDraft((p) => ({ ...p, floating_frequency: e.target.value as any }))}
-                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       >
                         <option value="session">1 vez por sesión</option>
                         <option value="24h">1 vez cada 24h</option>
@@ -849,7 +849,7 @@ export default function AdminBannersPage() {
                       <select
                         value={draft.floating_position || 'bottom_right'}
                         onChange={(e) => setDraft((p) => ({ ...p, floating_position: e.target.value as any }))}
-                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                       >
                         <option value="bottom_right">Abajo derecha</option>
                         <option value="bottom_left">Abajo izquierda</option>
@@ -865,7 +865,7 @@ export default function AdminBannersPage() {
                         max={600000}
                         value={Number(draft.floating_delay_ms ?? 0)}
                         onChange={(e) => setDraft((p) => ({ ...p, floating_delay_ms: Number(e.target.value) }))}
-                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         placeholder="1500"
                       />
                       <div className="mt-1 text-[11px] text-gray-500">Ej: 1500 = aparece tras 1.5s.</div>
@@ -877,7 +877,7 @@ export default function AdminBannersPage() {
                 <button
                   type="submit"
                   disabled={isSaving || !canCreate || isUploading}
-                  className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {isSaving ? 'Guardando…' : isUploading ? 'Subiendo imagen...' : 'Crear banner'}
                 </button>
@@ -893,7 +893,7 @@ export default function AdminBannersPage() {
                     placeholder="Buscar banner..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                    className="w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                   />
                   <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
                 </div>
@@ -924,7 +924,7 @@ export default function AdminBannersPage() {
                                   }, 1000);
                                 }
                               }}
-                              className="ml-1 hover:text-brand-orange focus:outline-none"
+                              className="ml-1 hover:text-brand-emerald focus:outline-none"
                               title="Copiar ID"
                             >
                               <span id={`bid-${b.id}`}>📋</span>
@@ -992,17 +992,17 @@ export default function AdminBannersPage() {
                         <input
                           defaultValue={b.title}
                           onBlur={(e) => updateBanner(b.id, { title: e.target.value })}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                         <input
                           defaultValue={b.subtitle}
                           onBlur={(e) => updateBanner(b.id, { subtitle: e.target.value })}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                         />
                         <input
                           defaultValue={b.image_url}
                           onBlur={(e) => updateBanner(b.id, { image_url: e.target.value })}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange sm:col-span-2"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald sm:col-span-2"
                           placeholder="URL de imagen"
                         />
 
@@ -1011,7 +1011,7 @@ export default function AdminBannersPage() {
                             <select
                               defaultValue={b.placement || 'hero'}
                               onChange={(e) => updateBanner(b.id, { placement: (e.target as any).value })}
-                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             >
                               <option value="hero">Hero</option>
                               <option value="top">Carrusel superior</option>
@@ -1029,7 +1029,7 @@ export default function AdminBannersPage() {
                             <select
                               defaultValue={b.image_fit || 'cover'}
                               onChange={(e) => updateBanner(b.id, { image_fit: (e.target as any).value })}
-                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             >
                               <option value="cover">cover</option>
                               <option value="contain">contain</option>
@@ -1037,7 +1037,7 @@ export default function AdminBannersPage() {
                             <select
                               defaultValue={b.image_position || 'center'}
                               onChange={(e) => updateBanner(b.id, { image_position: (e.target as any).value })}
-                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             >
                               <option value="center">center</option>
                               <option value="top">top</option>
@@ -1050,13 +1050,13 @@ export default function AdminBannersPage() {
                         <input
                           defaultValue={b.cta_text}
                           onBlur={(e) => updateBanner(b.id, { cta_text: e.target.value })}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                           placeholder="CTA"
                         />
                         <input
                           defaultValue={b.cta_href}
                           onBlur={(e) => updateBanner(b.id, { cta_href: e.target.value })}
-                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                          className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                           placeholder="/listings"
                         />
                         <div className="grid gap-3 sm:grid-cols-2 sm:col-span-2">
@@ -1064,7 +1064,7 @@ export default function AdminBannersPage() {
                             type="number"
                             defaultValue={b.sort_order}
                             onBlur={(e) => updateBanner(b.id, { sort_order: Number(e.target.value) })}
-                            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                             placeholder="Orden"
                           />
                           <label className="inline-flex items-center justify-between gap-2 rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-700">
@@ -1084,7 +1084,7 @@ export default function AdminBannersPage() {
                               <select
                                 defaultValue={b.floating_frequency || '7d'}
                                 onChange={(e) => updateBanner(b.id, { floating_frequency: (e.target as any).value })}
-                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                               >
                                 <option value="session">session</option>
                                 <option value="24h">24h</option>
@@ -1096,7 +1096,7 @@ export default function AdminBannersPage() {
                               <select
                                 defaultValue={b.floating_position || 'bottom_right'}
                                 onChange={(e) => updateBanner(b.id, { floating_position: (e.target as any).value })}
-                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                               >
                                 <option value="bottom_right">bottom_right</option>
                                 <option value="bottom_left">bottom_left</option>
@@ -1112,7 +1112,7 @@ export default function AdminBannersPage() {
                                 max={600000}
                                 defaultValue={Number(b.floating_delay_ms ?? 0)}
                                 onBlur={(e) => updateBanner(b.id, { floating_delay_ms: Number((e.target as any).value) })}
-                                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                                 placeholder="1500"
                               />
                             </div>

@@ -153,7 +153,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }: Props) {
           <button
             type="button"
             onClick={onClose}
-            className="-mt-1 -mr-1 rounded-xl p-2 text-gray-500 hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:ring-offset-2"
+            className="-mt-1 -mr-1 rounded-xl p-2 text-gray-500 hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
             aria-label="Cerrar"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -211,7 +211,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }: Props) {
                       <Link
                         href="/forgot-password"
                         onClick={onClose}
-                        className="text-xs font-semibold text-brand-orange hover:opacity-90"
+                        className="text-xs font-semibold text-brand-emerald hover:opacity-90"
                       >
                         ¿Olvidaste tu contraseña?
                       </Link>
@@ -230,7 +230,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }: Props) {
                   ¿No tienes cuenta?{' '}
                   <button
                     onClick={() => setView('register')}
-                    className="font-semibold text-brand-orange hover:opacity-90"
+                    className="font-semibold text-brand-emerald hover:opacity-90"
                   >
                     Regístrate
                   </button>
@@ -241,7 +241,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }: Props) {
                 <Link
                   href="/register"
                   onClick={onClose}
-                  className="btn btn-secondary w-full border-brand-orange text-brand-orange hover:bg-pink-50 text-center block"
+                  className="btn btn-secondary w-full border-brand-emerald text-brand-emerald hover:bg-pink-50 text-center block"
                 >
                   Continuar con E-mail
                 </Link>
@@ -250,7 +250,7 @@ export function AuthModal({ isOpen, onClose, initialView = 'login' }: Props) {
                   ¿Ya tienes cuenta?{' '}
                   <button
                     onClick={() => setView('login')}
-                    className="font-semibold text-brand-orange hover:opacity-90"
+                    className="font-semibold text-brand-emerald hover:opacity-90"
                   >
                     Inicia Sesión
                   </button>

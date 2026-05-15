@@ -114,9 +114,9 @@ export function AdminNav() {
     const tone = it.tone ?? 'neutral';
     const styles =
       tone === 'pink'
-        ? 'border-pink-200 bg-pink-50 text-brand-orange hover:opacity-90 animate-gradient-shift'
+        ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
-    const activeStyles = active ? 'ring-2 ring-brand-orange border-transparent animate-pulse-ring' : '';
+    const activeStyles = active ? 'ring-2 ring-brand-emerald border-transparent animate-pulse-ring' : '';
     return (
       <Link key={it.href} href={it.href} className={classNames(base, styles, activeStyles)}>
         <span className="truncate">{it.label}</span>
@@ -128,11 +128,11 @@ export function AdminNav() {
   const content = (
     <>
       <Link href="/" className="flex items-center gap-3 hover:opacity-95 group">
-        <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg animate-gradient-pulse">
+        <div className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg animate-gradient-pulse">
           <span className="text-sm font-extrabold tracking-widest">POCKET</span>
         </div>
         <div className="leading-tight">
-          <div className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-brand-orange">Panel Admin</div>
+          <div className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-brand-emerald">Panel Admin</div>
           <div className="text-xs text-gray-500">Gestión de la plataforma</div>
         </div>
       </Link>

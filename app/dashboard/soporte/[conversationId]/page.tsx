@@ -339,9 +339,7 @@ export default function DashboardSoporteChatPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Soporte</div>
               <div className="text-xs text-gray-500">
@@ -351,7 +349,7 @@ export default function DashboardSoporteChatPage() {
             </div>
           </div>
           <div className="flex gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -398,8 +396,8 @@ export default function DashboardSoporteChatPage() {
                 {/* Bot welcome message */}
                 <div className="flex justify-start">
                   <div className="max-w-[85%] rounded-2xl bg-white px-4 py-3 text-sm shadow-sm ring-1 ring-black/5">
-                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-orange">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-orange text-[10px] text-white">🤖</span>
+                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-emerald">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-emerald text-[10px] text-white">🤖</span>
                       PocketBot
                     </div>
                     <div className="whitespace-pre-wrap text-gray-900">
@@ -420,8 +418,8 @@ export default function DashboardSoporteChatPage() {
                 {/* Bot category prompt */}
                 <div className="flex justify-start">
                   <div className="max-w-[85%] rounded-2xl bg-white px-4 py-3 text-sm shadow-sm ring-1 ring-black/5">
-                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-orange">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-orange text-[10px] text-white">🤖</span>
+                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-emerald">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-emerald text-[10px] text-white">🤖</span>
                       PocketBot
                     </div>
                     <div className="text-gray-900">¿Sobre qué necesitas ayuda? Selecciona un tema o escribe directamente tu mensaje:</div>
@@ -444,7 +442,7 @@ export default function DashboardSoporteChatPage() {
                             setInput(cat.prefix);
                           }}
                           className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-all ${selectedCategory === cat.id
-                              ? 'border-brand-orange bg-brand-orange text-white shadow-sm'
+                              ? 'border-brand-emerald bg-brand-emerald text-white shadow-sm'
                               : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-pink-200 hover:bg-pink-50 hover:text-pink-700'
                             }`}
                         >
@@ -461,8 +459,8 @@ export default function DashboardSoporteChatPage() {
                 {/* Chatbot welcome bubbles at top of messages */}
                 <div className="flex justify-start">
                   <div className="max-w-[85%] rounded-2xl bg-white px-4 py-3 text-sm shadow-sm ring-1 ring-black/5">
-                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-orange">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-orange text-[10px] text-white">🤖</span>
+                    <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-emerald">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-emerald text-[10px] text-white">🤖</span>
                       PocketBot
                     </div>
                     <div className="text-gray-900">¡Hola! 👋 Bienvenido al soporte de GoVendy. Un agente revisará tu consulta lo antes posible.</div>
@@ -489,7 +487,7 @@ export default function DashboardSoporteChatPage() {
                   const tone = isSys ? 'bot' : isUser ? 'mine' : isAdmin ? 'admin' : 'other';
                   const styles =
                     tone === 'mine'
-                      ? 'bg-brand-orange text-white ring-pink-200'
+                      ? 'bg-brand-emerald text-white ring-pink-200'
                       : tone === 'bot'
                         ? 'bg-white text-gray-900 ring-black/5'
                         : tone === 'admin'
@@ -500,8 +498,8 @@ export default function DashboardSoporteChatPage() {
                     <div key={m.id} className={`flex ${align}`}>
                       <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${styles}`}>
                         {tone === 'bot' ? (
-                          <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-orange">
-                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-orange text-[10px] text-white">🤖</span>
+                          <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold text-brand-emerald">
+                            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-emerald text-[10px] text-white">🤖</span>
                             PocketBot
                           </div>
                         ) : tone === 'admin' ? (
@@ -567,7 +565,7 @@ export default function DashboardSoporteChatPage() {
                     void broadcastTyping(Boolean(e.target.value.trim().length));
                   }}
                   placeholder="Escribe tu mensaje…"
-                  className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
 
                 {attachFile ? (

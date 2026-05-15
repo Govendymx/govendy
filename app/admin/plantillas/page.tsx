@@ -275,7 +275,7 @@ export default function AdminTemplatesPage() {
               type="button"
               onClick={openNew}
               disabled={!isAdmin}
-              className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+              className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
             >
               + Nueva global
             </button>
@@ -283,7 +283,7 @@ export default function AdminTemplatesPage() {
               type="button"
               onClick={() => void seedDefaults()}
               disabled={!isAdmin || isSeeding || isLoading}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50 disabled:opacity-60"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50 disabled:opacity-60"
             >
               {isSeeding ? 'Creando…' : 'Generar Defaults'}
             </button>
@@ -314,7 +314,7 @@ export default function AdminTemplatesPage() {
                   <div className="text-lg font-extrabold text-gray-900">Globales</div>
                   <div className="mt-1 text-sm text-gray-600">Se muestran a todos los usuarios (si están activas).</div>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                   {globals.length} total
                 </div>
               </div>
@@ -364,7 +364,7 @@ export default function AdminTemplatesPage() {
                         type="button"
                         onClick={() => void seedDefaults()}
                         disabled={isSeeding || isLoading}
-                        className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                        className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                       >
                         {isSeeding ? 'Creando…' : 'Crear plantillas PRO de ejemplo'}
                       </button>
@@ -409,7 +409,7 @@ export default function AdminTemplatesPage() {
                                 e.stopPropagation();
                                 copyToClipboard(r.owner_id!, r.id);
                               }}
-                              className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                              className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                               title="Copiar Owner ID"
                             >
                               {copiedId === r.id ? '✅' : '📋'}
@@ -460,7 +460,7 @@ export default function AdminTemplatesPage() {
                         <input
                           value={draftTitle}
                           onChange={(e) => setDraftTitle(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                         />
                       </div>
                       <div>
@@ -468,7 +468,7 @@ export default function AdminTemplatesPage() {
                         <input
                           value={draftPreviewUrl}
                           onChange={(e) => setDraftPreviewUrl(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                           placeholder="https://res.cloudinary.com/..."
                         />
                       </div>
@@ -480,7 +480,7 @@ export default function AdminTemplatesPage() {
                         value={draftDesc}
                         onChange={(e) => setDraftDesc(e.target.value)}
                         rows={2}
-                        className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       />
                     </div>
 
@@ -509,7 +509,7 @@ export default function AdminTemplatesPage() {
                         type="button"
                         onClick={() => void save()}
                         disabled={isSaving}
-                        className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                        className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-extrabold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                       >
                         {isSaving ? 'Guardando…' : 'Guardar'}
                       </button>

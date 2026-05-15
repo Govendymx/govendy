@@ -66,25 +66,25 @@ export default function GuiaVender() {
         <h3 className="mb-4 text-xl font-bold text-gray-900">Consejos para vender más</h3>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl bg-gray-50 p-4 ring-1 ring-black/5">
-            <h4 className="font-bold text-brand-orange mb-2 flex items-center">
+            <h4 className="font-bold text-brand-emerald mb-2 flex items-center">
               <Camera className="mr-2 h-4 w-4" /> Fotos de impacto
             </h4>
             <p className="text-sm text-gray-600">Usa luz natural y fondos neutros. Muestra la prenda puesta si es posible.</p>
           </div>
           <div className="rounded-xl bg-gray-50 p-4 ring-1 ring-black/5">
-            <h4 className="font-bold text-brand-orange mb-2 flex items-center">
+            <h4 className="font-bold text-brand-emerald mb-2 flex items-center">
               <DollarSign className="mr-2 h-4 w-4" /> Precio justo
             </h4>
             <p className="text-sm text-gray-600">Investiga a cuánto se venden artículos similares. Un precio alto puede ahuyentar compradores.</p>
           </div>
           <div className="rounded-xl bg-gray-50 p-4 ring-1 ring-black/5">
-            <h4 className="font-bold text-brand-orange mb-2 flex items-center">
+            <h4 className="font-bold text-brand-emerald mb-2 flex items-center">
               <Tag className="mr-2 h-4 w-4" /> Detalles completos
             </h4>
             <p className="text-sm text-gray-600">Incluye medidas exactas y composición de la tela para evitar preguntas repetitivas.</p>
           </div>
           <div className="rounded-xl bg-gray-50 p-4 ring-1 ring-black/5">
-            <h4 className="font-bold text-brand-orange mb-2 flex items-center">
+            <h4 className="font-bold text-brand-emerald mb-2 flex items-center">
               <Truck className="mr-2 h-4 w-4" /> Envío rápido
             </h4>
             <p className="text-sm text-gray-600">Despacha tus ventas en menos de 24h para ganar buena reputación.</p>

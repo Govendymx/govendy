@@ -68,7 +68,7 @@ export default function AdminFinanzasPage() {
             <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
                 <div className="relative h-16 w-16">
                     <div className="absolute inset-0 rounded-full border-4 border-gray-200" />
-                    <div className="absolute inset-0 rounded-full border-4 border-t-brand-orange animate-spin" />
+                    <div className="absolute inset-0 rounded-full border-4 border-t-brand-emerald animate-spin" />
                 </div>
                 <p className="text-sm text-gray-500 animate-pulse">Cargando métricas financieras…</p>
             </div>

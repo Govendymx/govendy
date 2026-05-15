@@ -131,7 +131,7 @@ export function PocketMascot({
         <motion.div
           initial={{ opacity: 0, y: 0 }}
           animate={{ opacity: 1, y: -20 }}
-          className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-xs font-bold text-brand-orange shadow-md z-30 ring-1 ring-brand-orange/20"
+          className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-xs font-bold text-brand-emerald shadow-md z-30 ring-1 ring-brand-emerald/20"
         >
           {interactionText}
           <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white rotate-45"></div>

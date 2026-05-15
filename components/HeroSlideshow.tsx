@@ -128,7 +128,7 @@ export default function HeroSlideshow() {
                                         <div className="pt-2 animate-fade-in-delay-2">
                                             <Link
                                                 href={banner.cta_href}
-                                                className="inline-flex items-center gap-2 rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:opacity-90"
+                                                className="inline-flex items-center gap-2 rounded-xl bg-brand-emerald px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:scale-105 hover:opacity-90"
                                             >
                                                 {banner.cta_text}
                                             </Link>

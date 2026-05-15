@@ -113,7 +113,7 @@ export function ReportModal({ listingId, isOpen, onClose }: ReportModalProps) {
                                 <select
                                     value={reason}
                                     onChange={(e) => setReason(e.target.value)}
-                                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/20"
+                                    className="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-brand-emerald focus:outline-none focus:ring-2 focus:ring-brand-emerald/20"
                                     required
                                 >
                                     <option value="">Selecciona un motivo...</option>
@@ -130,7 +130,7 @@ export function ReportModal({ listingId, isOpen, onClose }: ReportModalProps) {
                                 <textarea
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
-                                    className="h-24 w-full resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/20"
+                                    className="h-24 w-full resize-none rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm focus:border-brand-emerald focus:outline-none focus:ring-2 focus:ring-brand-emerald/20"
                                     placeholder="Danos más detalles sobre el problema..."
                                 />
                             </div>
@@ -152,7 +152,7 @@ export function ReportModal({ listingId, isOpen, onClose }: ReportModalProps) {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting || !reason}
-                                    className="flex flex-[2] items-center justify-center gap-2 rounded-xl bg-brand-orange py-3 text-sm font-bold text-white shadow-lg shadow-brand-orange/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
+                                    className="flex flex-[2] items-center justify-center gap-2 rounded-xl bg-brand-emerald py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
                                 >
                                     {isSubmitting ? <Loader2 className="animate-spin" size={18} /> : 'Enviar denuncia'}
                                 </button>

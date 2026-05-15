@@ -59,7 +59,7 @@ export function SellerSidebarReputation({ sellerId, onLoginRequired }: { sellerI
             <div className="flex flex-wrap items-center gap-2">
                 <Link
                     href={`/perfil/${sellerId}`}
-                    className="text-sm font-bold text-gray-900 line-clamp-1 hover:text-brand-orange transition-colors"
+                    className="text-sm font-bold text-gray-900 line-clamp-1 hover:text-brand-emerald transition-colors"
                 >
                     {data.name}
                 </Link>

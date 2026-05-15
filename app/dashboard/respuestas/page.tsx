@@ -161,9 +161,7 @@ export default function DashboardRespuestasPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Respuestas</div>
               <div className="text-xs text-gray-500">
@@ -172,7 +170,7 @@ export default function DashboardRespuestasPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/10 hover:bg-gray-50">
@@ -229,9 +227,9 @@ export default function DashboardRespuestasPage() {
                 const questionCount = groupResponses.length;
 
                 return (
-                  <div key={listingId} className="rounded-3xl border-2 border-brand-orange/20 bg-white shadow-sm ring-1 ring-black/5">
+                  <div key={listingId} className="rounded-3xl border-2 border-brand-emerald/20 bg-white shadow-sm ring-1 ring-black/5">
                     {/* Encabezado del grupo: Información de la publicación */}
-                    <div className="border-b border-gray-100 bg-gradient-to-r from-brand-orange/5 to-purple-50/30 px-6 py-4">
+                    <div className="border-b border-gray-100 bg-gradient-to-r from-brand-emerald/5 to-purple-50/30 px-6 py-4">
                       <div className="flex items-center gap-4">
                         {/* Imagen del producto */}
                         <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100 ring-1 ring-black/5">
@@ -250,15 +248,15 @@ export default function DashboardRespuestasPage() {
                         <div className="min-w-0 flex-1">
                           <Link 
                             href={listingUrl} 
-                            className="text-lg font-extrabold uppercase text-gray-900 hover:text-brand-orange hover:underline"
+                            className="text-lg font-extrabold uppercase text-gray-900 hover:text-brand-emerald hover:underline"
                           >
                             {listingTitle}
                           </Link>
                           {price != null && (
-                            <p className="mt-1 text-lg font-extrabold text-brand-orange">{formatPrice(price)}</p>
+                            <p className="mt-1 text-lg font-extrabold text-brand-emerald">{formatPrice(price)}</p>
                           )}
                           <div className="mt-2 flex items-center gap-2">
-                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-orange/10 px-3 py-1 text-xs font-semibold text-brand-orange">
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-semibold text-brand-emerald">
                               <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
                               {questionCount} {questionCount === 1 ? 'pregunta respondida' : 'preguntas respondidas'}
                             </span>

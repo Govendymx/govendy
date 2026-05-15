@@ -174,7 +174,7 @@ export function LoginClient({ initialEmail, returnTo }: { initialEmail?: string;
       <div className="w-full max-w-md">
         <div className="bg-white/90 rounded-3xl shadow-xl ring-1 ring-black/5 p-8 space-y-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-orange text-white shadow-sm">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-emerald text-white shadow-sm">
               <span className="text-sm font-extrabold">GO</span>
             </div>
             <div className="leading-tight">
@@ -219,7 +219,7 @@ export function LoginClient({ initialEmail, returnTo }: { initialEmail?: string;
                 <label className="block text-sm font-medium text-gray-700">Contraseña</label>
                 <Link
                   href="/forgot-password"
-                  className="text-xs font-semibold text-brand-orange hover:opacity-90"
+                  className="text-xs font-semibold text-brand-emerald hover:opacity-90"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
@@ -267,7 +267,7 @@ export function LoginClient({ initialEmail, returnTo }: { initialEmail?: string;
 
           <p className="text-xs text-gray-600 text-center">
             ¿No tienes cuenta?{' '}
-            <Link href="/register" className="font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/register" className="font-semibold text-brand-emerald hover:opacity-90">
               Crear cuenta
             </Link>
           </p>

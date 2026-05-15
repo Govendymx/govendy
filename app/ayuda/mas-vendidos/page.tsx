@@ -69,7 +69,7 @@ export default function MasVendidosPage() {
           <div className="grid gap-6 sm:grid-cols-3">
             {TOP_PRODUCTS.map((product) => (
               <div key={product.rank} className="relative overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:shadow-md">
-                <div className="absolute top-0 right-0 rounded-bl-xl bg-brand-orange px-3 py-1 text-xs font-bold text-white">
+                <div className="absolute top-0 right-0 rounded-bl-xl bg-brand-emerald px-3 py-1 text-xs font-bold text-white">
                   #{product.rank}
                 </div>
                 <div className={`mb-4 h-32 w-full rounded-xl ${product.imageColor} opacity-20`}></div>

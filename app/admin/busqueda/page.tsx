@@ -263,7 +263,7 @@ function SearchContent() {
             <Link
               key={`${r.type}-${r.id}`}
               href={r.url}
-              className="group relative flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-brand-orange/30 hover:shadow-md"
+              className="group relative flex items-center gap-4 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:border-brand-emerald/30 hover:shadow-md"
             >
               <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl
                 ${r.type === 'user' ? 'bg-blue-50 text-blue-600' : ''}
@@ -293,7 +293,7 @@ function SearchContent() {
                   )}
                   <span className="text-xs text-gray-400">· {new Date(r.date || '').toLocaleDateString()}</span>
                 </div>
-                <h3 className="font-bold text-gray-900 group-hover:text-brand-orange">{r.title}</h3>
+                <h3 className="font-bold text-gray-900 group-hover:text-brand-emerald">{r.title}</h3>
                 <div className="flex items-center gap-2 text-sm text-gray-500">
                   <span className="truncate">{r.subtitle}</span>
                 </div>
@@ -301,10 +301,10 @@ function SearchContent() {
 
               <div className="flex items-center gap-3 opacity-0 transition-opacity group-hover:opacity-100">
                 <div className="text-xs font-mono text-gray-400">{r.id.slice(0, 8)}...</div>
-                <CopyButton text={r.id} className="text-gray-400 hover:text-brand-orange" />
+                <CopyButton text={r.id} className="text-gray-400 hover:text-brand-emerald" />
               </div>
               
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 group-hover:translate-x-1 group-hover:text-brand-orange transition-all">
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 group-hover:translate-x-1 group-hover:text-brand-emerald transition-all">
                 →
               </div>
             </Link>

@@ -29,11 +29,11 @@ export default function DocArticle({
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
         <nav className="mb-8 flex items-center text-sm text-gray-500">
-          <Link href="/ayuda" className="hover:text-brand-orange transition-colors">
+          <Link href="/ayuda" className="hover:text-brand-emerald transition-colors">
             Ayuda
           </Link>
           <ChevronRight className="mx-2 h-4 w-4" />
-          <Link href={categoryLink} className="hover:text-brand-orange transition-colors">
+          <Link href={categoryLink} className="hover:text-brand-emerald transition-colors">
             {category}
           </Link>
           <ChevronRight className="mx-2 h-4 w-4" />

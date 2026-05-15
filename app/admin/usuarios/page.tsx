@@ -845,7 +845,7 @@ export default function AdminUsuariosPage() {
             className={`rounded-xl px-4 py-2 text-sm font-bold ring-1 transition-all ${userFilter === f
                 ? f === 'suspended'
                   ? 'bg-red-500 text-white ring-red-300'
-                  : 'bg-brand-orange text-white ring-pink-200'
+                  : 'bg-brand-emerald text-white ring-pink-200'
                 : 'bg-white text-gray-700 ring-black/10 hover:bg-gray-50'
               }`}
           >
@@ -858,14 +858,14 @@ export default function AdminUsuariosPage() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+          className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
           placeholder="Ej: armando / alejandra / usuario123 / UUID"
         />
         <button
           type="button"
           onClick={search}
           disabled={isLoading}
-          className="shrink-0 rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+          className="shrink-0 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
         >
           {isLoading ? 'Buscando…' : 'Buscar'}
         </button>
@@ -928,7 +928,7 @@ export default function AdminUsuariosPage() {
                               {u.email}
                               <span className="mx-1">·</span>
                               <span className="font-mono">{u.id.slice(0, 8)}...</span>
-                              <CopyButton text={u.id} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                              <CopyButton text={u.id} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                             </div>
                             {(!u.first_name && !u.last_name && !u.full_name && !u.nickname && !u.username && !u.email) && (
                               <div className="mt-1 text-[10px] text-amber-600">
@@ -984,7 +984,7 @@ export default function AdminUsuariosPage() {
                           <Link
                             href={`/perfil/${u.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
+                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
                           >
                             Ver →
                           </Link>
@@ -1014,7 +1014,7 @@ export default function AdminUsuariosPage() {
                   <Link
                     href={`/perfil/${selected.id}`}
                     target="_blank"
-                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-orange shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
+                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-emerald shadow-sm ring-1 ring-pink-200 hover:bg-pink-50"
                   >
                     Abrir perfil público →
                   </Link>
@@ -1070,7 +1070,7 @@ export default function AdminUsuariosPage() {
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="text-xs font-semibold text-brand-orange hover:opacity-80"
+                          className="text-xs font-semibold text-brand-emerald hover:opacity-80"
                         >
                           {showPassword ? 'Ocultar' : 'Mostrar'}
                         </button>
@@ -1105,7 +1105,7 @@ export default function AdminUsuariosPage() {
                     <div className="text-xs font-semibold text-gray-600">Dirección de Envío</div>
                     <button
                       onClick={openLocationModal}
-                      className="text-[10px] font-bold text-brand-orange hover:underline"
+                      className="text-[10px] font-bold text-brand-emerald hover:underline"
                     >
                       EDITAR
                     </button>
@@ -1300,7 +1300,7 @@ export default function AdminUsuariosPage() {
                   <div className="text-sm font-semibold text-gray-900">Calificaciones recibidas</div>
                   <div className="mt-2 max-h-48 space-y-2 overflow-y-auto">
                     {editingRating ? (
-                      <div className="rounded-2xl border border-brand-orange bg-pink-50/50 p-3">
+                      <div className="rounded-2xl border border-brand-emerald bg-pink-50/50 p-3">
                         <div className="text-xs font-semibold text-gray-700">Editar: {editingRating.rater_name} · {editingRating.stars}/10</div>
                         <div className="mt-2 flex gap-2">
                           <input
@@ -1320,7 +1320,7 @@ export default function AdminUsuariosPage() {
                           />
                         </div>
                         <div className="mt-2 flex gap-2">
-                          <button type="button" onClick={saveRatingEdit} disabled={isSaving} className="rounded-lg bg-brand-orange px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-60">
+                          <button type="button" onClick={saveRatingEdit} disabled={isSaving} className="rounded-lg bg-brand-emerald px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-60">
                             Guardar
                           </button>
                           <button type="button" onClick={() => { setEditingRating(null); setEditComment(''); }} className="rounded-lg bg-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-800">
@@ -1400,19 +1400,19 @@ export default function AdminUsuariosPage() {
                           {frontUrl ? (
                             <div className="cursor-pointer" onClick={() => setVerificationImageModal(frontUrl)}>
                               <div className="text-xs font-medium text-gray-600 mb-1">INE Frente</div>
-                              <img src={frontUrl} alt="INE Frente" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-orange transition" />
+                              <img src={frontUrl} alt="INE Frente" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-emerald transition" />
                             </div>
                           ) : <div className="text-xs text-gray-400">INE Frente: N/A</div>}
                           {backUrl ? (
                             <div className="cursor-pointer" onClick={() => setVerificationImageModal(backUrl)}>
                               <div className="text-xs font-medium text-gray-600 mb-1">INE Reverso</div>
-                              <img src={backUrl} alt="INE Reverso" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-orange transition" />
+                              <img src={backUrl} alt="INE Reverso" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-emerald transition" />
                             </div>
                           ) : <div className="text-xs text-gray-400">INE Reverso: N/A</div>}
                           {selfieUrl ? (
                             <div className="cursor-pointer" onClick={() => setVerificationImageModal(selfieUrl)}>
                               <div className="text-xs font-medium text-gray-600 mb-1">Selfie con INE</div>
-                              <img src={selfieUrl} alt="Selfie con INE" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-orange transition" />
+                              <img src={selfieUrl} alt="Selfie con INE" className="h-24 w-full rounded-lg border border-gray-200 object-cover hover:ring-2 hover:ring-brand-emerald transition" />
                             </div>
                           ) : <div className="text-xs text-gray-400">Selfie: N/A</div>}
                         </div>
@@ -1493,7 +1493,7 @@ export default function AdminUsuariosPage() {
                         type="button"
                         onClick={() => updatePlan('pro')}
                         disabled={isSaving || detail?.user?.profile?.plan_type === 'pro'}
-                        className="rounded-xl bg-gradient-to-r from-brand-orange to-pink-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                        className="rounded-xl bg-gradient-to-r from-brand-emerald to-pink-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
                       >
                         PRO
                       </button>
@@ -1518,7 +1518,7 @@ export default function AdminUsuariosPage() {
                         <button
                           type="button"
                           onClick={openPlanDatesModal}
-                          className="text-xs font-semibold text-brand-orange hover:underline"
+                          className="text-xs font-semibold text-brand-emerald hover:underline"
                         >
                           Editar Vigencia
                         </button>
@@ -1557,7 +1557,7 @@ export default function AdminUsuariosPage() {
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   rows={3}
-                  className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ej: historial de disputas, comportamiento, acuerdos…"
                 />
                 <div className="mt-3 grid gap-2">
@@ -1565,7 +1565,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={suspendDays}
                       onChange={(e) => setSuspendDays(e.target.value)}
-                      className="w-24 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="w-24 rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       inputMode="numeric"
                       placeholder="Días"
                     />
@@ -1582,7 +1582,7 @@ export default function AdminUsuariosPage() {
                     type="button"
                     onClick={() => applyState('activate')}
                     disabled={isSaving}
-                    className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                    className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                   >
                     Activar cuenta
                   </button>
@@ -1675,7 +1675,7 @@ export default function AdminUsuariosPage() {
                   type="datetime-local"
                   value={planStart}
                   onChange={e => setPlanStart(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
               <div>
@@ -1684,7 +1684,7 @@ export default function AdminUsuariosPage() {
                   type="datetime-local"
                   value={planEnd}
                   onChange={e => setPlanEnd(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
             </div>
@@ -1698,7 +1698,7 @@ export default function AdminUsuariosPage() {
               <button
                 onClick={savePlanDates}
                 disabled={isSaving}
-                className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
               >
                 {isSaving ? 'Guardando...' : 'Guardar Fechas'}
               </button>
@@ -1729,7 +1729,7 @@ export default function AdminUsuariosPage() {
                   type="password"
                   value={impersonationPassword}
                   onChange={(e) => setImpersonationPassword(e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="••••••••"
                 />
               </div>
@@ -1776,7 +1776,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locZip}
                       onChange={(e) => setLocZip(e.target.value.replace(/\D/g, '').slice(0, 5))}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       placeholder="00000"
                     />
                   </div>
@@ -1795,7 +1795,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locState}
                       onChange={(e) => setLocState(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                   <div>
@@ -1803,7 +1803,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locCity}
                       onChange={(e) => setLocCity(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>
@@ -1814,7 +1814,7 @@ export default function AdminUsuariosPage() {
                     <select
                       value={locColony}
                       onChange={(e) => setLocColony(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     >
                       <option value="">Selecciona una colonia...</option>
                       {locColonies.map((c, i) => (
@@ -1825,7 +1825,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locColony}
                       onChange={(e) => setLocColony(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Nombre de la colonia"
                     />
                   )}
@@ -1836,7 +1836,7 @@ export default function AdminUsuariosPage() {
                   <input
                     value={locStreet}
                     onChange={(e) => setLocStreet(e.target.value)}
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -1846,7 +1846,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locExt}
                       onChange={(e) => setLocExt(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                   <div>
@@ -1854,7 +1854,7 @@ export default function AdminUsuariosPage() {
                     <input
                       value={locInt}
                       onChange={(e) => setLocInt(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>
@@ -1865,7 +1865,7 @@ export default function AdminUsuariosPage() {
                     value={locRefs}
                     onChange={(e) => setLocRefs(e.target.value)}
                     rows={2}
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
 
@@ -1875,7 +1875,7 @@ export default function AdminUsuariosPage() {
                     value={locCross}
                     onChange={(e) => setLocCross(e.target.value)}
                     rows={2}
-                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
               </div>
@@ -1890,7 +1890,7 @@ export default function AdminUsuariosPage() {
               <button
                 onClick={saveLocation}
                 disabled={isSaving}
-                className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+                className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
               >
                 {isSaving ? 'Guardando...' : 'Guardar Ubicación'}
               </button>
@@ -1938,7 +1938,7 @@ export default function AdminUsuariosPage() {
                   step="0.01"
                   value={walletAmount}
                   onChange={(e) => setWalletAmount(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                  className="mt-1 block w-full rounded-xl border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                   placeholder="0.00"
                 />
               </div>
@@ -1949,7 +1949,7 @@ export default function AdminUsuariosPage() {
                   type="text"
                   value={walletConcept}
                   onChange={(e) => setWalletConcept(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                  className="mt-1 block w-full rounded-xl border-gray-300 bg-gray-50 px-3 py-2 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                   placeholder="Ej: Bonificación por compra, Corrección manual..."
                 />
               </div>

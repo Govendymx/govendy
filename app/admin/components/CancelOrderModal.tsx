@@ -85,7 +85,7 @@ export function CancelOrderModal({ order, isOpen, onClose, onSuccess }: Props) {
             <select
               value={cancelledBy}
               onChange={(e) => setCancelledBy(e.target.value as any)}
-              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm"
+              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
             >
               <option value="admin">Administrador (Decisión de plataforma)</option>
               <option value="buyer">Comprador (Arrepentimiento/Error)</option>
@@ -104,7 +104,7 @@ export function CancelOrderModal({ order, isOpen, onClose, onSuccess }: Props) {
             <select
               value={chargeCommissionTo}
               onChange={(e) => setChargeCommissionTo(e.target.value as any)}
-              className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm"
+              className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
             >
               <option value="none">Nadie (Pocket absorbe / Anular)</option>
               <option value="buyer">Cobrar al Comprador (Descontar de reembolso)</option>
@@ -124,7 +124,7 @@ export function CancelOrderModal({ order, isOpen, onClose, onSuccess }: Props) {
               <select
                 value={chargeShippingTo}
                 onChange={(e) => setChargeShippingTo(e.target.value as any)}
-                className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm"
+                className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
               >
                 <option value="none">Nadie (Pocket absorbe)</option>
                 <option value="buyer">Cobrar al Comprador (Descontar de reembolso)</option>
@@ -140,7 +140,7 @@ export function CancelOrderModal({ order, isOpen, onClose, onSuccess }: Props) {
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               rows={3}
-              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm"
+              className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
               placeholder="Explica la razón..."
             />
           </div>

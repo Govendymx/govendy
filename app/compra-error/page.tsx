@@ -12,7 +12,7 @@ function CompraErrorContent() {
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+          <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
             <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
           </Link>
           <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -41,7 +41,7 @@ function CompraErrorContent() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/checkout"
-              className="rounded-xl bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+              className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
             >
               Volver al checkout
             </Link>
@@ -63,7 +63,7 @@ export default function CompraErrorPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald mx-auto"></div>
           <p className="mt-4 text-sm text-gray-600">Cargando...</p>
         </div>
       </div>

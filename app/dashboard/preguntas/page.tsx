@@ -822,9 +822,7 @@ export default function DashboardPreguntasPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Preguntas</div>
               <div className="text-xs text-gray-500">Responde dudas de tus publicaciones</div>
@@ -907,7 +905,7 @@ Ver detalles completos en la consola (F12)`;
                 🔍 Debug
               </button>
             )}
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -925,12 +923,12 @@ Ver detalles completos en la consola (F12)`;
         {/* Banner / hero */}
         <div className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-pink-100 via-pink-100 to-pink-200 text-gray-900 shadow-sm ring-1 ring-pink-200">
           <div className="relative p-6 sm:p-8">
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-orange/15 blur-3xl" aria-hidden="true" />
-            <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-brand-orange/15 blur-3xl" aria-hidden="true" />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand-emerald/15 blur-3xl" aria-hidden="true" />
+            <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-brand-emerald/15 blur-3xl" aria-hidden="true" />
 
             <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
               <div className="rounded-3xl bg-white/70 p-5 ring-1 ring-black/5 backdrop-blur sm:p-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                   Panel de vendedor
                 </div>
                 <div className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Responde rápido y vende más</div>
@@ -942,7 +940,7 @@ Ver detalles completos en la consola (F12)`;
               <div className="grid gap-3 rounded-3xl bg-white/70 p-5 ring-1 ring-black/5 backdrop-blur sm:p-6">
                 <div className="rounded-2xl bg-white p-4 ring-1 ring-black/5">
                   <div className="text-[11px] font-semibold text-gray-600">Pendientes</div>
-                  <div className="mt-1 text-3xl font-extrabold text-brand-orange">
+                  <div className="mt-1 text-3xl font-extrabold text-brand-emerald">
                     {unanswered.filter(q => !questionsAsBuyer.has(q.id)).length}
                   </div>
                 </div>
@@ -959,13 +957,13 @@ Ver detalles completos en la consola (F12)`;
 
             <div className="mt-4 grid gap-3 text-xs sm:grid-cols-3">
               <div className="rounded-2xl bg-white/70 px-4 py-3 text-gray-800 ring-1 ring-black/5 backdrop-blur">
-                <span className="font-extrabold text-brand-orange">Tip:</span> responde con medidas, estado y envío.
+                <span className="font-extrabold text-brand-emerald">Tip:</span> responde con medidas, estado y envío.
               </div>
               <div className="rounded-2xl bg-white/70 px-4 py-3 text-gray-800 ring-1 ring-black/5 backdrop-blur">
-                <span className="font-extrabold text-brand-orange">Tip:</span> ofrece alternativas (“tengo en otro color”).
+                <span className="font-extrabold text-brand-emerald">Tip:</span> ofrece alternativas (“tengo en otro color”).
               </div>
               <div className="rounded-2xl bg-white/70 px-4 py-3 text-gray-800 ring-1 ring-black/5 backdrop-blur">
-                <span className="font-extrabold text-brand-orange">Tip:</span> evita mensajes largos, ve al punto.
+                <span className="font-extrabold text-brand-emerald">Tip:</span> evita mensajes largos, ve al punto.
               </div>
             </div>
           </div>
@@ -977,13 +975,13 @@ Ver detalles completos en la consola (F12)`;
             type="button"
             onClick={() => setActiveTab('preguntas')}
             className={`rounded-2xl px-5 py-2.5 text-sm font-bold shadow-sm transition-all ${activeTab === 'preguntas'
-              ? 'bg-brand-orange text-white shadow-md ring-2 ring-brand-orange/30'
+              ? 'bg-brand-emerald text-white shadow-md ring-2 ring-brand-emerald/30'
               : 'bg-white text-gray-700 ring-1 ring-black/10 hover:bg-gray-50'
               }`}
           >
             Preguntas
             {sellerQuestions.length > 0 && (
-              <span className={`ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-xs font-extrabold ${activeTab === 'preguntas' ? 'bg-white/20 text-white' : 'bg-brand-orange/10 text-brand-orange'
+              <span className={`ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-xs font-extrabold ${activeTab === 'preguntas' ? 'bg-white/20 text-white' : 'bg-brand-emerald/10 text-brand-emerald'
                 }`}>
                 {sellerQuestions.length}
               </span>
@@ -993,13 +991,13 @@ Ver detalles completos en la consola (F12)`;
             type="button"
             onClick={() => setActiveTab('respuestas')}
             className={`rounded-2xl px-5 py-2.5 text-sm font-bold shadow-sm transition-all ${activeTab === 'respuestas'
-              ? 'bg-brand-orange text-white shadow-md ring-2 ring-brand-orange/30'
+              ? 'bg-brand-emerald text-white shadow-md ring-2 ring-brand-emerald/30'
               : 'bg-white text-gray-700 ring-1 ring-black/10 hover:bg-gray-50'
               }`}
           >
             Respuestas
             {buyerQuestions.length > 0 && (
-              <span className={`ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-xs font-extrabold ${activeTab === 'respuestas' ? 'bg-white/20 text-white' : 'bg-brand-orange/10 text-brand-orange'
+              <span className={`ml-2 inline-flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-xs font-extrabold ${activeTab === 'respuestas' ? 'bg-white/20 text-white' : 'bg-brand-emerald/10 text-brand-emerald'
                 }`}>
                 {buyerQuestions.length}
               </span>
@@ -1015,15 +1013,15 @@ Ver detalles completos en la consola (F12)`;
               </div>
               <div className="mt-1 text-sm text-gray-600">
                 {activeTab === 'preguntas' ? (
-                  <>Preguntas que compradores hacen en tus publicaciones. <span className="font-extrabold text-brand-orange">{sellerQuestions.length}</span> pendientes.</>
+                  <>Preguntas que compradores hacen en tus publicaciones. <span className="font-extrabold text-brand-emerald">{sellerQuestions.length}</span> pendientes.</>
                 ) : (
-                  <>Preguntas que hiciste en publicaciones de otros vendedores. <span className="font-extrabold text-brand-orange">{buyerQuestions.length}</span> preguntas.</>
+                  <>Preguntas que hiciste en publicaciones de otros vendedores. <span className="font-extrabold text-brand-emerald">{buyerQuestions.length}</span> preguntas.</>
                 )}
               </div>
             </div>
             <div className="flex items-center gap-2">
               {activeTab === 'preguntas' && (
-                <span className="hidden sm:inline-flex rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                <span className="hidden sm:inline-flex rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                   Responde en <span className="ml-1 font-extrabold">menos de 1 hora</span>, si puedes.
                 </span>
               )}
@@ -1060,9 +1058,9 @@ Ver detalles completos en la consola (F12)`;
                 const pendingCount = totalQuestions - answeredCount;
 
                 return (
-                  <div key={listingId} className="rounded-3xl border-2 border-brand-orange/20 bg-white shadow-sm ring-1 ring-black/5">
+                  <div key={listingId} className="rounded-3xl border-2 border-brand-emerald/20 bg-white shadow-sm ring-1 ring-black/5">
                     {/* Encabezado del grupo: Información de la publicación */}
-                    <div className="border-b border-gray-100 bg-gradient-to-r from-brand-orange/5 to-purple-50/30 px-6 py-4">
+                    <div className="border-b border-gray-100 bg-gradient-to-r from-brand-emerald/5 to-purple-50/30 px-6 py-4">
                       <div className="flex items-center gap-4">
                         {/* Imagen del producto */}
                         <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-gray-100 ring-1 ring-black/5">
@@ -1082,7 +1080,7 @@ Ver detalles completos en la consola (F12)`;
                         <div className="min-w-0 flex-1">
                           <Link
                             href={`/listings/${listingId}`}
-                            className="text-lg font-extrabold uppercase text-gray-900 hover:text-brand-orange hover:underline"
+                            className="text-lg font-extrabold uppercase text-gray-900 hover:text-brand-emerald hover:underline"
                           >
                             {listingTitle}
                           </Link>
@@ -1101,7 +1099,7 @@ Ver detalles completos en la consola (F12)`;
                               </span>
                             )}
                             {pendingCount > 0 && (
-                              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-orange/10 px-3 py-1 text-xs font-semibold text-brand-orange">
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-semibold text-brand-emerald">
                                 <span className="inline-flex h-2 w-2 rounded-full bg-orange-500" />
                                 {pendingCount} {pendingCount === 1 ? 'pregunta pendiente' : 'preguntas pendientes'}
                               </span>
@@ -1124,7 +1122,7 @@ Ver detalles completos en la consola (F12)`;
                               <div className="border-b border-gray-100 bg-gray-50/50 px-5 py-2">
                                 <div className="text-xs font-semibold text-gray-600">
                                   Preguntas de{' '}
-                                  <Link href={`/perfil/${askerId}`} className="text-brand-orange hover:opacity-90 hover:underline">
+                                  <Link href={`/perfil/${askerId}`} className="text-brand-emerald hover:opacity-90 hover:underline">
                                     {askerName}
                                   </Link>
                                   {' '}({sortedQuestions.length})
@@ -1187,7 +1185,7 @@ Ver detalles completos en la consola (F12)`;
                                                 value={draftAnswers[q.id] ?? ''}
                                                 onChange={(e) => setDraftAnswers((p) => ({ ...p, [q.id]: e.target.value }))}
                                                 rows={3}
-                                                className="min-h-[80px] w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-orange"
+                                                className="min-h-[80px] w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                                                 placeholder="Escribe tu respuesta…"
                                               />
                                               <p className="mt-1 text-xs text-red-600 font-medium">
@@ -1205,7 +1203,7 @@ Ver detalles completos en la consola (F12)`;
                                                 <button
                                                   type="submit"
                                                   disabled={savingQuestionIds.has(q.id)}
-                                                  className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed sm:min-w-[160px]"
+                                                  className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed sm:min-w-[160px]"
                                                 >
                                                   {savingQuestionIds.has(q.id) ? 'Enviando…' : 'Enviar respuesta'}
                                                 </button>

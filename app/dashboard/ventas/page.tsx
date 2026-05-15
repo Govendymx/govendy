@@ -1136,7 +1136,7 @@ export default function DashboardVentasPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-orange text-white shadow-sm">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-emerald text-white shadow-sm">
               <span className="text-xs font-extrabold tracking-widest">GP</span>
             </div>
             <div className="leading-tight">
@@ -1145,7 +1145,7 @@ export default function DashboardVentasPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-3 py-1.5 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -1231,7 +1231,7 @@ export default function DashboardVentasPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Buscar..."
-                    className="w-full rounded-xl border border-gray-300 bg-white px-9 py-2 text-xs outline-none placeholder:text-gray-400 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                    className="w-full rounded-xl border border-gray-300 bg-white px-9 py-2 text-xs outline-none placeholder:text-gray-400 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   />
                 </div>
               </div>
@@ -1240,7 +1240,7 @@ export default function DashboardVentasPage() {
                 {/* Filtro activo siempre visible */}
                 {(() => {
                   const filterConfig: Record<string, { label: string; count: number; color: string }> = {
-                    all: { label: 'Todas', count: filterCounts.all, color: 'bg-brand-orange text-white shadow-sm' },
+                    all: { label: 'Todas', count: filterCounts.all, color: 'bg-brand-emerald text-white shadow-sm' },
                     pending_shipping: { label: 'Pendiente envío', count: filterCounts.pending_shipping, color: 'bg-amber-100 text-amber-700 ring-1 ring-amber-200' },
                     pending_payment: { label: 'Pendiente pago', count: filterCounts.pending_payment, color: 'bg-red-100 text-red-700 ring-1 ring-red-200' },
                     shipped: { label: 'Enviadas', count: filterCounts.shipped, color: 'bg-blue-100 text-blue-700 ring-1 ring-blue-200' },
@@ -1608,11 +1608,11 @@ export default function DashboardVentasPage() {
                                   if (isUuid(listingId)) {
                                     return (
                                       <div className="flex items-center gap-2">
-                                        <Link href={`/listings/${listingId}`} className="text-sm font-bold text-gray-900 hover:text-brand-orange hover:underline line-clamp-2 leading-tight">
+                                        <Link href={`/listings/${listingId}`} className="text-sm font-bold text-gray-900 hover:text-brand-emerald hover:underline line-clamp-2 leading-tight">
                                           {t}
                                         </Link>
                                         {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                          <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-orange ring-1 ring-pink-100 animate-pulse">
+                                          <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-pink-100 animate-pulse">
                                             Subasta
                                           </span>
                                         ) : null}
@@ -1625,7 +1625,7 @@ export default function DashboardVentasPage() {
                                         {t}
                                       </span>
                                       {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                        <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-orange ring-1 ring-pink-100 animate-pulse">
+                                        <span className="inline-flex items-center rounded-full bg-pink-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-pink-100 animate-pulse">
                                           Subasta
                                         </span>
                                       ) : null}
@@ -1861,7 +1861,7 @@ export default function DashboardVentasPage() {
                                         <div className="h-8 w-8 shrink-0 rounded bg-gray-100" />
                                       )}
                                       <div className="min-w-0 flex-1">
-                                        <Link href={`/listings/${String(it.listing_id)}`} className="text-xs font-bold text-gray-900 hover:text-brand-orange hover:underline line-clamp-1">
+                                        <Link href={`/listings/${String(it.listing_id)}`} className="text-xs font-bold text-gray-900 hover:text-brand-emerald hover:underline line-clamp-1">
                                           {t}
                                         </Link>
                                       </div>
@@ -2043,7 +2043,7 @@ export default function DashboardVentasPage() {
                                       ? 'bg-gray-100 text-gray-400 cursor-not-allowed ring-1 ring-gray-200'
                                       : isLabelDownloaded
                                         ? 'bg-green-600 text-white ring-1 ring-green-700 hover:bg-green-700'
-                                        : 'bg-brand-orange text-white ring-1 ring-brand-orange hover:opacity-90 animate-subtle-pulse'
+                                        : 'bg-brand-emerald text-white ring-1 ring-brand-emerald hover:opacity-90 animate-subtle-pulse'
                                       }`}
                                   >
                                     {isLabelDownloaded ? 'Volver a descargar' : 'Descargar guía'}
@@ -2089,7 +2089,7 @@ export default function DashboardVentasPage() {
                                       <select
                                         value={carrierDraft[orderId] ?? carrier ?? ''}
                                         onChange={(e) => setCarrierDraft((p) => ({ ...p, [orderId]: e.target.value }))}
-                                        className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-orange"
+                                        className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-emerald"
                                         disabled={(status === 'pending_payment' && !labelUrl) || (!!tracking && !isPickupOrder)}
                                       >
                                         <option value="" disabled>Paquetería</option>
@@ -2107,7 +2107,7 @@ export default function DashboardVentasPage() {
                                       <select
                                         value={carrierDraft[orderId] ?? carrier ?? (isPickupOrder ? 'Entrega Personal' : '')}
                                         onChange={(e) => setCarrierDraft((p) => ({ ...p, [orderId]: e.target.value }))}
-                                        className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-orange"
+                                        className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-emerald"
                                         disabled={isPickupOrder || (status === 'pending_payment' && !labelUrl) || (!!tracking && !isPickupOrder)}
                                       >
                                         {isPickupOrder ? (
@@ -2129,7 +2129,7 @@ export default function DashboardVentasPage() {
                                       value={trackingDraft[orderId] ?? (isPickupOrder && tracking ? tracking : '') ?? ''}
                                       onChange={(e) => setTrackingDraft((p) => ({ ...p, [orderId]: e.target.value }))}
                                       placeholder={isPickupOrder ? "Nombre de quien recibió" : "Ingresa el Rastreo"}
-                                      className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-orange"
+                                      className="w-full rounded-md border border-gray-200 bg-white px-2 py-1 text-[10px] outline-none focus:ring-1 focus:ring-brand-emerald"
                                       disabled={
                                         (status === 'pending_payment' && !labelUrl) ||
                                         (isSellerManagedOrder ? sellerManagedAllComplete : (!!tracking && !isPickupOrder))
@@ -2141,7 +2141,7 @@ export default function DashboardVentasPage() {
                                       type="button"
                                       onClick={() => markShipped(orderId)}
                                       disabled={Boolean(isMarking[orderId]) || String(trackingDraft[orderId] ?? '').trim().length < 2 || (status === 'pending_payment' && !labelUrl) || (isSellerManagedOrder && !String(carrierDraft[orderId] ?? carrier ?? '').trim())}
-                                      className="w-full rounded-lg bg-brand-orange px-2.5 py-1.5 text-[10px] font-bold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                                      className="w-full rounded-lg bg-brand-emerald px-2.5 py-1.5 text-[10px] font-bold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                                     >
                                       {isMarking[orderId] ? '...' : isPickupOrder ? 'Confirmar Entrega' : 'Marcar enviado'}
                                     </button>
@@ -2333,7 +2333,7 @@ export default function DashboardVentasPage() {
                                       setRateComment('');
                                       setRateOpen(true);
                                     }}
-                                    className={`mb-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-orange px-2 py-1.5 text-[10px] font-bold text-white shadow-sm hover:opacity-90 disabled:opacity-60 transition-all ${shippedAt && !alreadyRated ? 'animate-pulse ring-2 ring-yellow-300 ring-offset-1' : ''}`}
+                                    className={`mb-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-brand-emerald px-2 py-1.5 text-[10px] font-bold text-white shadow-sm hover:opacity-90 disabled:opacity-60 transition-all ${shippedAt && !alreadyRated ? 'animate-pulse ring-2 ring-yellow-300 ring-offset-1' : ''}`}
                                   >
                                     <svg width="15" height="15" viewBox="0 0 24 24" fill="#FDE047" stroke="#FDE047" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 drop-shadow-sm">
                                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -2359,9 +2359,9 @@ export default function DashboardVentasPage() {
                                     setChatOpen(true);
                                     setHasUnreadByOrderId((p) => ({ ...p, [orderId]: false }));
                                   }}
-                                  className={`relative flex w-full items-center justify-center gap-2 rounded-lg bg-white px-2 py-1.5 text-[10px] font-bold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-orange' : 'ring-black/10'}`}
+                                  className={`relative flex w-full items-center justify-center gap-2 rounded-lg bg-white px-2 py-1.5 text-[10px] font-bold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-emerald' : 'ring-black/10'}`}
                                 >
-                                  Chat {hasUnread && <span className="h-1.5 w-1.5 rounded-full bg-brand-orange"></span>}
+                                  Chat {hasUnread && <span className="h-1.5 w-1.5 rounded-full bg-brand-emerald"></span>}
                                 </button>
                               ) : null}
                             </div>
@@ -2429,7 +2429,7 @@ export default function DashboardVentasPage() {
                       key={v}
                       type="button"
                       onClick={() => setRateStars(v)}
-                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-orange text-white ring-brand-orange' : 'bg-white text-gray-700 ring-black/10 hover:bg-pink-50'
+                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-pink-50'
                         }`}
                     >
                       {v}
@@ -2442,7 +2442,7 @@ export default function DashboardVentasPage() {
                 value={rateComment}
                 onChange={(e) => setRateComment(e.target.value)}
                 placeholder="Cuenta tu experiencia..."
-                className="mt-2 h-20 w-full resize-none rounded-xl border border-gray-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-2 h-20 w-full resize-none rounded-xl border border-gray-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-brand-emerald"
               />
             </div>
 
@@ -2458,7 +2458,7 @@ export default function DashboardVentasPage() {
               <button
                 type="button"
                 onClick={() => void submitRateBuyer()}
-                className="rounded-xl bg-brand-orange px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
                 disabled={isSubmittingRating || !rateOrderId || rateStars < 1 || rateStars > 10}
               >
                 {isSubmittingRating ? 'Enviando…' : 'Enviar calificación'}

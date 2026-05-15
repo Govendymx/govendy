@@ -44,7 +44,7 @@ export function ColorVariantManager({
                     {colors.map((color, index) => (
                         <div
                             key={index}
-                            className="flex items-center gap-3 rounded-xl bg-white border-2 border-gray-200 p-3 hover:border-brand-orange transition-colors"
+                            className="flex items-center gap-3 rounded-xl bg-white border-2 border-gray-200 p-3 hover:border-brand-emerald transition-colors"
                         >
                             <div className="flex-1">
                                 <p className="font-semibold text-gray-900">{color}</p>
@@ -74,13 +74,13 @@ export function ColorVariantManager({
                     onChange={(e) => setNewColor(e.target.value)}
                     onKeyPress={handleKeyPress}
                     placeholder="Ej. Rojo, Azul, Negro..."
-                    className="flex-1 rounded-xl border-gray-200 px-4 py-2.5 font-medium focus:border-brand-orange focus:ring-brand-orange"
+                    className="flex-1 rounded-xl border-gray-200 px-4 py-2.5 font-medium focus:border-brand-emerald focus:ring-brand-emerald"
                 />
                 <button
                     type="button"
                     onClick={addColor}
                     disabled={!newColor.trim()}
-                    className="rounded-xl bg-brand-orange px-6 py-2.5 font-bold text-white shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                    className="rounded-xl bg-brand-emerald px-6 py-2.5 font-bold text-white shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                 >
                     Agregar
                 </button>

@@ -197,7 +197,7 @@ function AdminDevolucionesContent() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar por ID de orden, ID de disputa o motivo..."
-                className="w-full rounded-xl border border-gray-300 bg-white px-10 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                className="w-full rounded-xl border border-gray-300 bg-white px-10 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
               />
               {searchQuery && (
                 <button
@@ -230,7 +230,7 @@ function AdminDevolucionesContent() {
                   onClick={() => setStatus(t.k)}
                   className={classNames(
                     'rounded-full px-4 py-2 text-sm font-semibold ring-1',
-                    active ? 'bg-brand-orange text-white ring-brand-orange' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
+                    active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
                   )}
                 >
                   {t.label}
@@ -306,7 +306,7 @@ function AdminDevolucionesContent() {
                                 e.stopPropagation();
                                 copyToClipboard(id, id);
                               }}
-                              className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                              className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                               title="Copiar ID de disputa"
                             >
                               {copiedId === id ? '✅' : '📋'}
@@ -344,7 +344,7 @@ function AdminDevolucionesContent() {
                       className={classNames(
                         'rounded-xl px-4 py-2 text-sm font-semibold shadow-sm ring-1',
                         page === currentPage
-                          ? 'bg-brand-orange text-white ring-brand-orange'
+                          ? 'bg-brand-emerald text-white ring-brand-emerald'
                           : 'bg-white text-gray-900 ring-black/5 hover:bg-gray-50',
                       )}
                     >

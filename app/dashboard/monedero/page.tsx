@@ -1010,7 +1010,7 @@ export default function MonederoPage() {
           )}
           {!banner.image_url && (
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-800">
-              <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/3 transform bg-gradient-to-l from-brand-orange/20 to-transparent blur-3xl"></div>
+              <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/3 transform bg-gradient-to-l from-brand-emerald/20 to-transparent blur-3xl"></div>
             </div>
           )}
 
@@ -1033,7 +1033,7 @@ export default function MonederoPage() {
       ) : (
         <div className="mb-8 overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 to-gray-800 shadow-lg ring-1 ring-white/10">
           <div className="relative px-6 py-8 sm:px-12 sm:py-10">
-            <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/3 transform bg-gradient-to-l from-brand-orange/20 to-transparent blur-3xl"></div>
+            <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/3 transform bg-gradient-to-l from-brand-emerald/20 to-transparent blur-3xl"></div>
             <div className="relative z-10 max-w-2xl">
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 ¡Tu dinero, más seguro y rápido!
@@ -1049,7 +1049,7 @@ export default function MonederoPage() {
 
       {loading ? (
         <div className="flex h-64 items-center justify-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-orange border-t-transparent"></div>
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent"></div>
         </div>
       ) : error ? (
         <div className="rounded-xl bg-red-50 p-4 text-red-600">
@@ -1059,7 +1059,7 @@ export default function MonederoPage() {
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Balance Card */}
           <div className="lg:col-span-1">
-            <div className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl">
+            <div className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl">
               {/* Decorative Elements */}
               <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/10 blur-3xl"></div>
               <div className="absolute -bottom-12 -left-12 h-40 w-40 rounded-full bg-pink-900/20 blur-3xl"></div>
@@ -1139,8 +1139,8 @@ export default function MonederoPage() {
                 onClick={() => setIsTransferModalOpen(true)}
                 className="group relative flex flex-col items-center gap-2 rounded-2xl bg-gradient-to-br from-gray-900 to-gray-800 px-4 py-5 text-white shadow-lg ring-1 ring-white/10 transition-all hover:scale-[1.03] hover:shadow-xl active:scale-[0.98]"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-orange/20 ring-1 ring-brand-orange/30 transition group-hover:bg-brand-orange/30">
-                  <svg className="h-5 w-5 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-emerald/20 ring-1 ring-brand-emerald/30 transition group-hover:bg-brand-emerald/30">
+                  <svg className="h-5 w-5 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                   </svg>
                 </div>
@@ -1311,7 +1311,7 @@ export default function MonederoPage() {
                         type="number"
                         name="amount"
                         id="amount"
-                        className="block w-full rounded-xl border-gray-300 pl-9 pr-4 py-3 text-lg font-bold text-gray-900 focus:border-brand-orange focus:ring-brand-orange"
+                        className="block w-full rounded-xl border-gray-300 pl-9 pr-4 py-3 text-lg font-bold text-gray-900 focus:border-brand-emerald focus:ring-brand-emerald"
                         placeholder="Otro monto..."
                         min="10"
                         value={topupAmount}
@@ -1473,7 +1473,7 @@ export default function MonederoPage() {
               <h3 className="font-semibold text-gray-900">Información Importante</h3>
               <ul className="mt-4 space-y-3 text-sm text-gray-600">
                 <li className="flex gap-2">
-                  <span className="text-brand-orange font-bold">!</span>
+                  <span className="text-brand-emerald font-bold">!</span>
                   <span className="font-medium text-gray-900">
                     No se permiten pagos mixtos.
                   </span>
@@ -1482,11 +1482,11 @@ export default function MonederoPage() {
                   Debes cubrir el 100% del costo con PocketCash o el 100% con otro método (depósito/tarjeta).
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-brand-orange">•</span>
+                  <span className="text-brand-emerald">•</span>
                   Gana PocketCash con cada compra completada.
                 </li>
                 <li className="flex gap-2">
-                  <span className="text-brand-orange">•</span>
+                  <span className="text-brand-emerald">•</span>
                   Tu PocketCash no vence mientras tu cuenta esté activa.
                 </li>
               </ul>
@@ -1541,7 +1541,7 @@ export default function MonederoPage() {
                           <div className="font-bold text-gray-900">+{formatMoney(topup.amount)}</div>
                           <button
                             onClick={() => generateOfflinePaymentNote(topup.id, topup.amount, getMethodFromMetadata(topup.mercadopago_preference_id), getInstructionFromMetadata(topup.mercadopago_preference_id))}
-                            className="text-xs font-medium text-brand-orange hover:text-pink-700 underline"
+                            className="text-xs font-medium text-brand-emerald hover:text-pink-700 underline"
                           >
                             Descargar Ficha
                           </button>
@@ -1606,7 +1606,7 @@ export default function MonederoPage() {
                         </div>
                         <button
                           onClick={() => generateTransactionReceipt(tx)}
-                          className="mt-1 text-xs font-medium text-brand-orange hover:text-pink-700 underline flex items-center justify-end gap-1 ml-auto"
+                          className="mt-1 text-xs font-medium text-brand-emerald hover:text-pink-700 underline flex items-center justify-end gap-1 ml-auto"
                         >
                           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -1631,9 +1631,9 @@ export default function MonederoPage() {
             </div>
 
             <div className="p-6">
-              <div className="mb-6 flex flex-col items-center justify-center rounded-xl bg-brand-orange/5 p-6 border border-brand-orange/10">
+              <div className="mb-6 flex flex-col items-center justify-center rounded-xl bg-brand-emerald/5 p-6 border border-brand-emerald/10">
                 <span className="text-sm font-medium text-gray-500">Saldo Disponible</span>
-                <span className="mt-1 text-3xl font-bold text-brand-orange">
+                <span className="mt-1 text-3xl font-bold text-brand-emerald">
                   {formatMoney(wallet?.balance || 0)}
                 </span>
               </div>
@@ -1654,7 +1654,7 @@ export default function MonederoPage() {
                 <button
                   onClick={handleWithdraw}
                   disabled={isWithdrawLoading || (wallet?.balance || 0) < 0.01}
-                  className="flex-1 rounded-xl bg-brand-orange px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-orange/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isWithdrawLoading ? 'Procesando...' : 'Confirmar Retiro'}
                 </button>
@@ -1691,7 +1691,7 @@ export default function MonederoPage() {
                       setTransferRecipient(v);
                     }}
                     placeholder="0000 0000 0000 0000"
-                    className="w-full rounded-xl border-gray-300 pl-10 focus:border-brand-orange focus:ring-brand-orange font-mono tracking-wider"
+                    className="w-full rounded-xl border-gray-300 pl-10 focus:border-brand-emerald focus:ring-brand-emerald font-mono tracking-wider"
                     required
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -1711,7 +1711,7 @@ export default function MonederoPage() {
                   onChange={(e) => setTransferRecipientName(e.target.value)}
                   placeholder="Ej. Juan Pérez"
                   maxLength={80}
-                  className="w-full rounded-xl border-gray-300 focus:border-brand-orange focus:ring-brand-orange"
+                  className="w-full rounded-xl border-gray-300 focus:border-brand-emerald focus:ring-brand-emerald"
                 />
               </div>
 
@@ -1728,7 +1728,7 @@ export default function MonederoPage() {
                     placeholder="0.00"
                     min="1"
                     step="0.01"
-                    className="w-full rounded-xl border-gray-300 pl-8 focus:border-brand-orange focus:ring-brand-orange text-lg font-bold"
+                    className="w-full rounded-xl border-gray-300 pl-8 focus:border-brand-emerald focus:ring-brand-emerald text-lg font-bold"
                     required
                   />
                 </div>
@@ -1743,7 +1743,7 @@ export default function MonederoPage() {
                   onChange={(e) => setTransferConcept(e.target.value)}
                   placeholder="Ej. Pago de servicio"
                   maxLength={100}
-                  className="w-full rounded-xl border-gray-300 focus:border-brand-orange focus:ring-brand-orange"
+                  className="w-full rounded-xl border-gray-300 focus:border-brand-emerald focus:ring-brand-emerald"
                 />
               </div>
 
@@ -1755,7 +1755,7 @@ export default function MonederoPage() {
                   onChange={(e) => setTransferReference(e.target.value)}
                   placeholder="Ej. ABC123"
                   maxLength={50}
-                  className="w-full rounded-xl border-gray-300 focus:border-brand-orange focus:ring-brand-orange"
+                  className="w-full rounded-xl border-gray-300 focus:border-brand-emerald focus:ring-brand-emerald"
                 />
                 <p className="mt-1 text-xs text-gray-500">Se incluirá en tu comprobante y estado de cuenta.</p>
               </div>
@@ -1772,7 +1772,7 @@ export default function MonederoPage() {
                 <button
                   type="submit"
                   disabled={transferLoading || !transferRecipient || !transferAmount}
-                  className="flex-1 rounded-xl bg-brand-orange px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-orange/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="flex-1 rounded-xl bg-brand-emerald px-4 py-3 text-sm font-bold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
                   {transferLoading ? (
                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

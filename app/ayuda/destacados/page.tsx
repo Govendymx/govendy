@@ -66,25 +66,25 @@ export default function GuiaDestacados() {
             <h4 className="mb-2 text-lg font-bold text-gray-900">Plan Básico</h4>
             <div className="mb-4 text-3xl font-bold text-gray-900">$29 <span className="text-sm font-normal text-gray-500">mxn</span></div>
             <ul className="mb-6 space-y-3 text-sm text-gray-600">
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> 3 días de visibilidad</li>
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> Prioridad en búsqueda</li>
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> Etiqueta estándar</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> 3 días de visibilidad</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> Prioridad en búsqueda</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> Etiqueta estándar</li>
             </ul>
           </div>
 
           {/* Plan Pro */}
-          <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg ring-1 ring-brand-orange/20">
-            <div className="absolute right-0 top-0 rounded-bl-xl bg-brand-orange px-3 py-1 text-xs font-bold text-white">RECOMENDADO</div>
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-orange/10 text-brand-orange">
+          <div className="relative overflow-hidden rounded-2xl bg-white p-6 shadow-lg ring-1 ring-brand-emerald/20">
+            <div className="absolute right-0 top-0 rounded-bl-xl bg-brand-emerald px-3 py-1 text-xs font-bold text-white">RECOMENDADO</div>
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand-emerald/10 text-brand-emerald">
               <Star className="h-6 w-6" />
             </div>
             <h4 className="mb-2 text-lg font-bold text-gray-900">Plan Pro</h4>
             <div className="mb-4 text-3xl font-bold text-gray-900">$59 <span className="text-sm font-normal text-gray-500">mxn</span></div>
             <ul className="mb-6 space-y-3 text-sm text-gray-600">
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> 7 días de visibilidad</li>
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> Máxima prioridad</li>
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> Etiqueta 'Destacado'</li>
-              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-orange" /> Reporte de vistas</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> 7 días de visibilidad</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> Máxima prioridad</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> Etiqueta 'Destacado'</li>
+              <li className="flex items-center"><Star className="mr-2 h-4 w-4 text-brand-emerald" /> Reporte de vistas</li>
             </ul>
           </div>
         </div>

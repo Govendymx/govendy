@@ -156,7 +156,7 @@ const MenuBar = ({
         <select
           onChange={(e) => editor.chain().focus().setFontSize(e.target.value).run()}
           value={editor.getAttributes('textStyle').fontSize || ''}
-          className="h-8 rounded border border-gray-300 bg-white px-2 py-0 text-xs text-gray-700 focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+          className="h-8 rounded border border-gray-300 bg-white px-2 py-0 text-xs text-gray-700 focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
           title="Tamaño de letra"
         >
           <option value="" disabled>Tam.</option>
@@ -220,7 +220,7 @@ const MenuBar = ({
               type="button"
               key={i}
               onClick={() => addExistingImage(src)}
-              className="relative h-8 w-8 overflow-hidden rounded border border-gray-200 hover:border-brand-orange"
+              className="relative h-8 w-8 overflow-hidden rounded border border-gray-200 hover:border-brand-emerald"
               title="Insertar esta imagen"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -303,7 +303,7 @@ export default function RichTextEditor({
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        className: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[300px] p-4 text-gray-700 prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-a:text-brand-orange prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-sm marker:text-gray-400',
+        className: 'prose prose-sm sm:prose-base max-w-none focus:outline-none min-h-[300px] p-4 text-gray-700 prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-a:text-brand-emerald prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-img:shadow-sm marker:text-gray-400',
         style: 'min-height: 300px;',
       },
     },
@@ -311,7 +311,7 @@ export default function RichTextEditor({
 
   return (
     <div
-      className="flex flex-col w-full rounded-xl border border-gray-300 bg-white shadow-sm transition-all focus-within:border-brand-orange focus-within:ring-1 focus-within:ring-brand-orange"
+      className="flex flex-col w-full rounded-xl border border-gray-300 bg-white shadow-sm transition-all focus-within:border-brand-emerald focus-within:ring-1 focus-within:ring-brand-emerald"
     >
       {editable && <MenuBar editor={editor} availableImages={availableImages} />}
       <EditorContent

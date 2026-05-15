@@ -555,14 +555,14 @@ export default function AdminMetricasPage() {
                     value={payoutQ}
                     onChange={(e) => setPayoutQ(e.target.value)}
                     placeholder="Buscar vendedor (nombre, email, teléfono, id)…"
-                    className="w-[min(320px,80vw)] rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="w-[min(320px,80vw)] rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   <label className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={hidePaid}
                       onChange={(e) => setHidePaid(e.target.checked)}
-                      className="rounded border-gray-300 text-brand-orange focus:ring-brand-orange"
+                      className="rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
                     />
                     Ocultar ya pagados
                   </label>
@@ -692,10 +692,10 @@ export default function AdminMetricasPage() {
                                 </Link>
                                 <div className="flex items-center gap-1 text-[11px] text-gray-500">
                                   {sid}
-                                  <CopyButton text={sid} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                                  <CopyButton text={sid} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                                 </div>
                                 <div className="mt-1">
-                                  <Link href={`/perfil/${encodeURIComponent(sid)}`} className="text-[11px] font-semibold text-brand-orange hover:opacity-90">
+                                  <Link href={`/perfil/${encodeURIComponent(sid)}`} className="text-[11px] font-semibold text-brand-emerald hover:opacity-90">
                                     Ver reputación →
                                   </Link>
                                 </div>
@@ -708,7 +708,7 @@ export default function AdminMetricasPage() {
                               <td className="px-4 py-3 text-right text-gray-700">{formatMoney(Number(s?.total_paid_total ?? 0) || 0)}</td>
                               <td className="px-4 py-3 text-right text-gray-700">{formatMoney(Number(s?.shipping_fee_total ?? 0) || 0)}</td>
                               <td className="px-4 py-3 text-right font-semibold text-gray-900">{totalOrders}</td>
-                              <td className="px-4 py-3 text-right font-extrabold text-brand-orange">{formatMoney(Number(s?.payout_total ?? 0) || 0)}</td>
+                              <td className="px-4 py-3 text-right font-extrabold text-brand-emerald">{formatMoney(Number(s?.payout_total ?? 0) || 0)}</td>
                               <td className="px-4 py-3 text-right text-gray-700">{formatMoney(Number(s?.commission_total ?? 0) || 0)}</td>
                               <td className="px-4 py-3 text-right text-gray-700">{formatMoney(Number(s?.shipping_subsidy_total ?? 0) || 0)}</td>
                               <td className="px-4 py-3">
@@ -743,7 +743,7 @@ export default function AdminMetricasPage() {
                                       setExpandedSeller(sid);
                                     }
                                   }}
-                                  className="text-xs font-semibold text-brand-orange hover:underline"
+                                  className="text-xs font-semibold text-brand-emerald hover:underline"
                                 >
                                   {expandedSeller === sid ? 'Ocultar' : 'Ver'} órdenes ({totalOrders})
                                 </button>
@@ -760,7 +760,7 @@ export default function AdminMetricasPage() {
                                           <div>
                                             <div className="flex items-center gap-1 text-xs font-semibold text-gray-900">
                                               Orden {String(o?.id || '').slice(0, 8)}…
-                                              <CopyButton text={String(o?.id || '')} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                                              <CopyButton text={String(o?.id || '')} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                                             </div>
                                             <div className="mt-1 text-[11px] text-gray-600">
                                               Total: {formatMoney(Number(o?.total ?? 0) || 0)} · Comisión:{' '}
@@ -948,7 +948,7 @@ export default function AdminMetricasPage() {
                 value={adminName}
                 onChange={(e) => setAdminName(e.target.value)}
                 placeholder="Ingresa tu nombre"
-                className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                 autoFocus
               />
             </div>
@@ -991,7 +991,7 @@ export default function AdminMetricasPage() {
                   }
                 }}
                 disabled={isMarkingPaid.has(pendingSellerId || '') || processingLock || !adminName.trim()}
-                className="flex-1 rounded-xl bg-brand-orange px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                className="flex-1 rounded-xl bg-brand-emerald px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
               >
                 Aceptar
               </button>

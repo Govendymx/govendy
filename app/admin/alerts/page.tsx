@@ -24,7 +24,7 @@ function AlertsContent() {
   if (!mounted) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald"></div>
       </div>
     );
   }
@@ -75,7 +75,7 @@ function AlertsContent() {
             href="/admin/alerts"
             className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
               typeFilter === 'all'
-                ? 'bg-brand-orange text-white shadow-sm'
+                ? 'bg-brand-emerald text-white shadow-sm'
                 : 'bg-white text-gray-700 shadow-sm ring-1 ring-black/5 hover:bg-gray-50'
             }`}
           >
@@ -109,7 +109,7 @@ function AlertsContent() {
             placeholder="Buscar alertas..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+            className="w-full sm:w-64 rounded-xl border border-gray-300 px-4 py-2 pl-10 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
           />
           <span className="absolute left-3 top-2.5 text-gray-400">🔍</span>
         </div>
@@ -185,7 +185,7 @@ function AlertsContent() {
                                     el.innerHTML = original;
                                   }, 1000);
                                 }}
-                                className="ml-1 hover:text-brand-orange focus:outline-none"
+                                className="ml-1 hover:text-brand-emerald focus:outline-none"
                                 title="Copiar ID"
                               >
                                 📋
@@ -208,7 +208,7 @@ function AlertsContent() {
                                     el.innerHTML = original;
                                   }, 1000);
                                 }}
-                                className="ml-1 hover:text-brand-orange focus:outline-none"
+                                className="ml-1 hover:text-brand-emerald focus:outline-none"
                                 title="Copiar ID"
                               >
                                 📋
@@ -231,7 +231,7 @@ function AlertsContent() {
                                     el.innerHTML = original;
                                   }, 1000);
                                 }}
-                                className="ml-1 hover:text-brand-orange focus:outline-none"
+                                className="ml-1 hover:text-brand-emerald focus:outline-none"
                                 title="Copiar ID"
                               >
                                 📋
@@ -273,7 +273,7 @@ export default function AlertsPage() {
   return (
     <Suspense fallback={
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-orange"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-emerald"></div>
       </div>
     }>
       <AlertsContent />

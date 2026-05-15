@@ -14,7 +14,7 @@ export default function GuiaPlataforma() {
       lastUpdated="8 de febrero de 2026"
     >
       <div className="space-y-2">
-        <div className="flex items-center mb-4 text-brand-orange font-bold text-lg">
+        <div className="flex items-center mb-4 text-brand-emerald font-bold text-lg">
           <Home className="mr-2 h-6 w-6" />
           1. Inicio (Home)
         </div>
@@ -25,7 +25,7 @@ export default function GuiaPlataforma() {
           imageAlt="Página de inicio"
         />
 
-        <div className="flex items-center mb-4 mt-8 text-brand-orange font-bold text-lg">
+        <div className="flex items-center mb-4 mt-8 text-brand-emerald font-bold text-lg">
           <Grid className="mr-2 h-6 w-6" />
           2. Categorías
         </div>
@@ -36,7 +36,7 @@ export default function GuiaPlataforma() {
           imageAlt="Menú de categorías"
         />
 
-        <div className="flex items-center mb-4 mt-8 text-brand-orange font-bold text-lg">
+        <div className="flex items-center mb-4 mt-8 text-brand-emerald font-bold text-lg">
           <User className="mr-2 h-6 w-6" />
           3. Perfil de Usuario
         </div>
@@ -47,7 +47,7 @@ export default function GuiaPlataforma() {
           imageAlt="Panel de perfil"
         />
 
-        <div className="flex items-center mb-4 mt-8 text-brand-orange font-bold text-lg">
+        <div className="flex items-center mb-4 mt-8 text-brand-emerald font-bold text-lg">
           <ShoppingCart className="mr-2 h-6 w-6" />
           4. Carrito de Compras
         </div>
@@ -58,7 +58,7 @@ export default function GuiaPlataforma() {
           imageAlt="Vista de carrito"
         />
 
-        <div className="flex items-center mb-4 mt-8 text-brand-orange font-bold text-lg">
+        <div className="flex items-center mb-4 mt-8 text-brand-emerald font-bold text-lg">
           <Clock className="mr-2 h-6 w-6" />
           5. Historial
         </div>

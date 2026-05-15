@@ -9,32 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Color rosa principal de Liverpool
-        'brand-orange': '#FF6600',
-        // Colores rosa tipo Liverpool
-        liverpool: {
-          50: '#fff3eb',
-          100: '#ffe4c6',
-          200: '#ffcb90',
-          300: '#ffaa51',
-          400: '#ff861f',
-          500: '#ff6600',
-          600: '#ef4e00', // Naranja Liverpool principal
-          700: '#c63800',
-          800: '#9d2d09',
-          900: '#7e270c',
-        },
+        // Nueva Paleta Esmeralda Tech-Volt
+        'brand-emerald': '#1FB59B',
+        'brand-volt': '#CCFF00',
+        'brand-mango': '#F0B130',
+        'brand-onyx': '#212121',
+        
+        // Colores primarios derivados del Esmeralda
         primary: {
-          50: '#fff3eb',
-          100: '#ffe4c6',
-          200: '#ffcb90',
-          300: '#ffaa51',
-          400: '#ff861f',
-          500: '#ff6600', // Naranja primario
-          600: '#ef4e00',
-          700: '#c63800',
-          800: '#9d2d09',
-          900: '#7e270c',
+          50: '#f0fdfa',
+          100: '#ccfbf1',
+          200: '#99f6e4',
+          300: '#5eead4',
+          400: '#2dd4bf',
+          500: '#1FB59B',
+          600: '#0d9488',
+          700: '#0f766e',
+          800: '#115e59',
+          900: '#134e4a',
         },
       },
       fontFamily: {

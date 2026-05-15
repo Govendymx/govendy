@@ -406,16 +406,14 @@ export default function DashboardPerfilPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Mi perfil</div>
               <div className="text-xs text-gray-500">Información de tu cuenta</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -450,7 +448,7 @@ export default function DashboardPerfilPage() {
                 Email: <span className="font-semibold text-gray-700">{email || '—'}</span> · Ingreso: <span className="font-semibold text-gray-700">{createdAt ? new Date(createdAt).toLocaleDateString('es-MX') : '—'}</span>
               </div>
             </div>
-            <Link href="/verificacion" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/verificacion" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Verificación
             </Link>
           </div>
@@ -491,7 +489,7 @@ export default function DashboardPerfilPage() {
                     type="text"
                     value={form.official_store_name}
                     onChange={(e) => setForm({ ...form, official_store_name: e.target.value })}
-                    className="mt-1 block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                    className="mt-1 block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                     placeholder="Ej. Samsung Oficial"
                   />
                 </div>
@@ -501,7 +499,7 @@ export default function DashboardPerfilPage() {
                     type="text"
                     value={form.official_store_slogan}
                     onChange={(e) => setForm({ ...form, official_store_slogan: e.target.value })}
-                    className="mt-1 block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                    className="mt-1 block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                     placeholder="Ej. La mejor tecnología en tu bolsillo"
                   />
                 </div>
@@ -518,7 +516,7 @@ export default function DashboardPerfilPage() {
                       type="text"
                       value={form.official_store_brand_color}
                       onChange={(e) => setForm({ ...form, official_store_brand_color: e.target.value })}
-                      className="block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-orange focus:ring-brand-orange"
+                      className="block w-full rounded-xl border-gray-200 bg-gray-50 text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                       placeholder="#000000"
                     />
                   </div>
@@ -576,7 +574,7 @@ export default function DashboardPerfilPage() {
                       />
                     </label>
                   )}
-                  {isUploadingBanner && <div className="mt-1 text-xs text-brand-orange">Subiendo...</div>}
+                  {isUploadingBanner && <div className="mt-1 text-xs text-brand-emerald">Subiendo...</div>}
                 </div>
               </div>
             </div>
@@ -621,7 +619,7 @@ export default function DashboardPerfilPage() {
                   type="button"
                   onClick={handleResetTour}
                   disabled={isResettingTour}
-                  className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isResettingTour ? 'Reactivando…' : 'Reactivar todos'}
                 </button>
@@ -642,7 +640,7 @@ export default function DashboardPerfilPage() {
                 </div>
               </div>
               {profile?.plan_type === 'pro' ? (
-                <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-orange ring-1 ring-pink-100">
+                <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-pink-100">
                   PRO
                 </div>
               ) : (
@@ -697,7 +695,7 @@ export default function DashboardPerfilPage() {
                   </div>
                 ) : (
                   <div className="text-sm text-gray-500">
-                    Esta función es exclusiva para usuarios <span className="font-bold text-brand-orange">PRO</span>.
+                    Esta función es exclusiva para usuarios <span className="font-bold text-brand-emerald">PRO</span>.
                   </div>
                 )}
               </div>
@@ -710,7 +708,7 @@ export default function DashboardPerfilPage() {
                   type="text"
                   value={form.official_store_slogan}
                   onChange={(e) => setForm({ ...form, official_store_slogan: e.target.value })}
-                  className="mt-1 block w-full rounded-xl border-gray-200 bg-white text-sm focus:border-brand-orange focus:ring-brand-orange"
+                  className="mt-1 block w-full rounded-xl border-gray-200 bg-white text-sm focus:border-brand-emerald focus:ring-brand-emerald"
                   placeholder="Escribe tu eslogan aquí..."
                 />
                 <p className="mt-1 text-[10px] text-gray-500">Esta frase aparecerá debajo de tu logo en el carrusel de la página de inicio.</p>
@@ -746,7 +744,7 @@ export default function DashboardPerfilPage() {
                         const val = e.target.value.slice(0, 10);
                         setForm((p) => ({ ...p, nickname: val }));
                       }}
-                      className="block w-full rounded-xl border border-gray-300 px-4 py-3 pr-16 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="block w-full rounded-xl border border-gray-300 px-4 py-3 pr-16 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       placeholder="Ej: FashionMx"
                     />
                     <div className={`absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold tabular-nums ${form.nickname.length >= 10 ? 'text-red-500' : 'text-gray-400'}`}>
@@ -759,7 +757,7 @@ export default function DashboardPerfilPage() {
                   {form.nickname && (
                     <div className="mt-2 flex items-center gap-1.5 text-xs text-gray-600">
                       <span>Vista previa:</span>
-                      <span className="rounded-full bg-brand-orange/10 px-2 py-0.5 font-semibold text-brand-orange">
+                      <span className="rounded-full bg-brand-emerald/10 px-2 py-0.5 font-semibold text-brand-emerald">
                         {form.nickname}
                       </span>
                     </div>
@@ -772,7 +770,7 @@ export default function DashboardPerfilPage() {
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                   </svg>
                   <div className="text-sm text-gray-500">
-                    Exclusivo para <Link href="/dashboard/pro" className="font-bold text-brand-orange hover:underline">PRO o Platinum</Link>.
+                    Exclusivo para <Link href="/dashboard/pro" className="font-bold text-brand-emerald hover:underline">PRO o Platinum</Link>.
                   </div>
                 </div>
               )}
@@ -786,16 +784,16 @@ export default function DashboardPerfilPage() {
               <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Nombre(s) <span className="text-red-600">*</span></label>
-                  <input value={form.first_name} onChange={(e) => setForm((p) => ({ ...p, first_name: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="Tu nombre" />
+                  <input value={form.first_name} onChange={(e) => setForm((p) => ({ ...p, first_name: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="Tu nombre" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Apellidos <span className="text-red-600">*</span></label>
-                  <input value={form.last_name} onChange={(e) => setForm((p) => ({ ...p, last_name: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="Tus apellidos" />
+                  <input value={form.last_name} onChange={(e) => setForm((p) => ({ ...p, last_name: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="Tus apellidos" />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Teléfono <span className="text-red-600">*</span></label>
-                <input value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="10 dígitos" />
+                <input value={form.phone} onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="10 dígitos" />
               </div>
               <div className="sm:col-span-2">
                 <label className="block text-sm font-medium text-gray-700">Email <span className="text-red-600">*</span></label>
@@ -817,7 +815,7 @@ export default function DashboardPerfilPage() {
                     setForm((p) => ({ ...p, rfc: val }));
                   }}
                   maxLength={13}
-                  className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange ${form.rfc && (form.rfc.length === 12 || form.rfc.length === 13)
+                  className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${form.rfc && (form.rfc.length === 12 || form.rfc.length === 13)
                       ? 'border-green-400 bg-green-50/50'
                       : form.rfc && form.rfc.length > 0
                         ? 'border-amber-300'
@@ -848,7 +846,7 @@ export default function DashboardPerfilPage() {
                   Estos datos se usan para que soporte/admin pueda pagarte cuando se liberen tus ventas. (Ejemplo México: CLABE)
                 </div>
               </div>
-              <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-orange ring-1 ring-pink-100">PRO</div>
+              <div className="rounded-full bg-white px-3 py-1 text-[11px] font-bold text-brand-emerald ring-1 ring-pink-100">PRO</div>
             </div>
 
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -857,7 +855,7 @@ export default function DashboardPerfilPage() {
                 <input
                   value={form.payout_bank_name}
                   onChange={(e) => setForm((p) => ({ ...p, payout_bank_name: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ej: BBVA, Banamex, Santander…"
                 />
               </div>
@@ -866,7 +864,7 @@ export default function DashboardPerfilPage() {
                 <input
                   value={form.payout_account_holder}
                   onChange={(e) => setForm((p) => ({ ...p, payout_account_holder: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Nombre del titular de la cuenta"
                 />
               </div>
@@ -878,7 +876,7 @@ export default function DashboardPerfilPage() {
                     const next = e.target.value.replace(/\s+/g, '');
                     setForm((p) => ({ ...p, payout_clabe: next }));
                   }}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   inputMode="numeric"
                   placeholder="000000000000000000"
                 />
@@ -889,7 +887,7 @@ export default function DashboardPerfilPage() {
                 <input
                   value={form.payout_account_number}
                   onChange={(e) => setForm((p) => ({ ...p, payout_account_number: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Opcional"
                 />
               </div>
@@ -899,7 +897,7 @@ export default function DashboardPerfilPage() {
                   type="email"
                   value={form.mercadopago_account}
                   onChange={(e) => setForm((p) => ({ ...p, mercadopago_account: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="tu-email@mercadopago.com o ID de cuenta"
                 />
                 <div className="mt-1 text-[11px] text-gray-600">
@@ -912,7 +910,7 @@ export default function DashboardPerfilPage() {
                   value={form.payout_notes}
                   onChange={(e) => setForm((p) => ({ ...p, payout_notes: e.target.value }))}
                   rows={3}
-                  className="mt-1 w-full rounded-2xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-2xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ej: horario de transferencias, referencia, etc."
                 />
               </div>
@@ -925,16 +923,16 @@ export default function DashboardPerfilPage() {
             <div className="mt-4 space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700">Calle <span className="text-red-600">*</span></label>
-                <input value={form.address_street} onChange={(e) => setForm((p) => ({ ...p, address_street: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="Calle y número" />
+                <input value={form.address_street} onChange={(e) => setForm((p) => ({ ...p, address_street: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="Calle y número" />
               </div>
               <div className="grid gap-4 sm:grid-cols-3">
                 <div>
                   <label className="block text-sm font-medium text-gray-700">No. ext <span className="text-red-600">*</span></label>
-                  <input value={form.ext_number} onChange={(e) => setForm((p) => ({ ...p, ext_number: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" />
+                  <input value={form.ext_number} onChange={(e) => setForm((p) => ({ ...p, ext_number: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">No. int <span className="text-red-600">*</span></label>
-                  <input value={form.int_number} onChange={(e) => setForm((p) => ({ ...p, int_number: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="O S/N si no aplica" />
+                  <input value={form.int_number} onChange={(e) => setForm((p) => ({ ...p, int_number: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="O S/N si no aplica" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">CP <span className="text-red-600">*</span></label>
@@ -950,11 +948,11 @@ export default function DashboardPerfilPage() {
                       inputMode="numeric"
                       maxLength={5}
                       placeholder="Ej. 76729"
-                      className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`}
+                      className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`}
                     />
                     {cpLoading && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                        <svg className="animate-spin h-4 w-4 text-brand-orange" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        <svg className="animate-spin h-4 w-4 text-brand-emerald" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                       </div>
                     )}
                     {cpAutoFilled && !cpLoading && (
@@ -975,7 +973,7 @@ export default function DashboardPerfilPage() {
                       <select
                         value={form.neighborhood}
                         onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
-                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange bg-white"
+                        className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald bg-white"
                       >
                         <option value="">Selecciona tu colonia</option>
                         {cpColonias.map((c) => <option key={c} value={c}>{c}</option>)}
@@ -983,31 +981,31 @@ export default function DashboardPerfilPage() {
                       <div className="mt-1 text-[10px] text-gray-500">{cpColonias.length} colonias encontradas</div>
                     </>
                   ) : (
-                    <input value={form.neighborhood} onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" />
+                    <input value={form.neighborhood} onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" />
                   )}
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Ciudad <span className="text-red-600">*</span></label>
-                  <input value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
+                  <input value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Estado <span className="text-red-600">*</span></label>
-                <input value={form.state} onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
+                <input value={form.state} onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Entre calles <span className="text-red-600">*</span></label>
-                <input value={form.cross_streets} onChange={(e) => setForm((p) => ({ ...p, cross_streets: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="Ej. entre Juárez y Hidalgo" />
+                <input value={form.cross_streets} onChange={(e) => setForm((p) => ({ ...p, cross_streets: e.target.value }))} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="Ej. entre Juárez y Hidalgo" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Referencias <span className="text-red-600">*</span></label>
-                <textarea value={form.references} onChange={(e) => setForm((p) => ({ ...p, references: e.target.value }))} rows={3} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange" placeholder="Ej. edificio color blanco, portón negro" />
+                <textarea value={form.references} onChange={(e) => setForm((p) => ({ ...p, references: e.target.value }))} rows={3} className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald" placeholder="Ej. edificio color blanco, portón negro" />
               </div>
             </div>
           </div>
 
           <div className="flex justify-end">
-            <button type="submit" disabled={isSaving} className="rounded-xl bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60">
+            <button type="submit" disabled={isSaving} className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:opacity-60">
               {isSaving ? 'Guardando…' : 'Guardar'}
             </button>
           </div>

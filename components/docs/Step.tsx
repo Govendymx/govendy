@@ -17,11 +17,11 @@ export default function Step({ number, title, description, imageAlt, isLast = fa
         <div className="absolute left-5 top-14 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true" />
       )}
       <div className="relative flex items-start group">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-orange/10 group-hover:bg-brand-orange/20 transition-colors border-2 border-brand-orange text-brand-orange font-bold z-10">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-emerald/10 group-hover:bg-brand-emerald/20 transition-colors border-2 border-brand-emerald text-brand-emerald font-bold z-10">
           {number}
         </span>
         <div className="ml-6 min-w-0 flex-1">
-          <div className="text-lg font-bold text-gray-900 group-hover:text-brand-orange transition-colors">
+          <div className="text-lg font-bold text-gray-900 group-hover:text-brand-emerald transition-colors">
             {title}
           </div>
           <div className="mt-2 text-gray-600">{description}</div>

@@ -25,7 +25,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
           <div className="rounded-3xl bg-white p-10 shadow-sm ring-1 ring-black/5">
             <div className="text-lg font-bold text-gray-900">Perfil inválido</div>
             <div className="mt-6">
-              <Link href="/" className="inline-flex rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
+              <Link href="/" className="inline-flex rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
                 Ir al inicio
               </Link>
             </div>
@@ -64,16 +64,14 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Perfil</div>
               <div className="text-xs text-gray-500">{name}</div>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -84,7 +82,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
             </Link>
             <Link
               href={`/tienda/${userId}`}
-              className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+              className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
             >
               Ver tienda
             </Link>
@@ -129,7 +127,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
               {(state || city) && (
                 <div className="mt-1 text-sm text-gray-600">
                   <span className="text-gray-600">Ubicado en </span>
-                  <span className="font-semibold text-brand-orange">
+                  <span className="font-semibold text-brand-emerald">
                     {[state, city].filter(Boolean).join(', ').toUpperCase()}
                   </span>
                 </div>

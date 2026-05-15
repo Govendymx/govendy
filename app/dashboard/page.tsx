@@ -72,7 +72,7 @@ function NavCard({ item }: { item: NavItem }) {
     : 'shadow-sm';
   const styles =
     tone === 'pink'
-      ? 'border-pink-200 bg-pink-50 text-brand-orange hover:opacity-90'
+      ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90'
       : tone === 'danger'
         ? 'border-black/10 bg-gray-900 text-white hover:bg-black'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
@@ -82,7 +82,7 @@ function NavCard({ item }: { item: NavItem }) {
       <span className="truncate">{item.label}</span>
       <span className="inline-flex items-center gap-2">
         {typeof item.badge === 'number' && item.badge > 0 ? (
-          <span className="text-[12px] font-extrabold text-brand-orange">{item.badge > 99 ? '99+' : item.badge}</span>
+          <span className="text-[12px] font-extrabold text-brand-emerald">{item.badge > 99 ? '99+' : item.badge}</span>
         ) : null}
         <span className={classNames('text-xs font-bold', tone === 'danger' ? 'text-white/80' : 'text-gray-400')}>→</span>
       </span>
@@ -218,7 +218,7 @@ function DashboardCharts({ userId }: { userId: string | null }) {
                     <div className="flex flex-1 items-center gap-2">
                       <div className="h-6 flex-1 overflow-hidden rounded-lg bg-gray-100">
                         <div
-                          className="h-full rounded-lg bg-brand-orange/70 transition-all"
+                          className="h-full rounded-lg bg-brand-emerald/70 transition-all"
                           style={{ width: `${Math.min(100, (a.view_count / maxViews) * 100)}%` }}
                         />
                       </div>
@@ -830,7 +830,7 @@ export default function DashboardPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-3 hover:opacity-95">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-orange text-white shadow-sm">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-emerald text-white shadow-sm">
               <span className="text-sm font-bold">P</span>
             </div>
             <div className="leading-tight">
@@ -927,11 +927,11 @@ export default function DashboardPage() {
             <section className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                     Bienvenido a GoVendy
                   </div>
                   <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                    Hola, <span className="text-brand-orange">{displayName}</span>
+                    Hola, <span className="text-brand-emerald">{displayName}</span>
                   </h1>
                   <p className="mt-2 max-w-2xl text-sm text-gray-600">
                     Administra tu cuenta y tus operaciones (ventas/compras) desde un panel claro, rápido y profesional.
@@ -947,7 +947,7 @@ export default function DashboardPage() {
                   </Link>
                   <Link
                     href="/dashboard/ventas"
-                    className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                    className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
                   >
                     Ver ventas
                   </Link>
@@ -965,11 +965,11 @@ export default function DashboardPage() {
             {/* Banner PocketCash */}
             <div className="mt-6 overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 p-1 shadow-sm ring-1 ring-black/5">
               <div className="relative overflow-hidden rounded-[20px] bg-gray-900 px-6 py-8 sm:px-10">
-                <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/4 transform bg-gradient-to-l from-brand-orange/30 to-transparent blur-3xl"></div>
+                <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/4 transform bg-gradient-to-l from-brand-emerald/30 to-transparent blur-3xl"></div>
                 <div className="relative z-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="max-w-xl">
-                    <div className="inline-flex items-center gap-2 rounded-full bg-brand-orange/10 px-3 py-1 text-xs font-medium text-brand-orange ring-1 ring-brand-orange/20">
-                      <span className="flex h-1.5 w-1.5 rounded-full bg-brand-orange"></span>
+                    <div className="inline-flex items-center gap-2 rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-medium text-brand-emerald ring-1 ring-brand-emerald/20">
+                      <span className="flex h-1.5 w-1.5 rounded-full bg-brand-emerald"></span>
                       Novedad
                     </div>
                     <h3 className="mt-3 text-xl font-bold text-white sm:text-2xl">
@@ -1006,7 +1006,7 @@ export default function DashboardPage() {
                   <span className="text-sm font-semibold text-gray-900">Ventas</span>
                   <span className="flex items-center gap-2">
                     {summary && summary.sales_count > 0 ? (
-                      <span className="rounded-lg bg-brand-orange px-2 py-0.5 text-xs font-bold text-white">
+                      <span className="rounded-lg bg-brand-emerald px-2 py-0.5 text-xs font-bold text-white">
                         {summary.sales_count}
                       </span>
                     ) : null}
@@ -1078,7 +1078,7 @@ export default function DashboardPage() {
                 </Link>
                 <Link
                   href="/dashboard/monedero"
-                  className="flex items-center justify-between rounded-2xl border border-brand-orange bg-pink-50/50 px-4 py-3 transition hover:border-pink-300 hover:bg-pink-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-brand-emerald bg-pink-50/50 px-4 py-3 transition hover:border-pink-300 hover:bg-pink-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">PocketCash</span>
                   <span className="text-xs font-bold text-gray-400">→</span>
@@ -1090,7 +1090,7 @@ export default function DashboardPage() {
             <section className="mt-6 grid gap-4 sm:grid-cols-2">
               <Link
                 href="/dashboard/ventas"
-                className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:ring-2 hover:ring-brand-orange/40"
+                className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:ring-2 hover:ring-brand-emerald/40"
                 data-tour="recent-operations"
               >
                 <div className="flex items-start justify-between">
@@ -1101,7 +1101,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="mt-1 text-xs text-gray-500">Ventas y compras registradas</div>
                   </div>
-                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-orange ring-1 ring-pink-100">
+                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-emerald ring-1 ring-pink-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M4 7h16M6 11h12M8 15h8M10 19h4"
@@ -1111,7 +1111,7 @@ export default function DashboardPage() {
                     </svg>
                   </div>
                 </div>
-                <div className="mt-2 text-right text-xs font-semibold text-brand-orange">Ver ventas y compras →</div>
+                <div className="mt-2 text-right text-xs font-semibold text-brand-emerald">Ver ventas y compras →</div>
               </Link>
 
               <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5">
@@ -1121,7 +1121,7 @@ export default function DashboardPage() {
                     <div className="mt-2 text-3xl font-bold text-gray-900">{documentsUploaded}</div>
                     <div className="mt-1 text-xs text-gray-500">Detectados desde tu perfil (INE frente/reverso)</div>
                   </div>
-                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-orange ring-1 ring-pink-100">
+                  <div className="rounded-2xl bg-pink-50 p-3 text-brand-emerald ring-1 ring-pink-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M8 3h6l4 4v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
@@ -1136,7 +1136,7 @@ export default function DashboardPage() {
 
               <Link
                 href="/dashboard/pagos"
-                className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:ring-2 hover:ring-brand-orange/40"
+                className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:ring-2 hover:ring-brand-emerald/40"
                 data-tour="balance"
               >
                 <div className="flex items-start justify-between">
@@ -1189,12 +1189,12 @@ export default function DashboardPage() {
                     <em>Estimado</em>. Lo <strong>liberado</strong> está en «Dinero disponible» y puedes solicitar retiro.
                   </p>
                 </div>
-                <div className="mt-3 text-right text-xs font-semibold text-brand-orange">Ver pagos →</div>
+                <div className="mt-3 text-right text-xs font-semibold text-brand-emerald">Ver pagos →</div>
               </Link>
 
               <Link
                 href="/dashboard/monedero"
-                className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-orange to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl"
+                className="group relative h-56 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-emerald to-pink-600 p-6 text-white shadow-xl transition-all hover:scale-[1.02] hover:shadow-2xl"
               >
                 {/* Decorative Elements */}
                 <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-white/10 blur-3xl"></div>
@@ -1325,7 +1325,7 @@ export default function DashboardPage() {
                     }
                   }}
                   disabled={isUpdatingTour}
-                  className="rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="rounded-xl bg-brand-emerald px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isUpdatingTour ? 'Actualizando…' : hasSeenTour ? 'Activar tours' : 'Desactivar tours'}
                 </button>
@@ -1338,7 +1338,7 @@ export default function DashboardPage() {
         <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8" data-tour="my-store">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                 Mi tienda
               </div>
               <h2 className="mt-3 text-lg font-bold text-gray-900">Ventas y cupones</h2>
@@ -1353,7 +1353,7 @@ export default function DashboardPage() {
             >
               <div className="text-sm font-semibold text-gray-900">Publicar artículo</div>
               <div className="mt-1 text-xs text-gray-600">Crea una nueva publicación (directa o subasta).</div>
-              <div className="mt-4 text-sm font-semibold text-brand-orange">Ir a vender →</div>
+              <div className="mt-4 text-sm font-semibold text-brand-emerald">Ir a vender →</div>
             </Link>
             <Link
               href="/dashboard/listings"
@@ -1361,7 +1361,7 @@ export default function DashboardPage() {
             >
               <div className="text-sm font-semibold text-gray-900">Mis publicaciones</div>
               <div className="mt-1 text-xs text-gray-600">Ver, pausar, activar o marcar como vendido.</div>
-              <div className="mt-4 text-sm font-semibold text-brand-orange">Gestionar →</div>
+              <div className="mt-4 text-sm font-semibold text-brand-emerald">Gestionar →</div>
             </Link>
             <Link
               href="/dashboard/coupons"
@@ -1369,7 +1369,7 @@ export default function DashboardPage() {
             >
               <div className="text-sm font-semibold text-gray-900">Cupones</div>
               <div className="mt-1 text-xs text-gray-600">Crea cupones y asígnalos a tus publicaciones.</div>
-              <div className="mt-4 text-sm font-semibold text-brand-orange">Crear cupones →</div>
+              <div className="mt-4 text-sm font-semibold text-brand-emerald">Crear cupones →</div>
             </Link>
           </div>
         </section>
@@ -1480,7 +1480,7 @@ export default function DashboardPage() {
                 className={classNames(
                   'rounded-xl px-4 py-2 text-sm font-semibold transition',
                   historyFilter === f
-                    ? 'bg-brand-orange text-white ring-2 ring-brand-orange/50'
+                    ? 'bg-brand-emerald text-white ring-2 ring-brand-emerald/50'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
                 )}
               >
@@ -1512,8 +1512,8 @@ export default function DashboardPage() {
               <div className="p-6 text-center text-sm text-gray-600">Cargando operaciones…</div>
             ) : historyFiltered.length === 0 ? (
               <div className="p-8 text-center text-sm text-gray-600">
-                No hay operaciones con este filtro. Prueba «Todas» o ve a <Link href="/dashboard/ventas" className="font-semibold text-brand-orange hover:underline">Ventas</Link> /{' '}
-                <Link href="/dashboard/compras" className="font-semibold text-brand-orange hover:underline">Compras</Link>.
+                No hay operaciones con este filtro. Prueba «Todas» o ve a <Link href="/dashboard/ventas" className="font-semibold text-brand-emerald hover:underline">Ventas</Link> /{' '}
+                <Link href="/dashboard/compras" className="font-semibold text-brand-emerald hover:underline">Compras</Link>.
               </div>
             ) : (
               <>
@@ -1535,7 +1535,7 @@ export default function DashboardPage() {
                               <span
                                 className={classNames(
                                   'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
-                                  isSale ? 'bg-pink-50 text-brand-orange ring-pink-100' : 'bg-gray-100 text-gray-700 ring-black/5',
+                                  isSale ? 'bg-pink-50 text-brand-emerald ring-pink-100' : 'bg-gray-100 text-gray-700 ring-black/5',
                                 )}
                               >
                                 {isSale ? 'Venta' : 'Compra'}
@@ -1558,7 +1558,7 @@ export default function DashboardPage() {
                               ) : (
                                 <>Vendido por{' '}
                                   {otherId ? (
-                                    <Link href={`/perfil/${otherId}`} className="font-semibold text-brand-orange hover:opacity-90 hover:underline">
+                                    <Link href={`/perfil/${otherId}`} className="font-semibold text-brand-emerald hover:opacity-90 hover:underline">
                                       {otherName}
                                     </Link>
                                   ) : (
@@ -1574,7 +1574,7 @@ export default function DashboardPage() {
                                 <div className="mt-1 space-y-1">
                                   {items.slice(0, 3).map((it: any, idx: number) => (
                                     <div key={`${o.id}-${idx}`} className="flex flex-wrap items-center gap-2">
-                                      <Link href={`/listings/${String(it.listing_id)}`} className="text-brand-orange hover:underline">
+                                      <Link href={`/listings/${String(it.listing_id)}`} className="text-brand-emerald hover:underline">
                                         {String(it.title || 'Artículo')}
                                       </Link>
                                       <span className="text-gray-500">x{Number(it.quantity ?? 1) || 1}</span>

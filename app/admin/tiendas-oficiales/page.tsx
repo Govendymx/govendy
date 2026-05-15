@@ -175,7 +175,7 @@ export default function AdminOfficialStoresPage() {
         </div>
         <button
           onClick={openAddModal}
-          className="flex items-center justify-center gap-2 rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-pink-600 hover:shadow-md"
+          className="flex items-center justify-center gap-2 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-pink-600 hover:shadow-md"
         >
           <Plus className="h-4 w-4" />
           Nueva Tienda
@@ -281,7 +281,7 @@ export default function AdminOfficialStoresPage() {
                     <input
                       type="text"
                       placeholder="Nombre o email..."
-                      className="w-full rounded-xl border border-gray-300 py-2 pl-9 pr-4 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                      className="w-full rounded-xl border border-gray-300 py-2 pl-9 pr-4 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                       value={searchQuery}
                       onChange={(e) => handleSearch(e.target.value)}
                     />
@@ -336,7 +336,7 @@ export default function AdminOfficialStoresPage() {
                 <label className="mb-1 block text-sm font-medium text-gray-700">Nombre de la Tienda</label>
                 <input
                   type="text"
-                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                   placeholder="Ej. Nike Oficial"
                   value={formData.storeName}
                   onChange={(e) => setFormData({ ...formData, storeName: e.target.value })}
@@ -347,7 +347,7 @@ export default function AdminOfficialStoresPage() {
                 <label className="mb-1 block text-sm font-medium text-gray-700">URL del Banner/Logo</label>
                 <input
                   type="text"
-                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                   placeholder="https://..."
                   value={formData.bannerUrl}
                   onChange={(e) => setFormData({ ...formData, bannerUrl: e.target.value })}
@@ -358,7 +358,7 @@ export default function AdminOfficialStoresPage() {
                 <label className="mb-1 block text-sm font-medium text-gray-700">Frase / Eslogan</label>
                 <input
                   type="text"
-                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                   placeholder="Ej. Just Do It"
                   value={formData.slogan}
                   onChange={(e) => setFormData({ ...formData, slogan: e.target.value })}
@@ -376,7 +376,7 @@ export default function AdminOfficialStoresPage() {
                   />
                   <input
                     type="text"
-                    className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:outline-none focus:ring-1 focus:ring-brand-orange"
+                    className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:outline-none focus:ring-1 focus:ring-brand-emerald"
                     value={formData.brandColor}
                     onChange={(e) => setFormData({ ...formData, brandColor: e.target.value })}
                   />
@@ -387,7 +387,7 @@ export default function AdminOfficialStoresPage() {
                 <button
                   onClick={handleSaveStore}
                   disabled={!selectedUser || !formData.storeName}
-                  className="w-full rounded-xl bg-brand-orange py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full rounded-xl bg-brand-emerald py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-pink-600 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isEditing ? 'Guardar Cambios' : 'Confirmar Tienda Oficial'}
                 </button>

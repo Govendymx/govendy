@@ -71,24 +71,24 @@ export default function GuiaComprar() {
         <ul className="space-y-4">
           <li>
             <Link href="/ayuda/envios" className="group flex items-start">
-              <span className="mr-2 text-brand-orange">•</span>
-              <span className="text-gray-600 group-hover:text-brand-orange transition-colors">
+              <span className="mr-2 text-brand-emerald">•</span>
+              <span className="text-gray-600 group-hover:text-brand-emerald transition-colors">
                 ¿Cuánto tarda en llegar mi pedido?
               </span>
             </Link>
           </li>
           <li>
             <Link href="/ayuda/devoluciones" className="group flex items-start">
-              <span className="mr-2 text-brand-orange">•</span>
-              <span className="text-gray-600 group-hover:text-brand-orange transition-colors">
+              <span className="mr-2 text-brand-emerald">•</span>
+              <span className="text-gray-600 group-hover:text-brand-emerald transition-colors">
                 ¿Qué pasa si el producto no es lo que esperaba?
               </span>
             </Link>
           </li>
           <li>
             <Link href="/ayuda/pagos" className="group flex items-start">
-              <span className="mr-2 text-brand-orange">•</span>
-              <span className="text-gray-600 group-hover:text-brand-orange transition-colors">
+              <span className="mr-2 text-brand-emerald">•</span>
+              <span className="text-gray-600 group-hover:text-brand-emerald transition-colors">
                 ¿Es seguro usar mi tarjeta de crédito?
               </span>
             </Link>

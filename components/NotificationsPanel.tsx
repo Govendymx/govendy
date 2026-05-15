@@ -310,7 +310,7 @@ export function NotificationsPanel() {
   // }
 
   return (
-    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8 border-2 border-brand-orange/20">
+    <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8 border-2 border-brand-emerald/20">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
@@ -320,7 +320,7 @@ export function NotificationsPanel() {
           <p className="mt-1 text-sm text-gray-600">Tus compras, ventas y mensajes importantes aparecerán aquí</p>
         </div>
         {notifications.length > 0 && (
-          <span className="rounded-full bg-brand-orange px-3 py-1 text-xs font-bold text-white">
+          <span className="rounded-full bg-brand-emerald px-3 py-1 text-xs font-bold text-white">
             {notifications.length} nueva{notifications.length > 1 ? 's' : ''}
           </span>
         )}
@@ -363,17 +363,17 @@ export function NotificationsPanel() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <div className="text-sm font-bold text-gray-900">{notification.title || 'Notificación'}</div>
-                    <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-extrabold text-brand-orange ring-1 ring-pink-100">
+                    <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-pink-100">
                       Nuevo
                     </span>
                   </div>
                   {notification.body && <div className="mt-1 text-sm text-gray-700 line-clamp-2">{notification.body}</div>}
                   <div className="mt-2 flex items-center justify-between">
                     <span className="text-xs text-gray-500">{formatDateTime(notification.created_at)}</span>
-                    {hasLink && <span className="text-xs font-semibold text-brand-orange">Ver detalle →</span>}
+                    {hasLink && <span className="text-xs font-semibold text-brand-emerald">Ver detalle →</span>}
                   </div>
                   {hasLink && (
-                    <div className="mt-1 text-[10px] text-brand-orange/80 break-all">
+                    <div className="mt-1 text-[10px] text-brand-emerald/80 break-all">
                       {link}
                     </div>
                   )}

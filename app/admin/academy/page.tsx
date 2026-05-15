@@ -50,7 +50,7 @@ export default function AcademyPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-            <AcademicCapIcon className="h-8 w-8 text-brand-orange" />
+            <AcademicCapIcon className="h-8 w-8 text-brand-emerald" />
             Pocket Academy
           </h1>
           <p className="text-gray-500 mt-1">

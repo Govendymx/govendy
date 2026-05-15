@@ -8,7 +8,7 @@ export default function CompraProtegidaPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -24,7 +24,7 @@ export default function CompraProtegidaPage() {
 
       <main className="mx-auto max-w-4xl px-4 py-10">
         <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-black/5">
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
             Seguridad
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Compra protegida en GoVendy</h1>
@@ -57,7 +57,7 @@ export default function CompraProtegidaPage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-2">
-            <Link href="/listings" className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/listings" className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Explorar artículos
             </Link>
             <Link href="/dashboard/ayuda" className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">

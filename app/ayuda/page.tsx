@@ -132,7 +132,7 @@ export default function AyudaPage() {
                 </div>
                 <input
                   type="text"
-                  className="block w-full rounded-2xl border-0 bg-gray-100 py-4 pl-12 pr-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-brand-orange sm:text-lg sm:leading-6 transition-all"
+                  className="block w-full rounded-2xl border-0 bg-gray-100 py-4 pl-12 pr-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-brand-emerald sm:text-lg sm:leading-6 transition-all"
                   placeholder="Buscar en la documentación (ej. 'cómo vender', 'envíos', 'subastas')..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -155,18 +155,18 @@ export default function AyudaPage() {
             >
               <Link
                 href={category.href}
-                className="group flex h-full flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:shadow-lg hover:shadow-brand-orange/5 hover:ring-brand-orange/20"
+                className="group flex h-full flex-col rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 transition hover:shadow-lg hover:shadow-brand-emerald/5 hover:ring-brand-emerald/20"
               >
                 <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${category.color}`}>
                   <category.icon className="h-6 w-6" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 group-hover:text-brand-orange transition-colors">
+                <h3 className="text-lg font-bold text-gray-900 group-hover:text-brand-emerald transition-colors">
                   {category.title}
                 </h3>
                 <p className="mt-2 flex-1 text-sm text-gray-500">
                   {category.description}
                 </p>
-                <div className="mt-4 flex items-center text-sm font-semibold text-brand-orange opacity-0 transition-opacity group-hover:opacity-100">
+                <div className="mt-4 flex items-center text-sm font-semibold text-brand-emerald opacity-0 transition-opacity group-hover:opacity-100">
                   Ver guía <span className="ml-1">→</span>
                 </div>
               </Link>
@@ -182,7 +182,7 @@ export default function AyudaPage() {
               <Link
                 key={article.title}
                 href={article.href}
-                className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:bg-gray-50 hover:ring-brand-orange/20"
+                className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition hover:bg-gray-50 hover:ring-brand-emerald/20"
               >
                 <BookIcon className="h-5 w-5 text-gray-400" />
                 <span className="text-sm font-medium text-gray-700">{article.title}</span>
@@ -193,7 +193,7 @@ export default function AyudaPage() {
 
         {/* Dynamic Sections Link */}
         <div className="mt-20 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 p-8 text-white shadow-xl sm:p-12 overflow-hidden relative">
-          <div className="absolute top-0 right-0 -mt-10 -mr-10 h-64 w-64 rounded-full bg-brand-orange/20 blur-3xl"></div>
+          <div className="absolute top-0 right-0 -mt-10 -mr-10 h-64 w-64 rounded-full bg-brand-emerald/20 blur-3xl"></div>
           <div className="relative z-10 grid gap-8 lg:grid-cols-2 lg:items-center">
             <div>
               <h2 className="text-3xl font-extrabold tracking-tight">Descubre lo más popular en Pocky</h2>
@@ -234,7 +234,7 @@ export default function AyudaPage() {
           <div className="mt-8 flex justify-center gap-4">
             <Link
               href="/dashboard/soporte"
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-sm hover:opacity-90 transition"
+              className="inline-flex items-center gap-2 rounded-xl bg-brand-emerald px-6 py-3 text-sm font-bold text-white shadow-sm hover:opacity-90 transition"
             >
               <span>💬</span>
               Contactar Soporte

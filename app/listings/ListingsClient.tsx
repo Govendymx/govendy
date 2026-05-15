@@ -223,7 +223,7 @@ export default function ListingsClient({
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
           <div className="flex items-center gap-4 flex-1">
             <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-orange text-white shadow-lg shadow-brand-orange/20">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-emerald text-white shadow-lg shadow-brand-emerald/20">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                   <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
                 </svg>
@@ -243,7 +243,7 @@ export default function ListingsClient({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar productos, marcas y más..."
-                className="w-full rounded-2xl border-0 bg-gray-100 py-3 pl-11 pr-4 text-gray-900 shadow-inner ring-1 ring-inset ring-gray-200 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-brand-orange transition-all"
+                className="w-full rounded-2xl border-0 bg-gray-100 py-3 pl-11 pr-4 text-gray-900 shadow-inner ring-1 ring-inset ring-gray-200 placeholder:text-gray-500 focus:bg-white focus:ring-2 focus:ring-brand-emerald transition-all"
               />
             </div>
           </div>
@@ -251,7 +251,7 @@ export default function ListingsClient({
           <div className="hidden md:flex items-center gap-3 pl-4">
             <Link
               href="/sell"
-              className="rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-orange/25 hover:shadow-brand-orange/40 hover:-translate-y-0.5 transition-all"
+              className="rounded-xl bg-brand-emerald px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-emerald/25 hover:shadow-brand-emerald/40 hover:-translate-y-0.5 transition-all"
             >
               Vender
             </Link>
@@ -281,7 +281,7 @@ export default function ListingsClient({
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as any)}
-              className="rounded-xl border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-gray-700 focus:border-brand-orange focus:ring-brand-orange"
+              className="rounded-xl border-gray-200 bg-white py-2 pl-3 pr-8 text-sm font-semibold text-gray-700 focus:border-brand-emerald focus:ring-brand-emerald"
             >
               <option value="relevant">Más relevantes</option>
               <option value="price_asc">Menor precio</option>
@@ -294,13 +294,13 @@ export default function ListingsClient({
             <div className="hidden sm:inline-flex overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5">
               <button
                 onClick={() => setView('list')}
-                className={`p-2 ${view === 'list' ? 'bg-pink-50 text-brand-orange' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 ${view === 'list' ? 'bg-pink-50 text-brand-emerald' : 'text-gray-400 hover:text-gray-600'}`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
               <button
                 onClick={() => setView('grid')}
-                className={`p-2 ${view === 'grid' ? 'bg-pink-50 text-brand-orange' : 'text-gray-400 hover:text-gray-600'}`}
+                className={`p-2 ${view === 'grid' ? 'bg-pink-50 text-brand-emerald' : 'text-gray-400 hover:text-gray-600'}`}
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
               </button>
@@ -367,7 +367,7 @@ export default function ListingsClient({
                     setSelectedSubcategories([]);
                     setSearchQuery('');
                   }}
-                  className="mt-6 text-brand-orange font-semibold hover:underline"
+                  className="mt-6 text-brand-emerald font-semibold hover:underline"
                 >
                   Limpiar búsqueda
                 </button>
@@ -382,7 +382,7 @@ export default function ListingsClient({
                     if (view === 'list') {
                       return (
                         <Link key={p.id} href={`/listings/${p.id}`} className="block w-full group">
-                          <div className="flex gap-4 rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5 hover:shadow-lg hover:ring-brand-orange/20 transition-all duration-300">
+                          <div className="flex gap-4 rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5 hover:shadow-lg hover:ring-brand-emerald/20 transition-all duration-300">
                             <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-2xl bg-gray-100">
                               {img ? (
                                 <Image
@@ -402,7 +402,7 @@ export default function ListingsClient({
                                   <div className="text-xs font-medium text-gray-500 mb-1">{p.category}</div>
                                   <FavoriteButton listingId={p.id} onLoginRequired={() => setIsAuthOpen(true)} className="text-gray-400 hover:text-red-500" />
                                 </div>
-                                <div className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-brand-orange transition-colors">{p.title}</div>
+                                <div className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-brand-emerald transition-colors">{p.title}</div>
                               </div>
                               <div className="flex items-end justify-between">
                                 <div className="text-2xl font-extrabold text-gray-900">{formatMoney(price)}</div>

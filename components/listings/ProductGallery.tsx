@@ -95,7 +95,7 @@ export function ProductGallery({ images = [], title }: ProductGalleryProps) {
         {/* Magnifier Lens (Desktop) */}
         {showMagnifier && (
           <div
-            className="pointer-events-none absolute hidden lg:block rounded-full bg-white ring-2 ring-brand-orange/20 shadow-2xl overflow-hidden z-20"
+            className="pointer-events-none absolute hidden lg:block rounded-full bg-white ring-2 ring-brand-emerald/20 shadow-2xl overflow-hidden z-20"
             style={{
               width: '200px',
               height: '200px',
@@ -144,7 +144,7 @@ export function ProductGallery({ images = [], title }: ProductGalleryProps) {
                 key={idx}
                 onClick={() => setSelectedIndex(idx)}
                 className={`relative h-20 w-20 flex-none snap-start overflow-hidden rounded-2xl transition-all duration-300 ease-out ${selectedIndex === idx
-                  ? 'shadow-lg scale-105 opacity-100 ring-2 ring-brand-orange/20'
+                  ? 'shadow-lg scale-105 opacity-100 ring-2 ring-brand-emerald/20'
                   : 'opacity-60 hover:opacity-100 hover:scale-105 grayscale hover:grayscale-0'
                   }`}
               >

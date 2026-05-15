@@ -81,7 +81,7 @@ function FeatureCard({
   bgColor?: string;
 }) {
   const content = (
-    <div className="group relative h-full overflow-hidden rounded-3xl bg-white p-4 transition-all duration-300 hover:shadow-xl hover:shadow-brand-orange/5 hover:-translate-y-1 ring-1 ring-black/5 hover:ring-brand-orange/20">
+    <div className="group relative h-full overflow-hidden rounded-3xl bg-white p-4 transition-all duration-300 hover:shadow-xl hover:shadow-brand-emerald/5 hover:-translate-y-1 ring-1 ring-black/5 hover:ring-brand-emerald/20">
       <div className="flex items-center gap-4">
         {/* Icon Container */}
         <div className={`relative flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${bgColor} shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
@@ -93,12 +93,12 @@ function FeatureCard({
         {/* Text Content */}
         <div className="flex flex-1 flex-col justify-center min-w-0 py-1">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="truncate text-[15px] font-extrabold text-gray-900 group-hover:text-brand-orange transition-colors duration-300">
+            <h3 className="truncate text-[15px] font-extrabold text-gray-900 group-hover:text-brand-emerald transition-colors duration-300">
               {title}
             </h3>
 
             {/* Action Arrow */}
-            <div className="flex h-6 w-6 shrink-0 -translate-x-2 items-center justify-center rounded-full bg-gray-50 text-gray-300 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-hover:bg-brand-orange group-hover:text-white">
+            <div className="flex h-6 w-6 shrink-0 -translate-x-2 items-center justify-center rounded-full bg-gray-50 text-gray-300 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-hover:bg-brand-emerald group-hover:text-white">
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
             </div>
           </div>
@@ -110,7 +110,7 @@ function FeatureCard({
       </div>
 
       {/* Decorative Glow */}
-      <div className="absolute -right-6 -bottom-6 h-24 w-24 rounded-full bg-gradient-to-br from-brand-orange/10 to-transparent blur-2xl transition-opacity opacity-0 group-hover:opacity-100" />
+      <div className="absolute -right-6 -bottom-6 h-24 w-24 rounded-full bg-gradient-to-br from-brand-emerald/10 to-transparent blur-2xl transition-opacity opacity-0 group-hover:opacity-100" />
     </div>
   );
   return href ? <Link href={href} className="block h-full">{content}</Link> : content;
@@ -193,7 +193,7 @@ function Carousel({
       <div className="flex items-end justify-between gap-3">
         <h2 className="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">{title}</h2>
         {rightLink ? (
-          <Link href={rightLink.href} className="text-sm font-semibold text-brand-orange hover:opacity-90">
+          <Link href={rightLink.href} className="text-sm font-semibold text-brand-emerald hover:opacity-90">
             {rightLink.label}
           </Link>
         ) : null}
@@ -239,7 +239,7 @@ function Carousel({
                 key={idx}
                 type="button"
                 onClick={() => scrollToIndex(idx)}
-                className={`h-2 rounded-full transition-all ${idx === currentIndex ? 'w-8 bg-brand-orange' : 'w-2 bg-gray-300'
+                className={`h-2 rounded-full transition-all ${idx === currentIndex ? 'w-8 bg-brand-emerald' : 'w-2 bg-gray-300'
                   }`}
                 aria-label={`Ir a slide ${idx + 1}`}
               />
@@ -747,7 +747,7 @@ export default function HomePage() {
                   <div className="min-w-0">
                     <div className="text-sm font-extrabold text-gray-900 line-clamp-1 pr-10">{b.title}</div>
                     {b.subtitle ? <div className="mt-0.5 text-xs text-gray-600 line-clamp-2 pr-10">{b.subtitle}</div> : null}
-                    <div className="mt-3 inline-flex rounded-full bg-brand-orange px-4 py-2 text-xs font-extrabold text-white shadow-sm">
+                    <div className="mt-3 inline-flex rounded-full bg-brand-emerald px-4 py-2 text-xs font-extrabold text-white shadow-sm">
                       {b.cta_text || 'Ver'}
                     </div>
                   </div>
@@ -758,16 +758,16 @@ export default function HomePage() {
         </div>
       ) : null}
       {/* Barra promo (estilo Mercado Libre, con nuestro color) */}
-      <div className="bg-brand-orange text-white">
+      <div className="bg-brand-onyx text-brand-volt">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2">
-          <div className="text-xs font-semibold">
-            GoVendy — Compra y vende con estilo
+          <div className="text-xs font-semibold tracking-wide">
+            GoVendy — Compra y vende con tecnología avanzada
           </div>
           <div className="hidden items-center gap-2 sm:flex">
-            <span className="rounded-full bg-white/15 px-3 py-1 text-[11px] font-extrabold tracking-wide">
+            <span className="rounded-full bg-brand-volt/20 px-3 py-1 text-[11px] font-extrabold tracking-widest text-brand-volt shadow-[0_0_8px_rgba(204,255,0,0.3)]">
               ENVÍO GRATIS
             </span>
-            <span className="text-[11px] font-semibold text-white/90">en artículos seleccionados:</span>
+            <span className="text-[11px] font-semibold text-brand-volt/80">en artículos seleccionados:</span>
           </div>
         </div>
       </div>
@@ -776,9 +776,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-                <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-              </div>
+              <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             </Link>
 
             <form onSubmit={onSearch} className="flex flex-1 items-center gap-2 sm:mx-6">
@@ -787,11 +785,11 @@ export default function HomePage() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Buscar productos, marcas y más…"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-2 pr-10 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-2 pr-10 text-sm text-gray-900 outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-brand-orange px-3 py-2 text-xs font-semibold text-white hover:opacity-90"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-brand-emerald px-3 py-2 text-xs font-semibold text-white hover:opacity-90"
                 >
                   Buscar
                 </button>
@@ -799,7 +797,7 @@ export default function HomePage() {
             </form>
 
             <div className="flex items-center justify-between gap-2 sm:justify-end">
-              <Link href="/cart" className="inline-flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-black/5">
+              <Link href="/cart" className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-extrabold text-brand-mango hover:bg-brand-mango/10 transition-colors">
                 <svg className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -817,7 +815,7 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => setIsAuthOpen(true, 'register')}
-                    className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                    className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
                   >
                     Registrarte
                   </button>
@@ -836,12 +834,12 @@ export default function HomePage() {
           <nav className="mt-2 hidden items-center justify-between gap-6 text-sm sm:flex">
             <div className="flex items-center gap-5">
               <CategoryDropdownMenu />
-              <Link href="/categorias" className="font-semibold text-gray-700 hover:text-brand-orange">
+              <Link href="/categorias" className="font-semibold text-gray-700 hover:text-brand-emerald">
                 Categorias
               </Link>
             </div>
             <div className="flex items-center gap-3">
-              <Link href="/sell" className="rounded-xl bg-brand-orange px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90">
+              <Link href="/sell" className="rounded-xl bg-brand-emerald px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90">
                 Vender
               </Link>
               {!isBooting && userName ? <span className="text-xs font-semibold text-gray-500">Hola, {userName}</span> : null}
@@ -1399,7 +1397,7 @@ export default function HomePage() {
         <section className="mt-10">
           <div className="flex items-end justify-between">
             <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">Novedades</h2>
-            <Link href="/listings" className="text-sm font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/listings" className="text-sm font-semibold text-brand-emerald hover:opacity-90">
               Ver todo
             </Link>
           </div>
@@ -1458,8 +1456,8 @@ export default function HomePage() {
         {/* Explorar: ahora Categorías */}
         <section className="mt-10">
           <div className="flex items-end justify-between">
-            <Link href="/categorias" className="text-2xl font-extrabold tracking-tight text-gray-900 hover:text-brand-orange transition-colors">Categorías</Link>
-            <Link href="/categorias" className="text-sm font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/categorias" className="text-2xl font-extrabold tracking-tight text-gray-900 hover:text-brand-emerald transition-colors">Categorías</Link>
+            <Link href="/categorias" className="text-sm font-semibold text-brand-emerald hover:opacity-90">
               Ver todas
             </Link>
           </div>

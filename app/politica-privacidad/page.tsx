@@ -11,9 +11,7 @@ export default function PoliticaPrivacidadPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Política de Privacidad</div>
             </div>
@@ -140,7 +138,7 @@ export default function PoliticaPrivacidadPage() {
           </div>
 
           <div className="mt-8 border-t border-gray-200 pt-6">
-            <Link href="/" className="inline-flex rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/" className="inline-flex rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Volver al inicio
             </Link>
           </div>

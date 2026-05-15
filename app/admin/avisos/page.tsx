@@ -167,7 +167,7 @@ export default function AdminAvisosPage() {
     <div className="mx-auto max-w-5xl">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
             Panel Admin
           </div>
           <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">Avisos a usuarios</h1>
@@ -198,7 +198,7 @@ export default function AdminAvisosPage() {
                 onClick={() => setAudience('all')}
                 className={classNames(
                   'rounded-full px-4 py-2 text-sm font-semibold ring-1',
-                  audience === 'all' ? 'bg-brand-orange text-white ring-brand-orange' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
+                  audience === 'all' ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
                 )}
               >
                 Todos los usuarios
@@ -208,7 +208,7 @@ export default function AdminAvisosPage() {
                 onClick={() => setAudience('users')}
                 className={classNames(
                   'rounded-full px-4 py-2 text-sm font-semibold ring-1',
-                  audience === 'users' ? 'bg-brand-orange text-white ring-brand-orange' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
+                  audience === 'users' ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-900 ring-black/10 hover:bg-gray-50',
                 )}
               >
                 Elegir usuarios
@@ -223,7 +223,7 @@ export default function AdminAvisosPage() {
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
                     placeholder="Nombre / username / UUID"
-                    className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   <button
                     type="button"
@@ -246,7 +246,7 @@ export default function AdminAvisosPage() {
                           onClick={() => togglePick(u)}
                           className={classNames(
                             'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-sm font-semibold shadow-sm transition',
-                            active ? 'border-pink-200 bg-pink-50 text-brand-orange' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
+                            active ? 'border-pink-200 bg-pink-50 text-brand-emerald' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
                           )}
                         >
                           <span className="truncate">{displayName(u)}</span>
@@ -265,7 +265,7 @@ export default function AdminAvisosPage() {
                                   el.innerHTML = original;
                                 }, 1000);
                               }}
-                              className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                              className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                               title="Copiar UUID"
                             >
                               📋
@@ -303,7 +303,7 @@ export default function AdminAvisosPage() {
                                 el.innerHTML = original;
                               }, 1000);
                             }}
-                            className="ml-1 text-[10px] text-gray-400 hover:text-brand-orange focus:outline-none"
+                            className="ml-1 text-[10px] text-gray-400 hover:text-brand-emerald focus:outline-none"
                             title="Copiar UUID"
                           >
                             📋
@@ -326,7 +326,7 @@ export default function AdminAvisosPage() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Ej: Promo de fin de semana"
-                  className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
                 <div className="mt-1 text-[11px] text-gray-500">Máx. 80.</div>
               </div>
@@ -336,7 +336,7 @@ export default function AdminAvisosPage() {
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
                   placeholder="Escribe el aviso para el usuario…"
-                  className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
                 <div className="mt-1 text-[11px] text-gray-500">Máx. 500.</div>
               </div>
@@ -348,7 +348,7 @@ export default function AdminAvisosPage() {
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
                     placeholder="https://…"
-                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
                 <div>
@@ -357,7 +357,7 @@ export default function AdminAvisosPage() {
                     value={linkUrl}
                     onChange={(e) => setLinkUrl(e.target.value)}
                     placeholder="/listings o https://…"
-                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
               </div>
@@ -386,7 +386,7 @@ export default function AdminAvisosPage() {
                 type="button"
                 onClick={() => void send()}
                 disabled={!canSend || sending}
-                className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+                className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
               >
                 {sending ? 'Enviando…' : 'Enviar aviso'}
               </button>

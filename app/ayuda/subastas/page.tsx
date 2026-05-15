@@ -27,7 +27,7 @@ export default function GuiaSubastas() {
       <div className="space-y-12">
         <section>
           <h2 className="mb-6 text-2xl font-bold text-gray-900 flex items-center">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-orange text-white text-sm font-bold mr-3">A</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-emerald text-white text-sm font-bold mr-3">A</span>
             Cómo Participar (Comprar)
           </h2>
           <div className="space-y-2">

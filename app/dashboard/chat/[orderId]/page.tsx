@@ -176,9 +176,7 @@ export default function DashboardChatPage() {
                  <img src={sellerInfo.logo} alt={sellerInfo.name} className="h-full w-full object-cover" />
                </div>
             ) : (
-              <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-                <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-              </div>
+              <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             )}
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900 flex items-center gap-1">
@@ -191,7 +189,7 @@ export default function DashboardChatPage() {
             </div>
           </div>
           <div className="flex gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link
@@ -237,7 +235,7 @@ export default function DashboardChatPage() {
                     <div key={m.id} className={`flex ${mine ? 'justify-end' : 'justify-start'}`}>
                       <div
                         className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm ring-1 ${
-                          mine ? 'bg-brand-orange text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
+                          mine ? 'bg-brand-emerald text-white ring-pink-200' : 'bg-white text-gray-900 ring-black/5'
                         }`}
                       >
                         <div className="whitespace-pre-wrap break-words">{m.body}</div>
@@ -257,7 +255,7 @@ export default function DashboardChatPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Escribe tu mensaje…"
-                className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="min-h-[80px] w-full resize-none rounded-2xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               />
               {!canSend && input.trim().length > 0 ? (
                 <div className="mt-1 text-[11px] text-gray-500">

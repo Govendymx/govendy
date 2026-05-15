@@ -123,7 +123,7 @@ export default function AdminRetirosPage() {
 
         {isLoading ? (
           <div className="flex h-64 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-black/5">
-            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-brand-orange"></div>
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-brand-emerald"></div>
           </div>
         ) : filteredWithdrawals.length === 0 ? (
           <div className="flex h-64 flex-col items-center justify-center rounded-2xl bg-white text-center shadow-sm ring-1 ring-black/5">
@@ -134,7 +134,7 @@ export default function AdminRetirosPage() {
                 <p className="text-sm text-gray-500 mt-1">Intenta con otro término de búsqueda</p>
                 <button
                   onClick={() => setSearchTerm('')}
-                  className="mt-4 text-sm text-brand-orange hover:underline"
+                  className="mt-4 text-sm text-brand-emerald hover:underline"
                 >
                   Limpiar búsqueda
                 </button>
@@ -167,17 +167,17 @@ export default function AdminRetirosPage() {
                         <div className="font-medium">{w.seller?.full_name || 'Desconocido'}</div>
                         <div className="flex items-center gap-1 text-gray-500">
                           {w.seller?.email}
-                          <CopyButton text={w.seller?.email || ''} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                          <CopyButton text={w.seller?.email || ''} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                         </div>
                         {w.seller_id && (
                           <div className="flex items-center gap-1 text-xs text-gray-400 mt-0.5">
                             Seller ID: {w.seller_id.slice(0, 8)}...
-                            <CopyButton text={w.seller_id} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-orange" />
+                            <CopyButton text={w.seller_id} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-emerald" />
                           </div>
                         )}
                         <div className="flex items-center gap-1 text-xs text-gray-400 mt-0.5">
                           Retiro ID: {w.id.slice(0, 8)}...
-                          <CopyButton text={w.id} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-orange" />
+                          <CopyButton text={w.id} size="sm" iconSize={12} className="text-gray-400 hover:text-brand-emerald" />
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-gray-900">

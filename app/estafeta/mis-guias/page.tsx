@@ -88,7 +88,7 @@ export default function MisGuiasEstafetaPage() {
         return (
             <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
                 <div className="mx-auto max-w-4xl px-4 py-16 text-center">
-                    <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-brand-orange border-t-transparent" />
+                    <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent" />
                     <p className="mt-4 text-sm text-gray-500">Cargando tus guías...</p>
                 </div>
             </div>
@@ -110,7 +110,7 @@ export default function MisGuiasEstafetaPage() {
                     <div className="flex gap-2">
                         <Link
                             href="/estafeta/cotizar"
-                            className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-orange/90 transition"
+                            className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-brand-emerald/90 transition"
                         >
                             + Nueva Guía
                         </Link>
@@ -136,7 +136,7 @@ export default function MisGuiasEstafetaPage() {
                         <p className="mt-2 text-sm text-gray-500">Cotiza y compra tu primera guía Estafeta</p>
                         <Link
                             href="/estafeta/cotizar"
-                            className="mt-6 inline-block rounded-xl bg-brand-orange px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-brand-orange/90"
+                            className="mt-6 inline-block rounded-xl bg-brand-emerald px-6 py-3 text-sm font-bold text-white shadow-md hover:bg-brand-emerald/90"
                         >
                             Cotizar envío
                         </Link>
@@ -177,7 +177,7 @@ export default function MisGuiasEstafetaPage() {
                                             {/* Package + cost */}
                                             <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-gray-500">
                                                 <span>📦 {q.weight_kg} kg · {q.length_cm}×{q.width_cm}×{q.height_cm} cm</span>
-                                                <span className="font-bold text-brand-orange text-sm">{formatMoney(q.calculated_cost)}</span>
+                                                <span className="font-bold text-brand-emerald text-sm">{formatMoney(q.calculated_cost)}</span>
                                                 {q.paid_at && <span>Pagado: {formatDateTime(q.paid_at)}</span>}
                                             </div>
                                         </div>

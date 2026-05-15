@@ -141,7 +141,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
           <div key={idx} className="rounded-3xl border border-black/5 bg-white p-4 shadow-sm">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-xs font-extrabold text-gray-700">
-                #{idx + 1} · <span className="text-brand-orange">{b.type}</span>
+                #{idx + 1} · <span className="text-brand-emerald">{b.type}</span>
               </div>
               <div className="flex items-center gap-2">
                 <button
@@ -177,7 +177,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                   <input
                     value={b.text}
                     onChange={(e) => setAt(idx, { text: e.target.value })}
-                    className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
                 <div>
@@ -185,7 +185,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                   <select
                     value={b.level ?? 2}
                     onChange={(e) => setAt(idx, { level: Number(e.target.value) as any })}
-                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   >
                     <option value={1}>H1</option>
                     <option value={2}>H2</option>
@@ -202,7 +202,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                   value={b.text}
                   onChange={(e) => setAt(idx, { text: e.target.value })}
                   rows={4}
-                  className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
               </div>
             ) : null}
@@ -222,7 +222,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     })
                   }
                   rows={4}
-                  className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
                 <div className="mt-1 text-[11px] text-gray-500">Máx 20.</div>
               </div>
@@ -236,7 +236,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     <input
                       value={b.title ?? ''}
                       onChange={(e) => setAt(idx, { title: e.target.value })}
-                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                   <div>
@@ -244,7 +244,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     <select
                       value={b.tone ?? 'pink'}
                       onChange={(e) => setAt(idx, { tone: e.target.value as any })}
-                      className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     >
                       <option value="pink">Rosa</option>
                       <option value="neutral">Neutro</option>
@@ -265,7 +265,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     value={b.body}
                     onChange={(e) => setAt(idx, { body: e.target.value })}
                     rows={3}
-                    className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="mt-1 w-full rounded-2xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                 </div>
               </div>
@@ -365,7 +365,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
 
                 {/* Galería de imágenes ya subidas */}
                 {availableImages.length > 0 && (b as any)?.is_slot === false && (
-                  <div className="rounded-2xl border border-brand-orange/20 bg-pink-50/50 p-3">
+                  <div className="rounded-2xl border border-brand-emerald/20 bg-pink-50/50 p-3">
                     <div className="text-xs font-semibold text-gray-700 mb-2">
                       📸 Seleccionar de imágenes subidas
                     </div>
@@ -375,15 +375,15 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                           key={imgIdx}
                           type="button"
                           onClick={() => setAt(idx, { url: imgUrl, is_slot: false })}
-                          className="group relative aspect-square overflow-hidden rounded-xl border-2 border-gray-200 hover:border-brand-orange transition-all"
+                          className="group relative aspect-square overflow-hidden rounded-xl border-2 border-gray-200 hover:border-brand-emerald transition-all"
                         >
                           <img
                             src={imgUrl}
                             alt={`Imagen ${imgIdx + 1}`}
                             className="h-full w-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-brand-orange/0 group-hover:bg-brand-orange/20 transition-all flex items-center justify-center">
-                            <span className="opacity-0 group-hover:opacity-100 text-white font-bold text-xs bg-brand-orange px-2 py-1 rounded-lg">
+                          <div className="absolute inset-0 bg-brand-emerald/0 group-hover:bg-brand-emerald/20 transition-all flex items-center justify-center">
+                            <span className="opacity-0 group-hover:opacity-100 text-white font-bold text-xs bg-brand-emerald px-2 py-1 rounded-lg">
                               Usar
                             </span>
                           </div>
@@ -408,7 +408,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     disabled={(b as any)?.is_slot !== false}
                     className={classNames(
                       'mt-1 w-full rounded-xl border px-3 py-2 text-sm outline-none focus:ring-2',
-                      !b.url || isAllowedImageUrl(b.url) ? 'border-gray-300 focus:ring-brand-orange' : 'border-red-300 focus:ring-red-300',
+                      !b.url || isAllowedImageUrl(b.url) ? 'border-gray-300 focus:ring-brand-emerald' : 'border-red-300 focus:ring-red-300',
                     )}
                     placeholder="https://res.cloudinary.com/..."
                   />
@@ -439,7 +439,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                         <input
                           value={String((b as any).slot_label || '')}
                           onChange={(e) => setAt(idx, { slot_label: e.target.value })}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                           placeholder="Ej. Foto del outfit"
                         />
                       </div>
@@ -448,7 +448,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                         <input
                           value={String((b as any).slot_id || '')}
                           onChange={(e) => setAt(idx, { slot_id: e.target.value })}
-                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                          className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                           placeholder="slot-..."
                           onBlur={() => {
                             const slotId = String((b as any)?.slot_id || '').trim();
@@ -464,7 +464,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                       <select
                         value={String((b as any).slot_aspect || 'portrait')}
                         onChange={(e) => setAt(idx, { slot_aspect: e.target.value })}
-                        className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                        className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                       >
                         <option value="portrait">Vertical (4:5) · 1080×1350</option>
                         <option value="square">Cuadrada (1:1) · 1080×1080</option>
@@ -483,7 +483,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     <input
                       value={b.alt ?? ''}
                       onChange={(e) => setAt(idx, { alt: e.target.value })}
-                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                   <div>
@@ -491,7 +491,7 @@ export function TemplateEditor({ blocks, onChange, availableImages = [] }: Props
                     <input
                       value={b.caption ?? ''}
                       onChange={(e) => setAt(idx, { caption: e.target.value })}
-                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                      className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                     />
                   </div>
                 </div>

@@ -18,7 +18,7 @@ export default function AdminPocketCashPage() {
           <button
             onClick={() => setActiveTab('topups')}
             className={`px-4 py-2 rounded-md text-sm font-medium transition ${activeTab === 'topups'
-              ? 'bg-brand-orange text-white shadow-sm'
+              ? 'bg-brand-emerald text-white shadow-sm'
               : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
@@ -27,7 +27,7 @@ export default function AdminPocketCashPage() {
           <button
             onClick={() => setActiveTab('operations')}
             className={`px-4 py-2 rounded-md text-sm font-medium transition ${activeTab === 'operations'
-              ? 'bg-brand-orange text-white shadow-sm'
+              ? 'bg-brand-emerald text-white shadow-sm'
               : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
@@ -36,7 +36,7 @@ export default function AdminPocketCashPage() {
           <button
             onClick={() => setActiveTab('manage')}
             className={`px-4 py-2 rounded-md text-sm font-medium transition ${activeTab === 'manage'
-              ? 'bg-brand-orange text-white shadow-sm'
+              ? 'bg-brand-emerald text-white shadow-sm'
               : 'text-gray-600 hover:bg-gray-50'
               }`}
           >
@@ -479,7 +479,7 @@ function PendingTopupsView() {
             placeholder="Buscar por nombre, email o ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-1.5 text-sm focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none"
+            className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-1.5 text-sm focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald outline-none"
           />
           <svg className="absolute left-3 top-2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -523,7 +523,7 @@ function PendingTopupsView() {
                         {t.user?.id && (
                           <div className="flex items-center gap-1 text-[10px] text-gray-400 font-mono mt-0.5">
                             ID: {t.user.id.slice(0, 8)}...
-                            <CopyButton text={t.user.id} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                            <CopyButton text={t.user.id} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                           </div>
                         )}
                         {t.user ? (
@@ -572,7 +572,7 @@ function PendingTopupsView() {
                             href={t.metadata.proof_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-brand-orange hover:underline text-xs font-medium"
+                            className="text-brand-emerald hover:underline text-xs font-medium"
                           >
                             Ver Comprobante
                           </a>
@@ -638,7 +638,7 @@ function PendingTopupsView() {
             <h3 className="text-lg font-bold text-gray-900 mb-4">Datos del Usuario</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
-                <div className="h-12 w-12 rounded-full bg-brand-orange/10 flex items-center justify-center text-brand-orange font-bold text-xl">
+                <div className="h-12 w-12 rounded-full bg-brand-emerald/10 flex items-center justify-center text-brand-emerald font-bold text-xl">
                   {(selectedUserForDetails.full_name || selectedUserForDetails.email || 'U')[0].toUpperCase()}
                 </div>
                 <div>
@@ -811,7 +811,7 @@ function ManageBalancesView() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Email, nombre o ID..."
-              className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none"
+              className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald outline-none"
             />
             <button
               type="submit"
@@ -899,7 +899,7 @@ function ManageBalancesView() {
                   step="0.01"
                   value={actionAmount}
                   onChange={(e) => setActionAmount(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald outline-none"
                   placeholder="0.00"
                 />
               </div>
@@ -910,7 +910,7 @@ function ManageBalancesView() {
                   type="text"
                   value={actionReason}
                   onChange={(e) => setActionReason(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald outline-none"
                   placeholder="Ej: Regalo de bienvenida, Ajuste por error..."
                 />
               </div>
@@ -1031,7 +1031,7 @@ function OperationsView() {
             placeholder="Buscar por concepto, usuario, ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-2 text-sm focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none"
+            className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-2 text-sm focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald outline-none"
           />
           <svg className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -1081,7 +1081,7 @@ function OperationsView() {
                           {t.wallet_id && (
                             <div className="flex items-center gap-1 text-[10px] text-gray-400 font-mono mt-0.5">
                               ID: <span className="break-all">{t.wallet_id}</span>
-                              <CopyButton text={t.wallet_id} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                              <CopyButton text={t.wallet_id} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                             </div>
                           )}
                         </td>
@@ -1099,7 +1099,7 @@ function OperationsView() {
                               <Link
                                 href={`/listings/${t.product_slug || t.product_id}`}
                                 target="_blank"
-                                className="text-xs font-medium text-brand-orange hover:underline truncate"
+                                className="text-xs font-medium text-brand-emerald hover:underline truncate"
                                 title={t.product_title}
                               >
                                 {t.product_title}
@@ -1128,7 +1128,7 @@ function OperationsView() {
                           {t.reference_id ? (
                             <div className="flex items-center gap-1">
                               <span className="text-xs text-gray-500 font-mono break-all">{t.reference_id}</span>
-                              <CopyButton text={t.reference_id} size="sm" className="text-gray-400 hover:text-brand-orange" />
+                              <CopyButton text={t.reference_id} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                             </div>
                           ) : (
                             <span className="text-gray-400 text-xs">—</span>

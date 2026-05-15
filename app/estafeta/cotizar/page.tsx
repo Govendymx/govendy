@@ -689,7 +689,7 @@ export default function EstafetaCotizarPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -743,7 +743,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderName}
                   onChange={(e) => setSenderName(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Juan Pérez"
                 />
               </div>
@@ -753,7 +753,7 @@ export default function EstafetaCotizarPage() {
                   type="tel"
                   value={senderPhone}
                   onChange={(e) => setSenderPhone(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="5551234567"
                 />
               </div>
@@ -763,7 +763,7 @@ export default function EstafetaCotizarPage() {
                   type="email"
                   value={senderEmail}
                   onChange={(e) => setSenderEmail(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="correo@ejemplo.com"
                 />
               </div>
@@ -773,7 +773,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderAddress}
                   onChange={(e) => setSenderAddress(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Calle, número, colonia"
                 />
               </div>
@@ -783,7 +783,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderBetweenStreets}
                   onChange={(e) => setSenderBetweenStreets(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Entre calle A y calle B"
                 />
               </div>
@@ -793,7 +793,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderReferences}
                   onChange={(e) => setSenderReferences(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Casa color azul, portón negro, etc."
                 />
               </div>
@@ -809,13 +809,13 @@ export default function EstafetaCotizarPage() {
                       setSenderPostalCode(value);
                       if (value.length === 5) void lookupSenderPostalCode(value);
                     }}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${senderCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="01234"
                   />
                   {senderCpLoading && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-brand-orange border-t-transparent" />
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-brand-emerald border-t-transparent" />
                     </div>
                   )}
                   {!senderCpLoading && senderCpColonias.length > 0 && (
@@ -832,7 +832,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderMunicipio}
                   onChange={(e) => setSenderMunicipio(e.target.value)}
-                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${senderMunicipio ? 'border-green-500' : 'border-gray-300'
+                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderMunicipio ? 'border-green-500' : 'border-gray-300'
                     }`}
                   placeholder="Municipio"
                   readOnly={senderCpColonias.length > 0}
@@ -844,7 +844,7 @@ export default function EstafetaCotizarPage() {
                   <select
                     value={senderCity}
                     onChange={(e) => setSenderCity(e.target.value)}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${senderCity ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderCity ? 'border-green-500' : 'border-gray-300'
                       }`}
                   >
                     <option value="">Selecciona una colonia</option>
@@ -857,7 +857,7 @@ export default function EstafetaCotizarPage() {
                     type="text"
                     value={senderCity}
                     onChange={(e) => setSenderCity(e.target.value)}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${senderCity ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderCity ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="Colonia"
                   />
@@ -869,7 +869,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={senderState}
                   onChange={(e) => setSenderState(e.target.value)}
-                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${senderState ? 'border-green-500' : 'border-gray-300'
+                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderState ? 'border-green-500' : 'border-gray-300'
                     }`}
                   placeholder="Estado"
                   readOnly={senderCpColonias.length > 0}
@@ -888,7 +888,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientName}
                   onChange={(e) => setRecipientName(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="María González"
                 />
               </div>
@@ -898,7 +898,7 @@ export default function EstafetaCotizarPage() {
                   type="tel"
                   value={recipientPhone}
                   onChange={(e) => setRecipientPhone(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="5559876543"
                 />
               </div>
@@ -908,7 +908,7 @@ export default function EstafetaCotizarPage() {
                   type="email"
                   value={recipientEmail}
                   onChange={(e) => setRecipientEmail(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="correo@ejemplo.com"
                 />
               </div>
@@ -918,7 +918,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientAddress}
                   onChange={(e) => setRecipientAddress(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Calle, número, colonia"
                 />
               </div>
@@ -928,7 +928,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientBetweenStreets}
                   onChange={(e) => setRecipientBetweenStreets(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Entre calle A y calle B"
                 />
               </div>
@@ -938,7 +938,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientReferences}
                   onChange={(e) => setRecipientReferences(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="Casa color azul, portón negro, etc."
                 />
               </div>
@@ -954,13 +954,13 @@ export default function EstafetaCotizarPage() {
                       setRecipientPostalCode(value);
                       if (value.length === 5) void lookupRecipientPostalCode(value);
                     }}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${recipientCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="44100"
                   />
                   {recipientCpLoading && (
                     <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-brand-orange border-t-transparent" />
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-brand-emerald border-t-transparent" />
                     </div>
                   )}
                   {!recipientCpLoading && recipientCpColonias.length > 0 && (
@@ -977,7 +977,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientMunicipio}
                   onChange={(e) => setRecipientMunicipio(e.target.value)}
-                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${recipientMunicipio ? 'border-green-500' : 'border-gray-300'
+                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientMunicipio ? 'border-green-500' : 'border-gray-300'
                     }`}
                   placeholder="Municipio"
                   readOnly={recipientCpColonias.length > 0}
@@ -989,7 +989,7 @@ export default function EstafetaCotizarPage() {
                   <select
                     value={recipientCity}
                     onChange={(e) => setRecipientCity(e.target.value)}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${recipientCity ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientCity ? 'border-green-500' : 'border-gray-300'
                       }`}
                   >
                     <option value="">Selecciona una colonia</option>
@@ -1002,7 +1002,7 @@ export default function EstafetaCotizarPage() {
                     type="text"
                     value={recipientCity}
                     onChange={(e) => setRecipientCity(e.target.value)}
-                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${recipientCity ? 'border-green-500' : 'border-gray-300'
+                    className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientCity ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="Colonia"
                   />
@@ -1014,7 +1014,7 @@ export default function EstafetaCotizarPage() {
                   type="text"
                   value={recipientState}
                   onChange={(e) => setRecipientState(e.target.value)}
-                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 ${recipientState ? 'border-green-500' : 'border-gray-300'
+                  className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientState ? 'border-green-500' : 'border-gray-300'
                     }`}
                   placeholder="Estado"
                   readOnly={recipientCpColonias.length > 0}
@@ -1036,7 +1036,7 @@ export default function EstafetaCotizarPage() {
                   max={config?.max_weight_kg || 30}
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="1.0"
                 />
                 {config && config.weight_ranges && config.weight_ranges.length > 0 && (
@@ -1053,7 +1053,7 @@ export default function EstafetaCotizarPage() {
                   min="1"
                   value={length}
                   onChange={(e) => setLength(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="20"
                 />
               </div>
@@ -1065,7 +1065,7 @@ export default function EstafetaCotizarPage() {
                   min="1"
                   value={width}
                   onChange={(e) => setWidth(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="20"
                 />
               </div>
@@ -1077,7 +1077,7 @@ export default function EstafetaCotizarPage() {
                   min="1"
                   value={height}
                   onChange={(e) => setHeight(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20"
+                  className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                   placeholder="20"
                 />
               </div>
@@ -1086,7 +1086,7 @@ export default function EstafetaCotizarPage() {
               type="button"
               onClick={() => void calculateCost()}
               disabled={isCalculating || !config?.enabled}
-              className="mt-4 w-full rounded-xl bg-brand-orange px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
+              className="mt-4 w-full rounded-xl bg-brand-emerald px-3 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
             >
               {isCalculating ? 'Calculando...' : 'Calcular costo'}
             </button>

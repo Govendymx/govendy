@@ -118,11 +118,11 @@ export default function CategoriasPage() {
                       searchType === 'seller' ? 'Buscar vendedor o tienda...' :
                       'Ingresa el ID del producto...'
                     }
-                    className="w-full rounded-2xl border-gray-300 pl-4 pr-12 py-3 shadow-sm focus:border-brand-orange focus:ring-brand-orange"
+                    className="w-full rounded-2xl border-gray-300 pl-4 pr-12 py-3 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald"
                   />
                   <button 
                     type="submit"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-brand-orange"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-brand-emerald"
                   >
                     <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -136,7 +136,7 @@ export default function CategoriasPage() {
                     type="button"
                     onClick={() => setSearchType('product')}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      searchType === 'product' ? 'bg-white text-brand-orange shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                      searchType === 'product' ? 'bg-white text-brand-emerald shadow-sm' : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
                     Producto
@@ -145,7 +145,7 @@ export default function CategoriasPage() {
                     type="button"
                     onClick={() => setSearchType('seller')}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      searchType === 'seller' ? 'bg-white text-brand-orange shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                      searchType === 'seller' ? 'bg-white text-brand-emerald shadow-sm' : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
                     Vendedor
@@ -154,7 +154,7 @@ export default function CategoriasPage() {
                     type="button"
                     onClick={() => setSearchType('id')}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                      searchType === 'id' ? 'bg-white text-brand-orange shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                      searchType === 'id' ? 'bg-white text-brand-emerald shadow-sm' : 'text-gray-600 hover:text-gray-900'
                     }`}
                   >
                     ID
@@ -172,7 +172,7 @@ export default function CategoriasPage() {
         <section>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-              <span className="bg-brand-orange text-white p-1 rounded-md">
+              <span className="bg-brand-emerald text-white p-1 rounded-md">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -246,7 +246,7 @@ export default function CategoriasPage() {
               placeholder="Filtrar categorías..."
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full sm:w-1/2 border-b border-gray-200 py-2 text-sm focus:border-brand-orange focus:ring-0 bg-transparent"
+              className="w-full sm:w-1/2 border-b border-gray-200 py-2 text-sm focus:border-brand-emerald focus:ring-0 bg-transparent"
            />
         </div>
 
@@ -268,7 +268,7 @@ export default function CategoriasPage() {
                       href={`/listings?category=${encodeURIComponent(cat.label)}`}
                       className="block mb-3"
                     >
-                      <h3 className="font-bold text-lg text-gray-900 group-hover:text-brand-orange transition-colors">
+                      <h3 className="font-bold text-lg text-gray-900 group-hover:text-brand-emerald transition-colors">
                         {cat.label}
                       </h3>
                     </Link>
@@ -280,7 +280,7 @@ export default function CategoriasPage() {
                             href={`/listings?category=${encodeURIComponent(cat.label)}&subcategory=${encodeURIComponent(sub.label)}`}
                             className="text-sm text-gray-600 hover:text-gray-900 hover:underline flex items-center gap-1"
                           >
-                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-brand-orange/50"></span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-brand-emerald/50"></span>
                             {sub.label}
                           </Link>
                         </li>
@@ -290,7 +290,7 @@ export default function CategoriasPage() {
                     <div className="mt-4 pt-3 border-t border-gray-50 flex justify-end">
                       <Link 
                         href={`/listings?category=${encodeURIComponent(cat.label)}`}
-                        className="text-xs font-semibold text-brand-orange opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="text-xs font-semibold text-brand-emerald opacity-0 group-hover:opacity-100 transition-opacity"
                       >
                         Ver todo →
                       </Link>

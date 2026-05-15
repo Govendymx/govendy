@@ -197,7 +197,7 @@ export default function SiguiendoPage() {
                         </p>
                         <Link
                             href="/listings"
-                            className="mt-4 inline-flex rounded-xl bg-brand-orange px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:opacity-90"
+                            className="mt-4 inline-flex rounded-xl bg-brand-emerald px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:opacity-90"
                         >
                             Explorar productos
                         </Link>
@@ -212,11 +212,11 @@ export default function SiguiendoPage() {
                                     className="rounded-2xl bg-white shadow-sm ring-1 ring-black/5 transition-all hover:shadow-md overflow-hidden"
                                 >
                                     {/* Seller info row */}
-                                    <div className="flex items-center gap-4 p-4 border-l-4 border-transparent hover:border-brand-orange transition-colors">
+                                    <div className="flex items-center gap-4 p-4 border-l-4 border-transparent hover:border-brand-emerald transition-colors">
                                         {/* Avatar */}
                                         <Link
                                             href={`/tienda/${s.seller_id}`}
-                                            className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-orange to-pink-400 text-white font-black text-xl shadow-sm overflow-hidden"
+                                            className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-emerald to-pink-400 text-white font-black text-xl shadow-sm overflow-hidden"
                                         >
                                             {s.avatar_url ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
@@ -236,7 +236,7 @@ export default function SiguiendoPage() {
                                             <div className="flex flex-wrap items-center gap-2 mb-1">
                                                 <Link
                                                     href={`/tienda/${s.seller_id}`}
-                                                    className="text-base font-bold text-gray-900 hover:text-brand-orange truncate"
+                                                    className="text-base font-bold text-gray-900 hover:text-brand-emerald truncate"
                                                 >
                                                     {s.name}
                                                 </Link>
@@ -359,7 +359,7 @@ export default function SiguiendoPage() {
                                                                 </div>
                                                                 {/* Info */}
                                                                 <div className="flex flex-1 flex-col p-2">
-                                                                    <p className="line-clamp-2 text-[11px] font-semibold leading-tight text-gray-800 group-hover:text-brand-orange transition-colors">
+                                                                    <p className="line-clamp-2 text-[11px] font-semibold leading-tight text-gray-800 group-hover:text-brand-emerald transition-colors">
                                                                         {item.title}
                                                                     </p>
                                                                     <p className="mt-auto pt-1 text-xs font-extrabold text-gray-900">
@@ -375,7 +375,7 @@ export default function SiguiendoPage() {
                                                         className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-pink-50 to-white p-3 text-center ring-1 ring-pink-100 transition-all hover:shadow-md hover:scale-[1.02]"
                                                     >
                                                         <span className="text-2xl">🛍️</span>
-                                                        <span className="text-[11px] font-bold text-brand-orange">Ver tienda completa</span>
+                                                        <span className="text-[11px] font-bold text-brand-emerald">Ver tienda completa</span>
                                                     </Link>
                                                 </div>
                                             </div>

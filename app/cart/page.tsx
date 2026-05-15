@@ -174,13 +174,13 @@ export default function CartPage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Logo grande de carrito */}
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-brand-orange/10 ring-1 ring-brand-orange/20">
-              <svg className="h-12 w-12 text-brand-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-brand-emerald/10 ring-1 ring-brand-emerald/20">
+              <svg className="h-12 w-12 text-brand-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
                 Carrito
               </div>
               <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Tu carrito</h1>
@@ -364,7 +364,7 @@ export default function CartPage() {
 
               <Link
                 href="/checkout"
-                className={`block w-full rounded-xl bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-white shadow-lg hover:opacity-90 ${cartItems.length === 0 || cartItems.some(ci => {
+                className={`block w-full rounded-xl bg-brand-emerald px-4 py-3 text-center text-sm font-semibold text-white shadow-lg hover:opacity-90 ${cartItems.length === 0 || cartItems.some(ci => {
                   const l = listingsById[ci.listing_id];
                   const sid = l?.seller_id ?? l?.user_id;
                   return userId && sid && userId === sid;
@@ -373,7 +373,7 @@ export default function CartPage() {
               >
                 Ir a pagar
               </Link>
-              <p className="mt-3 text-xs font-medium text-brand-orange">
+              <p className="mt-3 text-xs font-medium text-brand-emerald">
                 No te quedes con las ganas procede al pago y sigue disfrutando de tus compras en rosa
               </p>
             </div>

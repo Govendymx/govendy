@@ -219,7 +219,7 @@ export function OnboardingTour() {
       {/* Highlight del elemento objetivo */}
       {targetElement && targetElement !== document.body && (
         <div
-          className="fixed z-[9999] rounded-lg border-4 border-brand-orange shadow-[0_0_0_9999px_rgba(0,0,0,0.6)] transition-all"
+          className="fixed z-[9999] rounded-lg border-4 border-brand-emerald shadow-[0_0_0_9999px_rgba(0,0,0,0.6)] transition-all"
           style={{
             top: `${rect.top}px`,
             left: `${rect.left}px`,
@@ -232,7 +232,7 @@ export function OnboardingTour() {
 
       {/* Tooltip */}
       <div
-        className="fixed z-[10000] w-80 rounded-2xl bg-white p-6 shadow-2xl ring-2 ring-brand-orange/20"
+        className="fixed z-[10000] w-80 rounded-2xl bg-white p-6 shadow-2xl ring-2 ring-brand-emerald/20"
         style={{
           top: `${Math.max(20, Math.min(tooltipPos.top, window.innerHeight - 250))}px`,
           left: `${Math.max(20, Math.min(tooltipPos.left, window.innerWidth - 340))}px`,
@@ -253,7 +253,7 @@ export function OnboardingTour() {
                 <div
                   key={idx}
                   className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                    idx === currentStep ? 'bg-brand-orange' : 'bg-gray-300'
+                    idx === currentStep ? 'bg-brand-emerald' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -280,7 +280,7 @@ export function OnboardingTour() {
             <button
               type="button"
               onClick={handleNext}
-              className="rounded-lg bg-brand-orange px-4 py-1.5 text-sm font-bold text-white shadow-lg hover:opacity-90"
+              className="rounded-lg bg-brand-emerald px-4 py-1.5 text-sm font-bold text-white shadow-lg hover:opacity-90"
             >
               {currentStep === tourSteps.length - 1 ? 'Finalizar' : 'Siguiente'}
             </button>

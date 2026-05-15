@@ -42,7 +42,7 @@ export default function SellPage() {
   if (vState === 'loading') {
     return (
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white flex items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-orange border-t-transparent" />
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent" />
       </div>
     );
   }
@@ -57,9 +57,7 @@ export default function SellPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Publicar producto</div>
               <div className="text-xs text-gray-500">Verificación requerida</div>
@@ -85,7 +83,7 @@ export default function SellPage() {
               </p>
               <Link
                 href="/verificacion"
-                className="mt-6 inline-flex rounded-xl bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+                className="mt-6 inline-flex rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
               >
                 Completar verificación →
               </Link>
@@ -122,7 +120,7 @@ export default function SellPage() {
               </p>
               <Link
                 href="/verificacion"
-                className="mt-6 inline-flex rounded-xl bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+                className="mt-6 inline-flex rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
               >
                 Volver a enviar documentos →
               </Link>

@@ -228,7 +228,7 @@ export function AdminTopMenu() {
             )}
           </div>
           <div className="leading-tight">
-            <div className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-brand-orange">Panel Admin</div>
+            <div className="text-sm font-semibold text-gray-900 transition-colors group-hover:text-brand-emerald">Panel Admin</div>
             <div className="text-xs text-gray-500">{currentLabel}</div>
           </div>
         </Link>
@@ -246,7 +246,7 @@ export function AdminTopMenu() {
             }}
             className="relative group"
           >
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-focus-within:text-brand-orange">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400 group-focus-within:text-brand-emerald">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -255,7 +255,7 @@ export function AdminTopMenu() {
               type="text"
               name="q"
               placeholder="Buscar usuarios, órdenes, IDs..."
-              className="block w-full rounded-xl border border-gray-200 bg-gray-50 py-2 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-500 outline-none ring-1 ring-transparent transition-all hover:bg-white focus:bg-white focus:ring-brand-orange/50 focus:shadow-sm"
+              className="block w-full rounded-xl border border-gray-200 bg-gray-50 py-2 pl-10 pr-3 text-sm text-gray-900 placeholder-gray-500 outline-none ring-1 ring-transparent transition-all hover:bg-white focus:bg-white focus:ring-brand-emerald/50 focus:shadow-sm"
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               <span className="rounded border border-gray-200 bg-white px-1.5 py-0.5 text-[10px] font-medium text-gray-400">
@@ -318,9 +318,9 @@ export function AdminTopMenu() {
                         'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-[13px] font-semibold shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md';
                       const styles =
                         tone === 'pink'
-                          ? 'border-pink-200 bg-pink-50 text-brand-orange hover:opacity-90 animate-gradient-shift'
+                          ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
                           : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
-                      const activeStyles = active ? 'ring-2 ring-brand-orange border-transparent animate-pulse-ring' : '';
+                      const activeStyles = active ? 'ring-2 ring-brand-emerald border-transparent animate-pulse-ring' : '';
                       return (
                         <Link
                           key={it.href}

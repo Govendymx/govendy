@@ -459,7 +459,7 @@ export default function AdminSeguridadPage() {
                 <select
                   value={locationForm.state}
                   onChange={e => setLocationForm({ state: e.target.value, municipality: '' })}
-                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 >
                   <option value="">Selecciona un Estado</option>
                   {getAllStates().map(s => (
@@ -474,7 +474,7 @@ export default function AdminSeguridadPage() {
                   value={locationForm.municipality}
                   onChange={e => setLocationForm({ ...locationForm, municipality: e.target.value })}
                   disabled={!locationForm.state}
-                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50"
+                  className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald disabled:bg-gray-50"
                 >
                   <option value="">Selecciona un Municipio</option>
                   {getMunicipalitiesByState(locationForm.state).map(m => (
@@ -494,7 +494,7 @@ export default function AdminSeguridadPage() {
               <button
                 onClick={saveLocation}
                 disabled={savingLocation || !locationForm.municipality}
-                className="flex items-center gap-2 rounded-xl bg-brand-orange px-4 py-2 text-sm font-bold text-white hover:bg-pink-600 disabled:opacity-50"
+                className="flex items-center gap-2 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-bold text-white hover:bg-pink-600 disabled:opacity-50"
               >
                 {savingLocation ? 'Guardando...' : (
                   <>
@@ -550,7 +550,7 @@ export default function AdminSeguridadPage() {
                       searchUsersByName(e.target.value);
                     }}
                     placeholder="Buscar usuario (nombre)..."
-                    className="w-full rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-brand-orange focus:bg-white transition-all"
+                    className="w-full rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-brand-emerald focus:bg-white transition-all"
                   />
                   {/* Dropdown Results */}
                   {userSearchResults.length > 0 && (
@@ -579,7 +579,7 @@ export default function AdminSeguridadPage() {
                 {focusedUserId && (
                   <button
                     onClick={() => setFocusedUserId(null)}
-                    className="text-xs font-bold text-brand-orange hover:underline"
+                    className="text-xs font-bold text-brand-emerald hover:underline"
                   >
                     Ver todos
                   </button>
@@ -625,7 +625,7 @@ export default function AdminSeguridadPage() {
                   <div
                     key={u.id}
                     className={`flex items-center justify-between p-3 hover:bg-gray-50 rounded-xl border transition-all group ${focusedUserId === u.user_id
-                      ? 'border-brand-orange bg-pink-50/50 shadow-sm ring-1 ring-brand-orange/20'
+                      ? 'border-brand-emerald bg-pink-50/50 shadow-sm ring-1 ring-brand-emerald/20'
                       : 'border-transparent hover:border-gray-100'
                       }`}
                   >
@@ -649,7 +649,7 @@ export default function AdminSeguridadPage() {
                           <span className="flag-icon">{u.country}</span> • {u.city || 'Desconocido'}, {u.region}
                           <button
                             onClick={() => handleEditLocation(u)}
-                            className="ml-1 p-1 hover:bg-gray-200 rounded text-gray-400 hover:text-brand-orange transition-colors"
+                            className="ml-1 p-1 hover:bg-gray-200 rounded text-gray-400 hover:text-brand-emerald transition-colors"
                             title="Corregir ubicación manualmente"
                           >
                             <Edit size={14} />
@@ -669,7 +669,7 @@ export default function AdminSeguridadPage() {
                       <button
                         onClick={() => setFocusedUserId(focusedUserId === u.user_id ? null : u.user_id)}
                         className={`p-1.5 rounded-lg transition-colors ${focusedUserId === u.user_id
-                          ? 'bg-brand-orange text-white shadow-sm'
+                          ? 'bg-brand-emerald text-white shadow-sm'
                           : 'bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700'
                           }`}
                         title={focusedUserId === u.user_id ? "Dejar de seguir" : "Ver ubicación en mapa"}
@@ -863,7 +863,7 @@ function InvestigationTool({ profiles }: { profiles: ProfileMap }) {
         <select
           value={type}
           onChange={e => setType(e.target.value as any)}
-          className="rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+          className="rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
         >
           <option value="ip">Buscar por IP</option>
           <option value="user">Buscar por Usuario (UUID)</option>
@@ -873,7 +873,7 @@ function InvestigationTool({ profiles }: { profiles: ProfileMap }) {
           value={term}
           onChange={e => setTerm(e.target.value)}
           placeholder={type === 'ip' ? 'Ej: 192.168.1.1' : 'Ej: user-uuid-123'}
-          className="flex-1 rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange font-mono"
+          className="flex-1 rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald font-mono"
           onKeyDown={e => e.key === 'Enter' && search()}
         />
         <button

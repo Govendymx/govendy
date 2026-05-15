@@ -1071,7 +1071,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-orange ring-1 ring-pink-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-pink-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-pink-100">
               Checkout
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Pagar</h1>
@@ -1116,7 +1116,7 @@ export default function CheckoutPage() {
                   {enabledMethods.map((m) => (
                     <label
                       key={m.key}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-orange bg-pink-50' : 'border-black/5 bg-white'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-pink-50' : 'border-black/5 bg-white'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1214,7 +1214,7 @@ export default function CheckoutPage() {
                   {shippingOptions.map((option) => (
                     <label
                       key={option.id}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-orange bg-pink-50' : 'border-black/5 bg-white hover:bg-gray-50'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-pink-50' : 'border-black/5 bg-white hover:bg-gray-50'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1252,7 +1252,7 @@ export default function CheckoutPage() {
                           value={option.id}
                           checked={selectedShippingOptionId === option.id && !hasAnyT1Selection}
                           onChange={() => { setSelectedShippingOptionId(option.id); setSelectedT1BySeller({}); }}
-                          className="h-4 w-4 text-brand-orange focus:ring-brand-orange"
+                          className="h-4 w-4 text-brand-emerald focus:ring-brand-emerald"
                         />
                       </div>
                     </label>
@@ -1389,7 +1389,7 @@ export default function CheckoutPage() {
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                     placeholder="Código de cupón"
-                    className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                    className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   />
                   <button
                     type="button"
@@ -1464,7 +1464,7 @@ export default function CheckoutPage() {
               type="button"
               disabled={isPlacing || cartItems.length === 0 || enabledMethods.length === 0}
               onClick={placeOrder}
-              className="mt-6 w-full rounded-xl bg-brand-orange px-4 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-6 w-full rounded-xl bg-brand-emerald px-4 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isPlacing ? 'Creando orden…' : 'Confirmar compra'}
             </button>
@@ -1495,7 +1495,7 @@ export default function CheckoutPage() {
               <div className="mt-6 w-full space-y-3">
                 <Link
                   href="/dashboard/compras"
-                  className="flex w-full items-center justify-center rounded-xl bg-brand-orange px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-orange/20 transition hover:bg-pink-600 active:scale-95"
+                  className="flex w-full items-center justify-center rounded-xl bg-brand-emerald px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-emerald/20 transition hover:bg-pink-600 active:scale-95"
                 >
                   Ver mis compras
                 </Link>

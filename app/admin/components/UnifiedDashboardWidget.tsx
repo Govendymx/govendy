@@ -169,7 +169,7 @@ export default function UnifiedDashboardWidget() {
                 {item.actionUrl && (
                   <Link 
                     href={item.actionUrl}
-                    className="inline-flex items-center text-xs font-medium text-brand-orange hover:text-pink-700"
+                    className="inline-flex items-center text-xs font-medium text-brand-emerald hover:text-pink-700"
                   >
                     Ver detalle &rarr;
                   </Link>

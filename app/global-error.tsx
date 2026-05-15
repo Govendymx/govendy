@@ -20,9 +20,7 @@ export default function GlobalError({
         <div className="mx-auto max-w-3xl px-4 py-10">
           <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-black/5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-                <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-              </div>
+              <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
               <div className="leading-tight">
                 <div className="text-sm font-semibold text-gray-900">Error crítico</div>
                 <div className="text-xs text-gray-500">Se rompió la aplicación en el nivel raíz</div>
@@ -37,7 +35,7 @@ export default function GlobalError({
               <button
                 type="button"
                 onClick={() => reset()}
-                className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90"
               >
                 Reintentar
               </button>

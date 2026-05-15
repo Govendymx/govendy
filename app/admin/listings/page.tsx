@@ -266,7 +266,7 @@ export default function AdminListingsPage() {
             <div className="text-lg font-bold text-gray-900">Acceso denegado</div>
             {error ? <div className="mt-3 text-sm text-red-700">{error}</div> : null}
             <div className="mt-6">
-              <Link href="/dashboard" className="inline-flex rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
+              <Link href="/dashboard" className="inline-flex rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white hover:opacity-90">
                 Volver
               </Link>
             </div>
@@ -281,9 +281,7 @@ export default function AdminListingsPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Admin · Publicaciones</div>
               <div className="text-xs text-gray-500">Busca por título o por ID (PCK-…)</div>
@@ -314,7 +312,7 @@ export default function AdminListingsPage() {
                 setFilter('all');
                 load(q, 'all');
               }}
-              className={`px-4 py-2 text-sm font-semibold transition-colors ${filter === 'all' ? 'border-b-2 border-brand-orange text-brand-orange' : 'text-gray-500 hover:text-gray-700'
+              className={`px-4 py-2 text-sm font-semibold transition-colors ${filter === 'all' ? 'border-b-2 border-brand-emerald text-brand-emerald' : 'text-gray-500 hover:text-gray-700'
                 }`}
             >
               Todas
@@ -344,13 +342,13 @@ export default function AdminListingsPage() {
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
-                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 placeholder="Buscar por título, UUID o PCK-…"
               />
               <button
                 type="button"
                 onClick={() => load(q.trim(), filter)}
-                className="shrink-0 rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
+                className="shrink-0 rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
               >
                 Buscar
               </button>
@@ -475,7 +473,7 @@ export default function AdminListingsPage() {
                                     el.innerHTML = original;
                                   }, 1000);
                                 }}
-                                className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                                className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                                 title="Copiar Public ID"
                               >
                                 📋
@@ -491,7 +489,7 @@ export default function AdminListingsPage() {
                                 e.stopPropagation();
                                 copyToClipboard(r.id, r.id);
                               }}
-                              className="text-gray-400 hover:text-brand-orange focus:outline-none"
+                              className="text-gray-400 hover:text-brand-emerald focus:outline-none"
                               title="Copiar UUID"
                             >
                               {copiedId === r.id ? '✅' : '📋'}

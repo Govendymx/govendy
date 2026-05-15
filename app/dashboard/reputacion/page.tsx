@@ -135,9 +135,7 @@ export default function DashboardReputacionPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </div>
+            <img src="/logo.png" alt="GoVendy" className="h-9 w-auto object-contain" />
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Reputación</div>
               <div className="text-xs text-gray-500">Tu termómetro y estadísticas</div>
@@ -152,7 +150,7 @@ export default function DashboardReputacionPage() {
             >
               {isLoading ? 'Cargando…' : 'Actualizar'}
             </button>
-            <Link href="/sell" className="rounded-xl bg-brand-orange px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
+            <Link href="/sell" className="rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90">
               Vender
             </Link>
             <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
@@ -169,7 +167,7 @@ export default function DashboardReputacionPage() {
             <button
               type="button"
               onClick={() => void load()}
-              className="ml-3 rounded-lg bg-brand-orange px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
+              className="ml-3 rounded-lg bg-brand-emerald px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90"
             >
               Reintentar
             </button>

@@ -75,7 +75,7 @@ export default function MasVistosPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-orange px-3 text-white shadow-sm hover:opacity-95">
+            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
               <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
             </Link>
             <div className="leading-tight">
@@ -103,7 +103,7 @@ export default function MasVistosPage() {
               <div className="text-lg font-bold text-gray-900">Selección: Más vistos</div>
               <div className="mt-1 text-sm text-gray-600">Los artículos con mayor interacción de la comunidad.</div>
             </div>
-            <Link href="/listings" className="text-sm font-semibold text-brand-orange hover:opacity-90">
+            <Link href="/listings" className="text-sm font-semibold text-brand-emerald hover:opacity-90">
               Explorar todo
             </Link>
           </div>

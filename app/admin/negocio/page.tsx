@@ -226,13 +226,13 @@ export default function AdminNegocioPage() {
             <input
               value={mpBaseAccount}
               onChange={(e) => setMpBaseAccount(e.target.value)}
-              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-10 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+              className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-10 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               placeholder="Ej: cuenta_base@correo.com o alias"
             />
             <button
               type="button"
               onClick={() => copyToClipboard(mpBaseAccount, 'mpBaseAccount')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-orange focus:outline-none"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-emerald focus:outline-none"
               title="Copiar cuenta base"
             >
               {copiedId === 'mpBaseAccount' ? '✅' : '📋'}
@@ -250,7 +250,7 @@ export default function AdminNegocioPage() {
               <input
                 value={carrierEstafeta}
                 onChange={(e) => setCarrierEstafeta(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 inputMode="numeric"
               />
             </div>
@@ -259,7 +259,7 @@ export default function AdminNegocioPage() {
               <input
                 value={carrierFedex}
                 onChange={(e) => setCarrierFedex(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 inputMode="numeric"
               />
             </div>
@@ -268,7 +268,7 @@ export default function AdminNegocioPage() {
               <input
                 value={carrierDhl}
                 onChange={(e) => setCarrierDhl(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 inputMode="numeric"
               />
             </div>
@@ -277,7 +277,7 @@ export default function AdminNegocioPage() {
               <input
                 value={extendedExtra}
                 onChange={(e) => setExtendedExtra(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 inputMode="numeric"
               />
             </div>
@@ -299,7 +299,7 @@ export default function AdminNegocioPage() {
                 <input
                   value={commissionBasic}
                   onChange={(e) => setCommissionBasic(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   inputMode="numeric"
                   placeholder="23"
                 />
@@ -312,7 +312,7 @@ export default function AdminNegocioPage() {
                 <input
                   value={commissionPro}
                   onChange={(e) => setCommissionPro(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-orange"
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                   inputMode="numeric"
                   placeholder="18"
                 />
@@ -342,7 +342,7 @@ export default function AdminNegocioPage() {
               <div className="mt-1 text-xs text-gray-600">Bonificación para compradores en TODAS las ventas.</div>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`text-xs font-semibold ${cashbackEnabled ? 'text-brand-orange' : 'text-gray-400'}`}>
+              <span className={`text-xs font-semibold ${cashbackEnabled ? 'text-brand-emerald' : 'text-gray-400'}`}>
                 {cashbackEnabled ? 'ACTIVADO' : 'DESACTIVADO'}
               </span>
               <label className="relative inline-flex cursor-pointer items-center">
@@ -352,7 +352,7 @@ export default function AdminNegocioPage() {
                   checked={cashbackEnabled}
                   onChange={(e) => setCashbackEnabled(e.target.checked)}
                 />
-                <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-brand-orange peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-brand-orange/20"></div>
+                <div className="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-brand-emerald peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-brand-emerald/20"></div>
               </label>
             </div>
           </div>
@@ -365,7 +365,7 @@ export default function AdminNegocioPage() {
                   value={cashbackPercent}
                   onChange={(e) => setCashbackPercent(e.target.value)}
                   disabled={!cashbackEnabled}
-                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50"
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 pr-8 text-sm outline-none focus:ring-2 focus:ring-brand-emerald disabled:bg-gray-50"
                   inputMode="numeric"
                   placeholder="0"
                 />
@@ -381,7 +381,7 @@ export default function AdminNegocioPage() {
                   value={cashbackStartDate}
                   onChange={(e) => setCashbackStartDate(e.target.value)}
                   disabled={!cashbackEnabled}
-                  className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50"
+                  className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald disabled:bg-gray-50"
                 />
               </div>
               <div>
@@ -391,7 +391,7 @@ export default function AdminNegocioPage() {
                   value={cashbackEndDate}
                   onChange={(e) => setCashbackEndDate(e.target.value)}
                   disabled={!cashbackEnabled}
-                  className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-orange disabled:bg-gray-50"
+                  className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-brand-emerald disabled:bg-gray-50"
                 />
               </div>
             </div>
@@ -484,7 +484,7 @@ export default function AdminNegocioPage() {
           type="button"
           onClick={save}
           disabled={isSaving}
-          className="rounded-xl bg-brand-orange px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
+          className="rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-60"
         >
           {isSaving ? 'Guardando…' : 'Guardar'}
         </button>

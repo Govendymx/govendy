@@ -191,7 +191,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
           style={{ maxHeight: '400px', minHeight: '300px' }}
         >
           {/* Header */}
-          <div className="bg-brand-orange p-3 flex justify-between items-center text-white">
+          <div className="bg-brand-emerald p-3 flex justify-between items-center text-white">
             <div className="flex items-center gap-2">
               <span className="font-bold text-sm">Asistente Pocky</span>
             </div>
@@ -213,7 +213,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                 <div className="grid gap-2">
                   <button 
                     onClick={() => setMode('faq')}
-                    className="text-left px-4 py-3 bg-white hover:bg-brand-orange/5 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors flex items-center gap-2 group"
+                    className="text-left px-4 py-3 bg-white hover:bg-brand-emerald/5 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors flex items-center gap-2 group"
                   >
                     <span className="bg-blue-100 text-blue-600 p-1.5 rounded-lg group-hover:bg-blue-200 transition-colors">🛡️</span>
                     Dudas de la Plataforma
@@ -221,7 +221,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                   
                   <button 
                     onClick={startProductHelp}
-                    className="text-left px-4 py-3 bg-white hover:bg-brand-orange/5 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors flex items-center gap-2 group"
+                    className="text-left px-4 py-3 bg-white hover:bg-brand-emerald/5 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 transition-colors flex items-center gap-2 group"
                   >
                     <span className="bg-purple-100 text-purple-600 p-1.5 rounded-lg group-hover:bg-purple-200 transition-colors">🛍️</span>
                     Ayuda para Comprar
@@ -243,7 +243,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                    <div key={i} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                      <div className={`max-w-[85%] p-3 rounded-xl text-sm ${
                        msg.type === 'user' 
-                         ? 'bg-brand-orange text-white rounded-tr-none' 
+                         ? 'bg-brand-emerald text-white rounded-tr-none' 
                          : 'bg-white text-gray-700 shadow-sm rounded-tl-none'
                      }`}>
                        {msg.text}
@@ -274,7 +274,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                    <div key={i} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                      <div className={`max-w-[85%] p-3 rounded-xl text-sm ${
                        msg.type === 'user' 
-                         ? 'bg-brand-orange text-white rounded-tr-none' 
+                         ? 'bg-brand-emerald text-white rounded-tr-none' 
                          : 'bg-white text-gray-700 shadow-sm rounded-tl-none'
                      }`}>
                        {msg.text}
@@ -285,7 +285,7 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                  {history.length < 3 && (
                    <div className="flex flex-wrap gap-2 mt-2">
                      {['Ropa', 'Calzado', 'Electrónica', 'Accesorios'].map(cat => (
-                       <button key={cat} onClick={() => handleProductChoice(cat)} className="px-3 py-1.5 bg-white border border-brand-orange/30 text-brand-orange text-xs rounded-full hover:bg-brand-orange hover:text-white transition-colors">
+                       <button key={cat} onClick={() => handleProductChoice(cat)} className="px-3 py-1.5 bg-white border border-brand-emerald/30 text-brand-emerald text-xs rounded-full hover:bg-brand-emerald hover:text-white transition-colors">
                          {cat}
                        </button>
                      ))}
@@ -307,10 +307,10 @@ export function PockyAssist({ isOpen, onClose }: PockyAssistProps) {
                  value={inputValue}
                  onChange={(e) => setInputValue(e.target.value)}
                  placeholder="Escribe un mensaje..." 
-                 className="w-full bg-gray-100 text-sm rounded-full pl-4 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-brand-orange/50"
+                 className="w-full bg-gray-100 text-sm rounded-full pl-4 pr-10 py-2 focus:outline-none focus:ring-1 focus:ring-brand-emerald/50"
                  disabled={mode === 'menu'}
                />
-               <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-brand-orange p-1 hover:bg-brand-orange/10 rounded-full transition-colors" disabled={!inputValue.trim()}>
+               <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-brand-emerald p-1 hover:bg-brand-emerald/10 rounded-full transition-colors" disabled={!inputValue.trim()}>
                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                </button>
              </div>
