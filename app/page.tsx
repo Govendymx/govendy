@@ -894,120 +894,158 @@ export default function HomePage() {
       )}
 
       <main className="mx-auto max-w-7xl px-4 py-8">
-        {/* 🚀 Marketing Grid Banner (Estilo Premium) */}
-        <section className="mb-12">
-          {/* Header del banner */}
-          <div className="mb-6 rounded-2xl bg-brand-onyx px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="h-8 w-8 rounded-xl bg-brand-volt flex items-center justify-center">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-black">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                  </svg>
-                </div>
+        {/* 🛡️ World-Class Trust Bar (Neuromarketing Trigger) */}
+        <section className="mb-10 -mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.05] transition-all hover:shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-emerald/10 text-brand-emerald">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div>
+                <div className="text-sm font-black text-gray-900">PAGO 100% SEGURO</div>
+                <div className="text-[11px] font-medium text-gray-500">Protección nivel bancario</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.05] transition-all hover:shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-volt/20 text-black">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <div>
+                <div className="text-sm font-black text-gray-900">ENVÍO EXPRESS</div>
+                <div className="text-[11px] font-medium text-gray-500">Entrega en tiempo record</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.05] transition-all hover:shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-mango/10 text-brand-mango">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div>
+                <div className="text-sm font-black text-gray-900">CALIDAD PREMIUM</div>
+                <div className="text-[11px] font-medium text-gray-500">Vendedores verificados</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.05] transition-all hover:shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-gray-600">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div>
+                <div className="text-sm font-black text-gray-900">SOPORTE VIP 24/7</div>
+                <div className="text-[11px] font-medium text-gray-500">Siempre listos para ayudarte</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 🚀 Premium Marketing Grid (Neuromarketing: Pattern Interrupt) */}
+        <section className="mb-14">
+          <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="h-1.5 w-8 rounded-full bg-brand-volt"></span>
+                <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-emerald">Explora lo mejor</span>
+              </div>
+              <h2 className="text-3xl font-black text-gray-900 sm:text-4xl tracking-tight">Selecciones del día</h2>
+            </div>
+            <Link href="/categorias" className="group flex items-center gap-2 text-sm font-black text-brand-emerald">
+              VER TODA LA COLECCIÓN
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            {/* Tecnología - Card Premium */}
+            <Link href="/listings?q=tecnologia" className="group relative overflow-hidden rounded-[2.5rem] bg-gray-900 p-8 transition-all duration-500 hover:shadow-[0_0_50px_rgba(31,181,155,0.3)] block border border-white/10">
+              <div className="relative z-10 flex h-full flex-col justify-between">
                 <div>
-                  <div className="text-[11px] font-black uppercase tracking-widest text-brand-volt">GoVendy</div>
-                  <div className="text-xs text-white/60 font-medium">Tu Mercado Online de Confianza</div>
-                </div>
-              </div>
-            </div>
-            <div className="text-center sm:text-right">
-              <h2 className="text-2xl font-black text-white sm:text-3xl leading-tight">¡ENCUENTRA DE TODO</h2>
-              <div className="text-2xl font-black sm:text-3xl leading-tight" style={{ color: '#CCFF00' }}>EN UN SOLO LUGAR!</div>
-            </div>
-          </div>
-
-          {/* Grid 2x2 de categorías */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {/* Tecnología */}
-            <Link href="/listings?q=tecnologia" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-sky-100 border border-blue-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">TECNOLOGÍA PUNTA</div>
-                  <div className="text-xs text-gray-600 font-medium mt-0.5">¡Últimas marcas, mejores precios!</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Envío Gratis</span>
-                    <span className="rounded-full bg-brand-volt px-3 py-1 text-[10px] font-black text-black">Mejores Precios</span>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-brand-volt px-4 py-1.5 text-[10px] font-black uppercase tracking-wider text-black mb-6">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
+                    </span>
+                    Tendencia
                   </div>
+                  <h3 className="text-3xl font-black text-white leading-tight max-w-[200px]">TECNOLOGÍA SIN LÍMITES</h3>
+                  <p className="mt-2 text-white/60 text-sm font-medium">Equípate con lo último del mercado.</p>
                 </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">📱</div>
-                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-gray-900 shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">💻</div>
+                <div className="mt-8">
+                  <span className="inline-flex rounded-2xl bg-white px-6 py-3 text-xs font-black text-black transition-all group-hover:bg-brand-emerald group-hover:text-white group-hover:scale-105">
+                    DESCUBRIR MÁS
+                  </span>
                 </div>
               </div>
-              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-blue-400 group-hover:opacity-20 transition-opacity">GV</div>
+              {/* Background visuals */}
+              <div className="absolute top-0 right-0 h-full w-1/2 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[180px] font-black text-white/[0.03] rotate-12">TECH</div>
+                <div className="absolute top-10 right-10 h-32 w-32 rounded-full bg-brand-emerald/20 blur-[60px]"></div>
+                <div className="absolute bottom-10 left-10 h-32 w-32 rounded-full bg-brand-volt/20 blur-[60px]"></div>
+              </div>
             </Link>
 
-            {/* Hogar */}
-            <Link href="/listings?q=hogar" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-100 border border-amber-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">HOGAR INTELIGENTE</div>
-                  <div className="text-xs text-gray-600 font-medium mt-0.5">Equipa tu casa con estilo</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Marcas Líderes</span>
-                    <span className="rounded-full bg-brand-mango px-3 py-1 text-[10px] font-black text-white">Oferta Especial</span>
+            {/* Moda - Card Premium */}
+            <Link href="/listings?q=moda" className="group relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brand-emerald to-teal-700 p-8 transition-all duration-500 hover:shadow-[0_0_50px_rgba(31,181,155,0.3)] block border border-white/10">
+              <div className="relative z-10 flex h-full flex-col justify-between">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-1.5 text-[10px] font-black uppercase tracking-wider text-white mb-6">
+                    40% DESCUENTO
                   </div>
+                  <h3 className="text-3xl font-black text-white leading-tight max-w-[200px]">MODA QUE IMPACTA</h3>
+                  <p className="mt-2 text-white/80 text-sm font-medium">Estilo que define quién eres.</p>
                 </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">🏠</div>
-                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">🤖</div>
+                <div className="mt-8">
+                  <span className="inline-flex rounded-2xl bg-brand-volt px-6 py-3 text-xs font-black text-black transition-all group-hover:bg-white group-hover:scale-105">
+                    VER TENDENCIAS
+                  </span>
                 </div>
               </div>
-              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-amber-400 group-hover:opacity-20 transition-opacity">GV</div>
-            </Link>
-
-            {/* Moda */}
-            <Link href="/listings?q=moda" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-100 border border-emerald-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">MODA PARA TODOS</div>
-                  <div className="text-xs text-gray-600 font-medium mt-0.5">Tendencias de temporada</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">40% Dto</span>
-                    <span className="rounded-full bg-brand-onyx px-3 py-1 text-[10px] font-black text-white">Descuentos Increíbles</span>
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">👗</div>
-                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">👟</div>
-                </div>
+              {/* Background visuals */}
+              <div className="absolute top-0 right-0 h-full w-1/2 overflow-hidden pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[180px] font-black text-black/[0.05] -rotate-12">MODE</div>
+                <div className="absolute top-1/2 right-0 h-40 w-40 rounded-full bg-white/10 blur-[80px]"></div>
               </div>
-              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-emerald-400 group-hover:opacity-20 transition-opacity">GV</div>
-            </Link>
-
-            {/* Entretenimiento */}
-            <Link href="/listings?q=herramientas" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-slate-100 border border-gray-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex-1 min-w-0">
-                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">ENTRETENIMIENTO<br/>Y BRICOLAJE</div>
-                  <div className="text-xs text-gray-600 font-medium mt-0.5">Todo para tus proyectos</div>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="rounded-full bg-gray-700 px-3 py-1 text-[10px] font-black text-white">Novedades</span>
-                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Encuentra tu Pasión</span>
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-1">
-                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">🔧</div>
-                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">🚁</div>
-                </div>
-              </div>
-              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-gray-400 group-hover:opacity-20 transition-opacity">GV</div>
             </Link>
           </div>
 
-          {/* Footer del banner — Oferta Relámpago + CTA */}
-          <div className="mt-4 rounded-2xl bg-brand-onyx px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="text-brand-volt text-lg">⚡</span>
-              <span className="text-xs font-black uppercase tracking-wider text-white">OFERTAS RELÁMPAGO: ¡DATE PRISA, ÚLTIMAS UNIDADES!</span>
+          {/* Flash Deals Mini-Bar (Neuromarketing: Scarcity) */}
+          <div className="mt-8 relative overflow-hidden rounded-3xl bg-brand-onyx p-1">
+            <div className="absolute inset-0 bg-gradient-to-r from-brand-volt/20 via-transparent to-brand-emerald/20 opacity-50"></div>
+            <div className="relative rounded-[calc(1.5rem-1px)] bg-brand-onyx px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-volt text-black animate-bounce">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                  </div>
+                  <div>
+                    <div className="text-sm font-black text-white">OFERTAS RELÁMPAGO</div>
+                    <div className="text-[10px] font-bold text-brand-volt tracking-widest uppercase">¡Solo por hoy!</div>
+                  </div>
+                </div>
+                <div className="hidden lg:flex items-center gap-2">
+                  <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center">
+                    <span className="text-xs font-black text-white">08</span>
+                    <span className="text-[7px] text-white/40 font-bold uppercase">hrs</span>
+                  </div>
+                  <span className="text-white/40 font-black">:</span>
+                  <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center">
+                    <span className="text-xs font-black text-white">42</span>
+                    <span className="text-[7px] text-white/40 font-bold uppercase">min</span>
+                  </div>
+                  <span className="text-white/40 font-black">:</span>
+                  <div className="h-10 w-10 rounded-lg bg-white/5 border border-white/10 flex flex-col items-center justify-center">
+                    <span className="text-xs font-black text-brand-volt">15</span>
+                    <span className="text-[7px] text-white/40 font-bold uppercase">seg</span>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 w-full md:w-auto">
+                <div className="flex-1 md:w-48 h-2 bg-white/10 rounded-full overflow-hidden">
+                  <div className="h-full w-[72%] bg-brand-volt rounded-full"></div>
+                </div>
+                <span className="text-[10px] font-black text-white/60 whitespace-nowrap">72% VENDIDO</span>
+              </div>
+              <Link href="/listings" className="w-full md:w-auto text-center rounded-2xl bg-brand-emerald px-8 py-3 text-xs font-black text-white shadow-xl transition-all hover:bg-brand-volt hover:text-black hover:scale-105">
+                ¡COMPRAR AHORA!
+              </Link>
             </div>
-            <Link
-              href="/listings"
-              className="inline-flex items-center gap-2 rounded-2xl bg-brand-emerald px-6 py-3 text-sm font-black text-white shadow-lg transition-all hover:opacity-90 hover:scale-105 active:scale-95"
-            >
-              🛒 ¡DESCUBRE TODAS LAS OFERTAS!
-            </Link>
           </div>
         </section>
 
