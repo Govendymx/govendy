@@ -8,6 +8,7 @@ type ProfileRow = {
   first_name: string;
   apellido_paterno: string;
   apellido_materno: string;
+  nickname: string;
   rfc: string;
   curp: string;
   full_name: string;
@@ -74,6 +75,7 @@ export default function VerificacionPage() {
     first_name: '',
     apellido_paterno: '',
     apellido_materno: '',
+    nickname: '',
     rfc: '',
     curp: '',
     full_name: '',
@@ -100,6 +102,7 @@ export default function VerificacionPage() {
       isFilled(form.first_name) &&
       isFilled(form.apellido_paterno) &&
       isFilled(form.apellido_materno) &&
+      isFilled(form.nickname) &&
       isFilled(form.rfc) &&
       isFilled(form.phone) &&
       isFilled(form.address_street) &&
@@ -134,7 +137,7 @@ export default function VerificacionPage() {
         const { data: profile, error: profileErr } = await supabase
           .from('profiles')
           .select(
-            'first_name,apellido_paterno,apellido_materno,rfc,curp,full_name,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,phone,ine_front_url,ine_back_url,selfie_ine_url,is_verified,verification_status,verification_rejection_reason',
+            'first_name,apellido_paterno,apellido_materno,nickname,rfc,curp,full_name,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,phone,ine_front_url,ine_back_url,selfie_ine_url,is_verified,verification_status,verification_rejection_reason',
           )
           .eq('id', userData.user.id)
           .maybeSingle();
@@ -164,6 +167,7 @@ export default function VerificacionPage() {
             first_name: (profile as any).first_name ?? '',
             apellido_paterno: (profile as any).apellido_paterno ?? '',
             apellido_materno: (profile as any).apellido_materno ?? '',
+            nickname: (profile as any).nickname ?? '',
             rfc: (profile as any).rfc ?? '',
             curp: (profile as any).curp ?? '',
             full_name: (profile as any).full_name ?? '',
@@ -227,6 +231,7 @@ export default function VerificacionPage() {
         first_name: form.first_name.trim(),
         apellido_paterno: form.apellido_paterno.trim(),
         apellido_materno: form.apellido_materno.trim(),
+        nickname: form.nickname.trim(),
         rfc: form.rfc.trim().toUpperCase(),
         curp: form.curp.trim().toUpperCase(),
         full_name: computedFullName,
@@ -383,6 +388,15 @@ export default function VerificacionPage() {
                 <input
                   value={form.apellido_materno}
                   onChange={(e) => setForm((p) => ({ ...p, apellido_materno: e.target.value }))}
+                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                  required
+                />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Seudónimo (Nombre de tienda) <span className="text-red-600">*</span></label>
+                <input
+                  value={form.nickname}
+                  onChange={(e) => setForm((p) => ({ ...p, nickname: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   required
                 />
