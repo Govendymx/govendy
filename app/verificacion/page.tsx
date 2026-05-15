@@ -62,6 +62,8 @@ export default function VerificacionPage() {
   const [ineFrontFile, setIneFrontFile] = useState<File | null>(null);
   const [ineBackFile, setIneBackFile] = useState<File | null>(null);
   const [selfieFile, setSelfieFile] = useState<File | null>(null);
+  const [cpLoading, setCpLoading] = useState(false);
+  const [coloniasOptions, setColoniasOptions] = useState<string[]>([]);
 
   // Borra una foto de identidad del perfil
   const clearPhoto = async (field: 'ine_front_url' | 'ine_back_url' | 'selfie_ine_url') => {
@@ -69,6 +71,32 @@ export default function VerificacionPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     await supabase.from('profiles').update({ [field]: '' }).eq('id', user.id);
+  };
+
+  const lookupPostalCode = async (cp: string) => {
+    if (!/^\d{5}$/.test(cp)) return;
+    try {
+      setCpLoading(true);
+      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
+      const json = await res.json();
+      const estado = json.estado || json.state || '';
+      const municipio = json.municipio || json.city || '';
+      if (estado || municipio) {
+        setForm(p => ({ ...p, state: estado || p.state, city: municipio || p.city }));
+        const colonias = json.colonias || [];
+        const nombres: string[] = colonias.map((c: any) => String(c.nombre || c || '').trim()).filter(Boolean);
+        setColoniasOptions(nombres);
+        if (nombres.length === 1) {
+          setForm(p => ({ ...p, neighborhood: nombres[0] }));
+        } else if (nombres.length > 0 && !nombres.includes(form.neighborhood)) {
+          setForm(p => ({ ...p, neighborhood: '' })); // Reset if current is invalid
+        }
+      }
+    } catch {
+      // noop
+    } finally {
+      setCpLoading(false);
+    }
   };
 
   const [form, setForm] = useState<ProfileRow>({
@@ -446,21 +474,42 @@ export default function VerificacionPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Colonia <span className="text-red-600">*</span></label>
-                <input
-                  value={form.neighborhood}
-                  onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                  required
-                />
+                {coloniasOptions.length > 0 ? (
+                  <select
+                    value={form.neighborhood}
+                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
+                    className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                    required
+                  >
+                    <option value="">Selecciona tu colonia...</option>
+                    {coloniasOptions.map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                ) : (
+                  <input
+                    value={form.neighborhood}
+                    onChange={(e) => setForm((p) => ({ ...p, neighborhood: e.target.value }))}
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                    required
+                  />
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Código postal <span className="text-red-600">*</span></label>
-                <input
-                  value={form.zip_code}
-                  onChange={(e) => setForm((p) => ({ ...p, zip_code: e.target.value }))}
-                  className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    value={form.zip_code}
+                    onChange={(e) => {
+                      const cp = e.target.value;
+                      setForm((p) => ({ ...p, zip_code: cp }));
+                      if (cp.length === 5) lookupPostalCode(cp);
+                    }}
+                    maxLength={5}
+                    placeholder="5 dígitos"
+                    className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
+                    required
+                  />
+                  {cpLoading && <div className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-brand-emerald">Buscando...</div>}
+                </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Estado <span className="text-red-600">*</span></label>
