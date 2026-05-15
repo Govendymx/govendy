@@ -894,43 +894,120 @@ export default function HomePage() {
       )}
 
       <main className="mx-auto max-w-7xl px-4 py-8">
-        {/* 🚀 Quick Categories (Estilo Shopee / ML) */}
+        {/* 🚀 Marketing Grid Banner (Estilo Premium) */}
         <section className="mb-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900 tracking-tight">Categorías destacadas</h2>
-            <Link href="/categorias" className="text-sm font-bold text-brand-emerald hover:underline">Ver todas</Link>
-          </div>
-          <div className="grid grid-cols-4 gap-6 sm:grid-cols-6 md:grid-cols-8">
-            {(quickCategoryBanners.length > 0 
-              ? quickCategoryBanners.map(b => ({
-                  id: b.id,
-                  name: b.title,
-                  image: b.image_url,
-                  link: b.cta_href
-                }))
-              : [
-                  { id: '1', name: 'Tecnología', image: '/categories/tecnologia.png', link: '/categorias?q=tecnologia' },
-                  { id: '2', name: 'Moda', image: '/categories/moda.png', link: '/categorias?q=moda' },
-                  { id: '3', name: 'Hogar', image: '/categories/hogar.png', link: '/categories?q=hogar' },
-                  { id: '4', name: 'Deportes', image: '/categories/deportes.png', link: '/categorias?q=deportes' },
-                  { id: '5', name: 'Belleza', image: '/categories/belleza.png', link: '/categorias?q=belleza' },
-                  { id: '6', name: 'Juguetes', image: '/categories/juguetes.png', link: '/categorias?q=juguetes' },
-                  { id: '7', name: 'Herramientas', image: '/categories/herramientas.png', link: '/categories?q=herramientas' },
-                  { id: '8', name: 'Ver todo', image: '/categories/ver_todo.png', link: '/categorias' },
-                ]
-            ).map((cat) => (
-              <Link key={cat.id} href={cat.link} className="group flex flex-col items-center gap-3">
-                <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-500 group-hover:scale-110 shadow-md ring-1 ring-black/5 group-hover:ring-brand-emerald/30 group-hover:shadow-xl">
-                  <img 
-                    src={cat.image} 
-                    alt={cat.name} 
-                    className="h-full w-full object-cover p-3"
-                  />
-                  <div className="absolute inset-0 bg-brand-emerald/0 transition-colors duration-300 group-hover:bg-brand-emerald/5" />
+          {/* Header del banner */}
+          <div className="mb-6 rounded-2xl bg-brand-onyx px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-xl bg-brand-volt flex items-center justify-center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-black">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                  </svg>
                 </div>
-                <span className="text-center text-[13px] font-bold text-gray-800 transition-colors group-hover:text-brand-emerald">{cat.name}</span>
-              </Link>
-            ))}
+                <div>
+                  <div className="text-[11px] font-black uppercase tracking-widest text-brand-volt">GoVendy</div>
+                  <div className="text-xs text-white/60 font-medium">Tu Mercado Online de Confianza</div>
+                </div>
+              </div>
+            </div>
+            <div className="text-center sm:text-right">
+              <h2 className="text-2xl font-black text-white sm:text-3xl leading-tight">¡ENCUENTRA DE TODO</h2>
+              <div className="text-2xl font-black sm:text-3xl leading-tight" style={{ color: '#CCFF00' }}>EN UN SOLO LUGAR!</div>
+            </div>
+          </div>
+
+          {/* Grid 2x2 de categorías */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* Tecnología */}
+            <Link href="/listings?q=tecnologia" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-sky-100 border border-blue-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">TECNOLOGÍA PUNTA</div>
+                  <div className="text-xs text-gray-600 font-medium mt-0.5">¡Últimas marcas, mejores precios!</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Envío Gratis</span>
+                    <span className="rounded-full bg-brand-volt px-3 py-1 text-[10px] font-black text-black">Mejores Precios</span>
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">📱</div>
+                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-gray-900 shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">💻</div>
+                </div>
+              </div>
+              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-blue-400 group-hover:opacity-20 transition-opacity">GV</div>
+            </Link>
+
+            {/* Hogar */}
+            <Link href="/listings?q=hogar" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-yellow-100 border border-amber-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">HOGAR INTELIGENTE</div>
+                  <div className="text-xs text-gray-600 font-medium mt-0.5">Equipa tu casa con estilo</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Marcas Líderes</span>
+                    <span className="rounded-full bg-brand-mango px-3 py-1 text-[10px] font-black text-white">Oferta Especial</span>
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">🏠</div>
+                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">🤖</div>
+                </div>
+              </div>
+              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-amber-400 group-hover:opacity-20 transition-opacity">GV</div>
+            </Link>
+
+            {/* Moda */}
+            <Link href="/listings?q=moda" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-100 border border-emerald-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">MODA PARA TODOS</div>
+                  <div className="text-xs text-gray-600 font-medium mt-0.5">Tendencias de temporada</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">40% Dto</span>
+                    <span className="rounded-full bg-brand-onyx px-3 py-1 text-[10px] font-black text-white">Descuentos Increíbles</span>
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">👗</div>
+                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">👟</div>
+                </div>
+              </div>
+              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-emerald-400 group-hover:opacity-20 transition-opacity">GV</div>
+            </Link>
+
+            {/* Entretenimiento */}
+            <Link href="/listings?q=herramientas" className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-slate-100 border border-gray-200/60 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-brand-emerald/40 block">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="text-lg font-black uppercase tracking-tight text-gray-900">ENTRETENIMIENTO<br/>Y BRICOLAJE</div>
+                  <div className="text-xs text-gray-600 font-medium mt-0.5">Todo para tus proyectos</div>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <span className="rounded-full bg-gray-700 px-3 py-1 text-[10px] font-black text-white">Novedades</span>
+                    <span className="rounded-full bg-brand-emerald px-3 py-1 text-[10px] font-black text-white">Encuentra tu Pasión</span>
+                  </div>
+                </div>
+                <div className="flex shrink-0 items-center gap-1">
+                  <div className="h-20 w-20 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-4xl">🔧</div>
+                  <div className="h-16 w-16 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center text-3xl">🚁</div>
+                </div>
+              </div>
+              <div className="absolute right-4 bottom-4 opacity-10 text-6xl font-black text-gray-400 group-hover:opacity-20 transition-opacity">GV</div>
+            </Link>
+          </div>
+
+          {/* Footer del banner — Oferta Relámpago + CTA */}
+          <div className="mt-4 rounded-2xl bg-brand-onyx px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-brand-volt text-lg">⚡</span>
+              <span className="text-xs font-black uppercase tracking-wider text-white">OFERTAS RELÁMPAGO: ¡DATE PRISA, ÚLTIMAS UNIDADES!</span>
+            </div>
+            <Link
+              href="/listings"
+              className="inline-flex items-center gap-2 rounded-2xl bg-brand-emerald px-6 py-3 text-sm font-black text-white shadow-lg transition-all hover:opacity-90 hover:scale-105 active:scale-95"
+            >
+              🛒 ¡DESCUBRE TODAS LAS OFERTAS!
+            </Link>
           </div>
         </section>
 
