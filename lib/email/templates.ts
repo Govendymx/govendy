@@ -31,13 +31,13 @@ function baseEmailLayout(opts: {
         .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .header { background-color: #ffffff; padding: 20px 30px; text-align: center; border-bottom: 1px solid #f0f0f0; }
         .logo { max-height: 40px; width: auto; display: block; margin: 0 auto; }
-        .hero { background: linear-gradient(135deg, #FF6600 0%, #ff6b6b 100%); padding: 40px 30px; text-align: center; color: #ffffff; }
+        .hero { background: linear-gradient(135deg, #1FB59B 0%, #ff6b6b 100%); padding: 40px 30px; text-align: center; color: #ffffff; }
         .hero h1 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
         .content { padding: 40px 30px; background-color: #ffffff; }
         .content p { margin-bottom: 16px; font-size: 16px; color: #4b5563; }
         .content strong { color: #111827; }
         .button-container { text-align: center; margin: 30px 0; }
-        .button { display: inline-block; padding: 14px 28px; background-color: #FF6600; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: background-color 0.2s; }
+        .button { display: inline-block; padding: 14px 28px; background-color: #1FB59B; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: background-color 0.2s; }
         .button:hover { background-color: #c00f68; }
         .footer { background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #f0f0f0; }
         .signature { margin-bottom: 20px; text-align: left; border-top: 1px solid #e5e7eb; padding-top: 20px; }
@@ -59,7 +59,7 @@ function baseEmailLayout(opts: {
         <div class="container">
           <!-- Header with Logo -->
           <div class="header">
-            <img src="${LOGO_URL}" alt="${COMPANY_NAME}" class="logo" width="120" height="40" style="color: #FF6600; font-weight: bold; font-size: 20px;">
+            <img src="${LOGO_URL}" alt="${COMPANY_NAME}" class="logo" width="120" height="40" style="color: #1FB59B; font-weight: bold; font-size: 20px;">
           </div>
 
           <!-- Hero Section -->
@@ -88,7 +88,7 @@ function baseEmailLayout(opts: {
                     <div class="signature-text">
                       <div class="signature-name">El equipo de ${COMPANY_NAME}</div>
                       <div>Tu marketplace de confianza</div>
-                      <div><a href="${COMPANY_WEBSITE}" style="color: #FF6600; text-decoration: none;">${COMPANY_WEBSITE.replace('https://', '')}</a></div>
+                      <div><a href="${COMPANY_WEBSITE}" style="color: #1FB59B; text-decoration: none;">${COMPANY_WEBSITE.replace('https://', '')}</a></div>
                     </div>
                   </td>
                 </tr>
@@ -265,7 +265,7 @@ export const questionReceived = (data: { userName?: string; questionText: string
     content: `
       <p>Hola ${data.userName || 'Vendedor'},</p>
       <p>Te hicieron una pregunta en <strong>${data.listingTitle}</strong>:</p>
-      <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #FF6600; margin: 10px 0;">
+      <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #1FB59B; margin: 10px 0;">
         "${data.questionText}"
       </blockquote>
       <p>Responde rápido para aumentar tus posibilidades de venta.</p>
@@ -283,7 +283,7 @@ export const answerReceived = (data: { userName?: string; answerText: string; li
     content: `
       <p>Hola ${data.userName || 'Usuario'},</p>
       <p>El vendedor respondió tu pregunta sobre <strong>${data.listingTitle}</strong>:</p>
-      <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #FF6600; margin: 10px 0;">
+      <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #1FB59B; margin: 10px 0;">
         "${data.answerText}"
       </blockquote>
     `,

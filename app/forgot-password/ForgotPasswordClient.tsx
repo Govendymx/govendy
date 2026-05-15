@@ -140,7 +140,6 @@ export function ForgotPasswordClient() {
             <button
               type="submit"
               disabled={isLoading}
-              style={{ backgroundColor: '#FF6600' }}
               className="w-full text-white py-3 rounded-xl font-semibold hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-emerald focus:ring-offset-2"
             >
               {isLoading ? 'Enviando…' : 'Enviar enlace de recuperación'}

@@ -1824,8 +1824,8 @@ export default function ListingDetailPage() {
                         width="20"
                         height="20"
                         viewBox="0 0 24 24"
-                        fill={isFav ? '#FF6600' : 'none'}
-                        stroke={isFav ? '#FF6600' : 'currentColor'}
+                        fill={isFav ? '#1FB59B' : 'none'}
+                        stroke={isFav ? '#1FB59B' : 'currentColor'}
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"

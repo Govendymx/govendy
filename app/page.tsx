@@ -880,28 +880,28 @@ export default function HomePage() {
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Camión con flecha de retorno - Estilo flat rosa */}
                   {/* Círculo con flecha de refresh */}
-                  <circle cx="30" cy="28" r="18" fill="#FF6600" />
+                  <circle cx="30" cy="28" r="18" fill="#1FB59B" />
                   <path d="M30 18c-5.5 0-10 4.5-10 10h4c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6v4c5.5 0 10-4.5 10-10s-4.5-10-10-10z" fill="white" />
                   <path d="M38 28l-4-4v8l4-4z" fill="white" />
 
                   {/* Cuerpo del camión */}
-                  <rect x="8" y="45" width="50" height="30" rx="4" fill="none" stroke="#FF6600" strokeWidth="5" />
+                  <rect x="8" y="45" width="50" height="30" rx="4" fill="none" stroke="#1FB59B" strokeWidth="5" />
 
                   {/* Cabina */}
-                  <path d="M58 55h20c4 0 6 2 8 6l6 8v6H58V55z" fill="none" stroke="#FF6600" strokeWidth="5" />
+                  <path d="M58 55h20c4 0 6 2 8 6l6 8v6H58V55z" fill="none" stroke="#1FB59B" strokeWidth="5" />
 
                   {/* Ventana cabina */}
-                  <rect x="68" y="58" width="12" height="10" rx="2" fill="none" stroke="#FF6600" strokeWidth="3" />
+                  <rect x="68" y="58" width="12" height="10" rx="2" fill="none" stroke="#1FB59B" strokeWidth="3" />
 
                   {/* Líneas velocidad */}
-                  <rect x="2" y="52" width="8" height="3" rx="1.5" fill="#FF6600" />
-                  <rect x="0" y="60" width="10" height="3" rx="1.5" fill="#FF6600" />
+                  <rect x="2" y="52" width="8" height="3" rx="1.5" fill="#1FB59B" />
+                  <rect x="0" y="60" width="10" height="3" rx="1.5" fill="#1FB59B" />
 
                   {/* Ruedas */}
-                  <circle cx="22" cy="78" r="8" fill="none" stroke="#FF6600" strokeWidth="5" />
-                  <circle cx="22" cy="78" r="3" fill="#FF6600" />
-                  <circle cx="78" cy="78" r="8" fill="none" stroke="#FF6600" strokeWidth="5" />
-                  <circle cx="78" cy="78" r="3" fill="#FF6600" />
+                  <circle cx="22" cy="78" r="8" fill="none" stroke="#1FB59B" strokeWidth="5" />
+                  <circle cx="22" cy="78" r="3" fill="#1FB59B" />
+                  <circle cx="78" cy="78" r="8" fill="none" stroke="#1FB59B" strokeWidth="5" />
+                  <circle cx="78" cy="78" r="3" fill="#1FB59B" />
                 </svg>
               }
             />
@@ -914,24 +914,24 @@ export default function HomePage() {
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Tienda con toldo - Estilo flat rosa */}
                   {/* Toldo superior */}
-                  <path d="M10 15h80l-5 25H15L10 15z" fill="#FF6600" />
+                  <path d="M10 15h80l-5 25H15L10 15z" fill="#1FB59B" />
                   {/* Líneas del toldo */}
                   <path d="M25 15v25M40 15v25M55 15v25M70 15v25" stroke="white" strokeWidth="3" />
                   {/* Ondas del toldo */}
-                  <path d="M10 40q10 10 20 0t20 0t20 0t20 0" fill="#FF6600" />
+                  <path d="M10 40q10 10 20 0t20 0t20 0t20 0" fill="#1FB59B" />
 
                   {/* Cuerpo de la tienda */}
-                  <rect x="10" y="40" width="80" height="50" fill="#FF6600" />
+                  <rect x="10" y="40" width="80" height="50" fill="#1FB59B" />
 
                   {/* Puerta */}
-                  <rect x="25" y="50" width="20" height="35" rx="2" fill="white" stroke="#FF6600" strokeWidth="2" />
-                  <circle cx="40" cy="68" r="2" fill="#FF6600" />
+                  <rect x="25" y="50" width="20" height="35" rx="2" fill="white" stroke="#1FB59B" strokeWidth="2" />
+                  <circle cx="40" cy="68" r="2" fill="#1FB59B" />
 
                   {/* Ventana */}
-                  <rect x="55" y="55" width="25" height="18" rx="2" fill="white" stroke="#FF6600" strokeWidth="2" />
+                  <rect x="55" y="55" width="25" height="18" rx="2" fill="white" stroke="#1FB59B" strokeWidth="2" />
 
                   {/* Base */}
-                  <rect x="5" y="88" width="90" height="6" rx="2" fill="#FF6600" />
+                  <rect x="5" y="88" width="90" height="6" rx="2" fill="#1FB59B" />
                 </svg>
               }
             />
@@ -950,11 +950,11 @@ export default function HomePage() {
 
                   {/* Corazón - arriba izquierda */}
                   <circle cx="22" cy="22" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M22 30c-8-8-8-12 0-16 8 4 8 8 0 16z" fill="#FF6600" />
+                  <path d="M22 30c-8-8-8-12 0-16 8 4 8 8 0 16z" fill="#1FB59B" />
 
                   {/* Play - arriba derecha */}
                   <circle cx="78" cy="22" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M73 15l12 7-12 7z" fill="none" stroke="#FF6600" strokeWidth="3" strokeLinejoin="round" />
+                  <path d="M73 15l12 7-12 7z" fill="none" stroke="#1FB59B" strokeWidth="3" strokeLinejoin="round" />
 
                   {/* Imagen - abajo izquierda */}
                   <circle cx="22" cy="78" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
@@ -962,7 +962,7 @@ export default function HomePage() {
 
                   {/* Plus - abajo derecha */}
                   <circle cx="78" cy="78" r="16" fill="none" stroke="#5B21B6" strokeWidth="3" />
-                  <path d="M78 70v16M70 78h16" stroke="#FF6600" strokeWidth="3" strokeLinecap="round" />
+                  <path d="M78 70v16M70 78h16" stroke="#1FB59B" strokeWidth="3" strokeLinecap="round" />
                 </svg>
               }
             />
@@ -975,32 +975,32 @@ export default function HomePage() {
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Martillo de subasta con monedas - Estilo flat rosa */}
                   {/* Monedas con $ */}
-                  <circle cx="20" cy="18" r="12" fill="#FF6600" />
+                  <circle cx="20" cy="18" r="12" fill="#1FB59B" />
                   <text x="20" y="23" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">$</text>
 
-                  <circle cx="55" cy="12" r="10" fill="#FF6600" />
+                  <circle cx="55" cy="12" r="10" fill="#1FB59B" />
                   <text x="55" y="17" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">$</text>
 
-                  <circle cx="85" cy="25" r="11" fill="#FF6600" />
+                  <circle cx="85" cy="25" r="11" fill="#1FB59B" />
                   <text x="85" y="30" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">$</text>
 
                   {/* Martillo */}
                   <g transform="rotate(-45 50 55)">
                     {/* Cabeza */}
-                    <rect x="25" y="40" width="30" height="18" rx="4" fill="#FF6600" />
+                    <rect x="25" y="40" width="30" height="18" rx="4" fill="#1FB59B" />
                     {/* Bandas */}
                     <rect x="30" y="40" width="4" height="18" fill="white" fillOpacity="0.3" />
                     <rect x="46" y="40" width="4" height="18" fill="white" fillOpacity="0.3" />
                     {/* Mango */}
-                    <rect x="36" y="58" width="8" height="35" rx="3" fill="#FF6600" />
+                    <rect x="36" y="58" width="8" height="35" rx="3" fill="#1FB59B" />
                   </g>
 
                   {/* Líneas de impacto */}
-                  <path d="M15 70l-8 5M20 78l-5 8" stroke="#FF6600" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M15 70l-8 5M20 78l-5 8" stroke="#1FB59B" strokeWidth="4" strokeLinecap="round" />
 
                   {/* Base */}
-                  <rect x="5" y="85" width="30" height="5" rx="2" fill="#FF6600" />
-                  <rect x="10" y="80" width="20" height="5" rx="1" fill="#FF6600" />
+                  <rect x="5" y="85" width="30" height="5" rx="2" fill="#1FB59B" />
+                  <rect x="10" y="80" width="20" height="5" rx="1" fill="#1FB59B" />
                 </svg>
               }
             />
@@ -1013,13 +1013,13 @@ export default function HomePage() {
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Chat con corazón - Estilo flat rosa */}
                   {/* Burbuja de chat */}
-                  <rect x="10" y="10" width="80" height="60" rx="15" fill="none" stroke="#FF6600" strokeWidth="6" />
+                  <rect x="10" y="10" width="80" height="60" rx="15" fill="none" stroke="#1FB59B" strokeWidth="6" />
                   {/* Cola del chat */}
-                  <path d="M25 70v22l20-22" fill="white" stroke="#FF6600" strokeWidth="6" strokeLinejoin="round" />
+                  <path d="M25 70v22l20-22" fill="white" stroke="#1FB59B" strokeWidth="6" strokeLinejoin="round" />
                   <path d="M25 70h20" stroke="white" strokeWidth="8" />
 
                   {/* Corazón centrado */}
-                  <path d="M50 25c-8-15-30-5-20 20 10 15 20 20 20 20s10-5 20-20c10-25-12-35-20-20z" fill="#FF6600" />
+                  <path d="M50 25c-8-15-30-5-20 20 10 15 20 20 20 20s10-5 20-20c10-25-12-35-20-20z" fill="#1FB59B" />
                 </svg>
               }
             />
@@ -1032,7 +1032,7 @@ export default function HomePage() {
                 <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Escudo con check y moneda - Estilo flat rosa */}
                   {/* Escudo principal */}
-                  <path d="M50 5L15 20v25c0 28 35 45 35 45s35-17 35-45V20L50 5z" fill="#FF6600" />
+                  <path d="M50 5L15 20v25c0 28 35 45 35 45s35-17 35-45V20L50 5z" fill="#1FB59B" />
 
                   {/* Borde interior del escudo */}
                   <path d="M50 12L22 25v20c0 22 28 36 28 36s28-14 28-36V25L50 12z" fill="none" stroke="white" strokeWidth="3" />
@@ -1042,7 +1042,7 @@ export default function HomePage() {
 
                   {/* Moneda con engranaje */}
                   <g transform="translate(65, 60)">
-                    <circle cx="15" cy="15" r="18" fill="#FF6600" stroke="white" strokeWidth="3" />
+                    <circle cx="15" cy="15" r="18" fill="#1FB59B" stroke="white" strokeWidth="3" />
                     {/* Dientes del engranaje */}
                     <g stroke="white" strokeWidth="2">
                       <rect x="13" y="-2" width="4" height="6" fill="white" />
@@ -1054,7 +1054,7 @@ export default function HomePage() {
                       <rect x="24" y="2" width="5" height="4" transform="rotate(-45 26 4)" fill="white" />
                       <rect x="2" y="24" width="5" height="4" transform="rotate(-45 4 26)" fill="white" />
                     </g>
-                    <circle cx="15" cy="15" r="10" fill="#FF6600" stroke="white" strokeWidth="2" />
+                    <circle cx="15" cy="15" r="10" fill="#1FB59B" stroke="white" strokeWidth="2" />
                     <text x="15" y="20" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">$</text>
                   </g>
                 </svg>
