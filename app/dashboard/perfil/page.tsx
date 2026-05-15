@@ -254,6 +254,11 @@ export default function DashboardPerfilPage() {
             official_store_slogan: String((row as any)?.official_store_slogan || ''),
             nickname: String((row as any)?.nickname || ''),
           });
+          // Si ya tiene un CP guardado, buscar colonias automáticamente
+          const savedZip = String(row?.zip_code ?? '').trim();
+          if (savedZip.length === 5) {
+            lookupPostalCode(savedZip);
+          }
         }
       } catch (e: unknown) {
         console.error(e);
