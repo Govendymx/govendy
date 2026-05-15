@@ -888,7 +888,11 @@ export default function HomePage() {
       {/* Carrusel Principal (Mercado Libre Style) - Combina hero y top */}
       {(heroBanners.length > 0 || topBanners.length > 0) && (
         <section className="w-full">
-          <BannerCarousel banners={[...heroBanners, ...topBanners].filter(b => !!b      <main className="mx-auto max-w-7xl px-4 py-8">
+          <BannerCarousel banners={[...heroBanners, ...topBanners].filter(b => !!b.image_url)} />
+        </section>
+      )}
+
+      <main className="mx-auto max-w-7xl px-4 py-8">
 
         {/* 🚀 Quick Categories (Estilo Shopee / ML) */}
         <section className="mb-10">
