@@ -605,7 +605,7 @@ export function AccountTopMenu() {
   }
 
   return (
-    <div className="border-b border-black/5 bg-white">
+    <div className="sticky top-0 z-[70] border-b border-black/5 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-end gap-3 px-4 py-2">
         <div className="hidden sm:block text-sm font-semibold text-gray-700">
           Hola, <span className="text-gray-900">{displayName}</span>

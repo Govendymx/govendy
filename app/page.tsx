@@ -791,7 +791,7 @@ export default function HomePage() {
         </div>
       ) : null}
       {/* Barra promo (estilo Mercado Libre, con nuestro color) */}
-      <div className="bg-brand-onyx text-brand-volt">
+      <div className="sticky top-[52px] z-[39] bg-brand-onyx text-brand-volt">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2">
           <div className="text-xs font-semibold tracking-wide">
             GoVendy — Compra y vende con tecnología avanzada
@@ -805,7 +805,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-black/5 bg-white">
+      <header className="sticky top-[92px] z-40 border-b border-black/5 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <Link href="/" className="flex items-center gap-3">
