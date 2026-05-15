@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { calculateUnitPrice } from '@/lib/utils/pricing';
+import { ReportScamModal } from '@/components/scams/ReportScamModal';
 
 type CartItemRow = {
   id: string;
@@ -57,6 +58,7 @@ export default function CartPage() {
   const [listingsById, setListingsById] = useState<Record<string, ListingRow>>({});
   const [isUpdating, setIsUpdating] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  const [isScamModalOpen, setIsScamModalOpen] = useState(false);
 
   const subtotal = useMemo(() => {
     return cartItems.reduce((sum, ci) => {
@@ -478,10 +480,31 @@ export default function CartPage() {
                   GoVendy solo es un <strong className="text-gray-900">lugar de encuentro</strong> entre vendedores y compradores para que lleven a cabo operaciones de compra y venta, solamente el vendedor es responsable de enviar los artículos.
                 </div>
               </div>
+              </div>
+            </div>
+
+            {/* Botón de Reporte de Estafa */}
+            <div className="mt-8 flex justify-center border-t border-gray-100 pt-6">
+              <button
+                type="button"
+                onClick={() => setIsScamModalOpen(true)}
+                className="group flex items-center gap-2 rounded-full bg-red-50 px-6 py-2.5 text-sm font-bold text-red-600 transition-all hover:bg-red-100 hover:text-red-700 active:scale-95"
+              >
+                <svg className="h-4 w-4 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                🚨 ¿Sospechas de una estafa? Repórtalo aquí
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      <ReportScamModal 
+        isOpen={isScamModalOpen} 
+        onClose={() => setIsScamModalOpen(false)} 
+        reporterId={userId || ''} 
+      />
     </div>
   );
 }

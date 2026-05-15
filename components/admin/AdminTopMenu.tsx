@@ -151,6 +151,7 @@ export function AdminTopMenu() {
       { label: 'Estadísticas', href: '/admin/estadisticas', tone: 'pink' },
       { label: 'Supervisión', href: '/admin/supervision' },
       { label: 'Seguridad', href: '/admin/seguridad' },
+      { label: '🚨 Estafas', href: '/admin/seguridad/estafas', tone: 'pink' },
 
       // === OPERACIONES ===
       { label: 'Pagos', href: '/admin/pagos' },
