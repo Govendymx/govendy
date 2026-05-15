@@ -214,7 +214,7 @@ export function AdminTopMenu() {
         <Link href="/admin" className="flex items-center gap-3 hover:opacity-95 group">
           <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 bg-white -mt-1 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl animate-pulse-slow">
             {logoError ? (
-              <div className="flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 text-white animate-gradient-rotate">
+              <div className="flex h-full w-full items-center justify-center rounded-2xl bg-gradient-to-br from-brand-emerald to-teal-400 text-white animate-gradient-rotate">
                 <span className="text-xl font-black">GP</span>
               </div>
             ) : (
@@ -318,7 +318,7 @@ export function AdminTopMenu() {
                         'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-[13px] font-semibold shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md';
                       const styles =
                         tone === 'pink'
-                          ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
+                          ? 'border-brand-emerald/20 bg-emerald-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
                           : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
                       const activeStyles = active ? 'ring-2 ring-brand-emerald border-transparent animate-pulse-ring' : '';
                       return (

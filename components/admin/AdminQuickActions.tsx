@@ -62,7 +62,7 @@ export function AdminQuickActions() {
               ${action.color === 'green' ? 'bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800' : ''}
               ${action.color === 'blue' ? 'bg-gradient-to-r from-blue-600 to-cyan-700 hover:from-blue-700 hover:to-cyan-800' : ''}
               ${action.color === 'red' ? 'bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800' : ''}
-              ${action.color === 'purple' ? 'bg-gradient-to-r from-purple-600 to-pink-700 hover:from-purple-700 hover:to-pink-800' : ''}
+              ${action.color === 'purple' ? 'bg-gradient-to-r from-purple-600 to-brand-emerald hover:from-purple-700 hover:to-teal-600' : ''}
             `}
           >
             <div className="rounded-full bg-white/20 backdrop-blur-sm p-2">

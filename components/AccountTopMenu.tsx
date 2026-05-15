@@ -40,7 +40,7 @@ function NavRow({ item, onNavigate }: { item: NavItem; onNavigate: () => void })
     'group flex w-full items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-[13px] font-semibold transition-all duration-300 shadow-sm hover:scale-[1.02] hover:shadow-md';
   const styles =
     tone === 'pink'
-      ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
+      ? 'border-brand-emerald/20 bg-emerald-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
       : tone === 'danger'
         ? 'border-black/10 bg-gray-900 text-white hover:bg-black'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
@@ -618,7 +618,7 @@ export function AccountTopMenu() {
         )}
         {(planType === 'pro' || planType === 'platinum') && (
           <div className="hidden sm:flex flex-col items-end mr-1 leading-tight">
-            <span className={`bg-clip-text text-transparent text-[10px] font-black uppercase tracking-wider ${planType === 'platinum' ? 'bg-gradient-to-r from-amber-500 to-yellow-500' : 'bg-gradient-to-r from-brand-emerald to-pink-600'}`}>
+            <span className={`bg-clip-text text-transparent text-[10px] font-black uppercase tracking-wider ${planType === 'platinum' ? 'bg-gradient-to-r from-amber-500 to-yellow-500' : 'bg-gradient-to-r from-brand-emerald to-teal-400'}`}>
               {planType === 'platinum' ? '⭐ PLATINUM' : 'MEMBER PRO'}
             </span>
             <div className="flex flex-col items-end">
@@ -828,7 +828,7 @@ export function AccountTopMenu() {
                                   window.location.href = link;
                                 }
                               }}
-                              className="w-full rounded-2xl border-2 border-brand-emerald bg-pink-50 px-3 py-2.5 text-left hover:bg-pink-100 transition-colors relative"
+                              className="w-full rounded-2xl border-2 border-brand-emerald bg-emerald-50 px-3 py-2.5 text-left hover:bg-emerald-100 transition-colors relative"
                             >
                               <div className="flex items-start justify-between gap-2">
                                 <div className="min-w-0 flex-1">
@@ -880,7 +880,7 @@ export function AccountTopMenu() {
                                   e.stopPropagation();
                                   void handleAlertClick(a.id, a.link);
                                 }}
-                                className="w-full rounded-2xl border border-pink-200 bg-pink-50 px-3 py-2 text-left hover:bg-pink-100 transition-colors"
+                                className="w-full rounded-2xl border border-brand-emerald/20 bg-emerald-50 px-3 py-2 text-left hover:bg-emerald-100 transition-colors"
                               >
                                 <div className="flex items-start justify-between gap-2">
                                   <div className="min-w-0 flex-1">

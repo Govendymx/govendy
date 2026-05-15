@@ -81,7 +81,7 @@ export function AdBanner({ placement = 'all' }: { placement?: string }) {
   if (!currentAd) return null;
 
   const content = (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-pink-100 to-purple-100 p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-50 to-teal-100 p-4">
       {currentAd.image_url ? (
         <img src={currentAd.image_url} alt={currentAd.title} className="h-full w-full object-cover" />
       ) : (

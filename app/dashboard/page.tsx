@@ -68,7 +68,7 @@ function NavCard({ item }: { item: NavItem }) {
   const base =
     'group flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left text-sm font-semibold transition';
   const shadow = item.shadowPink
-    ? 'shadow-[0_4px_12px_rgba(227,18,125,0.25)]'
+    ? 'shadow-[0_4px_12px_rgba(31,181,155,0.25)]'
     : 'shadow-sm';
   const styles =
     tone === 'pink'

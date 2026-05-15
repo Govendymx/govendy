@@ -116,15 +116,15 @@ export function IPFrequencyPanel() {
                             <div className="text-xs text-orange-600">diferentes</div>
                         </div>
 
-                        <div className="bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-4">
-                            <div className="flex items-center gap-2 text-pink-600 mb-1">
+                        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-4">
+                            <div className="flex items-center gap-2 text-brand-emerald mb-1">
                                 <TrendingUp className="h-4 w-4" />
                                 <span className="text-xs font-semibold uppercase">Promedio</span>
                             </div>
-                            <div className="text-2xl font-bold text-pink-900">
+                            <div className="text-2xl font-bold text-emerald-900">
                                 {stats?.average_connections_per_ip ? stats.average_connections_per_ip.toFixed(1) : '0'}
                             </div>
-                            <div className="text-xs text-pink-600">conexiones/IP</div>
+                            <div className="text-xs text-brand-emerald">conexiones/IP</div>
                         </div>
                     </div>
 

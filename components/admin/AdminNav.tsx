@@ -114,7 +114,7 @@ export function AdminNav() {
     const tone = it.tone ?? 'neutral';
     const styles =
       tone === 'pink'
-        ? 'border-pink-200 bg-pink-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
+        ? 'border-brand-emerald/20 bg-emerald-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
     const activeStyles = active ? 'ring-2 ring-brand-emerald border-transparent animate-pulse-ring' : '';
     return (

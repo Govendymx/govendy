@@ -79,7 +79,7 @@ const config: Config = {
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
-        'glow': '0 0 15px rgba(227, 18, 125, 0.3)',
+        'glow': '0 0 15px rgba(31, 181, 155, 0.3)',
       },
     },
   },
