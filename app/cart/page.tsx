@@ -381,44 +381,105 @@ export default function CartPage() {
           </aside>
         </div>
 
-        {/* Advertencias de Seguridad */}
-        <div className="mt-8 rounded-2xl border border-amber-200 bg-amber-50/60 px-5 py-5">
-          <div className="flex items-center gap-2 mb-3">
-            <svg className="h-5 w-5 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-            </svg>
-            <span className="text-sm font-extrabold text-amber-800 uppercase tracking-wide">Recomendaciones de seguridad</span>
+        {/* 🛡️ Centro de Seguridad y Confianza (Neuromarketing) */}
+        <div className="mt-8 overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm ring-1 ring-black/5">
+          <div className="border-b border-gray-100 bg-gray-50/80 px-6 py-4 flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-base font-black text-gray-900 uppercase tracking-wide">Centro de Seguridad GoVendy</h2>
+              <p className="text-xs font-medium text-gray-500">Reglas y consejos para una experiencia 100% segura</p>
+            </div>
           </div>
-          <ol className="space-y-2 text-xs leading-relaxed text-amber-900/90">
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">1.</span>
-              <span><strong>No deposites a cuenta directa del vendedor</strong> bajo ninguna circunstancia. Utiliza únicamente pagos seguros como MercadoPago, PocketCash o las formas de pago disponibles en nuestra plataforma.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">2.</span>
-              <span>Te recomendamos <strong>no comprar artículos fuera de la plataforma</strong>, ya que solo podemos protegerte por artículos comprados dentro de ella.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">3.</span>
-              <span>Solicita al vendedor usar <strong>Envíos GoVendy</strong>, ya que son envíos asegurados. Los envíos por cuenta del vendedor son responsabilidad del vendedor; en caso de cualquier situación, él deberá hacerse cargo.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">4.</span>
-              <span>Las operaciones realizadas con <strong>PocketCash están aseguradas</strong> de la misma forma que MercadoPago.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">5.</span>
-              <span>Los métodos ofrecidos en la plataforma son los <strong>únicos autorizados</strong> para realizar pagos.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">6.</span>
-              <span>Te recomendamos <strong>no compartir datos personales</strong> por los medios de contacto oficiales, ya que puede ser motivo de bloqueo permanente.</span>
-            </li>
-            <li className="flex gap-2">
-              <span className="shrink-0 font-bold text-amber-700">7.</span>
-              <span>Si tienes alguna duda o necesitas ayuda, contacta a soporte desde el menú <strong>Ayuda</strong>, en horario de 10:00 a.m. a 6:00 p.m., de lunes a viernes.</span>
-            </li>
-          </ol>
+          
+          <div className="p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-[13px] leading-relaxed text-gray-700">
+              {/* Point 1 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                  <span className="text-[11px] font-black">1</span>
+                </div>
+                <div>
+                  <strong className="text-gray-900 block mb-0.5">REVISA LA REPUTACIÓN DEL VENDEDOR ANTES DE DEPOSITAR</strong>
+                  Verifica que el vendedor sea real.
+                </div>
+              </div>
+
+              {/* Point 2 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                  <span className="text-[11px] font-black">2</span>
+                </div>
+                <div>
+                  <strong className="text-gray-900 block mb-0.5">COMPRA CON VENDEDORES VERIFICADOS</strong>
+                  Nosotros nos damos a la tarea de realizar una verificación para otorgar la palomita azul a los usuarios, esto significa que el vendedor ha sido verificado en sus datos personales y en su dirección.
+                </div>
+              </div>
+
+              {/* Point 3 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-emerald/20 text-brand-emerald">
+                  <span className="text-[11px] font-black">3</span>
+                </div>
+                <div>
+                  Solicita al vendedor usar <strong className="text-gray-900">Envíos GoVendy</strong>, ya que son envíos asegurados. Los envíos por cuenta del vendedor son responsabilidad del vendedor; en caso de cualquier situación, él deberá hacerse cargo.
+                </div>
+              </div>
+
+              {/* Point 4 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gray-100 text-gray-600">
+                  <span className="text-[11px] font-black">4</span>
+                </div>
+                <div>
+                  Si tienes alguna duda o necesitas ayuda, contacta a soporte desde el menú <strong className="text-gray-900">Ayuda</strong>, en horario de 10:00 a.m. a 6:00 p.m., de lunes a viernes.
+                </div>
+              </div>
+
+              {/* Point 5 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
+                  <span className="text-[11px] font-black">5</span>
+                </div>
+                <div>
+                  Te recomendamos <strong className="text-gray-900">no compartir datos personales</strong> por los medios de contacto oficiales, ya que puede ser motivo de bloqueo permanente.
+                </div>
+              </div>
+
+              {/* Point 6 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-600">
+                  <span className="text-[11px] font-black">6</span>
+                </div>
+                <div>
+                  Cada usuario tiene sus propios métodos de pago, te recomendamos <strong className="text-gray-900">verificar que los datos concuerden</strong> con el dueño de la cuenta a la que compras.
+                </div>
+              </div>
+
+              {/* Point 7 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+                  <span className="text-[11px] font-black">7</span>
+                </div>
+                <div>
+                  En caso de <strong className="text-gray-900">no concretar tus operaciones</strong> tanto en compras como en subastas podrías ser suspendido.
+                </div>
+              </div>
+
+              {/* Point 8 */}
+              <div className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-teal-100 text-teal-600">
+                  <span className="text-[11px] font-black">8</span>
+                </div>
+                <div>
+                  GoVendy solo es un <strong className="text-gray-900">lugar de encuentro</strong> entre vendedores y compradores para que lleven a cabo operaciones de compra y venta, solamente el vendedor es responsable de enviar los artículos.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
