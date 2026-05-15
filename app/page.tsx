@@ -970,9 +970,6 @@ export default function HomePage() {
               }
             />
           </div>
-        </section>      }
-            />
-          </div>
         </section>
 
         {/* Banners tipo strip (como los de Mercado Libre) */}
