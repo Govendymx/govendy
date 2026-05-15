@@ -146,13 +146,14 @@ export default function RegisterPage() {
         return;
       }
 
-      // Guardar perfil completo en la tabla profiles
-      const last_name_final = `${form.apellido_paterno.trim()} ${form.apellido_materno.trim()}`.trim();
+      // Guardar perfil completo en la tabla profiles (con apellidos como columnas separadas)
       await supabase.from('profiles').upsert([{
         id: data.user.id,
         full_name,
         first_name: form.first_name.trim() || null,
-        last_name: last_name_final || null,
+        apellido_paterno: form.apellido_paterno.trim() || null,
+        apellido_materno: form.apellido_materno.trim() || null,
+        last_name: last_name || null,
         phone: form.phone.trim() || null,
         rfc: form.rfc.trim().toUpperCase() || null,
         nickname: form.nickname.trim() || null,
