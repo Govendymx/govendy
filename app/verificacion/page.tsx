@@ -73,13 +73,6 @@ export default function VerificacionPage() {
     await supabase.from('profiles').update({ [field]: '' }).eq('id', user.id);
   };
 
-  useEffect(() => {
-    // Si el usuario ya tiene un código postal guardado de 5 dígitos al cargar, buscamos sus colonias.
-    if (form.zip_code?.length === 5 && coloniasOptions.length === 0 && !cpLoading) {
-      lookupPostalCode(form.zip_code);
-    }
-  }, [form.zip_code]); // Solo se ejecutará si cambia el zip_code o al inicio si ya viene lleno
-
   const lookupPostalCode = async (cp: string) => {
     if (!/^\d{5}$/.test(cp)) return;
     try {
@@ -130,6 +123,13 @@ export default function VerificacionPage() {
     verification_status: 'none',
     verification_rejection_reason: '',
   });
+
+  useEffect(() => {
+    // Si el usuario ya tiene un código postal guardado de 5 dígitos al cargar, buscamos sus colonias.
+    if (form.zip_code?.length === 5 && coloniasOptions.length === 0 && !cpLoading) {
+      lookupPostalCode(form.zip_code);
+    }
+  }, [form.zip_code]); // Solo se ejecutará si cambia el zip_code o al inicio si ya viene lleno
 
   const canSave = useMemo(() => {
     return (
