@@ -4,10 +4,10 @@ export type EmailTemplate = {
   text: (data: Record<string, unknown>) => string;
 };
 
-const LOGO_URL = 'https://gopocket.com.mx/logo.png';
+const LOGO_URL = 'https://govendy-dhn2.vercel.app/logo.png';
 const COMPANY_NAME = 'GoVendy';
 const COMPANY_ADDRESS = 'Xalapa, Veracruz, México';
-const COMPANY_WEBSITE = 'https://gopocket.com.mx';
+const COMPANY_WEBSITE = 'https://govendy-dhn2.vercel.app';
 
 function baseEmailLayout(opts: {
   title: string;
@@ -31,14 +31,14 @@ function baseEmailLayout(opts: {
         .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .header { background-color: #ffffff; padding: 20px 30px; text-align: center; border-bottom: 1px solid #f0f0f0; }
         .logo { max-height: 40px; width: auto; display: block; margin: 0 auto; }
-        .hero { background: linear-gradient(135deg, #1FB59B 0%, #ff6b6b 100%); padding: 40px 30px; text-align: center; color: #ffffff; }
+        .hero { background: linear-gradient(135deg, #1FB59B 0%, #0d8a74 100%); padding: 40px 30px; text-align: center; color: #ffffff; }
         .hero h1 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
         .content { padding: 40px 30px; background-color: #ffffff; }
         .content p { margin-bottom: 16px; font-size: 16px; color: #4b5563; }
         .content strong { color: #111827; }
         .button-container { text-align: center; margin: 30px 0; }
-        .button { display: inline-block; padding: 14px 28px; background-color: #1FB59B; color: #ffffff !important; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; transition: background-color 0.2s; }
-        .button:hover { background-color: #c00f68; }
+        .button { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #1FB59B, #17a085); color: #ffffff !important; text-decoration: none; border-radius: 12px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 14px rgba(31,181,155,0.35); }
+        .button:hover { opacity: 0.9; }
         .footer { background-color: #f9fafb; padding: 30px; text-align: center; border-top: 1px solid #f0f0f0; }
         .signature { margin-bottom: 20px; text-align: left; border-top: 1px solid #e5e7eb; padding-top: 20px; }
         .signature-table td { vertical-align: middle; }
