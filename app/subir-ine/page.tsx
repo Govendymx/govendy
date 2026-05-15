@@ -187,7 +187,7 @@ export default function SubirInePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -219,31 +219,28 @@ export default function SubirInePage() {
           </div>
 
           {/* Info Banner */}
-          <div className="mb-5 rounded-2xl border border-amber-100 bg-amber-50 p-5">
+          <div className="mb-5 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
             <div className="flex gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-100">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-100">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
                 </svg>
               </div>
               <div>
-                <p className="text-sm font-semibold text-amber-800">
+                <p className="text-sm font-semibold text-emerald-800">
                   Verificación requerida para vendedores
                 </p>
-                <p className="mt-1 text-sm text-amber-700 leading-relaxed">
-                  Para mantener una comunidad segura y confiable, <strong>todos los usuarios que deseen publicar y vender productos</strong> deberán verificar su identidad con su INE vigente (frente y reverso).
-                </p>
-                <p className="mt-2 text-sm text-amber-700 leading-relaxed">
-                  Si por el momento <strong>solo deseas explorar y comprar</strong>, puedes continuar sin este paso. Cuando decidas vender, podrás completar tu verificación desde tu perfil.
+                <p className="mt-0.5 text-xs text-emerald-700 leading-relaxed">
+                  Para publicar y vender en GoVendy deberás verificar tu identidad con tu INE vigente. Si solo deseas <strong>explorar y comprar</strong>, puedes continuar sin este paso.
                 </p>
               </div>
             </div>
-            <div className="mt-4 border-t border-amber-200 pt-4">
+            <div className="mt-3 border-t border-emerald-100 pt-3">
               <button
                 onClick={() => { window.location.href = '/dashboard'; }}
-                className="flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-900 transition-colors"
+                className="flex items-center gap-2 text-xs font-semibold text-emerald-700 hover:text-emerald-900 transition-colors"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
                 Continuar como comprador sin verificar
