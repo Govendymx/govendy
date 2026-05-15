@@ -101,7 +101,6 @@ export default function VerificacionPage() {
       isFilled(form.apellido_paterno) &&
       isFilled(form.apellido_materno) &&
       isFilled(form.rfc) &&
-      isFilled(form.curp) &&
       isFilled(form.phone) &&
       isFilled(form.address_street) &&
       isFilled(form.ext_number) &&
@@ -398,12 +397,11 @@ export default function VerificacionPage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">CURP <span className="text-red-600">*</span></label>
+                <label className="block text-sm font-medium text-gray-700">CURP (Opcional)</label>
                 <input
                   value={form.curp}
                   onChange={(e) => setForm((p) => ({ ...p, curp: e.target.value }))}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald uppercase"
-                  required
                 />
               </div>
               <div className="sm:col-span-2">
