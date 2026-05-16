@@ -2,7 +2,7 @@ import { SkeletonBox, SkeletonProductCard } from '@/components/ui/Skeletons';
 
 export default function HomeLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+        <div className="min-h-screen bg-white">
             {/* Promo bar */}
             <div className="h-9 bg-emerald-400 animate-pulse" />
 

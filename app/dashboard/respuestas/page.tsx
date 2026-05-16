@@ -147,7 +147,7 @@ export default function DashboardRespuestasPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+      <div className="min-h-screen bg-white">
         <div className="mx-auto max-w-6xl px-4 py-8">
         <PageTour steps={pageTours.respuestas || []} pageId="respuestas" />
           <div className="text-center text-gray-600">Cargando respuestas...</div>

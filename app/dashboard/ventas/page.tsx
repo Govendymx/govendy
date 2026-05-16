@@ -1132,7 +1132,7 @@ export default function DashboardVentasPage() {
   }, [disputeInfoByOrderId]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white pb-10">
+    <div className="min-h-screen bg-white pb-10">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3">
           <div className="flex items-center gap-3">

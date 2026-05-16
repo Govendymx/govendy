@@ -607,7 +607,7 @@ export default function AdminSettingsPage() {
 
   if (isBooting) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+      <div className="min-h-screen bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10">
           <div className="h-14 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
           <div className="mt-6 h-80 rounded-2xl bg-white/70 shadow-sm ring-1 ring-black/5" />
@@ -617,7 +617,7 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>

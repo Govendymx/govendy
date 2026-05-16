@@ -2,7 +2,7 @@ import { SkeletonBox } from '@/components/ui/Skeletons';
 
 export default function PagosLoading() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white px-4 py-6 sm:px-6">
+        <div className="min-h-screen bg-white px-4 py-6 sm:px-6">
             <div className="mx-auto max-w-3xl space-y-5">
                 <SkeletonBox className="h-7 w-32" />
                 {/* Balance cards */}

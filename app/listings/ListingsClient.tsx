@@ -215,7 +215,7 @@ export default function ListingsClient({
   }, [availableCategories, selectedCategories]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white pb-20">
+    <div className="min-h-screen bg-white pb-20">
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 
       {/* Search Header */}

@@ -86,7 +86,7 @@ export default function MisGuiasEstafetaPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+            <div className="min-h-screen bg-white">
                 <div className="mx-auto max-w-4xl px-4 py-16 text-center">
                     <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-brand-emerald border-t-transparent" />
                     <p className="mt-4 text-sm text-gray-500">Cargando tus guías...</p>
@@ -96,7 +96,7 @@ export default function MisGuiasEstafetaPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+        <div className="min-h-screen bg-white">
             {/* Header */}
             <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
                 <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
