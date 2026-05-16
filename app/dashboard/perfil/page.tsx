@@ -269,6 +269,12 @@ export default function DashboardPerfilPage() {
         }
       } catch (e: unknown) {
         console.error(e);
+        if (e instanceof Error && e.message.includes('Auth session missing')) {
+          if (!cancelled) {
+            window.location.href = '/login';
+          }
+          return;
+        }
         if (!cancelled) setError(e instanceof Error ? e.message : 'No se pudo cargar tu perfil.');
       } finally {
         if (!cancelled) setIsBooting(false);
