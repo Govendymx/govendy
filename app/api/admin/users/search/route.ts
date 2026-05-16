@@ -72,8 +72,8 @@ export async function GET(req: NextRequest) {
     }
 
     // profiles: created_at, is_verified pueden no existir.
-    const colsBase = 'id, full_name, username';
-    const colsWithDate = 'id, full_name, first_name, last_name, username, created_at, is_verified';
+    const colsBase = 'id, full_name, nickname';
+    const colsWithDate = 'id, full_name, first_name, last_name, nickname, created_at, is_verified';
     const runList = async () => {
       const q = admin.from('profiles').select(colsWithDate).order('created_at', { ascending: false }).limit(limit);
       const { data, error } = await q;
@@ -94,7 +94,7 @@ export async function GET(req: NextRequest) {
       const q = admin
         .from('profiles')
         .select(colsWithDate)
-        .or(`full_name.ilike.${term},username.ilike.${term}`)
+        .or(`full_name.ilike.${term},nickname.ilike.${term}`)
         .order('created_at', { ascending: false })
         .limit(limit);
       const { data, error } = await q;
@@ -105,7 +105,7 @@ export async function GET(req: NextRequest) {
           const fallback = await admin
             .from('profiles')
             .select(colsBase)
-            .or(`full_name.ilike.${term},username.ilike.${term}`)
+            .or(`full_name.ilike.${term},nickname.ilike.${term}`)
             .order('id', { ascending: false })
             .limit(limit);
           if (fallback.error) throw fallback.error;
@@ -363,12 +363,11 @@ export async function GET(req: NextRequest) {
         id: uid,
         email: emailMap.get(uid) ?? null,
         full_name: p.full_name ?? null,
-        nickname: null,
-        username: p.username ?? null,
+        nickname: p.nickname ?? null,
         created_at: p.created_at ?? null,
         auth_created_at: authCreatedAtMap.get(uid) ?? null,
         last_sign_in_at: lastSignInAtMap.get(uid) ?? null,
-        name: p.full_name || p.username || 'Sin nombre',
+        name: p.full_name || p.nickname || 'Sin nombre',
         is_verified: Boolean(p?.is_verified ?? false),
         wallet_balance: walletMap.get(uid) ?? 0,
         admin_state: ast ? { status: ast.status, suspended_until: ast.suspended_until, notes: ast.notes } : { status: 'active' as const },
