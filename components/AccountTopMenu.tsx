@@ -558,6 +558,7 @@ export function AccountTopMenu() {
           { label: 'Ventas', href: '/dashboard/ventas' },
           { label: 'Compras', href: '/dashboard/compras' },
           { label: 'Pagos', href: '/dashboard/pagos' },
+          { label: 'Métodos de Pago', href: '/dashboard/settings/payment-methods' },
           { label: '📦 Mis Guías Estafeta', href: '/estafeta/mis-guias' },
         ],
       },
