@@ -12,9 +12,7 @@ function CompraPendienteContent() {
     <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
-            <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-          </Link>
+          <Link href="/"><img src="/logo.png" alt="GoVendy" className="h-10 w-auto object-contain" /></Link>
           <Link href="/dashboard" className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">
             Mi cuenta
           </Link>

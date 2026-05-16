@@ -8,9 +8,7 @@ export default function CompraProtegidaPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
-            <Link href="/" className="flex h-10 items-center justify-center rounded-xl bg-brand-emerald px-3 text-white shadow-sm hover:opacity-95">
-              <span className="text-sm font-extrabold tracking-widest">GoVendy</span>
-            </Link>
+            <Link href="/"><img src="/logo.png" alt="GoVendy" className="h-10 w-auto object-contain" /></Link>
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Compra protegida</div>
               <div className="text-xs text-gray-500">Cómo protegemos tu compra</div>

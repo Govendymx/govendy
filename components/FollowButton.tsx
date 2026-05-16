@@ -201,7 +201,7 @@ export function FollowButton({ sellerId, compact = false, className = '', onLogi
                 onClick={handleToggle}
                 disabled={loading} // Prevent double clicks
                 className={`group/follow relative z-30 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-sm ${following
-                    ? 'bg-pink-50 text-pink-600 ring-1 ring-pink-200 hover:bg-pink-100'
+                    ? 'bg-green-50 text-green-700 ring-1 ring-green-200 hover:bg-green-100'
                     : 'bg-white text-green-700 ring-1 ring-green-200 hover:bg-green-100 hover:text-green-800 hover:ring-green-300'
                     } ${
                     // Removing opacity/cursor-wait to make it feel instant.
@@ -230,14 +230,14 @@ export function FollowButton({ sellerId, compact = false, className = '', onLogi
         <div className={`inline-flex items-center gap-2 ${className}`}>
             {/* Seguidores pill — always visible */}
             {followerCount >= 0 && (
-                <span className="inline-flex items-center gap-1 rounded-xl bg-pink-50 px-3 py-2 text-sm font-bold text-pink-700 ring-1 ring-pink-200 shadow-sm">
+                <span className="inline-flex items-center gap-1 rounded-xl bg-green-50 px-3 py-2 text-sm font-bold text-green-700 ring-1 ring-green-200 shadow-sm">
                     <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" className="opacity-80">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6a5 5 0 0 1 10 0H3z" />
                     </svg>
                     <span>
                         {followerCount > 999 ? `${(followerCount / 1000).toFixed(1)}k` : followerCount}
                     </span>
-                    <span className="text-xs font-semibold text-pink-500">seguidores</span>
+                    <span className="text-xs font-semibold text-green-600">seguidores</span>
                 </span>
             )}
 
@@ -247,7 +247,7 @@ export function FollowButton({ sellerId, compact = false, className = '', onLogi
                 onClick={handleToggle}
                 disabled={loading}
                 className={`group/follow relative z-30 inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all duration-300 ${following
-                    ? 'bg-pink-50 text-pink-600 ring-1 ring-pink-200 shadow-sm hover:bg-pink-100 hover:shadow-md'
+                    ? 'bg-green-50 text-green-700 ring-1 ring-green-200 shadow-sm hover:bg-green-100 hover:shadow-md'
                     : 'bg-gray-900 text-white shadow-lg shadow-gray-900/25 hover:bg-brand-emerald hover:shadow-brand-emerald/25'
                     } ${'hover:scale-105 active:scale-95'}`}
             >
