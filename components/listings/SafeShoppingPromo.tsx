@@ -42,7 +42,7 @@ export function SafeShoppingPromo() {
       </div>
 
       <div className="mt-6 rounded-2xl bg-white/10 p-3 text-center text-xs font-semibold leading-relaxed backdrop-blur-sm">
-        Tu dinero está protegido. GoVendy retiene el pago hasta que recibes y apruebas tu producto.
+        Todas tus compras están respaldadas. Contamos con soporte y mediación 24/7 para garantizar una experiencia segura.
       </div>
     </div>
   );
