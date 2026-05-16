@@ -202,7 +202,7 @@ export default function PaymentMethodsSettingsPage() {
                         required
                         value={formData[field.key] || ''}
                         onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                        className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
+                        className="mt-1 block w-full rounded-md border-gray-300 px-3 py-2 shadow-sm focus:border-brand-emerald focus:ring-brand-emerald sm:text-sm"
                         placeholder={`Ingresa ${field.label.toLowerCase()}`}
                       />
                     </div>

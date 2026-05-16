@@ -427,6 +427,10 @@ export default function CheckoutPage() {
       // Así que lo agregamos a la lista, pero validaremos al seleccionar.
       list.push({ key: 'pocketcash', label: 'PocketCash' });
     }
+    
+    // Always enable P2P direct contact method
+    list.push({ key: 'direct_contact' as any, label: 'Pago Directo al Vendedor' });
+    
     return list;
   }, [settings]);
 
