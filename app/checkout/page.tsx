@@ -45,7 +45,7 @@ type SettingsRow = {
   estafeta_config: any;
 };
 
-type PaymentKey = 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo' | 'pocketcash';
+type PaymentKey = 'direct_contact';
 
 const PAYMENT_METHOD_LOGO: Partial<Record<PaymentKey, string>> = {
   mercadopago: '/payment-logos/mercadopago.png',
@@ -124,7 +124,7 @@ export default function CheckoutPage() {
   });
   const [oldestCartItemDate, setOldestCartItemDate] = useState<string | null>(null);
 
-  const [paymentMethod, setPaymentMethod] = useState<PaymentKey>('mercadopago');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentKey>('direct_contact');
   const [shippingOptions, setShippingOptions] = useState<Array<{ id: string; name: string; logo_url: string; cost: number; delivery_days: number; max_weight_kg?: number | null }>>([]);
   const [selectedShippingOptionId, setSelectedShippingOptionId] = useState<string | null>(null);
 
@@ -935,109 +935,14 @@ export default function CheckoutPage() {
         }
       }
 
-      if (paymentMethod === 'pocketcash') {
-        setSuccess('¡Pago exitoso!');
-
-        // Vaciar carrito y limpiar sessionStorage
-        try { sessionStorage.removeItem(STORAGE_KEY); } catch { }
-        const cartItemIds = cartItems.map((c) => c.id);
-        await supabase.from('cart_items').delete().in('id', cartItemIds);
-
-        // Mostrar modal de éxito (sin redirigir automáticamente para dar feedback visual)
-        setShowPocketCashSuccess(true);
-        return;
-      }
-
-      if (paymentMethod === 'mercadopago') {
-        setSuccess('Orden creada. Redirigiendo a MercadoPago…');
-
-        const prefRes = await fetch('/api/mercadopago/preference', {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            authorization: `Bearer ${accessToken}`,
-          },
-          // El server calcula el amount real (no confiar en el cliente)
-          body: JSON.stringify({ orderIds: createdOrderIds }),
-        });
-
-        const prefJson = await prefRes.json().catch(() => ({}));
-        if (!prefRes.ok) {
-          let errorMsg = prefJson?.error || 'No se pudo crear la preferencia de MercadoPago.';
-          if (prefJson?.details && Array.isArray(prefJson.details)) {
-            errorMsg += ` Detalle: ${prefJson.details.join(', ')}`;
-          }
-          throw new Error(errorMsg);
-        }
-
-        const redirectUrl = prefJson?.init_point || prefJson?.sandbox_init_point;
-        if (!redirectUrl) throw new Error('MercadoPago no devolvió un init_point para redirigir.');
-
-        // No vaciar carrito aquí: se limpia en el webhook cuando el pago se acredita.
-        // Si el usuario abandona en MP, conserva su carrito.
-        window.location.href = redirectUrl;
-        return;
-      }
-
-      // Métodos offline: crear hoja de pago con referencia y permitir descargar PDF
-      // console.log('[CHECKOUT] Creando sesión de pago offline...', { 
-      //   orderIds: createdOrderIds, 
-      //   paymentMethod,
-      //   orderIdsCount: createdOrderIds.length,
-      // });
-
-      const slipRes = await fetch('/api/offline-payment/create', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json', authorization: `Bearer ${accessToken}` },
-        // El server calcula el amount real (no confiar en el cliente)
-        body: JSON.stringify({ orderIds: createdOrderIds, payment_method: paymentMethod }),
-      });
-
-      // console.log('[CHECKOUT] Respuesta de offline-payment/create:', { 
-      //   status: slipRes.status, 
-      //   ok: slipRes.ok,
-      // });
-
-      const slipJson = await slipRes.json().catch((parseErr) => {
-        // console.error('[CHECKOUT] Error parseando respuesta:', parseErr);
-        return { error: 'Error al procesar respuesta del servidor' };
-      });
-
-      // console.log('[CHECKOUT] JSON respuesta:', slipJson);
-
-      if (!slipRes.ok) {
-        const errorMsg = slipJson?.error || `No se pudo generar la hoja de pago (${slipRes.status}).`;
-        // console.error('[CHECKOUT] Error creando sesión offline:', errorMsg);
-        throw new Error(errorMsg);
-      }
-
-      if (!slipJson?.ok) {
-        const errorMsg = slipJson?.error || 'No se pudo generar la hoja de pago.';
-        // console.error('[CHECKOUT] Respuesta no exitosa:', errorMsg);
-        throw new Error(errorMsg);
-      }
-
-      const checkoutId = String(slipJson?.checkoutId || '').trim();
-      if (!checkoutId) {
-        // console.error('[CHECKOUT] No se recibió checkoutId:', slipJson);
-        throw new Error('No se recibió checkoutId para la hoja de pago.');
-      }
-
-      // console.log('[CHECKOUT] ✅ Sesión offline creada exitosamente:', {
-      //   checkoutId,
-      //   reference_code: slipJson?.reference_code,
-      //   reused: slipJson?.reused || false,
-      // });
-
       try { sessionStorage.removeItem(STORAGE_KEY); } catch { }
       const cartItemIds = cartItems.map((c) => c.id);
       const { error: clearErr } = await supabase.from('cart_items').delete().in('id', cartItemIds);
       if (clearErr) {
         // console.warn('[CHECKOUT] Error vaciando carrito (no crítico):', clearErr);
-        // No fallar por esto, solo loguear
       }
 
-      window.location.href = `/pago/${checkoutId}`;
+      window.location.href = `/compra-exitosa?orderId=${createdOrderIds[0]}`;
     } catch (err: unknown) {
       // console.error(err);
       setSuccess(null);
@@ -1103,103 +1008,25 @@ export default function CheckoutPage() {
 
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
-            <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
-              <h2 className="text-lg font-bold text-gray-900">Método de pago</h2>
-              <p className="mt-1 text-sm text-gray-600">Estos métodos son configurables por el administrador.</p>
-
-              {enabledMethods.length === 0 ? (
-                <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-                  No hay métodos de pago habilitados. Revisa `app_settings.payment_methods`.
+            <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-brand-emerald/20 sm:p-8">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-brand-emerald/10 text-brand-emerald">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 6.1H3" />
+                    <path d="M21 12.1H3" />
+                    <path d="M15.1 18H3" />
+                  </svg>
                 </div>
-              ) : (
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {enabledMethods.map((m) => (
-                    <label
-                      key={m.key}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-white' : 'border-black/5 bg-white'
-                        }`}
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex min-w-0 items-center gap-3">
-                          {PAYMENT_METHOD_LOGO[m.key] ? (
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-black/5">
-                              <Image
-                                src={PAYMENT_METHOD_LOGO[m.key] as string}
-                                alt={m.label}
-                                width={40}
-                                height={40}
-                                className="h-7 w-7 object-contain"
-                              />
-                            </div>
-                          ) : null}
-                          <div className="min-w-0">
-                            <div className="font-semibold text-gray-900">{m.label}</div>
-                            <div className="mt-0.5 text-xs text-gray-600">
-                              {m.key === 'mercadopago'
-                                ? 'Débito / crédito'
-                                : m.key === 'oxxo'
-                                  ? 'Pago en efectivo'
-                                  : m.key === 'bank_transfer'
-                                    ? 'SPEI'
-                                    : m.key === 'bank_deposit'
-                                      ? 'Sucursal / cajero'
-                                      : m.key === 'pocketcash'
-                                        ? `Saldo disponible: ${formatMoney(walletBalance)}`
-                                        : ''}
-                            </div>
-                          </div>
-                        </div>
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          value={m.key}
-                          checked={paymentMethod === m.key}
-                          onChange={() => setPaymentMethod(m.key)}
-                        />
-                      </div>
-                    </label>
-                  ))}
+                <div>
+                  <h2 className="text-lg font-bold text-gray-900">Trato Directo</h2>
+                  <p className="mt-1 text-sm text-gray-600">
+                    GoVendy no retiene tu dinero. Una vez que confirmes tu compra, te pondremos en contacto directo con el vendedor para que acuerden el método de pago y la entrega.
+                  </p>
                 </div>
-              )}
-
-              {['bank_transfer', 'bank_deposit', 'oxxo'].includes(paymentMethod) && (
-                <div className="mt-4 rounded-2xl border border-black/5 bg-gray-50 px-4 py-3 text-sm text-gray-700">
-                  {paymentMethod === 'bank_transfer' && settings.payment_methods?.bank_transfer && (
-                    <div className="space-y-1 mb-3 pb-3 border-b border-black/5">
-                      {settings.payment_methods.bank_transfer.bank_name && <div><span className="font-semibold">Banco:</span> {settings.payment_methods.bank_transfer.bank_name}</div>}
-                      {settings.payment_methods.bank_transfer.account_holder && <div><span className="font-semibold">Beneficiario:</span> {settings.payment_methods.bank_transfer.account_holder}</div>}
-                      {settings.payment_methods.bank_transfer.clabe && <div><span className="font-semibold">CLABE:</span> <span className="font-mono">{settings.payment_methods.bank_transfer.clabe}</span></div>}
-                    </div>
-                  )}
-                  {paymentMethod === 'bank_deposit' && settings.payment_methods?.bank_deposit && (
-                    <div className="space-y-1 mb-3 pb-3 border-b border-black/5">
-                      {settings.payment_methods.bank_deposit.bank_name && <div><span className="font-semibold">Banco:</span> {settings.payment_methods.bank_deposit.bank_name}</div>}
-                      {settings.payment_methods.bank_deposit.account_holder && <div><span className="font-semibold">Beneficiario:</span> {settings.payment_methods.bank_deposit.account_holder}</div>}
-                      {settings.payment_methods.bank_deposit.account_number && <div><span className="font-semibold">Cuenta:</span> <span className="font-mono">{settings.payment_methods.bank_deposit.account_number}</span></div>}
-                    </div>
-                  )}
-
-                  {methodInstructions && (
-                    <div className="whitespace-pre-wrap">
-                      <div className="text-xs font-semibold text-gray-700">Instrucciones</div>
-                      <div className="mt-1">{methodInstructions}</div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {paymentMethod === 'mercadopago' && (
-                <div className="mt-4 rounded-2xl border border-black/5 bg-gray-50 px-4 py-3 text-sm text-gray-700">
-                  <div className="text-xs font-semibold text-gray-700">Tarjeta (MercadoPago)</div>
-                  <div className="mt-1">
-                    Paga con <span className="font-semibold">tarjeta de débito/crédito</span>. Te redirigiremos a MercadoPago para completar el pago (3DS/seguridad).
-                  </div>
-                  <div className="mt-2 text-xs text-gray-600">
-                    Al acreditarse el pago, te regresamos a GoVendy y se actualiza el estado automáticamente vía webhook.
-                  </div>
-                </div>
-              )}
+              </div>
             </section>
+
+
 
             {!allDigitalCart && (shippingOptions.length > 0 || t1Loading || Object.keys(t1QuotesBySeller).length > 0) && (
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">

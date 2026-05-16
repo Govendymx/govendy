@@ -2359,9 +2359,17 @@ export default function DashboardVentasPage() {
                                     setChatOpen(true);
                                     setHasUnreadByOrderId((p) => ({ ...p, [orderId]: false }));
                                   }}
-                                  className={`relative flex w-full items-center justify-center gap-2 rounded-lg bg-white px-2 py-1.5 text-[10px] font-bold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-emerald' : 'ring-black/10'}`}
+                                  className={`inline-flex w-full items-center justify-center gap-1.5 rounded-xl px-2.5 py-2.5 text-[11px] font-bold shadow-sm ring-1 transition-all ${
+                                    hasUnread 
+                                      ? 'bg-brand-emerald text-white ring-brand-emerald hover:opacity-90 animate-pulse' 
+                                      : 'bg-brand-emerald text-white ring-brand-emerald hover:opacity-90'
+                                  }`}
                                 >
-                                  Chat {hasUnread && <span className="h-1.5 w-1.5 rounded-full bg-brand-emerald"></span>}
+                                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                  </svg>
+                                  Contactar Comprador
+                                  {hasUnread ? <span className="ml-1 rounded-full bg-white px-1.5 py-0.5 text-[9px] font-extrabold text-brand-emerald">NUEVO</span> : null}
                                 </button>
                               ) : null}
                             </div>

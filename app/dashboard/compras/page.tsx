@@ -2369,14 +2369,6 @@ export default function DashboardComprasPage() {
                                     >
                                       Visita tienda
                                     </Link>
-                                  ) : status === 'pending_payment' ? (
-                                    <button
-                                      type="button"
-                                      disabled
-                                      className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-gray-100 px-2.5 py-2.5 text-[11px] font-semibold text-gray-500 shadow-sm ring-1 ring-gray-200 cursor-not-allowed"
-                                    >
-                                      Chat (pendiente pago)
-                                    </button>
                                   ) : (
                                     <button
                                       type="button"
@@ -2385,12 +2377,17 @@ export default function DashboardComprasPage() {
                                         setChatOpen(true);
                                         setHasUnreadByOrderId((p) => ({ ...p, [orderId]: false }));
                                       }}
-                                      className={`inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white px-2.5 py-2.5 text-[11px] font-semibold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-emerald' : 'ring-black/5'
-                                        } ${isPaid && !alreadyRated ? 'animate-pulse ring-brand-emerald bg-white' : ''
-                                        }`}
+                                      className={`inline-flex w-full items-center justify-center gap-1.5 rounded-xl px-2.5 py-2.5 text-[11px] font-bold shadow-sm ring-1 transition-all ${
+                                        hasUnread 
+                                          ? 'bg-brand-emerald text-white ring-brand-emerald hover:opacity-90 animate-pulse' 
+                                          : 'bg-brand-emerald text-white ring-brand-emerald hover:opacity-90'
+                                      }`}
                                     >
-                                      Chat
-                                      {hasUnread ? <span className="rounded-full bg-brand-emerald px-1.5 py-0.5 text-[10px] font-bold text-white">Nuevo</span> : null}
+                                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                      </svg>
+                                      Contactar Vendedor
+                                      {hasUnread ? <span className="ml-1 rounded-full bg-white px-1.5 py-0.5 text-[9px] font-extrabold text-brand-emerald">NUEVO</span> : null}
                                     </button>
                                   )}
 

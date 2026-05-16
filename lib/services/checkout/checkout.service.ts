@@ -112,7 +112,7 @@ export class CheckoutService {
       throw new ValidationError('El carrito está vacío');
     }
 
-    const validPaymentMethods: PaymentMethod[] = ['mercadopago', 'bank_transfer', 'bank_deposit', 'oxxo', 'pocketcash'];
+    const validPaymentMethods: PaymentMethod[] = ['mercadopago', 'bank_transfer', 'bank_deposit', 'oxxo', 'pocketcash', 'direct_contact'];
     if (!validPaymentMethods.includes(paymentMethod)) {
       throw new ValidationError('payment_method inválido');
     }
@@ -663,6 +663,75 @@ export class CheckoutService {
       }
     }
 
+    const decrementStockForOrders = async (orderIds: string[]) => {
+      const { data: orderItems, error: itemsError } = await admin
+        .from('order_items')
+        .select('listing_id, quantity, selected_size, title')
+        .in('order_id', orderIds);
+      if (itemsError) {
+        throw new Error(itemsError.message);
+      }
+
+      const failed: Array<{ listing_id: string; title?: string | null; quantity: number; selected_size?: string | null; message: string }> = [];
+
+      for (const item of (orderItems as any[]) ?? []) {
+        const listingId = String(item?.listing_id ?? '').trim();
+        const quantity = Number(item?.quantity ?? 0);
+        const selectedSize = typeof item?.selected_size === 'string' ? String(item.selected_size).trim() : null;
+        const title = typeof item?.title === 'string' ? String(item.title).trim() : null;
+
+        if (!listingId || !Number.isFinite(quantity) || quantity <= 0) continue;
+
+        let rpc: any = await admin.rpc('decrement_stock', {
+          p_listing_id: listingId,
+          p_quantity: quantity,
+          p_size: selectedSize || null,
+        });
+
+        if (rpc?.error) {
+          const code = String((rpc.error as any)?.code ?? '');
+          const msg = String((rpc.error as any)?.message ?? '').toLowerCase();
+          const maybeSignatureMismatch =
+            code === '42883' || msg.includes('p_size') || msg.includes('decrement_stock(') || msg.includes('function');
+          if (maybeSignatureMismatch) {
+            rpc = await admin.rpc('decrement_stock', {
+              p_listing_id: listingId,
+              p_quantity: quantity,
+            });
+          }
+        }
+
+        if (rpc?.error) {
+          failed.push({
+            listing_id: listingId,
+            title,
+            quantity,
+            selected_size: selectedSize,
+            message: String((rpc.error as any)?.message ?? 'Error actualizando stock'),
+          });
+          continue;
+        }
+
+        const result = rpc?.data as any;
+        if (!result?.success) {
+          failed.push({
+            listing_id: listingId,
+            title,
+            quantity,
+            selected_size: selectedSize,
+            message: String(result?.message ?? 'Stock insuficiente'),
+          });
+        }
+      }
+
+      if (failed.length > 0) {
+        const first = failed[0];
+        const base = first?.title ? `"${first.title}"` : 'un artículo';
+        const sizeTxt = first?.selected_size ? ` (Talla: ${first.selected_size})` : '';
+        throw new ValidationError(`Stock insuficiente para ${base}${sizeTxt}.`);
+      }
+    };
+
     // Procesar pago con PocketCash
     if (paymentMethod === 'pocketcash') {
       const wallet = await WalletService.getWallet(buyerId);
@@ -673,75 +742,6 @@ export class CheckoutService {
         // El frontend deberá manejar este error y redirigir al usuario a pagar/recargar.
         throw new ValidationError(`Saldo insuficiente en PocketCash. Tienes $${balance.toFixed(2)} pero se requieren $${totalAmount.toFixed(2)}`);
       }
-
-      const decrementStockForOrders = async (orderIds: string[]) => {
-        const { data: orderItems, error: itemsError } = await admin
-          .from('order_items')
-          .select('listing_id, quantity, selected_size, title')
-          .in('order_id', orderIds);
-        if (itemsError) {
-          throw new Error(itemsError.message);
-        }
-
-        const failed: Array<{ listing_id: string; title?: string | null; quantity: number; selected_size?: string | null; message: string }> = [];
-
-        for (const item of (orderItems as any[]) ?? []) {
-          const listingId = String(item?.listing_id ?? '').trim();
-          const quantity = Number(item?.quantity ?? 0);
-          const selectedSize = typeof item?.selected_size === 'string' ? String(item.selected_size).trim() : null;
-          const title = typeof item?.title === 'string' ? String(item.title).trim() : null;
-
-          if (!listingId || !Number.isFinite(quantity) || quantity <= 0) continue;
-
-          let rpc: any = await admin.rpc('decrement_stock', {
-            p_listing_id: listingId,
-            p_quantity: quantity,
-            p_size: selectedSize || null,
-          });
-
-          if (rpc?.error) {
-            const code = String((rpc.error as any)?.code ?? '');
-            const msg = String((rpc.error as any)?.message ?? '').toLowerCase();
-            const maybeSignatureMismatch =
-              code === '42883' || msg.includes('p_size') || msg.includes('decrement_stock(') || msg.includes('function');
-            if (maybeSignatureMismatch) {
-              rpc = await admin.rpc('decrement_stock', {
-                p_listing_id: listingId,
-                p_quantity: quantity,
-              });
-            }
-          }
-
-          if (rpc?.error) {
-            failed.push({
-              listing_id: listingId,
-              title,
-              quantity,
-              selected_size: selectedSize,
-              message: String((rpc.error as any)?.message ?? 'Error actualizando stock'),
-            });
-            continue;
-          }
-
-          const result = rpc?.data as any;
-          if (!result?.success) {
-            failed.push({
-              listing_id: listingId,
-              title,
-              quantity,
-              selected_size: selectedSize,
-              message: String(result?.message ?? 'Stock insuficiente'),
-            });
-          }
-        }
-
-        if (failed.length > 0) {
-          const first = failed[0];
-          const base = first?.title ? `"${first.title}"` : 'un artículo';
-          const sizeTxt = first?.selected_size ? ` (Talla: ${first.selected_size})` : '';
-          throw new ValidationError(`Stock insuficiente para ${base}${sizeTxt}. Se reembolsó tu PocketCash automáticamente.`);
-        }
-      };
 
       // Procesar deducción y marcar como pagado (Batch Atómico)
       const ordersToPay = createdOrdersInfo.filter(o => o.amount > 0);
@@ -781,6 +781,26 @@ export class CheckoutService {
           await admin.from('orders').update({ status: 'cancelled' } as any).in('id', createdOrderIds);
         }
 
+        throw e;
+      }
+    } else if (paymentMethod === 'direct_contact') {
+      try {
+        await decrementStockForOrders(createdOrderIds);
+        
+        // Update order status to indicate it's waiting for contact/payment
+        const now = new Date().toISOString();
+        for (const info of createdOrdersInfo) {
+          await admin
+            .from('orders')
+            .update({
+              status: 'pending_contact', // Using pending_contact, assuming we can use custom strings or pending_payment
+            } as any)
+            .eq('id', info.id);
+        }
+      } catch (e: unknown) {
+        if (createdOrderIds.length > 0) {
+          await admin.from('orders').update({ status: 'cancelled' } as any).in('id', createdOrderIds);
+        }
         throw e;
       }
     }

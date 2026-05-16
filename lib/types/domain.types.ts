@@ -12,7 +12,7 @@ export type OrderStatus =
 
 export type CheckoutStatus = 'created' | 'pending' | 'paid' | 'failed' | 'cancelled';
 
-export type PaymentMethod = 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo' | 'pocketcash' | 'pending_payment';
+export type PaymentMethod = 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo' | 'pocketcash' | 'pending_payment' | 'direct_contact';
 
 export type OrderSource = 'checkout' | 'auction';
 

@@ -13,7 +13,7 @@ export const dynamic = 'force-dynamic';
 
 type Body = {
   cartItems: Array<{ listingId: string; quantity: number; selected_size?: string | null; selected_color?: string | null }>;
-  payment_method: 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo';
+  payment_method: 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo' | 'pocketcash' | 'direct_contact';
   coupon_code?: string | null;
   shipping_option_id?: string | null;
   // T1 Premium shipping fields

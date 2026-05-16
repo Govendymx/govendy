@@ -9,6 +9,7 @@ function CompraExitosaContent() {
   const checkoutId = searchParams?.get('checkoutId') ?? '';
   const type = searchParams?.get('type') ?? '';
   const quoteId = searchParams?.get('quoteId') ?? '';
+  const orderId = searchParams?.get('orderId') ?? '';
   const isEstafeta = type === 'estafeta';
 
   return (
@@ -33,18 +34,26 @@ function CompraExitosaContent() {
             Pago acreditado
           </div>
           <h1 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">
-            {isEstafeta ? '¡Gracias por tu compra de guía Estafeta!' : '¡Gracias por tu compra!'}
+            {isEstafeta ? '¡Gracias por tu compra de guía Estafeta!' : '¡Pedido Confirmado!'}
           </h1>
           <p className="mt-3 text-sm text-gray-600">
             {isEstafeta 
               ? 'Tu pago fue procesado correctamente. La guía de envío estará disponible en tu panel de compras cuando el administrador la suba.'
-              : 'Tu pago fue procesado correctamente. Recibirás notificaciones cuando el vendedor envíe tu pedido.'}
+              : 'Tu siguiente paso es contactar al vendedor para acordar el pago y la entrega. GoVendy no procesa pagos, por lo que todo acuerdo se realiza directamente entre tú y el vendedor.'}
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            {orderId && !isEstafeta && (
+              <Link
+                href={`/dashboard/chat/${orderId}`}
+                className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+              >
+                Hablar con el Vendedor
+              </Link>
+            )}
             <Link
               href="/dashboard/compras"
-              className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90"
+              className={`rounded-xl px-6 py-3 text-sm font-semibold shadow-sm ring-1 ring-black/5 hover:bg-gray-50 ${orderId && !isEstafeta ? 'bg-white text-gray-900' : 'bg-brand-emerald text-white shadow-lg hover:opacity-90'}`}
             >
               Ver mis compras
             </Link>

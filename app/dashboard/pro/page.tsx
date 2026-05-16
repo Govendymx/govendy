@@ -36,39 +36,10 @@ export default function ProPage() {
     load();
   }, [router]);
 
-  const simulatePayment = async () => {
     setPaymentStep('processing');
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error('No session');
-
-      const res = await fetch('/api/user/update-plan', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`,
-        },
-        body: JSON.stringify({ plan: selectedPlan }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Error al procesar el pago');
-      }
-
+    setTimeout(() => {
       setPaymentStep('success');
-      setTimeout(() => {
-        setPlan(selectedPlan);
-        setShowPaymentModal(false);
-        setPaymentStep('idle');
-        router.refresh();
-        window.location.reload();
-      }, 2000);
-    } catch (err) {
-      alert('Error al procesar: ' + (err instanceof Error ? err.message : 'Error desconocido'));
-      setPaymentStep('idle');
-    }
-  };
+    }, 1500);
 
   const handleSwitch = async (newPlan: string) => {
     if (newPlan === plan) return;
@@ -77,37 +48,6 @@ export default function ProPage() {
       setSelectedPlan(newPlan as 'pro' | 'platinum');
       setShowPaymentModal(true);
       return;
-    }
-
-    if (!confirm(`¿Estás seguro que deseas cambiar al plan ${newPlan.toUpperCase()}? Perderás tus beneficios actuales.`)) return;
-
-    setUpdating(true);
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const res = await fetch('/api/user/update-plan', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`,
-        },
-        body: JSON.stringify({ plan: newPlan }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Error al actualizar el plan');
-      }
-
-      setPlan(newPlan);
-      router.refresh();
-      window.location.reload();
-    } catch (err) {
-      alert('Error al cambiar de plan: ' + (err instanceof Error ? err.message : 'Error desconocido'));
-      console.error(err);
-    } finally {
-      setUpdating(false);
     }
   };
 
@@ -321,13 +261,13 @@ export default function ProPage() {
 
           <button
             onClick={() => handleSwitch('pro')}
-            disabled={plan === 'pro' || updating}
+            disabled={plan === 'pro'}
             className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all ${plan === 'pro'
               ? 'bg-emerald-100 text-brand-emerald cursor-default border-2 border-brand-emerald/20'
               : 'bg-brand-emerald text-white hover:bg-emerald-600 shadow-md hover:shadow-lg'
               }`}
           >
-            {plan === 'pro' ? '✓ Tu plan actual' : currentPlanIndex > 1 ? 'Cambiar a PRO' : 'Obtener Plan PRO'}
+            {plan === 'pro' ? '✓ Tu plan actual' : currentPlanIndex > 1 ? 'Activar PRO (Contactar Soporte)' : 'Obtener Plan PRO'}
           </button>
         </div>
 
@@ -409,7 +349,7 @@ export default function ProPage() {
 
           <button
             onClick={() => handleSwitch('platinum')}
-            disabled={plan === 'platinum' || updating}
+            disabled={plan === 'platinum'}
             className={`w-full py-3 px-4 rounded-xl font-bold text-sm transition-all ${plan === 'platinum'
               ? 'bg-amber-100 text-amber-700 cursor-default border-2 border-amber-300'
               : 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white hover:from-amber-600 hover:to-yellow-600 shadow-md hover:shadow-lg'
@@ -435,7 +375,7 @@ export default function ProPage() {
               <>
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900">
-                    Suscripción {selectedPlan === 'platinum' ? 'Platinum ⭐' : 'PRO'}
+                    Activar {selectedPlan === 'platinum' ? 'Platinum ⭐' : 'PRO'}
                   </h3>
                   <button onClick={() => setShowPaymentModal(false)} className="rounded-full p-1 hover:bg-gray-100">
                     <X className="h-5 w-5 text-gray-500" />
@@ -444,74 +384,35 @@ export default function ProPage() {
 
                 <div className="mb-6 space-y-4">
                   <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-white border-emerald-100'}`}>
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="font-semibold text-gray-900">
-                        Plan {selectedPlan === 'platinum' ? 'Platinum' : 'PRO'} Mensual
+                    <div className="flex flex-col gap-2 mb-2 text-center">
+                      <span className="font-semibold text-gray-900 text-lg">
+                        ¡Estás a un paso de mejorar tu cuenta!
                       </span>
-                      <span className={`font-bold ${selectedPlan === 'platinum' ? 'text-amber-600' : 'text-brand-emerald'}`}>
-                        ${prices[selectedPlan].toLocaleString('es-MX')}.00 MXN
-                      </span>
+                      <p className="text-sm text-gray-600">
+                        Para activar tu plan <strong>{selectedPlan === 'platinum' ? 'Platinum' : 'PRO'}</strong> y recibir los datos de pago, por favor contacta a un administrador.
+                      </p>
                     </div>
-                    <p className="text-sm text-gray-600">Acceso completo por 30 días.</p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-emerald transition-colors">
-                      <input type="radio" name="payment" defaultChecked className="text-brand-emerald focus:ring-brand-emerald" />
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-900">Tarjeta de Crédito/Débito</div>
-                        <div className="text-xs text-gray-500">Procesado seguro por MercadoPago</div>
-                      </div>
-                    </label>
-
-                    <label className="flex items-center gap-3 rounded-xl border border-gray-200 p-3 cursor-pointer hover:border-brand-emerald transition-colors">
-                      <input type="radio" name="payment" className="text-brand-emerald focus:ring-brand-emerald" />
-                      <div className="flex-1">
-                        <div className="font-medium text-gray-900">PocketCash</div>
-                        <div className="text-xs text-gray-500">Paga con tu saldo disponible</div>
-                      </div>
-                    </label>
                   </div>
                 </div>
 
-                <button
-                  onClick={simulatePayment}
-                  className={`w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] ${selectedPlan === 'platinum'
+                <a
+                  href="https://wa.me/5211234567890?text=Hola,%20me%20gustar%C3%ADa%20activar%20el%20plan%20Premium%20en%20GoVendy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center gap-2 w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] ${selectedPlan === 'platinum'
                     ? 'bg-gradient-to-r from-amber-500 to-yellow-500 shadow-amber-200 hover:from-amber-600 hover:to-yellow-600'
                     : 'bg-brand-emerald shadow-emerald-200 hover:bg-emerald-600'
                     }`}
                 >
-                  Pagar ${prices[selectedPlan].toLocaleString('es-MX')}.00 y Activar
+                  Contactar por WhatsApp
+                </a>
+                <button
+                  onClick={() => setShowPaymentModal(false)}
+                  className="mt-3 w-full rounded-xl py-3.5 text-center font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all active:scale-[0.98]"
+                >
+                  Cerrar
                 </button>
-                <p className="mt-3 text-center text-xs text-gray-400">
-                  Transacción segura encriptada de extremo a extremo.
-                </p>
               </>
-            )}
-
-            {paymentStep === 'processing' && (
-              <div className="flex flex-col items-center justify-center py-8">
-                <div className={`h-12 w-12 animate-spin rounded-full border-4 border-t-transparent mb-4 ${selectedPlan === 'platinum' ? 'border-amber-500' : 'border-brand-emerald'
-                  }`}></div>
-                <h3 className="text-lg font-bold text-gray-900">Procesando pago...</h3>
-                <p className="text-sm text-gray-500">No cierres esta ventana.</p>
-              </div>
-            )}
-
-            {paymentStep === 'success' && (
-              <div className="flex flex-col items-center justify-center py-8 text-center">
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
-                  <Check className="h-8 w-8" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {selectedPlan === 'platinum' ? '⭐ ¡Bienvenido a Platinum!' : '¡Bienvenido a PRO!'}
-                </h3>
-                <p className="mt-2 text-gray-600">Tu suscripción ha sido activada correctamente.</p>
-                {selectedPlan === 'platinum' && (
-                  <p className="mt-2 text-amber-600 font-semibold">📹 Ya puedes usar GoVendy Live</p>
-                )}
-                <p className="mt-4 text-sm text-gray-400">Redirigiendo...</p>
-              </div>
             )}
           </div>
         </div>
