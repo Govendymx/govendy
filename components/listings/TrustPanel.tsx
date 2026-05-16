@@ -10,12 +10,13 @@ export function TrustPanel() {
         {/* Logos Section */}
         <div className="flex flex-col gap-4 border-b border-gray-100 pb-6">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-pink-50">
-              <ShieldCheck className="h-7 w-7 text-brand-emerald" />
-            </div>
-            <div>
-              <div className="text-lg font-extrabold text-brand-emerald leading-none">GoVendy</div>
-              <div className="text-sm font-bold text-brand-emerald">Compra Segura</div>
+            <div className="relative h-12 w-32">
+              <Image
+                src="/logo.png"
+                alt="GoVendy Compra Segura"
+                fill
+                className="object-contain object-left"
+              />
             </div>
           </div>
 
