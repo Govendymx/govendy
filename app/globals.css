@@ -4,17 +4,13 @@
 
 :root {
   --foreground-rgb: 15, 23, 42;
-  /* Slate 900 */
   --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 248, 250, 252;
-  /* Slate 50 */
+  --background-end-rgb: 255, 255, 255;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: #ffffff;
 }
 
 /* ── Mobile overflow prevention ─────────────────────────────────────────── */
@@ -42,7 +38,7 @@ button, a, [role="button"] {
   }
 
   ::selection {
-    background: rgba(31, 181, 155, 0.18);
+    background: rgba(31, 181, 155, 0.12);
   }
 }
 
