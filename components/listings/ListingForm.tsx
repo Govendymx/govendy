@@ -1144,7 +1144,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}
@@ -1340,7 +1340,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => setSaleType('direct')}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'direct'
-                      ? 'border-brand-emerald bg-emerald-50 text-brand-emerald'
+                      ? 'border-brand-emerald bg-white text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >
@@ -1350,7 +1350,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => { setSaleType('auction'); setFreeShipping(false); setShippingSubsidy('0'); }}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'auction'
-                      ? 'border-brand-emerald bg-emerald-50 text-brand-emerald'
+                      ? 'border-brand-emerald bg-white text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >

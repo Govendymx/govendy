@@ -409,7 +409,7 @@ function MetricCard({ metric, period, delay }: { metric: Metric; period: Period;
                 <div className="flex items-center gap-2.5">
                     <div className={`flex h-10 w-10 items-center justify-center rounded-2xl text-lg ${metric.reserved
                         ? 'bg-amber-100 shadow-inner'
-                        : 'bg-green-50 shadow-inner group-hover:bg-green-100'
+                        : 'bg-white shadow-inner group-hover:bg-green-100'
                         } transition-colors`}>
                         {metric.icon}
                     </div>

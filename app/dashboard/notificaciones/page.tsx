@@ -50,11 +50,11 @@ function icon(k: string) {
 }
 
 function styleByType(k: string) {
-  if (['new_sale', 'sale_paid'].includes(k)) return 'bg-green-50 border-green-200 hover:bg-green-100 text-green-900';
+  if (['new_sale', 'sale_paid'].includes(k)) return 'bg-white border-green-200 hover:bg-green-100 text-green-900';
   if (['payment_approved', 'order_completed'].includes(k)) return 'bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-900';
   if (k === 'payment_rejected') return 'bg-red-50 border-red-200 hover:bg-red-100 text-red-900';
   if (['order_shipped', 'order_message', 'order_status'].includes(k)) return 'bg-purple-50 border-purple-200 hover:bg-purple-100 text-purple-900';
-  if (['listing_question', 'listing_answer'].includes(k)) return 'bg-emerald-50 border-emerald-200 hover:bg-emerald-100 text-emerald-900';
+  if (['listing_question', 'listing_answer'].includes(k)) return 'bg-white border-emerald-200 hover:bg-emerald-100 text-emerald-900';
   if (['auction_won', 'auction_ended', 'outbid', 'bid_received', 'bid_placed'].includes(k)) return 'bg-amber-50 border-amber-200 hover:bg-amber-100 text-amber-900';
   return 'bg-gray-50 border-gray-200 hover:bg-gray-100 text-gray-900';
 }

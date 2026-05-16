@@ -151,7 +151,7 @@ export default function TiendaVendedorPage() {
   const count = useMemo(() => rows.length, [rows]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -232,7 +232,7 @@ export default function TiendaVendedorPage() {
                   <h1 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-md">
                     {sellerOfficialName || sellerName}
                   </h1>
-                  <div className="mt-2 inline-flex items-center rounded-full bg-green-500 px-3 py-1 text-xs font-bold text-white shadow-sm">
+                  <div className="mt-2 inline-flex items-center rounded-full bg-white0 px-3 py-1 text-xs font-bold text-white shadow-sm">
                     <svg className="mr-1.5 h-3.5 w-3.5" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                     </svg>

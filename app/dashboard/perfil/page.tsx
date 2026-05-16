@@ -448,7 +448,7 @@ export default function DashboardPerfilPage() {
       <main className="mx-auto max-w-4xl px-4 py-8">
         <PageTour steps={pageTours.perfil || []} pageId="perfil" />
         {error && <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
-        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>}
+        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>}
         {reason === 'address_required' ? (
           <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
             Para vender o publicar, todos los <span className="font-semibold">datos de contacto, dirección y email</span> son obligatorios. Complétalos más abajo y guarda.
@@ -739,7 +739,7 @@ export default function DashboardPerfilPage() {
           </div>
 
           {/* ── Seudónimo ── */}
-          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-5 ring-1 ring-emerald-100">
+          <div className="rounded-2xl border border-emerald-100 bg-white/30 p-5 ring-1 ring-emerald-100">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2">
@@ -829,7 +829,7 @@ export default function DashboardPerfilPage() {
                     }}
                     maxLength={13}
                     className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald uppercase ${form.rfc && (form.rfc.length === 12 || form.rfc.length === 13)
-                        ? 'border-green-400 bg-green-50/50'
+                        ? 'border-green-400 bg-white/50'
                         : form.rfc && form.rfc.length > 0
                           ? 'border-amber-300'
                           : 'border-gray-300'
@@ -858,7 +858,7 @@ export default function DashboardPerfilPage() {
                     }}
                     maxLength={18}
                     className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald uppercase ${form.curp && form.curp.length === 18
-                        ? 'border-green-400 bg-green-50/50'
+                        ? 'border-green-400 bg-white/50'
                         : form.curp && form.curp.length > 0
                           ? 'border-amber-300'
                           : 'border-gray-300'
@@ -879,7 +879,7 @@ export default function DashboardPerfilPage() {
             </div>
           </div>
 
-          <div id="datos-cobro" className="mt-4 rounded-3xl border border-emerald-100 bg-emerald-50/40 p-5 ring-1 ring-emerald-100" data-tour="payout-info">
+          <div id="datos-cobro" className="mt-4 rounded-3xl border border-emerald-100 bg-white/40 p-5 ring-1 ring-emerald-100" data-tour="payout-info">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="text-sm font-extrabold text-gray-900">Datos de cobro (para liberación de dinero)</div>
@@ -993,7 +993,7 @@ export default function DashboardPerfilPage() {
                       inputMode="numeric"
                       maxLength={5}
                       placeholder="Ej. 76729"
-                      className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`}
+                      className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-white/50' : 'border-gray-300'}`}
                     />
                     {cpLoading && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2">
@@ -1031,12 +1031,12 @@ export default function DashboardPerfilPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700">Ciudad <span className="text-red-600">*</span></label>
-                  <input value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
+                  <input value={form.city} onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-white/50' : 'border-gray-300'}`} />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Estado <span className="text-red-600">*</span></label>
-                <input value={form.state} onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-green-50/50' : 'border-gray-300'}`} />
+                <input value={form.state} onChange={(e) => setForm((p) => ({ ...p, state: e.target.value }))} className={`mt-1 w-full rounded-xl border px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald ${cpAutoFilled ? 'border-green-400 bg-white/50' : 'border-gray-300'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">Entre calles <span className="text-red-600">*</span></label>

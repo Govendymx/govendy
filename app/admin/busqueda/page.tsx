@@ -268,8 +268,8 @@ function SearchContent() {
               <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl
                 ${r.type === 'user' ? 'bg-blue-50 text-blue-600' : ''}
                 ${r.type === 'order' ? 'bg-purple-50 text-purple-600' : ''}
-                ${r.type === 'listing' ? 'bg-emerald-50 text-emerald-600' : ''}
-                ${r.type === 'payment' ? 'bg-green-50 text-green-600' : ''}
+                ${r.type === 'listing' ? 'bg-white text-emerald-600' : ''}
+                ${r.type === 'payment' ? 'bg-white text-green-600' : ''}
                 ${r.type === 'topup' ? 'bg-amber-50 text-amber-600' : ''}
                 ${r.type === 'dispute' ? 'bg-red-50 text-red-600' : ''}
               `}>

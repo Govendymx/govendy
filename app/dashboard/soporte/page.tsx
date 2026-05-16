@@ -157,7 +157,7 @@ export default function DashboardSoportePage() {
           ) : (
             <div className="mt-6 divide-y divide-black/5 overflow-hidden rounded-2xl border border-black/5">
               {rows.map((c) => (
-                <Link key={String(c?.id)} href={`/dashboard/soporte/${String(c?.id)}`} className="block p-4 hover:bg-emerald-50/30">
+                <Link key={String(c?.id)} href={`/dashboard/soporte/${String(c?.id)}`} className="block p-4 hover:bg-white/30">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div className="min-w-0">
                       <div className="text-sm font-semibold text-gray-900">{String(c?.subject || 'Soporte')}</div>

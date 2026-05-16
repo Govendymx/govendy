@@ -85,7 +85,7 @@ export function DigitalDeliverySeller({
 
     if (submitted && existingDelivery) {
         return (
-            <div className="rounded-xl border-2 border-green-200 bg-green-50 p-3 space-y-2">
+            <div className="rounded-xl border-2 border-green-200 bg-white p-3 space-y-2">
                 <div className="flex items-center gap-2">
                     <span className="text-sm">✅</span>
                     <span className="text-xs font-bold text-green-800">Producto digital entregado</span>
@@ -197,7 +197,7 @@ export function DigitalDeliveryBuyer({ orderId }: { orderId: string }) {
     }
 
     return (
-        <div className="rounded-xl border-2 border-green-200 bg-green-50 p-3 space-y-2">
+        <div className="rounded-xl border-2 border-green-200 bg-white p-3 space-y-2">
             <div className="flex items-center gap-2">
                 <span className="text-sm">🔑</span>
                 <span className="text-xs font-bold text-green-800">Datos de tu producto digital</span>

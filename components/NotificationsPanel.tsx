@@ -237,7 +237,7 @@ export function NotificationsPanel() {
     const kind = String((notification?.data?.kind ?? notification?.type ?? notification?.kind) ?? '').trim().toLowerCase();
     
     if (kind === 'new_sale' || kind === 'sale_paid') {
-      return 'bg-green-50 border-green-200 hover:bg-green-100';
+      return 'bg-white border-green-200 hover:bg-green-100';
     }
     if (kind === 'payment_approved' || kind === 'order_completed') {
       return 'bg-blue-50 border-blue-200 hover:bg-blue-100';

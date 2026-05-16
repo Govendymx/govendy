@@ -833,7 +833,7 @@ export default function AdminUsuariosPage() {
           </div>
         </div>
       ) : null}
-      {success ? <div className="mt-5 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div> : null}
+      {success ? <div className="mt-5 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div> : null}
 
       {/* Tabs: Todos / Suspendidos */}
       <div className="mt-5 flex gap-2">
@@ -974,7 +974,7 @@ export default function AdminUsuariosPage() {
                                   ? 'inline-flex rounded-xl bg-red-50 px-3 py-2 font-extrabold text-red-700 ring-1 ring-red-200'
                                   : st === 'suspended'
                                     ? 'inline-flex rounded-xl bg-amber-50 px-3 py-2 font-extrabold text-amber-900 ring-1 ring-amber-200'
-                                    : 'inline-flex rounded-xl bg-green-50 px-3 py-2 font-extrabold text-green-800 ring-1 ring-green-200'
+                                    : 'inline-flex rounded-xl bg-white px-3 py-2 font-extrabold text-green-800 ring-1 ring-green-200'
                             }
                           >
                             {st === 'deleted' ? 'Eliminada' : st === 'banned' ? 'Bloqueada' : st === 'suspended' ? 'Suspendida' : 'Activa'}
@@ -984,7 +984,7 @@ export default function AdminUsuariosPage() {
                           <Link
                             href={`/perfil/${u.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50"
+                            className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white"
                           >
                             Ver →
                           </Link>
@@ -1014,7 +1014,7 @@ export default function AdminUsuariosPage() {
                   <Link
                     href={`/perfil/${selected.id}`}
                     target="_blank"
-                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50"
+                    className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white"
                   >
                     Abrir perfil público →
                   </Link>
@@ -1282,7 +1282,7 @@ export default function AdminUsuariosPage() {
                         comprador: {(detail?.user?.stats ?? selected.stats)?.disputes_buyer ?? selected.stats?.disputes_buyer ?? 0} · vendedor: {(detail?.user?.stats ?? selected.stats)?.disputes_seller ?? selected.stats?.disputes_seller ?? 0}
                       </div>
                     </div>
-                    <div className="rounded-2xl bg-green-50 px-4 py-3 ring-1 ring-green-100">
+                    <div className="rounded-2xl bg-white px-4 py-3 ring-1 ring-green-100">
                       <div className="text-xs font-semibold text-green-900">Dinero retirado</div>
                       <div className="mt-1 font-bold text-green-900">
                         {formatMoney((detail?.user?.stats ?? selected.stats)?.withdrawn_total ?? (selected.stats?.withdrawn_total as number) ?? 0)}
@@ -1300,7 +1300,7 @@ export default function AdminUsuariosPage() {
                   <div className="text-sm font-semibold text-gray-900">Calificaciones recibidas</div>
                   <div className="mt-2 max-h-48 space-y-2 overflow-y-auto">
                     {editingRating ? (
-                      <div className="rounded-2xl border border-brand-emerald bg-emerald-50/50 p-3">
+                      <div className="rounded-2xl border border-brand-emerald bg-white/50 p-3">
                         <div className="text-xs font-semibold text-gray-700">Editar: {editingRating.rater_name} · {editingRating.stars}/10</div>
                         <div className="mt-2 flex gap-2">
                           <input
@@ -1644,7 +1644,7 @@ export default function AdminUsuariosPage() {
                     setImpersonationPassword('');
                     setShowImpersonateModal(true);
                   }}
-                  className="rounded-xl bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800 ring-1 ring-emerald-200 hover:bg-emerald-100"
+                  className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-emerald-800 ring-1 ring-emerald-200 hover:bg-emerald-100"
                 >
                   Impersonar usuario
                 </button>

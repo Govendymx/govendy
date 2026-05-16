@@ -202,7 +202,7 @@ export default function DisputeChatPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="leading-tight">
@@ -246,7 +246,7 @@ export default function DisputeChatPage() {
           const decisionLabel = getDecisionLabel(adminDecision);
           
           return (
-            <div className="mb-4 rounded-2xl border-2 border-green-300 bg-green-50 px-4 py-4">
+            <div className="mb-4 rounded-2xl border-2 border-green-300 bg-white px-4 py-4">
               <div className="text-base font-extrabold text-green-900">
                 Disputa resuelta: {decisionLabel}
               </div>
@@ -376,7 +376,7 @@ export default function DisputeChatPage() {
                     key={`pending-${idx}`}
                     type="button"
                     onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                    className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-emerald-100 hover:opacity-90"
+                    className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-emerald-100 hover:opacity-90"
                   >
                     {String(p?.name || 'Adjunto')} ×
                   </button>

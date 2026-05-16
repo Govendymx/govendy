@@ -240,7 +240,7 @@ export default function AdminLivesPage() {
     const simultaneousPct = Math.min(100, Math.round((live.length / SERVER_MAX_SIMULTANEOUS) * 100));
     const simultaneousColor = live.length >= SERVER_MAX_SIMULTANEOUS * 0.9 ? 'bg-red-500'
         : live.length >= SERVER_MAX_SIMULTANEOUS * 0.6 ? 'bg-yellow-400'
-            : 'bg-green-500';
+            : 'bg-white0';
     const avgDuration = ended.length > 0
         ? Math.round(ended.reduce((a, s) => a + sessionMinutes(s), 0) / ended.length)
         : 0;
@@ -309,7 +309,7 @@ export default function AdminLivesPage() {
                     <div className="text-[10px] text-purple-400 mt-1">por sesión terminada</div>
                 </div>
                 {/* Lives hoy */}
-                <div className="rounded-2xl bg-emerald-50 ring-1 ring-emerald-100 p-4">
+                <div className="rounded-2xl bg-white ring-1 ring-emerald-100 p-4">
                     <div className="text-xl font-black text-emerald-700">{livesToday}</div>
                     <div className="text-[11px] font-semibold text-emerald-500 mt-0.5">🎬 Lives hoy</div>
                     <div className="text-[10px] text-emerald-400 mt-1">de {SERVER_MAX_DAILY} diarios seguros</div>
@@ -402,7 +402,7 @@ export default function AdminLivesPage() {
                     </div>
                 )}
                 {success && (
-                    <div className="mb-4 rounded-xl bg-green-50 px-4 py-3 text-sm text-green-700 ring-1 ring-green-200">
+                    <div className="mb-4 rounded-xl bg-white px-4 py-3 text-sm text-green-700 ring-1 ring-green-200">
                         ✅ {success}
                     </div>
                 )}

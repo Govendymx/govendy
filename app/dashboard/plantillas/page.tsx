@@ -265,7 +265,7 @@ export default function DashboardTemplatesPage() {
 
       <main className="mx-auto max-w-6xl px-4 py-8">
         {error ? <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div> : null}
-        {success ? <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div> : null}
+        {success ? <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div> : null}
 
         <div className="grid gap-6 lg:grid-cols-2">
           <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5">
@@ -333,7 +333,7 @@ export default function DashboardTemplatesPage() {
                 <div className="text-lg font-extrabold text-gray-900">Mis plantillas</div>
                 <div className="mt-1 text-sm text-gray-600">Crea tus diseños y aplícalos al publicar.</div>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 {mine.length} total
               </div>
             </div>

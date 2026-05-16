@@ -257,7 +257,7 @@ export default function DashboardRespuestasPage() {
                           )}
                           <div className="mt-2 flex items-center gap-2">
                             <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-emerald/10 px-3 py-1 text-xs font-semibold text-brand-emerald">
-                              <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
+                              <span className="inline-flex h-2 w-2 rounded-full bg-white0" />
                               {questionCount} {questionCount === 1 ? 'pregunta respondida' : 'preguntas respondidas'}
                             </span>
                           </div>
@@ -279,7 +279,7 @@ export default function DashboardRespuestasPage() {
                             <div className="flex gap-4 p-5">
                               {/* Sección izquierda: Indicador */}
                               <div className="flex shrink-0 flex-col items-center gap-2 pt-1">
-                                <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
+                                <span className="inline-flex h-2 w-2 rounded-full bg-white0" />
                                 <div className="h-full w-px bg-gray-200" />
                               </div>
 

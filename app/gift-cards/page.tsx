@@ -607,7 +607,7 @@ export default function GiftCardsPage() {
                                     <div className="space-y-2 mb-6">
                                         {/* Auto-sent confirmation */}
                                         {emailSent && recipientEmail && (
-                                            <div className="bg-green-50 border border-green-200 rounded-xl p-3 text-center mb-2">
+                                            <div className="bg-white border border-green-200 rounded-xl p-3 text-center mb-2">
                                                 <p className="text-sm text-green-700 font-semibold">✅ Email enviado a {recipientEmail}</p>
                                                 <p className="text-xs text-green-600 mt-1">Desde regalos@gopocket.com.mx</p>
                                             </div>
@@ -621,7 +621,7 @@ export default function GiftCardsPage() {
                                         <div className="grid grid-cols-2 gap-2">
                                             <button
                                                 onClick={() => shareWhatsApp(result.gift_card.code, selectedAmount)}
-                                                className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-all hover:scale-[1.02] active:scale-95"
+                                                className="flex items-center justify-center gap-2 bg-white0 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-all hover:scale-[1.02] active:scale-95"
                                             >
                                                 <span className="text-xl">📱</span> WhatsApp
                                             </button>
@@ -629,7 +629,7 @@ export default function GiftCardsPage() {
                                                 onClick={() => shareEmail(result.gift_card.code, selectedAmount)}
                                                 disabled={emailSending}
                                                 className={`flex items-center justify-center gap-2 font-bold py-3 rounded-xl transition-all hover:scale-[1.02] active:scale-95 ${emailSent
-                                                        ? 'bg-green-500 hover:bg-green-600 text-white'
+                                                        ? 'bg-white0 hover:bg-green-600 text-white'
                                                         : 'bg-blue-500 hover:bg-blue-600 text-white'
                                                     } disabled:opacity-60`}
                                             >
@@ -659,7 +659,7 @@ export default function GiftCardsPage() {
 
                                 {/* Code Display for self */}
                                 {result.gift_card?.code && forSelf && (
-                                    <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center mb-4">
+                                    <div className="bg-white border border-green-200 rounded-xl p-4 text-center mb-4">
                                         <p className="text-sm text-green-700">¡Saldo acreditado a tu PocketCash!</p>
                                     </div>
                                 )}

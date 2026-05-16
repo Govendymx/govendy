@@ -107,7 +107,7 @@ function CountdownShipment({ createdAt, handlingDays = 3, onExpire }: { createdA
   }
 
   return (
-    <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-green-50 px-2 py-1.5 text-[10px] font-bold text-green-700 ring-1 ring-green-200">
+    <div className="mt-2 flex items-center gap-1.5 rounded-lg bg-white px-2 py-1.5 text-[10px] font-bold text-green-700 ring-1 ring-green-200">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
       Envía antes de: {timeLeft.days > 0 ? `${timeLeft.days}d ` : ''}{timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s para evitar disputa automática
     </div>
@@ -1192,7 +1192,7 @@ export default function DashboardVentasPage() {
         )}
 
         {error && <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
-        {success && <div className="mb-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>}
+        {success && <div className="mb-4 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>}
 
         <div className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 sm:p-5 relative">
           <div className="flex items-center gap-3">
@@ -1317,7 +1317,7 @@ export default function DashboardVentasPage() {
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">
                 <span className="text-[10px] font-bold uppercase text-gray-500">Leyenda:</span>
                 <div className="flex items-center gap-1.5">
-                  <div className="h-2.5 w-2.5 shrink-0 rounded border border-green-500 bg-green-50" />
+                  <div className="h-2.5 w-2.5 shrink-0 rounded border border-green-500 bg-white" />
                   <span className="text-[10px] text-gray-700">Concretada</span>
                 </div>
                 <div className="flex items-center gap-1.5">
@@ -1374,7 +1374,7 @@ export default function DashboardVentasPage() {
                       }
                     }
                     if (status === 'delivered' || status === 'received') {
-                      return { border: 'border-green-500 ring-green-200 hover:border-green-600', left: 'border-green-500', bg: 'bg-green-50/30' };
+                      return { border: 'border-green-500 ring-green-200 hover:border-green-600', left: 'border-green-500', bg: 'bg-white/30' };
                     }
                     return { border: 'border-yellow-500 ring-yellow-200 hover:border-yellow-600', left: 'border-yellow-500', bg: 'bg-yellow-50/30' };
                   };
@@ -1546,7 +1546,7 @@ export default function DashboardVentasPage() {
                                   );
                                 }
                                 return (
-                                  <Link href={`/dashboard/disputas/${disputeId}`} className="inline-flex items-center gap-1.5 rounded-full border border-green-400 bg-green-50 px-2 py-0.5 text-[10px] font-extrabold text-green-900 shadow-sm hover:bg-green-100">
+                                  <Link href={`/dashboard/disputas/${disputeId}`} className="inline-flex items-center gap-1.5 rounded-full border border-green-400 bg-white px-2 py-0.5 text-[10px] font-extrabold text-green-900 shadow-sm hover:bg-green-100">
                                     <span>Disputa resuelta</span>
                                   </Link>
                                 );
@@ -1612,7 +1612,7 @@ export default function DashboardVentasPage() {
                                           {t}
                                         </Link>
                                         {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
+                                          <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
                                             Subasta
                                           </span>
                                         ) : null}
@@ -1625,7 +1625,7 @@ export default function DashboardVentasPage() {
                                         {t}
                                       </span>
                                       {(firstItem as any)?.listings?.sale_type === 'auction' ? (
-                                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
+                                        <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[10px] font-extrabold text-brand-emerald ring-1 ring-emerald-100 animate-pulse">
                                           Subasta
                                         </span>
                                       ) : null}
@@ -1643,7 +1643,7 @@ export default function DashboardVentasPage() {
                                 {(() => {
                                   if (alreadyRated) {
                                     return (
-                                      <div className="rounded-lg bg-green-50 p-2 text-center text-[11px] font-bold text-green-700 animate-pulse border border-green-200">
+                                      <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-green-700 animate-pulse border border-green-200">
                                         Listo Venta completada Sigue Asi
                                       </div>
                                     );
@@ -1697,7 +1697,7 @@ export default function DashboardVentasPage() {
                                     } else {
                                       if (isSellerManagedOrder) {
                                         return (
-                                          <div className="rounded-lg bg-green-50 p-2 text-center text-[11px] font-bold text-green-700 animate-pulse border border-green-200">
+                                          <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-green-700 animate-pulse border border-green-200">
                                             El Envío corre por tu cuenta: 1. Agrega el número de rastreo primero. 2. Sube la evidencia de que realizaste el envío.
                                           </div>
                                         );
@@ -1729,7 +1729,7 @@ export default function DashboardVentasPage() {
 
                                   if (status === 'pending_payment') {
                                     return (
-                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
+                                      <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         1- Felicidades Recibiste una compra Espera a que se acredite el pago
                                       </div>
                                     );
@@ -1738,13 +1738,13 @@ export default function DashboardVentasPage() {
                                   if (status === 'paid') {
                                     if (isProofDownloaded) {
                                       return (
-                                        <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
+                                        <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                           3- Verifica Sigue las Instrucciones de la Constancia de Entrega Personal y Sube La Evidencia para liberar tu pago.
                                         </div>
                                       );
                                     }
                                     return (
-                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
+                                      <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         2- El Pago a sido acreditado Contacta al comprador por chat y descarga la constancia de entrega
                                       </div>
                                     );
@@ -1752,7 +1752,7 @@ export default function DashboardVentasPage() {
 
                                   if (status === 'shipped' || status === 'delivered') {
                                     return (
-                                      <div className="rounded-lg bg-emerald-50 p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
+                                      <div className="rounded-lg bg-white p-2 text-center text-[11px] font-bold text-emerald-700 animate-pulse border border-emerald-200">
                                         4- No olvides Solicitar a tu comprador te califique para liberar tu dinero.
                                       </div>
                                     );
@@ -1804,7 +1804,7 @@ export default function DashboardVentasPage() {
                               const commission = toNumber((o as any)?.commission_fee ?? 0);
                               const commissionPct = salePrice > 0 ? (commission / salePrice) * 100 : 0;
                               return (
-                                <div className={`mt-2 mb-2 flex flex-col gap-2 rounded-xl p-3 ring-1 ${netEarnings < 0 ? 'bg-red-50/50 ring-red-100' : 'bg-green-50/60 ring-green-200'}`}>
+                                <div className={`mt-2 mb-2 flex flex-col gap-2 rounded-xl p-3 ring-1 ${netEarnings < 0 ? 'bg-red-50/50 ring-red-100' : 'bg-white/60 ring-green-200'}`}>
                                   <div className="flex items-center gap-2 text-xs text-gray-700">
                                     <span className="font-medium text-gray-500">Comprador:</span>
                                     <span className="font-bold">{buyer}</span>
@@ -1829,7 +1829,7 @@ export default function DashboardVentasPage() {
                                       <div className="mt-1.5 flex items-center gap-2">
                                         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-100">
                                           <div
-                                            className="h-full rounded-full bg-green-500"
+                                            className="h-full rounded-full bg-white0"
                                             style={{ width: `${Math.min(100, (netEarnings / salePrice) * 100).toFixed(1)}%` }}
                                           />
                                         </div>
@@ -2078,7 +2078,7 @@ export default function DashboardVentasPage() {
                               ) : !isDigitalOrder && (canMarkShipped || isPickupOrder || (isSellerManagedOrder && !sellerManagedAllComplete)) ? (
                                 <div className="space-y-2 relative">
                                   {isPickupOrder && (
-                                    <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-2 py-1.5">
+                                    <div className="rounded-lg border border-emerald-200 bg-white px-2 py-1.5">
                                       <div className="text-[10px] text-emerald-900 leading-tight">
                                         Sube la evidencia para procesar el pago.
                                       </div>
@@ -2147,7 +2147,7 @@ export default function DashboardVentasPage() {
                                     </button>
                                   )}
                                   {tracking && isPickupOrder && (
-                                    <div className="flex items-center gap-1.5 rounded-lg bg-green-50 px-2 py-1.5 text-[10px] font-bold text-green-700 ring-1 ring-green-200">
+                                    <div className="flex items-center gap-1.5 rounded-lg bg-white px-2 py-1.5 text-[10px] font-bold text-green-700 ring-1 ring-green-200">
                                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                                       Entrega confirmada — {carrier || 'Personal'} — {tracking}
                                     </div>
@@ -2168,7 +2168,7 @@ export default function DashboardVentasPage() {
                                     href={`/dashboard/ventas/${orderId}/delivery-format`}
                                     target="_blank"
                                     onClick={() => handleDownloadProof(orderId)}
-                                    className={`flex w-full items-center justify-center gap-1.5 rounded-lg px-2 py-1.5 text-[10px] font-bold mb-1 shadow-sm ring-1 ring-inset ${isProofDownloaded ? 'bg-green-50 text-green-700 ring-green-600/20 hover:bg-green-100' : 'bg-gray-800 text-white ring-black/5 hover:bg-gray-700'}`}
+                                    className={`flex w-full items-center justify-center gap-1.5 rounded-lg px-2 py-1.5 text-[10px] font-bold mb-1 shadow-sm ring-1 ring-inset ${isProofDownloaded ? 'bg-white text-green-700 ring-green-600/20 hover:bg-green-100' : 'bg-gray-800 text-white ring-black/5 hover:bg-gray-700'}`}
                                   >
                                     {isProofDownloaded ? 'Constancia Descargada' : 'Descargar Constancia'}
                                   </Link>
@@ -2429,7 +2429,7 @@ export default function DashboardVentasPage() {
                       key={v}
                       type="button"
                       onClick={() => setRateStars(v)}
-                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-emerald-50'
+                      className={`h-8 w-8 rounded-lg text-xs font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-white'
                         }`}
                     >
                       {v}

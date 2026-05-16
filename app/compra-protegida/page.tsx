@@ -24,7 +24,7 @@ export default function CompraProtegidaPage() {
 
       <main className="mx-auto max-w-4xl px-4 py-10">
         <div className="rounded-3xl bg-white p-8 shadow-sm ring-1 ring-black/5">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Seguridad
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Compra protegida en GoVendy</h1>
@@ -52,7 +52,7 @@ export default function CompraProtegidaPage() {
             </div>
           </div>
 
-          <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
+          <div className="mt-6 rounded-2xl border border-emerald-200 bg-white p-4 text-sm text-emerald-900">
             Nota: el flujo exacto (tiempos, confirmaciones y devoluciones) se complementa con el módulo de operaciones y disputas.
           </div>
 

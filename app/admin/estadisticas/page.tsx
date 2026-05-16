@@ -107,7 +107,7 @@ export default function AdminEstadisticasPage() {
                             ? 'bg-red-50 border-2 border-red-200'
                             : d.totalAlerts > 0
                                 ? 'bg-orange-50 border-2 border-orange-200'
-                                : 'bg-green-50 border-2 border-green-200'
+                                : 'bg-white border-2 border-green-200'
                         }`}>
                         <div className="flex items-center gap-3">
                             <span className="text-3xl">{d.criticalCount > 0 ? '🔴' : d.totalAlerts > 0 ? '🟡' : '🟢'}</span>
@@ -260,7 +260,7 @@ export default function AdminEstadisticasPage() {
 
                     {/* All clear message */}
                     {d.totalAlerts === 0 && (
-                        <div className="rounded-3xl bg-green-50 border-2 border-green-200 p-12 text-center">
+                        <div className="rounded-3xl bg-white border-2 border-green-200 p-12 text-center">
                             <div className="text-5xl mb-4">✅</div>
                             <h2 className="text-xl font-extrabold text-green-800">¡Todo en orden!</h2>
                             <p className="text-sm text-green-600 mt-2">No hay elementos que requieran atención inmediata.</p>
@@ -660,7 +660,7 @@ export default function AdminEstadisticasPage() {
                             <h3 className="text-sm font-bold text-gray-900 mb-1">Órdenes pagadas sin guía (aging)</h3>
                             <p className="text-xs text-gray-400 mb-3">Cuánto tiempo llevan las órdenes pagadas sin guía. Más de 3 días = alerta roja.</p>
                             <div className="grid gap-4 sm:grid-cols-3">
-                                <div className="rounded-2xl bg-green-50 p-4 ring-1 ring-green-200 text-center">
+                                <div className="rounded-2xl bg-white p-4 ring-1 ring-green-200 text-center">
                                     <div className="text-2xl font-extrabold text-green-700">{d.aging.d1}</div>
                                     <div className="text-xs font-semibold text-green-600 mt-1">≤ 1 día</div>
                                 </div>
@@ -959,7 +959,7 @@ export default function AdminEstadisticasPage() {
                                             <tr key={e.id} className="border-b last:border-0 hover:bg-gray-50">
                                                 <td className="py-2 px-3 capitalize">{String(e.type || '—').replace(/_/g, ' ')}</td>
                                                 <td className="py-2 px-3">
-                                                    <span className={`inline-flex rounded-full px-2 py-0.5 text-[11px] font-bold ${e.status === 'completed' ? 'bg-green-50 text-green-700' :
+                                                    <span className={`inline-flex rounded-full px-2 py-0.5 text-[11px] font-bold ${e.status === 'completed' ? 'bg-white text-green-700' :
                                                         e.status === 'pending' ? 'bg-amber-50 text-amber-700' : 'bg-gray-50 text-gray-600'
                                                         }`}>{e.status}</span>
                                                 </td>
@@ -985,9 +985,9 @@ function KPICard({ title, value, change, subtitle, accent = 'gray', help }: {
     title: string; value: string; change?: number; subtitle?: string; accent?: string; help?: string;
 }) {
     const accentMap: Record<string, string> = {
-        pink: 'border-emerald-300 bg-emerald-50/50',
+        pink: 'border-emerald-300 bg-white/50',
         blue: 'border-blue-300 bg-blue-50/50',
-        green: 'border-green-300 bg-green-50/50',
+        green: 'border-green-300 bg-white/50',
         orange: 'border-orange-300 bg-orange-50/50',
         red: 'border-red-300 bg-red-50/50',
         purple: 'border-purple-300 bg-purple-50/50',

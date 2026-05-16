@@ -115,7 +115,7 @@ export function SellerStats({ stats }: { stats: SellerStats | null | undefined }
         <div className={`rounded-2xl border px-4 py-3 ${
           has_problems 
             ? 'border-red-200 bg-red-50' 
-            : 'border-green-200 bg-green-50'
+            : 'border-green-200 bg-white'
         }`}>
           <div className="flex items-center justify-between">
             <div>

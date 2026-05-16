@@ -559,7 +559,7 @@ export default function AdminSeguridadPage() {
                         <button
                           key={u.id}
                           onClick={() => selectUserForMap(u)}
-                          className="w-full px-3 py-2 text-left hover:bg-emerald-50 flex items-center gap-2 border-b border-gray-50 last:border-0"
+                          className="w-full px-3 py-2 text-left hover:bg-white flex items-center gap-2 border-b border-gray-50 last:border-0"
                         >
                           <div className="h-6 w-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-500">
                             {u.full_name?.charAt(0) || '?'}
@@ -625,12 +625,12 @@ export default function AdminSeguridadPage() {
                   <div
                     key={u.id}
                     className={`flex items-center justify-between p-3 hover:bg-gray-50 rounded-xl border transition-all group ${focusedUserId === u.user_id
-                      ? 'border-brand-emerald bg-emerald-50/50 shadow-sm ring-1 ring-brand-emerald/20'
+                      ? 'border-brand-emerald bg-white/50 shadow-sm ring-1 ring-brand-emerald/20'
                       : 'border-transparent hover:border-gray-100'
                       }`}
                   >
                     <div className="flex items-center gap-3 overflow-hidden">
-                      <div className="h-2 w-2 rounded-full bg-green-500 shrink-0" />
+                      <div className="h-2 w-2 rounded-full bg-white0 shrink-0" />
                       <div className="truncate w-full">
                         <div className="flex items-center gap-2">
                           <Link href={`/admin/usuarios?q=${u.user_id}`} className="block truncate text-sm font-bold text-gray-900 hover:text-blue-600">

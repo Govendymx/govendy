@@ -525,13 +525,13 @@ function SupervisionContent() {
         </Link>
         <Link
           href="/admin/metricas"
-          className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3 transition hover:border-green-400 hover:bg-green-100/80"
+          className="rounded-2xl border border-green-200 bg-white px-4 py-3 transition hover:border-green-400 hover:bg-green-100/80"
         >
           <div className="text-[11px] font-semibold text-green-900">Liberadas (pago al vendedor)</div>
           <div className="mt-1 text-2xl font-extrabold text-green-900">{stats.released}</div>
           <div className="mt-0.5 text-[10px] text-green-700">Métricas y payouts →</div>
         </Link>
-        <div className="rounded-2xl border border-brand-emerald/20 bg-emerald-50 px-4 py-3">
+        <div className="rounded-2xl border border-brand-emerald/20 bg-white px-4 py-3">
           <div className="text-[11px] font-semibold text-brand-emerald">Cobradas (retiradas)</div>
           <div className="mt-1 text-2xl font-extrabold text-brand-emerald">{stats.withdrawn}</div>
         </div>
@@ -678,7 +678,7 @@ function SupervisionContent() {
                 const st = String(o?.status || '').trim().toLowerCase();
                 const d = o?.dispute;
                 return (
-                  <tr key={oid || Math.random()} className="border-b border-black/5 hover:bg-emerald-50/30">
+                  <tr key={oid || Math.random()} className="border-b border-black/5 hover:bg-white/30">
                     <td className="px-4 py-2 font-mono text-xs text-gray-600" title={oid}>
                       {oid ? (
                         <button

@@ -138,7 +138,7 @@ export default function AdminChatAssistant() {
           <BarChart3 className="h-6 w-6" />
           <span className="absolute right-0 top-0 flex h-3 w-3 -mr-1 -mt-1">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-white0"></span>
           </span>
         </button>
       )}

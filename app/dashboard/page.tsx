@@ -72,7 +72,7 @@ function NavCard({ item }: { item: NavItem }) {
     : 'shadow-sm';
   const styles =
     tone === 'pink'
-      ? 'border-emerald-200 bg-emerald-50 text-brand-emerald hover:opacity-90'
+      ? 'border-emerald-200 bg-white text-brand-emerald hover:opacity-90'
       : tone === 'danger'
         ? 'border-black/10 bg-gray-900 text-white hover:bg-black'
         : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
@@ -187,7 +187,7 @@ function DashboardCharts({ userId }: { userId: string | null }) {
               <div className="mt-1 text-2xl font-extrabold text-gray-900">{perf?.total_views ?? 0}</div>
               <div className="mt-0.5 text-xs text-gray-600">en {perf?.total_listings ?? 0} artículos</div>
             </div>
-            <div className="rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-3">
+            <div className="rounded-2xl border border-emerald-100 bg-white px-4 py-3">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">Ventas (30 días)</div>
               <div className="mt-1 text-2xl font-extrabold text-emerald-900">{perf?.sales_last_30_days ?? 0}</div>
               <div className="mt-0.5 text-xs text-emerald-700">{formatMoney(perf?.sales_total_30 ?? 0)}</div>
@@ -199,7 +199,7 @@ function DashboardCharts({ userId }: { userId: string | null }) {
             </div>
             <Link
               href="/dashboard/listings"
-              className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3 transition hover:bg-green-100"
+              className="rounded-2xl border border-green-200 bg-white px-4 py-3 transition hover:bg-green-100"
             >
               <div className="text-[11px] font-semibold uppercase tracking-wide text-green-700">Mis publicaciones</div>
               <div className="mt-1 text-lg font-bold text-green-900">Ver artículos →</div>
@@ -925,7 +925,7 @@ export default function DashboardPage() {
             <section className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
               <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                     Bienvenido a GoVendy
                   </div>
                   <h1 className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -953,7 +953,7 @@ export default function DashboardPage() {
               </div>
 
               {needsIneUpload && (
-                <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900">
+                <div className="mt-6 rounded-2xl border border-emerald-200 bg-white px-4 py-3 text-sm text-emerald-900">
                   Aún no detecto documentos subidos en tu perfil. Si ya subiste tu INE, asegúrate de guardar las URLs en
                   tu tabla <span className="font-semibold">profiles</span>. Si no, puedes subirlo ahora.
                 </div>
@@ -999,7 +999,7 @@ export default function DashboardPage() {
               <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 <Link
                   href="/dashboard/ventas"
-                  className="flex items-center justify-between rounded-2xl border border-emerald-100 bg-emerald-50/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-emerald-100 bg-white/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">Ventas</span>
                   <span className="flex items-center gap-2">
@@ -1069,14 +1069,14 @@ export default function DashboardPage() {
                 </Link>
                 <Link
                   href="/dashboard/pagos"
-                  className="flex items-center justify-between rounded-2xl border border-green-200 bg-green-50/50 px-4 py-3 transition hover:border-green-400 hover:bg-green-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-green-200 bg-white/50 px-4 py-3 transition hover:border-green-400 hover:bg-green-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">Pagos y retiros</span>
                   <span className="text-xs font-bold text-gray-400">→</span>
                 </Link>
                 <Link
                   href="/dashboard/monedero"
-                  className="flex items-center justify-between rounded-2xl border border-brand-emerald bg-emerald-50/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
+                  className="flex items-center justify-between rounded-2xl border border-brand-emerald bg-white/50 px-4 py-3 transition hover:border-emerald-300 hover:bg-emerald-100/80"
                 >
                   <span className="text-sm font-semibold text-gray-900">PocketCash</span>
                   <span className="text-xs font-bold text-gray-400">→</span>
@@ -1099,7 +1099,7 @@ export default function DashboardPage() {
                     </div>
                     <div className="mt-1 text-xs text-gray-500">Ventas y compras registradas</div>
                   </div>
-                  <div className="rounded-2xl bg-emerald-50 p-3 text-brand-emerald ring-1 ring-emerald-100">
+                  <div className="rounded-2xl bg-white p-3 text-brand-emerald ring-1 ring-emerald-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M4 7h16M6 11h12M8 15h8M10 19h4"
@@ -1119,7 +1119,7 @@ export default function DashboardPage() {
                     <div className="mt-2 text-3xl font-bold text-gray-900">{documentsUploaded}</div>
                     <div className="mt-1 text-xs text-gray-500">Detectados desde tu perfil (INE frente/reverso)</div>
                   </div>
-                  <div className="rounded-2xl bg-emerald-50 p-3 text-brand-emerald ring-1 ring-emerald-100">
+                  <div className="rounded-2xl bg-white p-3 text-brand-emerald ring-1 ring-emerald-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                       <path
                         d="M8 3h6l4 4v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
@@ -1149,7 +1149,7 @@ export default function DashboardPage() {
                         : 'Conectado con ventas y retiros'}
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-green-50 p-3 text-green-600 ring-1 ring-green-100">
+                  <div className="rounded-2xl bg-white p-3 text-green-600 ring-1 ring-green-100">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
                     </svg>
@@ -1157,7 +1157,7 @@ export default function DashboardPage() {
                 </div>
                 {/* Resumen: qué pagaste, qué cobraste, qué retiraste */}
                 {summary && (summary.total_pagado > 0 || summary.total_cobrado > 0 || summary.total_retirado > 0) && (
-                  <div className="mt-4 space-y-1 rounded-xl border border-green-100 bg-green-50/50 px-3 py-2 text-xs">
+                  <div className="mt-4 space-y-1 rounded-xl border border-green-100 bg-white/50 px-3 py-2 text-xs">
                     {summary.total_pagado > 0 && (
                       <div className="flex justify-between text-gray-700">
                         <span>Total pagado (compras):</span>
@@ -1336,7 +1336,7 @@ export default function DashboardPage() {
         <section className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8" data-tour="my-store">
           <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 Mi tienda
               </div>
               <h2 className="mt-3 text-lg font-bold text-gray-900">Ventas y cupones</h2>
@@ -1414,7 +1414,7 @@ export default function DashboardPage() {
                   }
                 }}
                 disabled={exportingCsv || isOrdersLoading}
-                className="inline-flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-2 text-sm font-semibold text-green-800 shadow-sm hover:bg-green-100 disabled:opacity-60"
+                className="inline-flex items-center gap-2 rounded-xl border border-green-200 bg-white px-4 py-2 text-sm font-semibold text-green-800 shadow-sm hover:bg-green-100 disabled:opacity-60"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -1526,14 +1526,14 @@ export default function DashboardPage() {
                     const carrier = String((o as any).shipping_carrier || '').trim();
                     const liberado = isSale && !!(o as any).paid_to_seller_at;
                     return (
-                      <div key={o.id} className="p-4 hover:bg-emerald-50/30">
+                      <div key={o.id} className="p-4 hover:bg-white/30">
                         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                           <div className="min-w-0">
                             <div className="flex flex-wrap items-center gap-2">
                               <span
                                 className={classNames(
                                   'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
-                                  isSale ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-gray-100 text-gray-700 ring-black/5',
+                                  isSale ? 'bg-white text-brand-emerald ring-emerald-100' : 'bg-gray-100 text-gray-700 ring-black/5',
                                 )}
                               >
                                 {isSale ? 'Venta' : 'Compra'}

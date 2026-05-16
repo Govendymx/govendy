@@ -228,7 +228,7 @@ export default function DashboardReputacionPage() {
             <div className="mt-6 text-sm text-gray-600">No se pudo cargar la reputación.</div>
           )}
 
-          <div className="mt-6 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-gray-700 ring-1 ring-emerald-100">
+          <div className="mt-6 rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 ring-1 ring-emerald-100">
             - Como comprador: confirma “Ya recibí el artículo” en <span className="font-semibold">Dashboard → Compras</span> para liberar pago y calificar.<br />
             - Como vendedor: cuando el comprador confirme, podrás calificar en <span className="font-semibold">Dashboard → Ventas</span>.
           </div>

@@ -202,7 +202,7 @@ export function FollowButton({ sellerId, compact = false, className = '', onLogi
                 disabled={loading} // Prevent double clicks
                 className={`group/follow relative z-30 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all duration-200 shadow-sm ${following
                     ? 'bg-pink-50 text-pink-600 ring-1 ring-pink-200 hover:bg-pink-100'
-                    : 'bg-green-50 text-green-700 ring-1 ring-green-200 hover:bg-green-100 hover:text-green-800 hover:ring-green-300'
+                    : 'bg-white text-green-700 ring-1 ring-green-200 hover:bg-green-100 hover:text-green-800 hover:ring-green-300'
                     } ${
                     // Removing opacity/cursor-wait to make it feel instant.
                     // We rely on 'loading' state preventing logic execution.

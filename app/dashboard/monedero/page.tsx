@@ -1152,7 +1152,7 @@ export default function MonederoPage() {
                 className="group relative flex flex-col items-center gap-2 rounded-2xl bg-white px-4 py-5 text-gray-900 shadow-lg ring-1 ring-black/5 transition-all hover:scale-[1.03] hover:shadow-xl active:scale-[0.98]"
                 title="Estado de cuenta (PDF)"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 ring-1 ring-emerald-200 transition group-hover:bg-emerald-100">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white ring-1 ring-emerald-200 transition group-hover:bg-emerald-100">
                   <svg className="h-5 w-5 text-emerald-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="7 10 12 15 17 10"></polyline>
@@ -1182,7 +1182,7 @@ export default function MonederoPage() {
               </p>
 
               {offlineSuccessId ? (
-                <div className="mt-4 rounded-xl bg-green-50 p-4 border border-green-200">
+                <div className="mt-4 rounded-xl bg-white p-4 border border-green-200">
                   <div className="flex items-start gap-3">
                     <div className="mt-0.5 text-green-600">
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1392,7 +1392,7 @@ export default function MonederoPage() {
 
               {redeemResult ? (
                 <div className={`rounded-xl p-4 border ${redeemResult.ok
-                  ? 'bg-green-50 border-green-200 text-green-800'
+                  ? 'bg-white border-green-200 text-green-800'
                   : 'bg-red-50 border-red-200 text-red-800'
                   }`}>
                   <p className="font-medium text-sm">{redeemResult.ok ? '✅' : '❌'} {redeemResult.message}</p>

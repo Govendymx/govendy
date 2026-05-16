@@ -183,7 +183,7 @@ export default function CartPage() {
               </svg>
             </div>
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                 Carrito
               </div>
               <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Tu carrito</h1>

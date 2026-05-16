@@ -200,7 +200,7 @@ export default function SubirInePage() {
       <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-6xl items-center justify-center px-4 py-10">
         <div className="w-full max-w-2xl">
           <div className="mb-6">
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Verificación de identidad
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">
@@ -212,7 +212,7 @@ export default function SubirInePage() {
           </div>
 
           {/* Info Banner */}
-          <div className="mb-5 rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
+          <div className="mb-5 rounded-2xl border border-emerald-100 bg-white/60 p-4">
             <div className="flex gap-3">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-100">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -266,7 +266,7 @@ export default function SubirInePage() {
             </div>
 
           {success && (
-            <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-2xl text-sm">
+            <div className="bg-white border border-green-200 text-green-800 px-4 py-3 rounded-2xl text-sm">
               ¡Imágenes subidas exitosamente! Redirigiendo al panel...
             </div>
           )}

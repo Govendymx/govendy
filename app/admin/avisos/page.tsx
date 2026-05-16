@@ -167,7 +167,7 @@ export default function AdminAvisosPage() {
     <div className="mx-auto max-w-5xl">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Panel Admin
           </div>
           <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900">Avisos a usuarios</h1>
@@ -187,7 +187,7 @@ export default function AdminAvisosPage() {
             <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
           ) : null}
           {result ? (
-            <div className="rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{result}</div>
+            <div className="rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{result}</div>
           ) : null}
 
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5">
@@ -246,7 +246,7 @@ export default function AdminAvisosPage() {
                           onClick={() => togglePick(u)}
                           className={classNames(
                             'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-sm font-semibold shadow-sm transition',
-                            active ? 'border-emerald-200 bg-emerald-50 text-brand-emerald' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
+                            active ? 'border-emerald-200 bg-white text-brand-emerald' : 'border-black/5 bg-white text-gray-900 hover:bg-gray-100',
                           )}
                         >
                           <span className="truncate">{displayName(u)}</span>

@@ -144,7 +144,7 @@ export default function AdminInterruptoresPage() {
       <div className="mx-auto max-w-2xl">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Interruptores</h1>
@@ -164,7 +164,7 @@ export default function AdminInterruptoresPage() {
           <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
         )}
         {success && (
-          <div className="mb-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>
+          <div className="mb-4 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>
         )}
 
         <div className="space-y-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 sm:p-6">

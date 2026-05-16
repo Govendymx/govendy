@@ -124,7 +124,7 @@ export function ProductReviews({ listingId, sellerId }: ProductReviewsProps) {
                   {r.content && <p className="mt-1 text-sm text-gray-700">{r.content}</p>}
                 </div>
                 {r.is_verified_purchase && (
-                  <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold text-green-700 ring-1 ring-green-200">
+                  <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-green-700 ring-1 ring-green-200">
                     ✓ Compra verificada
                   </span>
                 )}

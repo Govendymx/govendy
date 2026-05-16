@@ -99,7 +99,7 @@ export default function DocArticle({
               <div className="mt-4 flex justify-center space-x-4">
                 <button
                   onClick={() => setFeedbackGiven(true)}
-                  className="flex items-center rounded-full bg-green-50 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100 transition-colors"
+                  className="flex items-center rounded-full bg-white px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100 transition-colors"
                 >
                   <ThumbsUp className="mr-2 h-4 w-4" />
                   Sí, gracias

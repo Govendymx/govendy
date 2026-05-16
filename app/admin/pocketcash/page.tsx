@@ -405,7 +405,7 @@ function PendingTopupsView() {
     switch (status) {
       case 'approved':
       case 'completed':
-        return <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aprobado</span>;
+        return <span className="inline-flex items-center rounded-md bg-white px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aprobado</span>;
       case 'rejected':
       case 'cancelled':
         return <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">Rechazado</span>;
@@ -591,7 +591,7 @@ function PendingTopupsView() {
                                 onClick={() => handleApprove(t.id)}
                                 disabled={processingId === t.id}
                                 title="Aprobar"
-                                className="p-1.5 rounded-lg bg-green-50 text-green-600 hover:bg-green-100 disabled:opacity-50"
+                                className="p-1.5 rounded-lg bg-white text-green-600 hover:bg-green-100 disabled:opacity-50"
                               >
                                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -651,7 +651,7 @@ function PendingTopupsView() {
                 <div className="py-4 text-center text-gray-500 text-sm">Cargando saldo...</div>
               ) : userDetailsExtra && (
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-green-50 rounded-xl border border-green-100">
+                  <div className="p-3 bg-white rounded-xl border border-green-100">
                     <div className="text-xs text-green-600 font-medium uppercase">Saldo Actual</div>
                     <div className="text-xl font-bold text-green-700">${Number(userDetailsExtra.balance).toLocaleString('es-MX', { minimumFractionDigits: 2 })}</div>
                   </div>
@@ -874,7 +874,7 @@ function ManageBalancesView() {
                 <button
                   onClick={() => setActionType('credit')}
                   className={`py-2 px-3 rounded-lg text-sm font-medium border ${actionType === 'credit'
-                    ? 'bg-green-50 border-green-200 text-green-700 ring-1 ring-green-500'
+                    ? 'bg-white border-green-200 text-green-700 ring-1 ring-green-500'
                     : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'
                     }`}
                 >
@@ -918,7 +918,7 @@ function ManageBalancesView() {
               <button
                 onClick={executeAction}
                 disabled={processing || !actionAmount || !actionReason}
-                className={`w-full py-2.5 rounded-lg text-sm font-bold text-white shadow-sm transition ${actionType === 'credit' ? 'bg-green-600 hover:bg-green-500' : 'bg-red-600 hover:bg-red-500'
+                className={`w-full py-2.5 rounded-lg text-sm font-bold text-white shadow-sm transition ${actionType === 'credit' ? 'bg-green-600 hover:bg-white0' : 'bg-red-600 hover:bg-red-500'
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 {processing ? 'Procesando...' : actionType === 'credit' ? 'Confirmar Crédito' : 'Confirmar Débito'}
@@ -1106,7 +1106,7 @@ function OperationsView() {
                               </Link>
                               <div className="flex flex-wrap gap-1">
                                 {t.is_auction && (
-                                  <span className="inline-flex items-center rounded-sm bg-emerald-50 px-1 py-0.5 text-[10px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
+                                  <span className="inline-flex items-center rounded-sm bg-white px-1 py-0.5 text-[10px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
                                     Subasta
                                   </span>
                                 )}

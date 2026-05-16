@@ -215,7 +215,7 @@ export default function ShareLiveButton({ sessionId, title, hostName, className 
                     <button
                         onClick={handleCopy}
                         className={`w-full flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all active:scale-95 ${copied
-                            ? 'bg-green-500/20 text-green-400 ring-1 ring-green-500/30'
+                            ? 'bg-white0/20 text-green-400 ring-1 ring-green-500/30'
                             : 'bg-white/10 text-white hover:bg-white/15 ring-1 ring-white/10'
                             }`}
                     >

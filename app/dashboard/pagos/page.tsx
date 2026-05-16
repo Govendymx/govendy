@@ -490,7 +490,7 @@ export default function DashboardPagosPage() {
           <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
         ) : null}
         {successMsg ? (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{successMsg}</div>
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{successMsg}</div>
         ) : null}
 
         <div className="mb-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
@@ -656,7 +656,7 @@ export default function DashboardPagosPage() {
             </div>
             <div className={`rounded-2xl border px-4 py-3 ring-1 ${balance && balance.disponible < 0
               ? 'border-red-200 bg-red-50 ring-red-100'
-              : 'border-black/5 bg-emerald-50 ring-emerald-100'
+              : 'border-black/5 bg-white ring-emerald-100'
               }`}>
               <div className="text-[11px] font-semibold text-gray-600">Disponible para retiro</div>
               <div className={`mt-1 text-2xl font-extrabold ${balance && balance.disponible < 0 ? 'text-red-600' : 'text-brand-emerald'
@@ -772,7 +772,7 @@ export default function DashboardPagosPage() {
                 <div className="text-xs font-extrabold text-gray-900">Enviado</div>
                 <div className="mt-1 text-xs text-gray-700">Esperando entrega y confirmación.</div>
               </div>
-              <div className="rounded-2xl bg-emerald-50 px-4 py-3 ring-1 ring-emerald-100">
+              <div className="rounded-2xl bg-white px-4 py-3 ring-1 ring-emerald-100">
                 <div className="text-xs font-extrabold text-brand-emerald">Entregado</div>
                 <div className="mt-1 text-xs text-gray-700">Pago liberado. Usa «Solicitar retiro» cuando tengas saldo disponible.</div>
               </div>
@@ -928,7 +928,7 @@ export default function DashboardPagosPage() {
                   const amountCharged = Math.max(0, total - shippingFee);
 
                   return (
-                    <div key={id || Math.random()} className="p-6 hover:bg-emerald-50/30">
+                    <div key={id || Math.random()} className="p-6 hover:bg-white/30">
                       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                         {/* Columna izquierda: Información de la operación */}
                         <div className="min-w-0 flex-1">
@@ -1033,7 +1033,7 @@ export default function DashboardPagosPage() {
                         {/* Columna derecha: Resumen visual */}
                         <div className="shrink-0 lg:w-48">
                           <div className={`rounded-2xl px-4 py-4 text-center ring-2 ${released
-                            ? 'bg-green-50 ring-green-200'
+                            ? 'bg-white ring-green-200'
                             : paid
                               ? 'bg-amber-50 ring-amber-200'
                               : 'bg-gray-50 ring-gray-200'

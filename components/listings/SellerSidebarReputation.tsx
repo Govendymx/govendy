@@ -101,7 +101,7 @@ export function SellerSidebarReputation({ sellerId, onLoginRequired }: { sellerI
                         value={stats.disputes_count}
                         status={stats.disputes_count === 0 ? 'success' : 'error'}
                     />
-                    <div className={`flex flex-col items-center justify-center rounded-2xl border p-2 ${stats.has_problems ? 'border-red-100 bg-red-50' : 'border-green-100 bg-green-50'}`}>
+                    <div className={`flex flex-col items-center justify-center rounded-2xl border p-2 ${stats.has_problems ? 'border-red-100 bg-red-50' : 'border-green-100 bg-white'}`}>
                         <span className={`text-[10px] font-bold uppercase tracking-wider ${stats.has_problems ? 'text-red-700' : 'text-green-700'}`}>Estado</span>
                         <div className={`mt-0.5 text-lg ${stats.has_problems ? 'text-red-600' : 'text-green-600'}`}>
                             {stats.has_problems ? '⚠️' : '✓'}
@@ -144,7 +144,7 @@ function MiniThermometer({ percent, label }: { percent: number; label: string })
 
 function StatBox({ label, value, status }: { label: string; value: string | number; status: 'success' | 'warning' | 'error' }) {
     const colors = {
-        success: 'text-green-600 bg-green-50 border-green-100',
+        success: 'text-green-600 bg-white border-green-100',
         warning: 'text-amber-600 bg-amber-50 border-amber-100',
         error: 'text-red-600 bg-red-50 border-red-100',
     };

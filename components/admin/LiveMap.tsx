@@ -145,7 +145,7 @@ export default function LiveMap({ ips, focusedUserId }: LiveMapProps) {
       </div>
       <div className="flex items-center gap-4 text-xs text-gray-500 px-2">
         <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-green-500 border border-green-600"></div>
+          <div className="w-2.5 h-2.5 rounded-full bg-white0 border border-green-600"></div>
           <span>GPS ({gpsCount})</span>
         </div>
         <div className="flex items-center gap-1.5">

@@ -266,7 +266,7 @@ export default function SiguiendoPage() {
                                                     {s.follower_count} seguidor{s.follower_count !== 1 ? 'es' : ''}
                                                 </span>
                                                 {typeof s.reputation_percent === 'number' && (
-                                                    <span className="flex items-center gap-1 font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full ring-1 ring-green-100">
+                                                    <span className="flex items-center gap-1 font-bold text-green-600 bg-white px-2 py-0.5 rounded-full ring-1 ring-green-100">
                                                         ⭐ {s.reputation_percent}% positivo
                                                     </span>
                                                 )}
@@ -372,7 +372,7 @@ export default function SiguiendoPage() {
                                                     {/* "Ver más" card */}
                                                     <Link
                                                         href={`/tienda/${s.seller_id}`}
-                                                        className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-emerald-50 to-white p-3 text-center ring-1 ring-emerald-100 transition-all hover:shadow-md hover:scale-[1.02]"
+                                                        className="flex w-28 shrink-0 flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-white to-white p-3 text-center ring-1 ring-emerald-100 transition-all hover:shadow-md hover:scale-[1.02]"
                                                     >
                                                         <span className="text-2xl">🛍️</span>
                                                         <span className="text-[11px] font-bold text-brand-emerald">Ver tienda completa</span>

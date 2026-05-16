@@ -212,7 +212,7 @@ export default function FeaturedListingsPage() {
         )}
 
         {successMsg && (
-          <div className="mb-6 rounded-xl border border-green-200 bg-green-50 p-4 text-green-700 flex items-center gap-2">
+          <div className="mb-6 rounded-xl border border-green-200 bg-white p-4 text-green-700 flex items-center gap-2">
             <CheckCircle className="h-5 w-5" />
             {successMsg}
           </div>
@@ -360,7 +360,7 @@ export default function FeaturedListingsPage() {
                       ) : (
                         <button
                           onClick={() => setSelectedListing(listing)}
-                          className="w-full rounded-lg bg-emerald-50 py-2.5 text-sm font-semibold text-emerald-600 hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2"
+                          className="w-full rounded-lg bg-white py-2.5 text-sm font-semibold text-emerald-600 hover:bg-emerald-100 transition-colors flex items-center justify-center gap-2"
                         >
                           <TrendingUp className="h-4 w-4" />
                           Destacar Publicación
@@ -395,7 +395,7 @@ export default function FeaturedListingsPage() {
                     key={key}
                     onClick={() => setSelectedPlan(key)}
                     className={`relative w-full rounded-xl border p-4 text-left transition-all ${selectedPlan === key
-                        ? 'border-emerald-600 bg-emerald-50 ring-1 ring-emerald-600'
+                        ? 'border-emerald-600 bg-white ring-1 ring-emerald-600'
                         : 'border-gray-200 hover:border-emerald-300 hover:bg-gray-50'
                       }`}
                   >

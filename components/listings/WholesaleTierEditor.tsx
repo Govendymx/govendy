@@ -180,7 +180,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
                     <button
                         type="button"
                         onClick={validate}
-                        className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-green-700 shadow-sm ring-1 ring-green-200 hover:bg-green-50 transition-colors"
+                        className="rounded-xl bg-white px-4 py-2 text-xs font-semibold text-green-700 shadow-sm ring-1 ring-green-200 hover:bg-white transition-colors"
                     >
                         ✓ Validar rangos
                     </button>
@@ -194,7 +194,7 @@ export function WholesaleTierEditor({ tiers, onChange, basePrice }: WholesaleTie
             )}
 
             {tiers.length >= 2 && !error && (
-                <div className="rounded-xl border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-700">
+                <div className="rounded-xl border border-green-200 bg-white px-3 py-2 text-xs text-green-700">
                     ✅ {tiers.length} rangos configurados. Los compradores verán descuentos al seleccionar más cantidad.
                 </div>
             )}

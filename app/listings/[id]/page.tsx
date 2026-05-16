@@ -1241,7 +1241,7 @@ export default function ListingDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -1284,7 +1284,7 @@ export default function ListingDetailPage() {
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}
@@ -1731,11 +1731,11 @@ export default function ListingDetailPage() {
             <div className="lg:col-span-5 space-y-6">
               <section className="rounded-[2.5rem] bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
                 <div className="flex flex-wrap items-center gap-2">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                     {listing.status === 'active' ? 'Disponible' : 'No disponible'}
                   </div>
                   {coupon && (
-                    <div className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-800 ring-1 ring-green-200">
+                    <div className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-green-800 ring-1 ring-green-200">
                       <span>
                         Cupón disponible
                         <span className="ml-1 font-extrabold">

@@ -1071,7 +1071,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Checkout
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Pagar</h1>
@@ -1093,7 +1093,7 @@ export default function CheckoutPage() {
           </div>
         )}
         {success && (
-          <div className="mt-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mt-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}
@@ -1116,7 +1116,7 @@ export default function CheckoutPage() {
                   {enabledMethods.map((m) => (
                     <label
                       key={m.key}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-emerald-50' : 'border-black/5 bg-white'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm ${paymentMethod === m.key ? 'border-brand-emerald bg-white' : 'border-black/5 bg-white'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1214,7 +1214,7 @@ export default function CheckoutPage() {
                   {shippingOptions.map((option) => (
                     <label
                       key={option.id}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-emerald-50' : 'border-black/5 bg-white hover:bg-gray-50'
+                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-white' : 'border-black/5 bg-white hover:bg-gray-50'
                         }`}
                     >
                       <div className="flex items-center justify-between gap-3">
@@ -1225,7 +1225,7 @@ export default function CheckoutPage() {
                               <img src={option.logo_url} alt={option.name} className="h-10 w-10 object-contain" />
                             </div>
                           ) : option.id === 'pickup' ? (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-50 ring-1 ring-green-200">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-green-200">
                               <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
@@ -1420,7 +1420,7 @@ export default function CheckoutPage() {
                       : shippingModeSummary.tone === 'seller'
                         ? 'inline-flex items-center gap-1 rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-bold text-gray-800 ring-1 ring-gray-700/10'
                         : shippingModeSummary.tone === 'pickup'
-                          ? 'inline-flex items-center gap-1 rounded-lg bg-green-50 px-2 py-1 text-[11px] font-bold text-green-800 ring-1 ring-green-700/10'
+                          ? 'inline-flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-[11px] font-bold text-green-800 ring-1 ring-green-700/10'
                           : 'inline-flex items-center gap-1 rounded-lg bg-purple-50 px-2 py-1 text-[11px] font-bold text-purple-800 ring-1 ring-purple-700/10'
                   }
                   title={shippingModeSummary.label}
@@ -1442,7 +1442,7 @@ export default function CheckoutPage() {
             </div>
 
             {paymentMethod !== 'pocketcash' && potentialCashback > 0 && (
-              <div className="mt-4 rounded-xl border border-green-200 bg-green-50 p-3 text-center">
+              <div className="mt-4 rounded-xl border border-green-200 bg-white p-3 text-center">
                 <div className="text-xs font-bold text-green-800">¡Cashback!</div>
                 <div className="text-sm text-green-900">
                   Recibirás <span className="font-bold">{formatMoney(potentialCashback)}</span> en PocketCash por esta compra.

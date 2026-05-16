@@ -532,7 +532,7 @@ export default function DashboardListingsPage() {
         <ProExpirationBanner />
         {error && <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>
         )}
 
         {isBanned && (
@@ -810,7 +810,7 @@ export default function DashboardListingsPage() {
                           </span>
                         ) : null}
                         {r.is_featured ? (
-                          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                          <span className="rounded-full bg-white px-2 py-0.5 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                             Destacado
                           </span>
                         ) : null}
@@ -818,7 +818,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'rounded-full px-2 py-0.5 text-xs font-extrabold ring-1',
                             r.sale_type === 'auction'
-                              ? (auctionEnded ? 'bg-gray-100 text-gray-700 ring-gray-200' : 'bg-emerald-50 text-brand-emerald ring-emerald-100 animate-pulse')
+                              ? (auctionEnded ? 'bg-gray-100 text-gray-700 ring-gray-200' : 'bg-white text-brand-emerald ring-emerald-100 animate-pulse')
                               : 'bg-gray-100 text-gray-700 ring-black/5',
                           ].join(' ')}
                         >
@@ -828,7 +828,7 @@ export default function DashboardListingsPage() {
                           className={[
                             'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
                             r.status === 'active'
-                              ? 'bg-green-50 text-green-800 ring-green-100'
+                              ? 'bg-white text-green-800 ring-green-100'
                               : r.status === 'paused'
                                 ? 'bg-amber-50 text-amber-800 ring-amber-100'
                                 : r.status === 'sold'
@@ -947,15 +947,15 @@ export default function DashboardListingsPage() {
 
                       {isAuction ? (
                         <div className="mt-2 grid gap-2 text-xs text-gray-600 sm:grid-cols-2 lg:grid-cols-3">
-                          <div className="rounded-2xl bg-emerald-50 px-3 py-2 ring-1 ring-emerald-100">
+                          <div className="rounded-2xl bg-white px-3 py-2 ring-1 ring-emerald-100">
                             <div className="font-semibold text-gray-900">Tiempo restante</div>
                             <div className="text-gray-900 font-semibold">{formatTimeLeft(r.auction_end_at)}</div>
                           </div>
-                          <div className="rounded-2xl bg-emerald-50 px-3 py-2 ring-1 ring-emerald-100">
+                          <div className="rounded-2xl bg-white px-3 py-2 ring-1 ring-emerald-100">
                             <div className="font-semibold text-gray-900">Puja actual</div>
                             <div className="text-gray-900 font-semibold">{formatMoney(currentBid)}</div>
                           </div>
-                          <div className="rounded-2xl bg-emerald-50 px-3 py-2 ring-1 ring-emerald-100">
+                          <div className="rounded-2xl bg-white px-3 py-2 ring-1 ring-emerald-100">
                             <div className="font-semibold text-gray-900">Va ganando</div>
                             <div className="text-gray-900 font-semibold">
                               {leaderId ? (

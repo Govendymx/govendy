@@ -384,7 +384,7 @@ export default function DashboardAyudaPage() {
               <li>Califica al vendedor (<strong>1 a 10 estrellas</strong>) y opcionalmente deja un comentario sobre tu experiencia</li>
               <li>Al confirmar, el <strong>dinero se libera al vendedor</strong></li>
             </ol>
-            <div className="mt-2 rounded-xl bg-green-50 p-3 text-xs text-green-800">
+            <div className="mt-2 rounded-xl bg-white p-3 text-xs text-green-800">
               <strong>✅ Importante:</strong> Al confirmar recepción estás indicando que recibiste el producto correctamente. Si hay algún problema, <strong>abre una disputa antes de confirmar</strong>.
             </div>
           </div>
@@ -519,7 +519,7 @@ export default function DashboardAyudaPage() {
             <p className="mt-1 text-gray-600">
               GoVendy te mantiene informado con un sistema de <strong>alertas en tiempo real</strong>. El <strong>punto rosa parpadeante</strong> en el menú superior te indica que tienes alertas nuevas sin leer. Haz clic en él para ver un resumen rápido.
             </p>
-            <div className="mt-2 rounded-xl bg-emerald-50 p-3 text-xs text-gray-700">
+            <div className="mt-2 rounded-xl bg-white p-3 text-xs text-gray-700">
               <strong>Te notificamos sobre:</strong>
               <ul className="mt-1 ml-4 list-disc space-y-1">
                 <li>🛒 <strong>Nuevas ventas</strong> — Alguien compró tu producto</li>
@@ -664,7 +664,7 @@ export default function DashboardAyudaPage() {
                 <div className="flex items-center gap-2 font-bold text-blue-800">📦 Envío GoVendy Gratis</div>
                 <p className="mt-1 text-xs text-gray-600">Igual que el Envío GoVendy, pero el vendedor <strong>absorbe el costo del envío</strong> (se descuenta de sus ganancias). El comprador no paga envío. Ideal para vendedores que quieren ser más competitivos.</p>
               </div>
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-3">
+              <div className="rounded-xl border border-emerald-200 bg-white/50 p-3">
                 <div className="flex items-center gap-2 font-bold text-emerald-800">📬 Envío Gestionado por el Vendedor</div>
                 <p className="mt-1 text-xs text-gray-600">El vendedor <strong>elige su propia paquetería</strong> y envía por su cuenta. Debe ingresar el número de rastreo, la paquetería y subir evidencia de envío (foto del comprobante). Disponible para planes <strong>Pro y Platinum</strong>.</p>
               </div>
@@ -672,7 +672,7 @@ export default function DashboardAyudaPage() {
                 <div className="flex items-center gap-2 font-bold text-violet-800">🤝 Entrega Personal</div>
                 <p className="mt-1 text-xs text-gray-600">Comprador y vendedor coordinan la entrega en persona. No hay costo de envío. Disponible exclusivamente para el plan <strong>Platinum</strong>. En subastas, todos los planes pueden ofrecer entrega personal.</p>
               </div>
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-3">
+              <div className="rounded-xl border border-emerald-200 bg-white/50 p-3">
                 <div className="flex items-center gap-2 font-bold text-emerald-800">💻 Producto Digital</div>
                 <p className="mt-1 text-xs text-gray-600">No requiere envío físico. El vendedor entrega códigos, licencias, seriales o links de descarga directamente desde su panel de Ventas. El comprador los ve en su panel de Compras.</p>
               </div>
@@ -733,7 +733,7 @@ export default function DashboardAyudaPage() {
             <h3 className="font-extrabold text-gray-900">¿Dónde veo mi saldo y movimientos?</h3>
             <p className="mt-1 text-gray-600">En <strong>Mi cuenta → Monedero</strong> verás tu saldo actual, historial de movimientos (recargas, pagos, reembolsos, cashback) y el estado de cada transacción.</p>
           </div>
-          <div className="rounded-xl bg-green-50 p-3 text-xs text-green-800">
+          <div className="rounded-xl bg-white p-3 text-xs text-green-800">
             <strong>✅ Ventaja:</strong> Pagar con PocketCash es <strong>instantáneo</strong> y no tiene la comisión extra de MercadoPago. Es la forma más rápida de comprar en GoVendy.
           </div>
         </div>
@@ -752,7 +752,7 @@ export default function DashboardAyudaPage() {
                 <div className="font-bold text-blue-800">💳 Tarjeta (MercadoPago)</div>
                 <p className="mt-1 text-xs text-gray-600">Paga con tarjeta de <strong>crédito o débito</strong> a través de MercadoPago. El pago se acredita <strong>al instante</strong>. Se cobra una pequeña comisión por procesamiento (visible antes de confirmar). Acepta Visa, Mastercard, American Express.</p>
               </div>
-              <div className="rounded-xl border border-green-200 bg-green-50/50 p-3">
+              <div className="rounded-xl border border-green-200 bg-white/50 p-3">
                 <div className="font-bold text-green-800">💰 PocketCash</div>
                 <p className="mt-1 text-xs text-gray-600">Usa tu saldo disponible en el monedero digital. Pago <strong>instantáneo, sin comisiones</strong>. Requiere saldo suficiente.</p>
               </div>

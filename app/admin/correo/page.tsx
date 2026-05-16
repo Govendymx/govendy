@@ -245,7 +245,7 @@ export default function AdminCorreoPage() {
         <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
       )}
       {success && (
-        <div className="mt-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+        <div className="mt-4 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
           {success}
         </div>
       )}
@@ -305,7 +305,7 @@ export default function AdminCorreoPage() {
                     <li
                       key={e.uid}
                       onClick={() => void loadEmail(e.uid)}
-                      className={`cursor-pointer px-4 py-3 transition hover:bg-gray-50 ${selected?.uid === e.uid ? 'bg-emerald-50' : ''}`}
+                      className={`cursor-pointer px-4 py-3 transition hover:bg-gray-50 ${selected?.uid === e.uid ? 'bg-white' : ''}`}
                     >
                       <div className="flex justify-between gap-2">
                         <div className="flex items-center gap-1 truncate text-sm font-medium text-gray-900">

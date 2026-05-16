@@ -918,7 +918,7 @@ Ver detalles completos en la consola (F12)`;
       <main className="mx-auto max-w-6xl px-4 py-8">
         <PageTour steps={pageTours.preguntas || []} pageId="preguntas" />
         {error && <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
-        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>}
+        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>}
 
         {/* Banner / hero */}
         <div className="mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-100 via-emerald-100 to-emerald-200 text-gray-900 shadow-sm ring-1 ring-emerald-200">
@@ -928,7 +928,7 @@ Ver detalles completos en la consola (F12)`;
 
             <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
               <div className="rounded-3xl bg-white/70 p-5 ring-1 ring-black/5 backdrop-blur sm:p-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   Panel de vendedor
                 </div>
                 <div className="mt-3 text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">Responde rápido y vende más</div>
@@ -1021,7 +1021,7 @@ Ver detalles completos en la consola (F12)`;
             </div>
             <div className="flex items-center gap-2">
               {activeTab === 'preguntas' && (
-                <span className="hidden sm:inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                <span className="hidden sm:inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   Responde en <span className="ml-1 font-extrabold">menos de 1 hora</span>, si puedes.
                 </span>
               )}
@@ -1093,8 +1093,8 @@ Ver detalles completos en la consola (F12)`;
                           )}
                           <div className="mt-2 flex items-center gap-2">
                             {answeredCount > 0 && (
-                              <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700 ring-1 ring-green-100">
-                                <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-green-700 ring-1 ring-green-100">
+                                <span className="inline-flex h-2 w-2 rounded-full bg-white0" />
                                 {answeredCount} {answeredCount === 1 ? 'pregunta respondida' : 'preguntas respondidas'}
                               </span>
                             )}
@@ -1142,7 +1142,7 @@ Ver detalles completos en la consola (F12)`;
                                   <div className="flex gap-4 p-5">
                                     {/* Indicador visual con línea vertical */}
                                     <div className="flex shrink-0 flex-col items-center gap-2 pt-1">
-                                      <span className="inline-flex h-2 w-2 rounded-full bg-green-500" />
+                                      <span className="inline-flex h-2 w-2 rounded-full bg-white0" />
                                       {!isLastQuestion && <div className="h-full w-px bg-gray-200" />}
                                     </div>
 

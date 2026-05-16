@@ -45,7 +45,7 @@ function safeTs(input: string | null | undefined) {
 function presenceDot(online: boolean) {
   return (
     <span
-      className={`absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full ring-2 ring-white ${online ? 'bg-green-500' : 'bg-red-500'
+      className={`absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full ring-2 ring-white ${online ? 'bg-white0' : 'bg-red-500'
         }`}
       title={online ? 'En línea' : 'No en línea'}
     />
@@ -619,7 +619,7 @@ function AdminSoporteContent() {
       </div>
 
       {error ? <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div> : null}
-      {success ? <div className="mt-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div> : null}
+      {success ? <div className="mt-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div> : null}
 
       <div className="mt-6 grid gap-4 h-[72vh] lg:h-[72vh] lg:grid-cols-[380px_1fr] min-h-0">
         <aside className="rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5 flex flex-col min-h-0">
@@ -627,21 +627,21 @@ function AdminSoporteContent() {
             <button
               type="button"
               onClick={() => setTab('all')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'all' ? 'bg-white text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Todos
             </button>
             <button
               type="button"
               onClick={() => setTab('unassigned')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'unassigned' ? 'bg-white text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Sin asignar
             </button>
             <button
               type="button"
               onClick={() => setTab('mine')}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-emerald-50 text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
+              className={`rounded-full px-3 py-1 text-xs font-semibold ring-1 ${tab === 'mine' ? 'bg-white text-brand-emerald ring-emerald-100' : 'bg-white text-gray-700 ring-black/10'}`}
             >
               Mis chats
             </button>
@@ -701,10 +701,10 @@ function AdminSoporteContent() {
                       setActiveId(c.id);
                       void loadChat(c.id);
                     }}
-                    className={`w-full text-left p-4 hover:bg-emerald-50/30 ${active ? 'bg-emerald-50/40' : 'bg-white'}`}
+                    className={`w-full text-left p-4 hover:bg-white/30 ${active ? 'bg-white/40' : 'bg-white'}`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-brand-emerald ring-1 ring-emerald-100 text-sm font-extrabold">
+                      <div className="relative mt-0.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-brand-emerald ring-1 ring-emerald-100 text-sm font-extrabold">
                         {initials(name)}
                         {presenceDot(online)}
                       </div>
@@ -790,7 +790,7 @@ function AdminSoporteContent() {
                       return (
                         <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
-                            <span className={`inline-flex h-2.5 w-2.5 rounded-full ${online ? 'bg-green-500' : 'bg-red-500'}`} />
+                            <span className={`inline-flex h-2.5 w-2.5 rounded-full ${online ? 'bg-white0' : 'bg-red-500'}`} />
                             <span className="font-semibold text-gray-700">Usuario:</span> {nm}
                             {uid && (
                               <button
@@ -859,14 +859,14 @@ function AdminSoporteContent() {
                                 <>
                                   <span>·</span>
                                   <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold ring-1 ${cls}`}>{lbl}</span>
-                                  <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-emerald-200">SLA {sla}</span>
+                                  <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-emerald-700 ring-1 ring-emerald-200">SLA {sla}</span>
                                 </>
                               );
                             })()}
                             {isUserTyping && (
                               <>
                                 <span>·</span>
-                                <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-semibold text-green-800 ring-1 ring-green-200">
+                                <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-green-800 ring-1 ring-green-200">
                                   escribiendo…
                                 </span>
                               </>
@@ -990,7 +990,7 @@ function AdminSoporteContent() {
                       </button>
                     </div>
                     {deleteOrderResult && (
-                      <div className={`rounded-xl px-3 py-2 text-sm font-medium ${deleteOrderResult.startsWith('✅') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+                      <div className={`rounded-xl px-3 py-2 text-sm font-medium ${deleteOrderResult.startsWith('✅') ? 'bg-white text-green-800' : 'bg-red-50 text-red-800'}`}>
                         {deleteOrderResult}
                       </div>
                     )}
@@ -1094,7 +1094,7 @@ function AdminSoporteContent() {
                         ],
                       },
                       {
-                        id: 'envios', label: '📦 Envíos', color: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+                        id: 'envios', label: '📦 Envíos', color: 'bg-white text-emerald-700 ring-emerald-200',
                         replies: [
                           { title: 'Guía generada', text: '📦 ¡Tu guía de envío ha sido generada! El vendedor tiene 72 horas para entregar el paquete en la sucursal de la paquetería. Te enviaremos el número de rastreo una vez que sea escaneado.' },
                           { title: 'Paquete en tránsito', text: '🚚 Tu paquete ya está en camino. Puedes rastrear tu envío desde Mi cuenta → Compras → tu orden → "Rastrear envío". El tiempo estimado de entrega es de 3 a 7 días hábiles dependiendo de tu zona.' },
@@ -1119,7 +1119,7 @@ function AdminSoporteContent() {
                         ],
                       },
                       {
-                        id: 'planes', label: '👑 Planes', color: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
+                        id: 'planes', label: '👑 Planes', color: 'bg-white text-emerald-700 ring-emerald-200',
                         replies: [
                           { title: 'Info planes', text: '📋 GoVendy ofrece 3 planes:\n\n🟢 Básico (Gratis): 50 publicaciones, 15 subastas, 25 cupones/mes, comisión 23%, retiro cada 7 días.\n\n🔵 Pro: Publicaciones y subastas ilimitadas, envío por vendedor, Lives (con créditos), comisión 18%, retiro cada 48 hrs.\n\n👑 Platinum: Todo lo de Pro + entrega personal, 2 hrs gratis de Lives/día, publicaciones destacadas ilimitadas, retiro cada 24 hrs.\n\nCambia tu plan en Mi cuenta → Pro.' },
                           { title: 'Plan expirado', text: '⏰ Tu plan [PRO/PLATINUM] ha expirado y tu cuenta ha vuelto al plan Básico. Para renovarlo, ve a Mi cuenta → Pro y selecciona tu plan. Los beneficios se activan al instante.' },
@@ -1190,7 +1190,7 @@ function AdminSoporteContent() {
                                     setReply(r.text);
                                     document.getElementById('quick-replies-panel')?.classList.add('hidden');
                                   }}
-                                  className="w-full rounded-xl border border-black/5 bg-gray-50 px-3 py-2 text-left text-xs text-gray-700 hover:bg-emerald-50 hover:ring-1 hover:ring-emerald-200 transition-all"
+                                  className="w-full rounded-xl border border-black/5 bg-gray-50 px-3 py-2 text-left text-xs text-gray-700 hover:bg-white hover:ring-1 hover:ring-emerald-200 transition-all"
                                 >
                                   <span className="font-bold text-gray-900">{r.title}</span>
                                   <span className="ml-1.5 text-gray-500">{r.text.slice(0, 80)}…</span>

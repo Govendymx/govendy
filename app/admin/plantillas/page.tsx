@@ -283,7 +283,7 @@ export default function AdminTemplatesPage() {
               type="button"
               onClick={() => void seedDefaults()}
               disabled={!isAdmin || isSeeding || isLoading}
-              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50 disabled:opacity-60"
+              className="rounded-xl bg-white px-4 py-2 text-sm font-extrabold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white disabled:opacity-60"
             >
               {isSeeding ? 'Creando…' : 'Generar Defaults'}
             </button>
@@ -299,7 +299,7 @@ export default function AdminTemplatesPage() {
         </div>
 
         {error ? <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div> : null}
-        {success ? <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div> : null}
+        {success ? <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div> : null}
 
         {!isAdmin ? (
           <div className="rounded-3xl bg-white p-10 text-center shadow-sm ring-1 ring-black/5">
@@ -314,7 +314,7 @@ export default function AdminTemplatesPage() {
                   <div className="text-lg font-extrabold text-gray-900">Globales</div>
                   <div className="mt-1 text-sm text-gray-600">Se muestran a todos los usuarios (si están activas).</div>
                 </div>
-                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
                   {globals.length} total
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function AdminTemplatesPage() {
                   </div>
                 ))}
                 {globals.length === 0 ? (
-                  <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 ring-1 ring-emerald-100">
+                  <div className="rounded-3xl border border-emerald-200 bg-white p-5 ring-1 ring-emerald-100">
                     <div className="text-sm font-extrabold text-gray-900">Aún no hay plantillas globales</div>
                     <div className="mt-1 text-sm text-gray-700">
                       Crea una con <span className="font-semibold">“+ Nueva global”</span> o genera ejemplos PRO automáticamente.

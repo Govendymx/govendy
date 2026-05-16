@@ -49,7 +49,7 @@ function icon(k: string) {
 }
 
 function styleByType(k: string) {
-  if (['new_sale', 'sale_paid'].includes(k)) return 'bg-green-50 border-green-200 hover:bg-green-100 text-green-900';
+  if (['new_sale', 'sale_paid'].includes(k)) return 'bg-white border-green-200 hover:bg-green-100 text-green-900';
   if (['payment_approved', 'order_completed'].includes(k)) return 'bg-blue-50 border-blue-200 hover:bg-blue-100 text-blue-900';
   if (k === 'payment_rejected') return 'bg-red-50 border-red-200 hover:bg-red-100 text-red-900';
   if (['order_shipped', 'order_message', 'order_status'].includes(k)) return 'bg-purple-50 border-purple-200 hover:bg-purple-100 text-purple-900';

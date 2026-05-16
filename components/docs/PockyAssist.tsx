@@ -175,7 +175,7 @@ export default function PockyAssist() {
                     </div>
                   </button>
                   <button className="flex w-full items-center rounded-xl bg-white p-3 text-left shadow-sm ring-1 ring-black/5 hover:bg-gray-50 transition-colors">
-                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-50 text-green-600">
+                    <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white text-green-600">
                       <FileText className="h-5 w-5" />
                     </div>
                     <div>

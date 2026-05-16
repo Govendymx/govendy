@@ -196,7 +196,7 @@ function PlacementSelector({
             onClick={() => onChange(it.key)}
             className={classNames(
               'rounded-2xl border p-4 text-left shadow-sm transition',
-              active ? 'border-emerald-200 bg-emerald-50 ring-2 ring-brand-emerald/40' : 'border-black/5 bg-white hover:bg-gray-50',
+              active ? 'border-emerald-200 bg-white ring-2 ring-brand-emerald/40' : 'border-black/5 bg-white hover:bg-gray-50',
             )}
           >
             <div className="flex items-start justify-between gap-3">
@@ -589,7 +589,7 @@ export default function AdminBannersPage() {
     <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-5xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Admin
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Banners del Home</h1>
@@ -602,7 +602,7 @@ export default function AdminBannersPage() {
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}

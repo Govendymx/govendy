@@ -346,7 +346,7 @@ export default function VerificacionPage() {
 
       <main className="mx-auto max-w-3xl px-4 py-10">
         <div className="mb-6">
-          <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
             Paso obligatorio
           </div>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Completa tu verificación</h1>
@@ -356,7 +356,7 @@ export default function VerificacionPage() {
         </div>
 
         {form.verification_status === 'approved' && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-5 py-4">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-5 py-4">
             <div className="flex items-center gap-2 text-sm font-semibold text-green-800">✅ Identidad verificada</div>
             <p className="mt-1 text-sm text-green-700">Tu cuenta está verificada. Puedes vender productos en la plataforma.</p>
           </div>
@@ -391,7 +391,7 @@ export default function VerificacionPage() {
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}

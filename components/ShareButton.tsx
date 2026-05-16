@@ -171,7 +171,7 @@ export default function ShareButton({ url, title, shareText, onShare, variant = 
                     <button
                         onClick={handleCopy}
                         className={`w-full flex items-center justify-center gap-2 rounded-xl py-2.5 text-xs font-bold transition-all active:scale-95 ${copied
-                                ? 'bg-green-50 text-green-600 ring-1 ring-green-200'
+                                ? 'bg-white text-green-600 ring-1 ring-green-200'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200 ring-1 ring-black/5'
                             }`}
                     >

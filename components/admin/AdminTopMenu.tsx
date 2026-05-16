@@ -319,7 +319,7 @@ export function AdminTopMenu() {
                         'flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 text-left text-[13px] font-semibold shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-md';
                       const styles =
                         tone === 'pink'
-                          ? 'border-brand-emerald/20 bg-emerald-50 text-brand-emerald hover:opacity-90 animate-gradient-shift'
+                          ? 'border-brand-emerald/20 bg-white text-brand-emerald hover:opacity-90 animate-gradient-shift'
                           : 'border-black/5 bg-white text-gray-900 hover:bg-gray-50';
                       const activeStyles = active ? 'ring-2 ring-brand-emerald border-transparent animate-pulse-ring' : '';
                       return (

@@ -554,7 +554,7 @@ export default function CouponsPage() {
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}
@@ -694,7 +694,7 @@ export default function CouponsPage() {
               <div>
                 <div className="text-sm font-semibold text-gray-900">Aplicar a publicaciones</div>
                 {myListings.length > 0 ? (
-                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-emerald/30 bg-emerald-50/50 px-4 py-3">
+                  <label className="mt-2 flex cursor-pointer items-center gap-3 rounded-2xl border border-brand-emerald/30 bg-white/50 px-4 py-3">
                     <input
                       type="checkbox"
                       checked={applyToAllListings}

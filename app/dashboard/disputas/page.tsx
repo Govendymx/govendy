@@ -139,7 +139,7 @@ export default function DashboardDisputasPage() {
                   <Link
                     key={id}
                     href={`/dashboard/disputas/${id}`}
-                    className="block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm hover:bg-emerald-50/30"
+                    className="block overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm hover:bg-white/30"
                   >
                     <div className="p-4">
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -148,7 +148,7 @@ export default function DashboardDisputasPage() {
                           <span
                             className={classNames(
                               'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
-                              st === 'open' ? 'bg-amber-50 text-amber-900 ring-amber-200' : 'bg-green-50 text-green-900 ring-green-200',
+                              st === 'open' ? 'bg-amber-50 text-amber-900 ring-amber-200' : 'bg-white text-green-900 ring-green-200',
                             )}
                           >
                             {st}

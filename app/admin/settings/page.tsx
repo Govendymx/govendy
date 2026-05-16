@@ -64,7 +64,7 @@ function TestEmailSection() {
       {result && (
         <div
           className={`rounded-xl border px-4 py-3 text-sm ${result.ok
-            ? 'border-green-200 bg-green-50 text-green-800'
+            ? 'border-green-200 bg-white text-green-800'
             : 'border-red-200 bg-red-50 text-red-800'
             }`}
         >
@@ -621,7 +621,7 @@ export default function AdminSettingsPage() {
       <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold text-brand-emerald ring-1 ring-emerald-100">
               Admin
             </div>
             <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-gray-900">Configuración</h1>
@@ -645,7 +645,7 @@ export default function AdminSettingsPage() {
           </div>
         )}
         {success && (
-          <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+          <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">
             {success}
           </div>
         )}

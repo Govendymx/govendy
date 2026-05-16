@@ -1421,7 +1421,7 @@ export default function DashboardComprasPage() {
         <PageTour steps={pageTours.compras || []} pageId="compras" />
         <SectionMessage section="compras" />
         {error && <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
-        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>}
+        {success && <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>}
 
         {/* --- PESTA�AS PRINCIPALES --- */}
         <div className="mb-6 flex gap-1 rounded-2xl bg-gray-100 p-1 ring-1 ring-black/5">
@@ -2165,7 +2165,7 @@ export default function DashboardComprasPage() {
                               {/* Informaci�n de estado de pago y producto enviado */}
                               {status === 'pending_payment' ? (
                                 <div className="mt-3 space-y-2">
-                                  <div className="rounded-lg border border-emerald-200 bg-emerald-50/80 p-2.5">
+                                  <div className="rounded-lg border border-emerald-200 bg-white/80 p-2.5">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                       <div className="flex items-start gap-2">
                                         <span className="text-lg">??</span>
@@ -2205,7 +2205,7 @@ export default function DashboardComprasPage() {
                                         {checkoutSessionByOrderId[orderId] && (
                                           <Link
                                             href={`/pago/${checkoutSessionByOrderId[orderId]}`}
-                                            className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-emerald-50 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                                            className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-white flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
                                           >
                                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -2236,7 +2236,7 @@ export default function DashboardComprasPage() {
                                 <>
                                   <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                                     {isPaid ? (
-                                      <div className="flex-1 rounded-lg border border-green-200 bg-green-50 px-3 py-2">
+                                      <div className="flex-1 rounded-lg border border-green-200 bg-white px-3 py-2">
                                         <div className="text-xs font-extrabold text-green-900">Tu compra est� protegida</div>
                                         <div className="mt-1 text-[11px] text-green-800/80">
                                           El dinero se le libera al vendedor hasta que confirmes de Recibido.
@@ -2244,7 +2244,7 @@ export default function DashboardComprasPage() {
                                       </div>
                                     ) : null}
                                     {status === 'shipped' ? (
-                                      <div className="flex-1 rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                                      <div className="flex-1 rounded-xl border border-green-200 bg-white px-3 py-2">
                                         <div className="text-xs font-extrabold text-green-900">? Producto enviado</div>
                                         <div className="mt-1 text-[11px] text-green-800/80">
                                           Aseg�rate de tomar evidencias del art�culo que recibiste en caso de abrir una disputa.
@@ -2304,7 +2304,7 @@ export default function DashboardComprasPage() {
 
                                 return (
                                   <div className={`mt-2 flex flex-col gap-0.5 rounded-lg border px-2 py-1.5 ${isCompleted
-                                    ? 'border-green-200 bg-green-50'
+                                    ? 'border-green-200 bg-white'
                                     : 'border-dashed border-gray-300 bg-gray-50 opacity-80'
                                     }`}>
                                     <div className="flex items-center justify-between">
@@ -2386,7 +2386,7 @@ export default function DashboardComprasPage() {
                                         setHasUnreadByOrderId((p) => ({ ...p, [orderId]: false }));
                                       }}
                                       className={`inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-white px-2.5 py-2.5 text-[11px] font-semibold text-gray-900 shadow-sm ring-1 hover:bg-gray-50 ${hasUnread ? 'ring-brand-emerald' : 'ring-black/5'
-                                        } ${isPaid && !alreadyRated ? 'animate-pulse ring-brand-emerald bg-emerald-50' : ''
+                                        } ${isPaid && !alreadyRated ? 'animate-pulse ring-brand-emerald bg-white' : ''
                                         }`}
                                     >
                                       Chat
@@ -2468,7 +2468,7 @@ export default function DashboardComprasPage() {
 
                                   {!canConfirmReceived && alreadyRated ? (
                                     <div className="space-y-1">
-                                      <span className="inline-flex w-full items-center justify-center rounded-lg bg-green-50 px-2.5 py-1.5 text-[11px] font-semibold text-green-800 ring-1 ring-green-100">
+                                      <span className="inline-flex w-full items-center justify-center rounded-lg bg-white px-2.5 py-1.5 text-[11px] font-semibold text-green-800 ring-1 ring-green-100">
                                         ? Calificado
                                       </span>
                                       {bothRated && (
@@ -2478,7 +2478,7 @@ export default function DashboardComprasPage() {
                                       )}
                                     </div>
                                   ) : status === 'completed' ? (
-                                    <span className="inline-flex w-full items-center justify-center rounded-lg bg-green-50 px-2.5 py-1.5 text-[11px] font-semibold text-green-800 ring-1 ring-green-100">
+                                    <span className="inline-flex w-full items-center justify-center rounded-lg bg-white px-2.5 py-1.5 text-[11px] font-semibold text-green-800 ring-1 ring-green-100">
                                       Confirmado
                                     </span>
                                   ) : null}
@@ -2523,7 +2523,7 @@ export default function DashboardComprasPage() {
                                           <div className="inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-gray-300 bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-600 cursor-not-allowed opacity-75">
                                             Disputa
                                           </div>
-                                          <div className="rounded-xl border-2 border-green-300 bg-green-50 px-3 py-2 shadow-sm">
+                                          <div className="rounded-xl border-2 border-green-300 bg-white px-3 py-2 shadow-sm">
                                             <div className="text-xs font-extrabold text-green-900">
                                               Disputa resuelta: {decisionLabel}
                                             </div>
@@ -2715,7 +2715,7 @@ export default function DashboardComprasPage() {
                           </div>
 
                           {hasGuide && (
-                            <div className="mt-3 rounded-lg border-2 border-green-300 bg-green-50 p-3">
+                            <div className="mt-3 rounded-lg border-2 border-green-300 bg-white p-3">
                               <div className="flex items-center gap-2">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-700">
                                   <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
@@ -2764,7 +2764,7 @@ export default function DashboardComprasPage() {
         {comprasTab === 'pocketcash' && (
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-green-50 ring-1 ring-green-200">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white ring-1 ring-green-200">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-green-700">
                   <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" />
                   <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" />
@@ -2796,8 +2796,8 @@ export default function DashboardComprasPage() {
                   const statusConfig: Record<string, { label: string; color: string; bg: string; ring: string }> = {
                     pending_proof: { label: 'Esperando comprobante', color: 'text-orange-800', bg: 'bg-orange-50', ring: 'ring-orange-200' },
                     pending_approval: { label: 'En revisi�n', color: 'text-blue-800', bg: 'bg-blue-50', ring: 'ring-blue-200' },
-                    approved: { label: 'Aprobada', color: 'text-green-800', bg: 'bg-green-50', ring: 'ring-green-200' },
-                    completed: { label: 'Completada', color: 'text-green-800', bg: 'bg-green-50', ring: 'ring-green-200' },
+                    approved: { label: 'Aprobada', color: 'text-green-800', bg: 'bg-white', ring: 'ring-green-200' },
+                    completed: { label: 'Completada', color: 'text-green-800', bg: 'bg-white', ring: 'ring-green-200' },
                     rejected: { label: 'Rechazada', color: 'text-red-800', bg: 'bg-red-50', ring: 'ring-red-200' },
                     cancelled: { label: 'Cancelada', color: 'text-gray-800', bg: 'bg-gray-50', ring: 'ring-gray-200' },
                   };
@@ -2807,7 +2807,7 @@ export default function DashboardComprasPage() {
                   return (
                     <div
                       key={topup.id}
-                      className={`rounded-2xl border-2 p-4 transition ${isPending ? 'border-amber-200 bg-amber-50/50' : topup.status === 'approved' || topup.status === 'completed' ? 'border-green-200 bg-green-50/30' : 'border-gray-200 bg-gray-50/50'
+                      className={`rounded-2xl border-2 p-4 transition ${isPending ? 'border-amber-200 bg-amber-50/50' : topup.status === 'approved' || topup.status === 'completed' ? 'border-green-200 bg-white/30' : 'border-gray-200 bg-gray-50/50'
                         }`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -2999,7 +2999,7 @@ export default function DashboardComprasPage() {
                         key={v}
                         type="button"
                         onClick={() => setRateStars(v)}
-                        className={`h-9 w-9 rounded-xl text-sm font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-emerald-50'
+                        className={`h-9 w-9 rounded-xl text-sm font-extrabold ring-1 transition ${active ? 'bg-brand-emerald text-white ring-brand-emerald' : 'bg-white text-gray-700 ring-black/10 hover:bg-white'
                           }`}
                         aria-label={`${v} estrellas`}
                       >
@@ -3080,7 +3080,7 @@ export default function DashboardComprasPage() {
                 )}
 
                 {success && (
-                  <div className="rounded-xl bg-emerald-50 p-3 text-xs text-emerald-700 animate-in fade-in slide-in-from-top-1">
+                  <div className="rounded-xl bg-white p-3 text-xs text-emerald-700 animate-in fade-in slide-in-from-top-1">
                     <div className="flex items-center gap-2 font-bold mb-1">
                       <span>?</span> �xito
                     </div>
@@ -3155,8 +3155,8 @@ export default function DashboardComprasPage() {
                           }}
                           disabled={isUpdatingShipping}
                           className={`relative flex flex-col items-start gap-2 rounded-xl border-2 p-4 text-left transition-all duration-200 ${shippingMode === 'pickup'
-                            ? 'border-emerald-500 bg-emerald-50 shadow-md shadow-emerald-100 ring-1 ring-emerald-300'
-                            : 'border-gray-200 bg-white hover:border-emerald-300 hover:bg-emerald-50/50 hover:shadow-sm'
+                            ? 'border-emerald-500 bg-white shadow-md shadow-emerald-100 ring-1 ring-emerald-300'
+                            : 'border-gray-200 bg-white hover:border-emerald-300 hover:bg-white/50 hover:shadow-sm'
                             } ${isUpdatingShipping ? 'opacity-60 cursor-wait' : 'cursor-pointer'}`}
                         >
                           {shippingMode === 'pickup' && (
@@ -3203,7 +3203,7 @@ export default function DashboardComprasPage() {
                 </label>
 
                 {/* PocketCash */}
-                <label className={`flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition-all ${selectedMethod === 'pocketcash' ? 'border-brand-emerald bg-emerald-50 ring-1 ring-brand-emerald' : 'border-gray-200 hover:bg-gray-50'} ${walletBalance < payOrderData.total ? 'opacity-60' : ''}`}>
+                <label className={`flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition-all ${selectedMethod === 'pocketcash' ? 'border-brand-emerald bg-white ring-1 ring-brand-emerald' : 'border-gray-200 hover:bg-gray-50'} ${walletBalance < payOrderData.total ? 'opacity-60' : ''}`}>
                   <input
                     type="radio"
                     name="payment_method"

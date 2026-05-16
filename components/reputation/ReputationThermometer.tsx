@@ -30,7 +30,7 @@ export function ReputationThermometer({
   if (pct >= 80) {
     // 80-100%: Verde
     colorClass = 'text-green-900';
-    borderColor = 'border-green-300 bg-green-50';
+    borderColor = 'border-green-300 bg-white';
     message = `Este vendedor ha tenido satisfacción en el ${pct}% de sus ventas`;
   } else if (pct >= 55) {
     // 55-79%: Amarillo

@@ -267,7 +267,7 @@ export function PagosRow({
                                                     const shippingForSeller = Number(isOrder ? ((r as any).shipping_gross_total || (r as any).shipping_total || 0) : ((r as any).shipping_fee || 0));
                                                     const sellerGets = netSeller + shippingForSeller;
                                                     return (
-                                                        <div className="mt-1 rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-bold text-emerald-800 ring-1 ring-emerald-200">
+                                                        <div className="mt-1 rounded-md bg-white px-2 py-1 text-[11px] font-bold text-emerald-800 ring-1 ring-emerald-200">
                                                             💰 Vendedor cobra: ${sellerGets.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                                                         </div>
                                                     );

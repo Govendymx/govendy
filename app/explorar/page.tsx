@@ -304,12 +304,12 @@ function ExplorarContent() {
                           </div>
                           <div className="absolute bottom-2 right-2 z-10 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
                             {p.condition === 'nuevo' && (
-                              <div className="rounded-lg bg-green-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
+                              <div className="rounded-lg bg-white0/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
                                 Nuevo
                               </div>
                             )}
                             {p.condition === 'casi_nuevo' && (
-                              <div className="rounded-lg bg-emerald-500/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
+                              <div className="rounded-lg bg-white0/50 px-2 py-1 text-[10px] font-extrabold text-white shadow-sm backdrop-blur-sm">
                                 Casi Nuevo
                               </div>
                             )}

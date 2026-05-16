@@ -529,7 +529,7 @@ export default function AdminDisputeChatPage() {
     adminNameOk;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="leading-tight">
@@ -593,7 +593,7 @@ export default function AdminDisputeChatPage() {
           <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
         ) : null}
         {success ? (
-          <div className="mb-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">{success}</div>
+          <div className="mb-4 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>
         ) : null}
 
         {returnGuide && (returnGuide.url || returnGuide.tracking) ? (
@@ -694,7 +694,7 @@ export default function AdminDisputeChatPage() {
                     key={`pending-${idx}`}
                     type="button"
                     onClick={() => setPending((prev) => prev.filter((_, i) => i !== idx))}
-                    className="rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-emerald-100 hover:opacity-90"
+                    className="rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-brand-emerald ring-1 ring-emerald-100 hover:opacity-90"
                   >
                     {String(p?.name || 'Adjunto')} ×
                   </button>
@@ -851,7 +851,7 @@ export default function AdminDisputeChatPage() {
                   );
                 }
                 return (
-                  <div className="mt-3 rounded-xl border border-green-300 bg-green-50 px-3 py-2">
+                  <div className="mt-3 rounded-xl border border-green-300 bg-white px-3 py-2">
                     <div className="text-xs font-extrabold text-green-900">
                       ✓ Puedes tomar una resolución definitiva
                     </div>
@@ -898,7 +898,7 @@ export default function AdminDisputeChatPage() {
               </select>
               {resolveDecision === 'partial_refund_seller' ? (
                 <div className="mt-4 space-y-3">
-                  <div className="rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                  <div className="rounded-xl border border-green-200 bg-white px-3 py-2">
                     <div className="text-[10px] font-semibold text-green-800">Disponible para vendedor</div>
                     <div className="text-sm font-extrabold text-green-900">{formatMoney(availableSeller)}</div>
                   </div>
@@ -918,7 +918,7 @@ export default function AdminDisputeChatPage() {
               ) : null}
               {resolveDecision === 'partial_refund_buyer' ? (
                 <div className="mt-4 space-y-3">
-                  <div className="rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                  <div className="rounded-xl border border-green-200 bg-white px-3 py-2">
                     <div className="text-[10px] font-semibold text-green-800">Disponible para reembolso al comprador</div>
                     <div className="text-sm font-extrabold text-green-900">{formatMoney(availableBuyer)}</div>
                   </div>
@@ -939,11 +939,11 @@ export default function AdminDisputeChatPage() {
               {resolveDecision === 'partial_refund_split' ? (
                 <div className="mt-4 space-y-3">
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                    <div className="rounded-xl border border-green-200 bg-white px-3 py-2">
                       <div className="text-[10px] font-semibold text-green-800">Disponible para vendedor</div>
                       <div className="text-sm font-extrabold text-green-900">{formatMoney(availableSeller)}</div>
                     </div>
-                    <div className="rounded-xl border border-green-200 bg-green-50 px-3 py-2">
+                    <div className="rounded-xl border border-green-200 bg-white px-3 py-2">
                       <div className="text-[10px] font-semibold text-green-800">Disponible para reembolso al comprador</div>
                       <div className="text-sm font-extrabold text-green-900">{formatMoney(availableBuyer)}</div>
                     </div>

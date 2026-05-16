@@ -335,7 +335,7 @@ export default function DashboardSoporteChatPage() {
   }, [messages.length]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -406,7 +406,7 @@ export default function DashboardSoporteChatPage() {
                     <div className="mt-2 text-gray-700">Deja tu consulta aquí y un agente la resolverá lo más pronto posible.</div>
                     <div className={`mt-2 rounded-xl px-3 py-2 text-xs font-medium ${userPlan === 'platinum' ? 'bg-amber-50 text-amber-800' :
                         userPlan === 'pro' ? 'bg-blue-50 text-blue-800' :
-                          'bg-emerald-50 text-emerald-800'
+                          'bg-white text-emerald-800'
                       }`}>
                       {userPlan === 'pro' || userPlan === 'platinum'
                         ? `⚡ Tu plan ${userPlan === 'platinum' ? 'Platinum 👑' : 'Pro 🔵'} tiene prioridad · Respuesta en 12 a 24 horas`
@@ -443,7 +443,7 @@ export default function DashboardSoporteChatPage() {
                           }}
                           className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-all ${selectedCategory === cat.id
                               ? 'border-brand-emerald bg-brand-emerald text-white shadow-sm'
-                              : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700'
+                              : 'border-gray-200 bg-gray-50 text-gray-700 hover:border-emerald-200 hover:bg-white hover:text-emerald-700'
                             }`}
                         >
                           {cat.label}
@@ -466,7 +466,7 @@ export default function DashboardSoporteChatPage() {
                     <div className="text-gray-900">¡Hola! 👋 Bienvenido al soporte de GoVendy. Un agente revisará tu consulta lo antes posible.</div>
                     <div className={`mt-2 rounded-xl px-3 py-1.5 text-xs font-medium ${userPlan === 'platinum' ? 'bg-amber-50 text-amber-800' :
                         userPlan === 'pro' ? 'bg-blue-50 text-blue-800' :
-                          'bg-emerald-50 text-emerald-800'
+                          'bg-white text-emerald-800'
                       }`}>
                       {userPlan === 'pro' || userPlan === 'platinum'
                         ? `⚡ Plan ${userPlan === 'platinum' ? 'Platinum 👑' : 'Pro 🔵'} · Respuesta en 12 a 24 horas`

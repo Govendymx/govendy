@@ -20,7 +20,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
   const userId = String(id || '').trim();
   if (!userId) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+      <div className="min-h-screen bg-white">
         <div className="mx-auto max-w-2xl px-4 py-10">
           <div className="rounded-3xl bg-white p-10 shadow-sm ring-1 ring-black/5">
             <div className="text-lg font-bold text-gray-900">Perfil inválido</div>
@@ -60,7 +60,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
   const sellerStats = (json as any)?.stats || null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -157,7 +157,7 @@ export default async function PerfilPublicoPage({ params }: { params: Promise<{ 
             <ReviewsList title="Comentarios como comprador" subtitle="Los vendedores opinan sobre este usuario." reviews={buyerReviews} tone="neutral" />
           </div>
 
-          <div className="mt-6 rounded-2xl bg-emerald-50 px-4 py-3 text-sm text-gray-700 ring-1 ring-emerald-100">
+          <div className="mt-6 rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 ring-1 ring-emerald-100">
             Perfil público: la reputación y comentarios ayudan a generar confianza entre usuarios.
           </div>
         </div>

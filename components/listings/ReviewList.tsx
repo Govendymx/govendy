@@ -106,7 +106,7 @@ function ReviewItem({ review, listingId }: { review: Review; listingId: string }
 
       <div className="mt-2 flex items-center gap-2">
         {review.is_verified_purchase && (
-          <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+          <span className="inline-flex items-center rounded-full bg-white px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
             Compra verificada
           </span>
         )}

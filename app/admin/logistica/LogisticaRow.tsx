@@ -418,7 +418,7 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
     }
     if (isPickup2) {
         return (
-            <div className="rounded-2xl bg-emerald-50 px-3 py-2 text-xs text-emerald-900 ring-1 ring-emerald-200">
+            <div className="rounded-2xl bg-white px-3 py-2 text-xs text-emerald-900 ring-1 ring-emerald-200">
                 <div className="font-bold text-emerald-700">🤝 Entrega Personal</div>
                 <div className="mt-1 text-[11px] font-semibold text-emerald-600">Costo envío: $0.00</div>
                 {shippedAt ? <div className="mt-1 text-[11px]">Vendedor entregó: <span className="font-semibold">{fmt(shippedAt)}</span></div> : null}
@@ -450,7 +450,7 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
                             const total = o.delivery_proof_url!.split(',').length;
                             const lb = total > 1 ? (idx === 0 ? '📄 Constancia' : '🪪 INE') : 'Ver evidencia';
                             return (
-                                <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50">
+                                <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white">
                                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                                     {lb}
                                 </a>
@@ -469,7 +469,7 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
         <div className="space-y-1">
             {isGoVendyFree ? (
                 <>
-                    <div className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">🎁 Envío Gratis GoVendy</div>
+                    <div className="inline-flex items-center rounded-md bg-white px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">🎁 Envío Gratis GoVendy</div>
                     <div className="text-[11px] text-gray-600">Comprador: <span className="font-semibold text-green-700">GRATIS</span></div>
                     <div className="text-[11px] text-orange-600 font-medium">⚠️ Costo real: <span className="font-semibold">${totalCarrierCost.toFixed(2)}</span> — lo absorbe el vendedor</div>
                 </>
@@ -496,7 +496,7 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
                     const total = o.delivery_proof_url!.split(',').length;
                     const lb = total > 1 ? (idx === 0 ? '📄 Constancia' : '🪪 INE') : 'Ver evidencia';
                     return (
-                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50">
+                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white">
                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                             {lb}
                         </a>
@@ -520,7 +520,7 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">ENVÍO POR VENDEDOR</div>
                 <div className="flex flex-col gap-1">
                     {String(o.delivery_proof_url).split(',').map((url: string, idx: number) => (
-                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-emerald-50">
+                        <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white">
                             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" /></svg>
                             📄 Ver guía vendedor
                         </a>
@@ -605,7 +605,7 @@ function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploa
                 </>
             ) : (
                 <>
-                    <div className="inline-flex items-center rounded-xl border border-green-200 bg-green-50 px-4 py-2 text-xs font-extrabold text-green-800">Descargada</div>
+                    <div className="inline-flex items-center rounded-xl border border-green-200 bg-white px-4 py-2 text-xs font-extrabold text-green-800">Descargada</div>
                     <label htmlFor={fileInputId} className={`inline-flex cursor-pointer rounded-xl bg-white px-4 py-2 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50 ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`} title="Re-subir guía">
                         {isUploading ? 'Subiendo…' : 'Re-subir guía'}
                     </label>

@@ -151,7 +151,7 @@ export default function AdminGiftCardsPage() {
                 {stats && (
                     <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6">
                         {[
-                            { label: 'Total Vendido', value: `$${stats.total_sold?.toLocaleString('es-MX') || 0}`, color: 'bg-green-50 text-green-700', icon: '💰' },
+                            { label: 'Total Vendido', value: `$${stats.total_sold?.toLocaleString('es-MX') || 0}`, color: 'bg-white text-green-700', icon: '💰' },
                             { label: 'Activas', value: stats.active, color: 'bg-blue-50 text-blue-700', icon: '✅' },
                             { label: 'Pago Pendiente', value: stats.pending_payment, color: 'bg-yellow-50 text-yellow-700', icon: '⏳' },
                             { label: 'Canjeadas', value: stats.redeemed, color: 'bg-purple-50 text-purple-700', icon: '🎉' },
@@ -249,7 +249,7 @@ export default function AdminGiftCardsPage() {
                                                         <button
                                                             onClick={() => handleAction(gc.id, 'approve_payment')}
                                                             disabled={actionLoading === gc.id}
-                                                            className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs font-medium disabled:opacity-50 transition-colors"
+                                                            className="bg-white0 hover:bg-green-600 text-white px-2 py-1 rounded text-xs font-medium disabled:opacity-50 transition-colors"
                                                         >
                                                             ✅ Aprobar Pago
                                                         </button>

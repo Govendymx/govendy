@@ -241,7 +241,7 @@ function AdminDisputasContent() {
                   const last = d?.last_message;
                   const snippet = String(last?.body || '').trim().slice(0, 120) || '—';
                   return (
-                    <div key={id} className="block hover:bg-emerald-50/30">
+                    <div key={id} className="block hover:bg-white/30">
                       <div className="flex flex-col gap-2 p-4 sm:flex-row sm:items-center sm:justify-between">
                         <div className="min-w-0 flex-1">
                           <div className="flex flex-wrap items-center gap-2">
@@ -285,7 +285,7 @@ function AdminDisputasContent() {
                             <span
                               className={classNames(
                                 'rounded-full px-2 py-0.5 text-xs font-semibold ring-1',
-                                st === 'open' ? 'bg-amber-50 text-amber-900 ring-amber-200' : 'bg-green-50 text-green-900 ring-green-200',
+                                st === 'open' ? 'bg-amber-50 text-amber-900 ring-amber-200' : 'bg-white text-green-900 ring-green-200',
                               )}
                             >
                               {st}

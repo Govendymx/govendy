@@ -109,7 +109,7 @@ export function BlocksRenderer({ blocks }: { blocks: TemplateBlock[] }) {
           const styles: Record<string, { box: string; title: string }> = {
             pink: { box: 'border-pink-200 bg-pink-50', title: 'text-brand-emerald' },
             neutral: { box: 'border-black/10 bg-gray-50', title: 'text-gray-900' },
-            success: { box: 'border-green-200 bg-green-50', title: 'text-green-800' },
+            success: { box: 'border-green-200 bg-white', title: 'text-green-800' },
             blue: { box: 'border-blue-200 bg-blue-50', title: 'text-blue-800' },
             purple: { box: 'border-purple-200 bg-purple-50', title: 'text-purple-800' },
             amber: { box: 'border-amber-200 bg-amber-50', title: 'text-amber-800' },

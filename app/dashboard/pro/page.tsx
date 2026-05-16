@@ -443,7 +443,7 @@ export default function ProPage() {
                 </div>
 
                 <div className="mb-6 space-y-4">
-                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-emerald-50 border-emerald-100'}`}>
+                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-white border-emerald-100'}`}>
                     <div className="flex justify-between items-center mb-2">
                       <span className="font-semibold text-gray-900">
                         Plan {selectedPlan === 'platinum' ? 'Platinum' : 'PRO'} Mensual

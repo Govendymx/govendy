@@ -18,7 +18,7 @@ export function VerifiedBadge({ size = 'md', className = '', isOfficial = false 
   if (isOfficial) {
     return (
       <div
-        className={`flex items-center justify-center rounded-full bg-green-500 text-white ${sizeClasses[size]} ${className}`}
+        className={`flex items-center justify-center rounded-full bg-white0 text-white ${sizeClasses[size]} ${className}`}
         title="Tienda Oficial"
         aria-label="Tienda Oficial"
       >
@@ -35,7 +35,7 @@ export function VerifiedBadge({ size = 'md', className = '', isOfficial = false 
 
   return (
     <div
-      className={`flex items-center justify-center rounded-full bg-green-500 ${sizeClasses[size]} ${className}`}
+      className={`flex items-center justify-center rounded-full bg-white0 ${sizeClasses[size]} ${className}`}
       title="Usuario verificado"
       aria-label="Usuario verificado"
     >
