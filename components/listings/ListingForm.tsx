@@ -1129,7 +1129,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   }, [existingImages.length, files.length, title, description, priceInput, category, saleType, auctionStartDateTime, auctionStartingBidInput]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-3">
@@ -1173,7 +1173,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
         }} className="space-y-6">
 
           {/* ── Banner Liverpool-rosa: cabecera del formulario ── */}
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#c0005a] via-[#e3127d] to-[#ff4fa0] px-6 py-5 shadow-md">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-700 via-emerald-500 to-teal-400 px-6 py-5 shadow-md">
             {/* Círculos decorativos de fondo */}
             <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/10" />
             <div className="pointer-events-none absolute -bottom-6 right-16 h-20 w-20 rounded-full bg-white/10" />
@@ -1249,7 +1249,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                   value={youtubeUrl}
                   onChange={(e) => setYoutubeUrl(e.target.value)}
                   placeholder="https://www.youtube.com/watch?v=..."
-                  className="block w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:border-pink-500 focus:ring-pink-500 outline-none"
+                  className="block w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:border-emerald-500 focus:ring-emerald-500 outline-none"
                 />
                 {youtubeUrl && (() => {
                   const match = youtubeUrl.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
@@ -1269,10 +1269,10 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                 })()}
               </>
             ) : (
-              <div className="rounded-xl bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 p-4 text-center">
+              <div className="rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-200 p-4 text-center">
                 <p className="text-sm font-semibold text-gray-800">🔒 Función exclusiva Pro / Platinum</p>
                 <p className="text-xs text-gray-500 mt-1">Agrega videos a tus publicaciones para aumentar tus ventas hasta un 40%</p>
-                <Link href="/planes" className="mt-3 inline-block rounded-full bg-gradient-to-r from-pink-500 to-purple-500 px-5 py-1.5 text-xs font-bold text-white shadow-sm hover:shadow-md transition-shadow">
+                <Link href="/planes" className="mt-3 inline-block rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-5 py-1.5 text-xs font-bold text-white shadow-sm hover:shadow-md transition-shadow">
                   Mejorar mi plan →
                 </Link>
               </div>
@@ -1287,7 +1287,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                   type="text"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                   placeholder="Ej. Vestido Zara Nuevo"
                 />
               </div>
@@ -1352,7 +1352,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => setSaleType('direct')}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'direct'
-                      ? 'border-brand-emerald bg-pink-50 text-brand-emerald'
+                      ? 'border-brand-emerald bg-emerald-50 text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >
@@ -1362,7 +1362,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="button"
                     onClick={() => { setSaleType('auction'); setFreeShipping(false); setShippingSubsidy('0'); }}
                     className={`flex items-center justify-center gap-2 rounded-xl border-2 py-3 px-4 text-sm font-bold transition-all ${saleType === 'auction'
-                      ? 'border-brand-emerald bg-pink-50 text-brand-emerald'
+                      ? 'border-brand-emerald bg-emerald-50 text-brand-emerald'
                       : 'border-gray-100 bg-white text-gray-500 hover:border-gray-200'
                       }`}
                   >
@@ -1384,7 +1384,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           type="number"
                           value={priceInput}
                           onChange={e => setPriceInput(e.target.value)}
-                          className="block w-full rounded-xl border-gray-300 pl-7 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                          className="block w-full rounded-xl border-gray-300 pl-7 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                           placeholder="0.00"
                         />
                       </div>
@@ -1395,7 +1395,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={stock}
                         onChange={e => setStock(e.target.value)}
-                        className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                         placeholder="1"
                       />
                     </div>
@@ -1441,7 +1441,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={auctionStartingBidInput}
                         onChange={e => setAuctionStartingBidInput(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                         placeholder="1.00"
                       />
                     </div>
@@ -1451,7 +1451,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={auctionBidIncrementInput}
                         onChange={e => setAuctionBidIncrementInput(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                         placeholder="10.00"
                       />
                     </div>
@@ -1463,7 +1463,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="date"
                         value={auctionStartDate}
                         onChange={e => setAuctionStartDate(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                       />
                     </div>
                     <div>
@@ -1472,7 +1472,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="time"
                         value={auctionStartTime}
                         onChange={e => setAuctionStartTime(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                       />
                     </div>
                     <div>
@@ -1480,7 +1480,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       <select
                         value={auctionDurationHours}
                         onChange={e => setAuctionDurationHours(Number(e.target.value))}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                       >
                         <option value={1}>1 Hora</option>
                         <option value={3}>3 Horas</option>
@@ -1508,7 +1508,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="text"
                       value={brand}
                       onChange={e => setBrand(e.target.value)}
-                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                       placeholder="Ej. Zara, Nike"
                     />
                   </div>
@@ -1520,7 +1520,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="text"
                       value={model}
                       onChange={e => setModel(e.target.value)}
-                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                       placeholder="Ej. Air Max 270"
                     />
                   </div>
@@ -1571,7 +1571,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="text"
                     value={color}
                     onChange={e => setColor(e.target.value)}
-                    className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
                     placeholder="Ej. Rojo, Azul"
                   />
                 </div>
@@ -1581,7 +1581,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
               {IS_FASHION_ROOT(gender) &&
                 !['Calzado', 'Zapatos', 'Tenis', 'Botas', 'Sandalias'].includes(category) &&
                 !['Bolsos', 'Joyería', 'Lentes', 'Relojes', 'Accesorios de Cabello', 'Carteras', 'Mochilas', 'Maletas', 'Paraguas'].includes(category) && (
-                  <div className="rounded-2xl border-2 border-gray-200 bg-gradient-to-br from-pink-50/50 to-white p-6">
+                  <div className="rounded-2xl border-2 border-gray-200 bg-gradient-to-br from-emerald-50/50 to-white p-6">
                     <h3 className="mb-4 text-lg font-bold text-gray-900">
                       👕 Variantes de Talla (Ropa)
                     </h3>
