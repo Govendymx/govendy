@@ -45,7 +45,7 @@ type SettingsRow = {
   estafeta_config: any;
 };
 
-type PaymentKey = 'direct_contact';
+type PaymentKey = 'direct_contact' | 'mercadopago' | 'bank_transfer' | 'bank_deposit' | 'oxxo' | 'pocketcash';
 
 const PAYMENT_METHOD_LOGO: Partial<Record<PaymentKey, string>> = {
   mercadopago: '/payment-logos/mercadopago.png',
