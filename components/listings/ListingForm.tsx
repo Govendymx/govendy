@@ -1237,7 +1237,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                   value={youtubeUrl}
                   onChange={(e) => setYoutubeUrl(e.target.value)}
                   placeholder="https://www.youtube.com/watch?v=..."
-                  className="block w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:border-emerald-500 focus:ring-emerald-500 outline-none"
+                  className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                 />
                 {youtubeUrl && (() => {
                   const match = youtubeUrl.match(/(?:v=|youtu\.be\/|embed\/)([A-Za-z0-9_-]{11})/);
@@ -1275,7 +1275,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                   type="text"
                   value={title}
                   onChange={e => setTitle(e.target.value)}
-                  className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                  className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                   placeholder="Ej. Vestido Zara Nuevo"
                 />
               </div>
@@ -1372,7 +1372,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           type="number"
                           value={priceInput}
                           onChange={e => setPriceInput(e.target.value)}
-                          className="block w-full rounded-xl border-gray-300 pl-7 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                          className="block w-full rounded-lg border-gray-300 pl-7 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                           placeholder="0.00"
                         />
                       </div>
@@ -1383,7 +1383,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={stock}
                         onChange={e => setStock(e.target.value)}
-                        className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                         placeholder="1"
                       />
                     </div>
@@ -1429,7 +1429,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={auctionStartingBidInput}
                         onChange={e => setAuctionStartingBidInput(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                         placeholder="1.00"
                       />
                     </div>
@@ -1439,7 +1439,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="number"
                         value={auctionBidIncrementInput}
                         onChange={e => setAuctionBidIncrementInput(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                         placeholder="10.00"
                       />
                     </div>
@@ -1451,7 +1451,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="date"
                         value={auctionStartDate}
                         onChange={e => setAuctionStartDate(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                       />
                     </div>
                     <div>
@@ -1460,7 +1460,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         type="time"
                         value={auctionStartTime}
                         onChange={e => setAuctionStartTime(e.target.value)}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                       />
                     </div>
                     <div>
@@ -1468,7 +1468,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       <select
                         value={auctionDurationHours}
                         onChange={e => setAuctionDurationHours(Number(e.target.value))}
-                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                        className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                       >
                         <option value={1}>1 Hora</option>
                         <option value={3}>3 Horas</option>
@@ -1496,7 +1496,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="text"
                       value={brand}
                       onChange={e => setBrand(e.target.value)}
-                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                      className="block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                       placeholder="Ej. Zara, Nike"
                     />
                   </div>
@@ -1508,7 +1508,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       type="text"
                       value={model}
                       onChange={e => setModel(e.target.value)}
-                      className="block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                      className="block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                       placeholder="Ej. Air Max 270"
                     />
                   </div>
@@ -1559,7 +1559,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     type="text"
                     value={color}
                     onChange={e => setColor(e.target.value)}
-                    className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-emerald-500 focus:ring-emerald-500 sm:text-sm"
+                    className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                     placeholder="Ej. Rojo, Azul"
                   />
                 </div>
@@ -2297,7 +2297,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     <select
                       value={handlingDays}
                       onChange={e => setHandlingDays(e.target.value)}
-                      className="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
+                      className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/50 sm:text-sm"
                     >
                       {[0, 1, 2, 3, 4, 5, 7, 10].map(d => (
                         <option key={d} value={d.toString()}>{d === 0 ? 'Mismo día' : `${d} día(s) hábil(es)`}</option>
