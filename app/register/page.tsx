@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase/client';
 import { Eye, EyeOff } from 'lucide-react';
+import { normalizeMexicanCp } from '@/lib/utils/mexicanPostalCode';
 
 function getFriendlyErrorMessage(err: unknown) {
   if (err instanceof TypeError && err.message.toLowerCase().includes('failed to fetch')) {
@@ -30,6 +31,7 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [cpLoading, setCpLoading] = useState(false);
+  const cpLookupGenRef = useRef(0);
 
   const [form, setForm] = useState({
     // Paso 1: Cuenta
@@ -61,24 +63,35 @@ export default function RegisterPage() {
     if (error) setError(null);
   };
 
-  const lookupPostalCode = async (cp: string) => {
-    if (!/^\d{5}$/.test(cp)) return;
+  const lookupPostalCode = async (cpRaw: string) => {
+    const cp = normalizeMexicanCp(cpRaw);
+    if (!cp) return;
+    const gen = ++cpLookupGenRef.current;
     try {
       setCpLoading(true);
-      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
+      const res = await fetch(`/api/postal-code/lookup?cp=${encodeURIComponent(cp)}`);
       const json = await res.json();
+      if (gen !== cpLookupGenRef.current) return;
       const estado = json.estado || json.state || '';
       const municipio = json.municipio || json.city || '';
       if (estado || municipio) {
-        setForm(p => ({ ...p, state: estado || p.state, city: municipio || p.city }));
         const colonias = json.colonias || [];
         const nombres: string[] = colonias.map((c: any) => String(c.nombre || c || '').trim()).filter(Boolean);
-        if (nombres.length === 1) setForm(p => ({ ...p, neighborhood: nombres[0] }));
+        setForm((p) => {
+          let neighborhood = p.neighborhood;
+          if (nombres.length === 1) neighborhood = nombres[0];
+          return {
+            ...p,
+            state: estado || p.state,
+            city: municipio || p.city,
+            neighborhood,
+          };
+        });
       }
     } catch {
       // noop
     } finally {
-      setCpLoading(false);
+      if (gen === cpLookupGenRef.current) setCpLoading(false);
     }
   };
 
@@ -397,7 +410,17 @@ export default function RegisterPage() {
                         <label htmlFor="zip_code" className={labelClass}>Código Postal <span className="text-red-500">*</span></label>
                         <div className="flex items-center gap-2">
                           <input id="zip_code" type="text" value={form.zip_code}
-                            onChange={e => { set('zip_code')(e); if (e.target.value.length === 5) lookupPostalCode(e.target.value); }}
+                            onChange={e => {
+                              const v = e.target.value.replace(/\D/g, '').slice(0, 5);
+                              setForm(prev => ({ ...prev, zip_code: v }));
+                              if (error) setError(null);
+                              if (v.length === 5) void lookupPostalCode(v);
+                            }}
+                            onBlur={e => {
+                              const cp = normalizeMexicanCp(e.target.value);
+                              if (cp) void lookupPostalCode(cp);
+                            }}
+                            inputMode="numeric"
                             placeholder="5 dígitos" maxLength={5} className={inputClass} />
                           {cpLoading && <div className="text-xs text-brand-emerald font-semibold whitespace-nowrap">Buscando...</div>}
                         </div>

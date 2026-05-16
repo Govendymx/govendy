@@ -1,0 +1,138 @@
+import { NextRequest, NextResponse } from 'next/server';
+export const dynamic = 'force-dynamic';
+
+// CP exactos hardcodeados — sin APIs externas
+const DB: Record<string, [string, string, string[]]> = {
+  '91180': ['Veracruz', 'Xalapa-Enriquez', ['El Encinal', 'Ferrer Guardia', 'El Panorama', 'Casa Blanca', 'Benito Juarez']],
+  '91000': ['Veracruz', 'Xalapa-Enriquez', ['Centro']],
+  '91020': ['Veracruz', 'Xalapa-Enriquez', ['Rafael Lucio']],
+  '91900': ['Veracruz', 'Veracruz', ['Centro']],
+  '02940': ['Ciudad de Mexico', 'Azcapotzalco', ['Reynosa Tamaulipas', 'Porvenir']],
+  '02000': ['Ciudad de Mexico', 'Azcapotzalco', ['Centro']],
+  '06000': ['Ciudad de Mexico', 'Cuauhtemoc', ['Centro']],
+  '06600': ['Ciudad de Mexico', 'Cuauhtemoc', ['Juarez']],
+  '06700': ['Ciudad de Mexico', 'Cuauhtemoc', ['Roma Norte']],
+  '11560': ['Ciudad de Mexico', 'Miguel Hidalgo', ['Polanco']],
+  '03100': ['Ciudad de Mexico', 'Benito Juarez', ['Narvarte Poniente']],
+  '64000': ['Nuevo Leon', 'Monterrey', ['Centro']],
+  '64100': ['Nuevo Leon', 'Monterrey', ['Colonia del Valle']],
+  '66220': ['Nuevo Leon', 'San Pedro Garza Garcia', ['Del Valle']],
+  '44100': ['Jalisco', 'Guadalajara', ['Centro']],
+  '45100': ['Jalisco', 'Zapopan', ['Centro']],
+  '72000': ['Puebla', 'Puebla', ['Centro']],
+  '76000': ['Queretaro', 'Queretaro', ['Centro']],
+  '37000': ['Guanajuato', 'Leon', ['Centro']],
+  '83000': ['Sonora', 'Hermosillo', ['Centro']],
+  '22000': ['Baja California', 'Tijuana', ['Centro']],
+  '97000': ['Yucatan', 'Merida', ['Centro']],
+  '77500': ['Quintana Roo', 'Benito Juarez', ['Cancun']],
+  '68000': ['Oaxaca', 'Oaxaca de Juarez', ['Centro']],
+  '58000': ['Michoacan', 'Morelia', ['Centro']],
+  '78000': ['San Luis Potosi', 'San Luis Potosi', ['Centro']],
+  '62000': ['Morelos', 'Cuernavaca', ['Centro']],
+  '50000': ['Estado de Mexico', 'Toluca', ['Centro']],
+  '86000': ['Tabasco', 'Villahermosa', ['Centro']],
+  '87000': ['Tamaulipas', 'Ciudad Victoria', ['Centro']],
+  '89000': ['Tamaulipas', 'Tampico', ['Centro']],
+};
+
+const PREF: Record<string, [string, string]> = {
+  '01': ['Ciudad de Mexico', 'Alvaro Obregon'],
+  '02': ['Ciudad de Mexico', 'Azcapotzalco'],
+  '03': ['Ciudad de Mexico', 'Benito Juarez'],
+  '04': ['Ciudad de Mexico', 'Coyoacan'],
+  '05': ['Ciudad de Mexico', 'Cuajimalpa'],
+  '06': ['Ciudad de Mexico', 'Cuauhtemoc'],
+  '07': ['Ciudad de Mexico', 'Gustavo A. Madero'],
+  '08': ['Ciudad de Mexico', 'Iztacalco'],
+  '09': ['Ciudad de Mexico', 'Iztapalapa'],
+  '10': ['Ciudad de Mexico', 'La Magdalena Contreras'],
+  '11': ['Ciudad de Mexico', 'Miguel Hidalgo'],
+  '12': ['Ciudad de Mexico', 'Milpa Alta'],
+  '13': ['Ciudad de Mexico', 'Tlahuac'],
+  '14': ['Ciudad de Mexico', 'Tlalpan'],
+  '15': ['Ciudad de Mexico', 'Venustiano Carranza'],
+  '16': ['Ciudad de Mexico', 'Xochimilco'],
+  '20': ['Aguascalientes', 'Aguascalientes'],
+  '21': ['Baja California', 'Mexicali'],
+  '22': ['Baja California', 'Tijuana'],
+  '23': ['Baja California Sur', 'La Paz'],
+  '24': ['Campeche', 'Campeche'],
+  '25': ['Coahuila', 'Saltillo'],
+  '26': ['Coahuila', 'Torreon'],
+  '27': ['Coahuila', 'Torreon'],
+  '28': ['Colima', 'Colima'],
+  '29': ['Chiapas', 'Tuxtla Gutierrez'],
+  '30': ['Chiapas', 'Tuxtla Gutierrez'],
+  '31': ['Chihuahua', 'Chihuahua'],
+  '32': ['Chihuahua', 'Ciudad Juarez'],
+  '33': ['Chihuahua', 'Delicias'],
+  '34': ['Durango', 'Durango'],
+  '36': ['Guanajuato', 'Guanajuato'],
+  '37': ['Guanajuato', 'Leon'],
+  '38': ['Guanajuato', 'Celaya'],
+  '39': ['Guerrero', 'Acapulco'],
+  '40': ['Guerrero', 'Chilpancingo'],
+  '42': ['Hidalgo', 'Pachuca'],
+  '44': ['Jalisco', 'Guadalajara'],
+  '45': ['Jalisco', 'Zapopan'],
+  '48': ['Jalisco', 'Puerto Vallarta'],
+  '50': ['Estado de Mexico', 'Toluca'],
+  '53': ['Estado de Mexico', 'Naucalpan'],
+  '54': ['Estado de Mexico', 'Tlalnepantla'],
+  '55': ['Estado de Mexico', 'Ecatepec'],
+  '57': ['Estado de Mexico', 'Nezahualcoyotl'],
+  '58': ['Michoacan', 'Morelia'],
+  '62': ['Morelos', 'Cuernavaca'],
+  '63': ['Nayarit', 'Tepic'],
+  '64': ['Nuevo Leon', 'Monterrey'],
+  '65': ['Nuevo Leon', 'Monterrey'],
+  '66': ['Nuevo Leon', 'San Nicolas de los Garza'],
+  '67': ['Nuevo Leon', 'Guadalupe'],
+  '68': ['Oaxaca', 'Oaxaca de Juarez'],
+  '72': ['Puebla', 'Puebla'],
+  '73': ['Puebla', 'Tehuacan'],
+  '76': ['Queretaro', 'Queretaro'],
+  '77': ['Quintana Roo', 'Chetumal'],
+  '78': ['San Luis Potosi', 'San Luis Potosi'],
+  '80': ['Sinaloa', 'Culiacan'],
+  '82': ['Sinaloa', 'Mazatlan'],
+  '83': ['Sonora', 'Hermosillo'],
+  '84': ['Sonora', 'Nogales'],
+  '85': ['Sonora', 'Ciudad Obregon'],
+  '86': ['Tabasco', 'Villahermosa'],
+  '87': ['Tamaulipas', 'Ciudad Victoria'],
+  '88': ['Tamaulipas', 'Nuevo Laredo'],
+  '89': ['Tamaulipas', 'Tampico'],
+  '90': ['Tlaxcala', 'Tlaxcala'],
+  '91': ['Veracruz', 'Xalapa-Enriquez'],
+  '92': ['Veracruz', 'Tuxpan'],
+  '93': ['Veracruz', 'Poza Rica'],
+  '94': ['Veracruz', 'Orizaba'],
+  '95': ['Veracruz', 'San Andres Tuxtla'],
+  '96': ['Veracruz', 'Coatzacoalcos'],
+  '97': ['Yucatan', 'Merida'],
+  '98': ['Zacatecas', 'Zacatecas'],
+  '99': ['Zacatecas', 'Fresnillo'],
+};
+
+export async function GET(req: NextRequest) {
+  const cp = (req.nextUrl.searchParams.get('cp') ?? '').trim();
+  if (!/^\d{5}$/.test(cp)) {
+    return NextResponse.json({ error: 'CP invalido' }, { status: 400 });
+  }
+  const row = DB[cp];
+  if (row) {
+    return NextResponse.json({
+      ok: true,
+      estado: row[0],
+      municipio: row[1],
+      colonias: row[2].map((n) => ({ nombre: n, tipo: 'Colonia' })),
+    });
+  }
+  const p = PREF[cp.slice(0, 2)];
+  if (p) {
+    return NextResponse.json({ ok: true, estado: p[0], municipio: p[1], colonias: [] });
+  }
+  return NextResponse.json({ error: 'CP no encontrado' }, { status: 404 });
+}

@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { normalizeMexicanCp } from '@/lib/utils/mexicanPostalCode';
 
 type ProfileRow = {
   first_name: string;
@@ -64,6 +65,7 @@ export default function VerificacionPage() {
   const [selfieFile, setSelfieFile] = useState<File | null>(null);
   const [cpLoading, setCpLoading] = useState(false);
   const [coloniasOptions, setColoniasOptions] = useState<string[]>([]);
+  const cpLookupGenRef = useRef(0);
 
   // Borra una foto de identidad del perfil
   const clearPhoto = async (field: 'ine_front_url' | 'ine_back_url' | 'selfie_ine_url') => {
@@ -73,29 +75,39 @@ export default function VerificacionPage() {
     await supabase.from('profiles').update({ [field]: '' }).eq('id', user.id);
   };
 
-  const lookupPostalCode = async (cp: string) => {
-    if (!/^\d{5}$/.test(cp)) return;
+  const lookupPostalCode = async (cpRaw: string) => {
+    const cp = normalizeMexicanCp(cpRaw);
+    if (!cp) return;
+    const gen = ++cpLookupGenRef.current;
     try {
       setCpLoading(true);
-      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
-      const json = await res.json();
-      const estado = json.estado || json.state || '';
-      const municipio = json.municipio || json.city || '';
+      const res = await fetch(`/api/cp?cp=${cp}`);
+      const json = (await res.json().catch(() => ({}))) as Record<string, unknown>;
+      if (gen !== cpLookupGenRef.current) return;
+      const estado = String(json.estado || json.state || '');
+      const municipio = String(json.municipio || json.city || '');
       if (estado || municipio) {
-        setForm(p => ({ ...p, state: estado || p.state, city: municipio || p.city }));
-        const colonias = json.colonias || [];
-        const nombres: string[] = colonias.map((c: any) => String(c.nombre || c || '').trim()).filter(Boolean);
+        const colonias = (json.colonias as unknown[]) || [];
+        const nombres: string[] = colonias
+          .map((c: unknown) => String((c as { nombre?: string })?.nombre ?? c ?? '').trim())
+          .filter(Boolean);
         setColoniasOptions(nombres);
-        if (nombres.length === 1) {
-          setForm(p => ({ ...p, neighborhood: nombres[0] }));
-        } else if (nombres.length > 0 && !nombres.includes(form.neighborhood)) {
-          setForm(p => ({ ...p, neighborhood: '' })); // Reset if current is invalid
-        }
+        setForm((p) => {
+          let neighborhood = p.neighborhood;
+          if (nombres.length === 1) neighborhood = nombres[0];
+          else if (nombres.length > 0 && !nombres.includes(p.neighborhood)) neighborhood = '';
+          return {
+            ...p,
+            state: estado || p.state,
+            city: municipio || p.city,
+            neighborhood,
+          };
+        });
       }
     } catch {
       // noop
     } finally {
-      setCpLoading(false);
+      if (gen === cpLookupGenRef.current) setCpLoading(false);
     }
   };
 
@@ -217,9 +229,9 @@ export default function VerificacionPage() {
             verification_rejection_reason: (profile as any).verification_rejection_reason ?? '',
           });
           // Si ya tiene un CP guardado, buscar colonias automáticamente
-          const savedZip = String((profile as any).zip_code ?? '').trim();
-          if (savedZip.length === 5) {
-            lookupPostalCode(savedZip);
+          const savedZipNorm = normalizeMexicanCp(String((profile as any).zip_code ?? ''));
+          if (savedZipNorm) {
+            void lookupPostalCode(savedZipNorm);
           }
         }
       } catch (err: unknown) {
@@ -484,10 +496,15 @@ export default function VerificacionPage() {
                   <input
                     value={form.zip_code}
                     onChange={(e) => {
-                      const cp = e.target.value;
-                      setForm((p) => ({ ...p, zip_code: cp }));
-                      if (cp.length === 5) lookupPostalCode(cp);
+                      const v = e.target.value.replace(/\D/g, '').slice(0, 5);
+                      setForm((p) => ({ ...p, zip_code: v }));
+                      if (v.length === 5) void lookupPostalCode(v);
                     }}
+                    onBlur={(e) => {
+                      const cp = normalizeMexicanCp(e.target.value);
+                      if (cp) void lookupPostalCode(cp);
+                    }}
+                    inputMode="numeric"
                     maxLength={5}
                     placeholder="5 dígitos"
                     className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"

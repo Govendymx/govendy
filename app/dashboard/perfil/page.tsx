@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { normalizeMexicanCp } from '@/lib/utils/mexicanPostalCode';
 import { PageTour } from '@/components/PageTour';
 import { pageTours } from '@/lib/tours/config';
 
@@ -70,15 +71,19 @@ export default function DashboardPerfilPage() {
   const [cpColonias, setCpColonias] = useState<string[]>([]);
   const [cpAutoFilled, setCpAutoFilled] = useState(false);
   const [cpError, setCpError] = useState('');
+  const cpLookupGenRef = useRef(0);
 
-  const lookupPostalCode = async (cp: string) => {
-    if (!/^\d{5}$/.test(cp)) return;
+  const lookupPostalCode = async (cpRaw: string) => {
+    const cp = normalizeMexicanCp(cpRaw);
+    if (!cp) return;
+    const gen = ++cpLookupGenRef.current;
     try {
       setCpLoading(true);
       setCpAutoFilled(false);
       setCpError('');
-      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
+      const res = await fetch(`/api/cp?cp=${encodeURIComponent(cp)}`);
       const json = await res.json();
+      if (gen !== cpLookupGenRef.current) return;
       console.log('[CP LOOKUP] Response:', json);
 
       // Check for estado/municipio - works with or without ok flag
@@ -86,17 +91,19 @@ export default function DashboardPerfilPage() {
       const municipio = json.municipio || json.city || '';
 
       if (estado || municipio) {
-        setForm((p) => ({
-          ...p,
-          state: estado || p.state,
-          city: municipio || p.city,
-        }));
         const colonias = json.colonias || [];
         const nombres = colonias.map((c: any) => String(c.nombre || c || '').trim()).filter(Boolean);
         setCpColonias(nombres);
-        if (nombres.length === 1) {
-          setForm((p) => ({ ...p, neighborhood: nombres[0] }));
-        }
+        setForm((p) => {
+          let neighborhood = p.neighborhood;
+          if (nombres.length === 1) neighborhood = nombres[0];
+          return {
+            ...p,
+            state: estado || p.state,
+            city: municipio || p.city,
+            neighborhood,
+          };
+        });
         setCpAutoFilled(true);
       } else {
         console.warn('[CP LOOKUP] No estado/municipio found in response:', json);
@@ -104,9 +111,9 @@ export default function DashboardPerfilPage() {
       }
     } catch (err) {
       console.error('[CP LOOKUP] Error:', err);
-      setCpError('Error al buscar el código postal');
+      if (gen === cpLookupGenRef.current) setCpError('Error al buscar el código postal');
     } finally {
-      setCpLoading(false);
+      if (gen === cpLookupGenRef.current) setCpLoading(false);
     }
   };
 
@@ -255,9 +262,9 @@ export default function DashboardPerfilPage() {
             nickname: String((row as any)?.nickname || ''),
           });
           // Si ya tiene un CP guardado, buscar colonias automáticamente
-          const savedZip = String(row?.zip_code ?? '').trim();
-          if (savedZip.length === 5) {
-            lookupPostalCode(savedZip);
+          const savedZipNorm = normalizeMexicanCp(String(row?.zip_code ?? ''));
+          if (savedZipNorm) {
+            void lookupPostalCode(savedZipNorm);
           }
         }
       } catch (e: unknown) {
@@ -976,8 +983,12 @@ export default function DashboardPerfilPage() {
                       onChange={(e) => {
                         const v = e.target.value.replace(/\D/g, '').slice(0, 5);
                         setForm((p) => ({ ...p, zip_code: v }));
-                        if (v.length === 5) lookupPostalCode(v);
+                        if (v.length === 5) void lookupPostalCode(v);
                         if (v.length < 5) { setCpAutoFilled(false); setCpColonias([]); }
+                      }}
+                      onBlur={(e) => {
+                        const cp = normalizeMexicanCp(e.target.value);
+                        if (cp) void lookupPostalCode(cp);
                       }}
                       inputMode="numeric"
                       maxLength={5}

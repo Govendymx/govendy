@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { supabase } from '@/lib/supabase/client';
+import { normalizeMexicanCp } from '@/lib/utils/mexicanPostalCode';
 
 type EstafetaWeightRange = {
   max_weight_kg: number;
@@ -140,19 +141,24 @@ export default function EstafetaCotizarPage() {
   const [recipientCpColonias, setRecipientCpColonias] = useState<string[]>([]);
   const [recipientCpError, setRecipientCpError] = useState('');
 
+  const senderCpLookupGenRef = useRef(0);
+  const recipientCpLookupGenRef = useRef(0);
   // Banner de Estafeta
   const [banners, setBanners] = useState<any[]>([]);
   const [bannerIdx, setBannerIdx] = useState(0);
 
 
   // Postal code lookup functions
-  const lookupSenderPostalCode = async (cp: string) => {
-    if (!/^\d{5}$/.test(cp)) return;
+  const lookupSenderPostalCode = async (cpRaw: string) => {
+    const cp = normalizeMexicanCp(cpRaw);
+    if (!cp) return;
+    const gen = ++senderCpLookupGenRef.current;
     try {
       setSenderCpLoading(true);
       setSenderCpError('');
-      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
+      const res = await fetch(`/api/postal-code/lookup?cp=${encodeURIComponent(cp)}`);
       const json = await res.json();
+      if (gen !== senderCpLookupGenRef.current) return;
       const estado = json.estado || json.state || '';
       const municipio = json.municipio || json.city || '';
       if (estado || municipio) {
@@ -165,19 +171,22 @@ export default function EstafetaCotizarPage() {
         setSenderCpError('No se encontró información para este CP');
       }
     } catch {
-      setSenderCpError('Error al buscar el código postal');
+      if (gen === senderCpLookupGenRef.current) setSenderCpError('Error al buscar el código postal');
     } finally {
-      setSenderCpLoading(false);
+      if (gen === senderCpLookupGenRef.current) setSenderCpLoading(false);
     }
   };
 
-  const lookupRecipientPostalCode = async (cp: string) => {
-    if (!/^\d{5}$/.test(cp)) return;
+  const lookupRecipientPostalCode = async (cpRaw: string) => {
+    const cp = normalizeMexicanCp(cpRaw);
+    if (!cp) return;
+    const gen = ++recipientCpLookupGenRef.current;
     try {
       setRecipientCpLoading(true);
       setRecipientCpError('');
-      const res = await fetch(`/api/postal-code/lookup?cp=${cp}`);
+      const res = await fetch(`/api/postal-code/lookup?cp=${encodeURIComponent(cp)}`);
       const json = await res.json();
+      if (gen !== recipientCpLookupGenRef.current) return;
       const estado = json.estado || json.state || '';
       const municipio = json.municipio || json.city || '';
       if (estado || municipio) {
@@ -190,9 +199,9 @@ export default function EstafetaCotizarPage() {
         setRecipientCpError('No se encontró información para este CP');
       }
     } catch {
-      setRecipientCpError('Error al buscar el código postal');
+      if (gen === recipientCpLookupGenRef.current) setRecipientCpError('Error al buscar el código postal');
     } finally {
-      setRecipientCpLoading(false);
+      if (gen === recipientCpLookupGenRef.current) setRecipientCpLoading(false);
     }
   };
 
@@ -809,6 +818,11 @@ export default function EstafetaCotizarPage() {
                       setSenderPostalCode(value);
                       if (value.length === 5) void lookupSenderPostalCode(value);
                     }}
+                    onBlur={(e) => {
+                      const cp = normalizeMexicanCp(e.target.value);
+                      if (cp) void lookupSenderPostalCode(cp);
+                    }}
+                    inputMode="numeric"
                     className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${senderCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="01234"
@@ -954,6 +968,11 @@ export default function EstafetaCotizarPage() {
                       setRecipientPostalCode(value);
                       if (value.length === 5) void lookupRecipientPostalCode(value);
                     }}
+                    onBlur={(e) => {
+                      const cp = normalizeMexicanCp(e.target.value);
+                      if (cp) void lookupRecipientPostalCode(cp);
+                    }}
+                    inputMode="numeric"
                     className={`mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm outline-none focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 ${recipientCpColonias.length > 0 ? 'border-green-500' : 'border-gray-300'
                       }`}
                     placeholder="44100"
