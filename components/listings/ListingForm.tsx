@@ -1677,7 +1677,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           type="text"
                           value={customSizeChart.title || ''}
                           onChange={e => setCustomSizeChart(p => p ? { ...p, title: e.target.value } : p)}
-                          className="w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                          className="w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                           placeholder="Ej: Medidas según nuestra marca"
                         />
                       </div>
@@ -1828,7 +1828,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           disabled={disabledAttributes.includes(attr.id)}
                           value={attributes[attr.id] || ''}
                           onChange={e => setAttributes(prev => ({ ...prev, [attr.id]: e.target.value }))}
-                          className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500 disabled:bg-gray-100"
+                          className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 disabled:bg-gray-100"
                           placeholder={attr.placeholder}
                         />
                       </div>
@@ -1896,7 +1896,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                                   <select
                                     value={meliAttrValues[mAttr.id] || ''}
                                     onChange={e => setMeliAttrValues(prev => ({ ...prev, [mAttr.id]: e.target.value }))}
-                                    className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                                    className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50"
                                   >
                                     <option value="">Seleccionar...</option>
                                     {mAttr.values.map(v => (
@@ -1907,7 +1907,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                                   <select
                                     value={meliAttrValues[mAttr.id] || ''}
                                     onChange={e => setMeliAttrValues(prev => ({ ...prev, [mAttr.id]: e.target.value }))}
-                                    className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                                    className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50"
                                   >
                                     <option value="">Seleccionar...</option>
                                     <option value="true">Sí</option>
@@ -1918,7 +1918,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                                     type="text"
                                     value={meliAttrValues[mAttr.id] || ''}
                                     onChange={e => setMeliAttrValues(prev => ({ ...prev, [mAttr.id]: e.target.value }))}
-                                    className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-orange-400 focus:ring-orange-400"
+                                    className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-400/50"
                                     placeholder={mAttr.hint || `Ej: ${mAttr.name}`}
                                   />
                                 )}
@@ -2115,7 +2115,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             type="number"
                             value={weight}
                             onChange={e => setWeight(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                             placeholder="0.5"
                           />
                         </div>
@@ -2125,7 +2125,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             type="number"
                             value={length}
                             onChange={e => setLength(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                             placeholder="20"
                           />
                         </div>
@@ -2135,7 +2135,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             type="number"
                             value={width}
                             onChange={e => setWidth(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                             placeholder="15"
                           />
                         </div>
@@ -2145,7 +2145,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             type="number"
                             value={height}
                             onChange={e => setHeight(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                             placeholder="10"
                           />
                         </div>
@@ -2282,7 +2282,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                               value={customShippingPrice}
                               onChange={e => setCustomShippingPrice(e.target.value)}
                               disabled={customShippingPrice === '0'}
-                              className={`block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500 ${customShippingPrice === '0' ? 'bg-gray-100 text-gray-500' : ''}`}
+                              className={`block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 ${customShippingPrice === '0' ? 'bg-gray-100 text-gray-500' : ''}`}
                               placeholder="0.00"
                             />
                           </div>
@@ -2304,7 +2304,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                           <select
                             value={selectedShippingCarrier}
                             onChange={e => setSelectedShippingCarrier(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 text-sm shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
                           >
                             <option value="">Selecciona una opción</option>
                             <option value="estafeta">Estafeta</option>
