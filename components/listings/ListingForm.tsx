@@ -596,45 +596,32 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
     }
   }, [title, autoDetectionEnabled]);
 
-  // ── Phase 2: Domain Discovery override (async, higher priority) ──
-  // Maps ML category_path to gender/category/subcategory for backward compatibility
-  const handleSelectDomainSuggestion = (suggestion: typeof domainSuggestion) => {
-    if (!suggestion?.category_name) return;
+  // ── Phase 2: Domain Discovery (MercadoLibre) → árbol local NEW_CATEGORIES_CONFIG ──
+  const handleSelectDomainSuggestion = useCallback((suggestion: DomainSuggestion | null) => {
+    if (!suggestion) return;
+    if (!suggestion.category_name && !suggestion.category_id && !(suggestion.category_path?.length)) return;
 
-    const path = suggestion.category_path || [];
-    const suggestedId = suggestion.category_id;
+    const local = mapMlSuggestionToLocal(suggestion);
+    if (!local) return;
 
     isAutoDetecting.current = true;
-
-    // Map path to gender/category/subcategory
-    if (path.length >= 1) {
-      // path[0] = root (e.g., "Hogar, Muebles y Jardín") → maps to gender
-      setGender(path[0].name as any);
-    }
-    if (path.length >= 2) {
-      // Second-to-last = category, last = subcategory
-      if (path.length === 2) {
-        setCategory(path[1].name);
-        setSubcategory('');
-      } else {
-        // path[-2] = category, path[-1] = subcategory
-        setCategory(path[path.length - 2].name);
-        setSubcategory(path[path.length - 1].name);
-      }
-    } else {
-      setCategory(suggestion.category_name);
-      setSubcategory('');
-    }
-
-    setMlCategoryId(suggestedId);
-    setTimeout(() => { isAutoDetecting.current = false; }, 500);
-  };
+    setGender(local.root);
+    setCategory(local.categoryLabel);
+    setSubcategory(local.subcategoryId);
+    setMlCategoryId(suggestion.category_id || null);
+    setTimeout(() => {
+      isAutoDetecting.current = false;
+    }, 500);
+  }, []);
 
   // Auto-apply when domainSuggestion changes
   useEffect(() => {
-    if (!autoDetectionEnabled || !domainSuggestion?.category_name) return;
+    if (!autoDetectionEnabled || !domainSuggestion) return;
+    if (!domainSuggestion.category_name && !domainSuggestion.category_id && !(domainSuggestion.category_path?.length)) {
+      return;
+    }
     handleSelectDomainSuggestion(domainSuggestion);
-  }, [domainSuggestion, autoDetectionEnabled]);
+  }, [domainSuggestion, autoDetectionEnabled, handleSelectDomainSuggestion]);
 
   // ELIMINADO: El reset agresivo de categoría impedía escribir categorías nuevas o selecciones manuales fluidas.
   // Solo se sincroniza si es necesario en la detección automática.

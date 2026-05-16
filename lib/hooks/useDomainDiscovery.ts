@@ -34,8 +34,8 @@ export function useDomainDiscovery(title: string, enabled: boolean = true): UseD
     useEffect(() => {
         const trimmed = title.trim();
 
-        // Don't query for very short titles
-        if (!enabled || trimmed.length < 5) {
+        // Alineado con /api/meli/domain-discovery (mínimo 3 caracteres)
+        if (!enabled || trimmed.length < 3) {
             setSuggestions([]);
             setIsLoading(false);
             return;

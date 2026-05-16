@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const file     = formData.get('file') as File | null;
     const kind     = String(formData.get('kind') ?? '');
-    const folder   = String(formData.get('folder') ?? kind || 'products');
+    const folder   = String((formData.get('folder') ?? kind) || 'products');
 
     if (!file) return NextResponse.json({ error: 'No se proporcionó archivo' }, { status: 400 });
     if (file.size > 15 * 1024 * 1024) return NextResponse.json({ error: 'Máximo 15 MB por imagen' }, { status: 400 });

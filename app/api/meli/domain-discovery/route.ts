@@ -78,11 +78,15 @@ export async function GET(req: NextRequest) {
         const rawData = await response.json();
 
         // Process suggestions and fetch category paths
-        const topItems = Array.isArray(rawData) ? rawData.slice(0, 5) : [];
+        const topItems = Array.isArray(rawData)
+            ? rawData.slice(0, 5)
+            : rawData && typeof rawData === 'object' && Array.isArray((rawData as any).results)
+              ? (rawData as any).results.slice(0, 5)
+              : [];
 
-        // Fetch path for the first suggestion (most relevant)
+        // Ruta completa para cada sugerencia (breadcrumb en UI)
         const suggestions = await Promise.all(
-            topItems.map(async (item: any, index: number) => {
+            topItems.map(async (item: any) => {
                 const base = {
                     domain_id: item.domain_id || null,
                     domain_name: item.domain_name || null,
@@ -91,8 +95,7 @@ export async function GET(req: NextRequest) {
                     category_path: [] as { id: string; name: string }[],
                 };
 
-                // Only fetch path for top 2 suggestions to save time
-                if (index < 2 && item.category_id) {
+                if (item.category_id) {
                     base.category_path = await fetchCategoryPath(item.category_id);
                 }
 
