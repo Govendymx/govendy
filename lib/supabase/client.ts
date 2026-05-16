@@ -1,4 +1,4 @@
-import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 
 // IMPORTANT: Use STATIC process.env references — webpack only inlines static access.
 // process.env[variable] (dynamic) does NOT get replaced at build time!
@@ -18,22 +18,6 @@ const supabaseUrl = normalizeSupabaseUrl(rawUrl);
 const supabaseAnonKey = rawKey;
 
 export const isSupabaseConfigured = Boolean(supabaseUrl && supabaseAnonKey);
-
-function createBrowserClient(url: string, anonKey: string): SupabaseClient {
-  return createClient(url, anonKey, {
-    auth: {
-      persistSession: true,
-      autoRefreshToken: true,
-      detectSessionInUrl: true,
-      flowType: 'pkce',
-    },
-    global: {
-      headers: {
-        'x-client-info': 'pocket-app@1.0.0',
-      },
-    },
-  });
-}
 
 export const supabase = isSupabaseConfigured
   ? createBrowserClient(supabaseUrl, supabaseAnonKey)
