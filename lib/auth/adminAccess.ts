@@ -26,7 +26,7 @@ function readAdminCache(request: NextRequest): boolean | null {
   const raw = request.cookies.get(ADMIN_CACHE_COOKIE)?.value;
   if (!raw) return null;
   try {
-    const parsed = JSON.parse(raw) as { v?: number; ok?: boolean };
+    const parsed = JSON.parse(raw) as { ts?: number; ok?: boolean };
     if (!parsed.ts || Date.now() - parsed.ts >= ADMIN_CACHE_MS) return null;
     return Boolean(parsed.ok);
   } catch {
