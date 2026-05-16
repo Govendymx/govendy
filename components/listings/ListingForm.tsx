@@ -1848,7 +1848,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       </svg>
                     )}
                   </div>
-                  <p className="text-[10px] text-gray-400">Completa los que apliquen a tu producto. Los campos con * son requeridos.</p>
+                  <p className="text-[10px] text-gray-400">Completa los que apliquen a tu producto. Ningún dato es obligatorio.</p>
 
                   {meliAttrGroups.map((group) => {
                     const isCollapsed = collapsedGroups.has(group.group_id);
@@ -1872,7 +1872,6 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             <h4 className="text-xs font-bold text-gray-800">{group.group_name}</h4>
                             <span className="text-[10px] text-gray-400">
                               {filledCount}/{group.attributes.length}
-                              {requiredCount > 0 && ` · ${requiredCount} requeridos`}
                             </span>
                           </div>
                           <svg
@@ -1890,7 +1889,6 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                               <div key={mAttr.id}>
                                 <label className="block text-xs font-medium text-gray-700">
                                   {mAttr.name}
-                                  {mAttr.required && <span className="text-red-400 ml-0.5">*</span>}
                                 </label>
                                 {mAttr.values && mAttr.values.length > 0 ? (
                                   <select
