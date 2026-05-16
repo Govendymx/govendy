@@ -575,6 +575,7 @@ export class CheckoutService {
         shipping_method: isAllDigital ? 'digital' : (isPickup ? 'personal_delivery' : (isSellerManagedOrder ? 'seller_managed' : (isT1Shipping ? 'gopocket_premium' : 'gopocket'))),
         status: 'pending_payment',
         payment_method: paymentMethod,
+        payment_method_type: paymentMethod === 'direct_contact' ? 'direct' : 'platform',
         subtotal: groupSubtotal,
         shipping_fee: groupShipping,
         commission_fee: commissionFee,
@@ -787,13 +788,13 @@ export class CheckoutService {
       try {
         await decrementStockForOrders(createdOrderIds);
         
-        // Update order status to indicate it's waiting for contact/payment
-        const now = new Date().toISOString();
+        // Update order status to indicate it's waiting for voucher/payment
         for (const info of createdOrdersInfo) {
           await admin
             .from('orders')
             .update({
-              status: 'pending_contact', // Using pending_contact, assuming we can use custom strings or pending_payment
+              status: 'awaiting_voucher',
+              payment_method_type: 'direct',
             } as any)
             .eq('id', info.id);
         }

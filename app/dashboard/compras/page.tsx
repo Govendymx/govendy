@@ -513,7 +513,7 @@ export default function DashboardComprasPage() {
       let matchesFilter = true;
       switch (activeFilter) {
         case 'pending_payment':
-          matchesFilter = status === 'pending_payment';
+          matchesFilter = status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment';
           break;
         case 'paid':
           matchesFilter = status === 'paid';
@@ -578,7 +578,7 @@ export default function DashboardComprasPage() {
       const isCompleted = status === 'completed' || status === 'delivered';
       const isShipped = status === 'shipped' || Boolean(tracking);
 
-      if (status === 'pending_payment') counts.pending_payment++;
+      if (status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment') counts.pending_payment++;
       if (status === 'paid') counts.paid++;
       if (isShipped) counts.shipped++;
       if (isCompleted) counts.delivered++;
@@ -1945,7 +1945,7 @@ export default function DashboardComprasPage() {
                                     Copiar
                                   </button>
                                 </div>
-                                {status === 'pending_payment' ? (
+                                {status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment' ? (
                                   <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold text-red-800 ring-1 ring-red-300">
                                     PENDIENTE PAGO
                                   </span>
@@ -2071,7 +2071,7 @@ export default function DashboardComprasPage() {
                               </div>
 
                               {/* Contador 7 d�as Subasta */}
-                              {isAuction && !shippedAt && (status === 'pending_payment' || status === 'paid') && (
+                              {isAuction && !shippedAt && (status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment' || status === 'paid') && (
                                 <div className="mb-2">
                                   <AuctionDeadline createdAt={o?.created_at} orderStatus={o?.status} />
                                 </div>
@@ -2163,7 +2163,7 @@ export default function DashboardComprasPage() {
                               ) : null}
 
                               {/* Informaci�n de estado de pago y producto enviado */}
-                              {status === 'pending_payment' ? (
+                              {status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment' ? (
                                 <div className="mt-3 space-y-2">
                                   <div className="rounded-lg border border-emerald-200 bg-white/80 p-2.5">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -2178,31 +2178,33 @@ export default function DashboardComprasPage() {
                                       </div>
 
                                       <div className="flex flex-col sm:flex-row gap-2">
-                                        <button
-                                          type="button"
-                                          onClick={() => handlePayOrder(orderId, Number(o?.total || 0))}
-                                          disabled={isPaying[orderId]}
-                                          className="shrink-0 rounded-md bg-brand-emerald px-4 py-1.5 text-[11px] font-bold text-white shadow-sm hover:bg-brand-emerald/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
-                                        >
-                                          {isPaying[orderId] ? (
-                                            <>
-                                              <svg className="animate-spin h-3 w-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                              </svg>
-                                              Procesando...
-                                            </>
-                                          ) : (
-                                            <>
-                                              <span>Pagar ahora</span>
-                                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                <path d="M5 12h14" />
-                                                <path d="M12 5l7 7-7 7" />
-                                              </svg>
-                                            </>
-                                          )}
-                                        </button>
-                                        {checkoutSessionByOrderId[orderId] && (
+                                        {status === 'pending_payment' && (
+                                          <button
+                                            type="button"
+                                            onClick={() => handlePayOrder(orderId, Number(o?.total || 0))}
+                                            disabled={isPaying[orderId]}
+                                            className="shrink-0 rounded-md bg-brand-emerald px-4 py-1.5 text-[11px] font-bold text-white shadow-sm hover:bg-brand-emerald/90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                                          >
+                                            {isPaying[orderId] ? (
+                                              <>
+                                                <svg className="animate-spin h-3 w-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                </svg>
+                                                Procesando...
+                                              </>
+                                            ) : (
+                                              <>
+                                                <span>Pagar ahora</span>
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                  <path d="M5 12h14" />
+                                                  <path d="M12 5l7 7-7 7" />
+                                                </svg>
+                                              </>
+                                            )}
+                                          </button>
+                                        )}
+                                        {status === 'pending_payment' && checkoutSessionByOrderId[orderId] && (
                                           <Link
                                             href={`/pago/${checkoutSessionByOrderId[orderId]}`}
                                             className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-white flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
@@ -2212,7 +2214,20 @@ export default function DashboardComprasPage() {
                                               <polyline points="17 8 12 3 7 8" />
                                               <line x1="12" y1="3" x2="12" y2="15" />
                                             </svg>
-                                            Subir comprobante
+                                            Pagar en Línea
+                                          </Link>
+                                        )}
+                                        {(status === 'awaiting_voucher' || status === 'verifying_payment') && (
+                                          <Link
+                                            href={`/orders/${orderId}/pay`}
+                                            className="shrink-0 rounded-md bg-white border border-brand-emerald px-4 py-1.5 text-[11px] font-bold text-brand-emerald shadow-sm hover:bg-white flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
+                                          >
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                              <polyline points="17 8 12 3 7 8" />
+                                              <line x1="12" y1="3" x2="12" y2="15" />
+                                            </svg>
+                                            {status === 'awaiting_voucher' ? 'Subir Comprobante' : 'Ver Comprobante'}
                                           </Link>
                                         )}
                                       </div>

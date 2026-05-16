@@ -762,6 +762,7 @@ export default function DashboardPage() {
           { label: 'Mi panel', href: '/dashboard', tone: 'pink' },
           { label: 'Mi perfil', href: '/dashboard/perfil' },
           { label: 'Mis publicaciones', href: '/dashboard/listings' },
+          { label: 'Métodos de pago', href: '/dashboard/settings/payment-methods' },
         ],
       },
       {

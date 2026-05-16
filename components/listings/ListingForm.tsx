@@ -1001,6 +1001,24 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
           );
         }
       }
+      // --- CRITICAL FIX: Verify User Payment Methods ---
+      const { data: userData } = await supabase.auth.getUser();
+      if (!userData.user) throw new Error('Usuario no autenticado');
+
+      const { data: payMethods, error: payErr } = await supabase
+        .from('seller_payment_methods')
+        .select('id')
+        .eq('seller_id', userData.user.id)
+        .eq('is_active', true)
+        .limit(1);
+      
+      // If error is 42P01 (relation does not exist), ignore it so we don't break the app if the user hasn't run the SQL yet
+      const isMissingTable = payErr && String(payErr.code) === '42P01';
+      
+      if (!isMissingTable && (!payMethods || payMethods.length === 0)) {
+        throw new Error('Debes configurar al menos un Método de Pago Directo en "Mi cuenta > Métodos de pago" antes de poder publicar o guardar cambios.');
+      }
+      // ------------------------------------------------
 
       // Validar que el stock de variantes no supere el stock principal
       if (sizeVariants.length > 0) {
@@ -1066,9 +1084,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
       // --------------------------------------------------------------------------
 
       const finalImages = [...existingImages, ...uploadedUrls];
-      const { data: userData } = await supabase.auth.getUser();
-      if (!userData.user) throw new Error('Usuario no autenticado');
-
+      // User is already validated above
       // Calcular shipping_price para guardar en la BD
       // settle-one usa este valor para determinar el costo de envío GoVendy
       let computedShippingPrice = 0;

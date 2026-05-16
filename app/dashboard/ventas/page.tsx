@@ -217,7 +217,7 @@ export default function DashboardVentasPage() {
           // Órdenes como vendedor del usuario impersonado
           const ordersResult = await queryAsUser({
             table: 'orders',
-            select: 'id,status,total,subtotal,shipping_fee,commission_fee,coupon_discount,shipping_subsidy,shipping_option_id,shipping_carrier,shipping_by_seller,paid_to_seller_at,created_at,buyer_id,tracking_number,shipping_label_url,shipping_method,order_source,isr_withheld,iva_withheld',
+            select: 'id,status,total,subtotal,shipping_fee,commission_fee,coupon_discount,shipping_subsidy,shipping_option_id,shipping_carrier,shipping_by_seller,paid_to_seller_at,created_at,buyer_id,tracking_number,shipping_label_url,shipping_method,order_source,isr_withheld,iva_withheld,payment_method_type,buyer_payment_voucher_url,seller_payment_details',
             filters: { userColumn: 'seller_id' },
             order: { column: 'created_at', ascending: false },
             limit: 500,
@@ -1980,6 +1980,63 @@ export default function DashboardVentasPage() {
                                 {formatMoney(netEarnings)}
                               </span>
                             </div>
+
+                            {/* Acciones de Pago Directo */}
+                            {o?.payment_method_type === 'direct' && (
+                              <div className="my-3 space-y-2 rounded-xl border border-blue-200 bg-blue-50 p-3">
+                                <div className="text-[11px] font-bold text-blue-900">Pago Directo (P2P)</div>
+                                {o?.status === 'awaiting_voucher' && (
+                                  <div className="text-[10px] text-blue-800">
+                                    Esperando que el comprador suba su comprobante de pago.
+                                  </div>
+                                )}
+                                {o?.status === 'verifying_payment' && o?.buyer_payment_voucher_url && (
+                                  <div className="space-y-2">
+                                    <div className="text-[10px] text-blue-800">El comprador ha subido su comprobante.</div>
+                                    <a href={o.buyer_payment_voucher_url} target="_blank" rel="noopener noreferrer" className="block text-center text-[10px] font-bold text-blue-700 underline">
+                                      Ver Comprobante
+                                    </a>
+                                    <div className="flex gap-2">
+                                      <button
+                                        onClick={async () => {
+                                          if (!confirm('¿Confirmas que ya recibiste el dinero en tu cuenta?')) return;
+                                          try {
+                                            const res = await fetch('/api/orders/voucher/approve', {
+                                              method: 'POST',
+                                              headers: { 'Content-Type': 'application/json' },
+                                              body: JSON.stringify({ orderId: o.id })
+                                            });
+                                            if (res.ok) window.location.reload();
+                                            else alert('Error al aprobar el pago.');
+                                          } catch (e) { alert('Error de conexión'); }
+                                        }}
+                                        className="flex-1 rounded bg-green-600 py-1.5 text-[10px] font-bold text-white hover:bg-green-700"
+                                      >
+                                        Aprobar Pago
+                                      </button>
+                                      <button
+                                        onClick={async () => {
+                                          const reason = prompt('Motivo del rechazo:');
+                                          if (!reason) return;
+                                          try {
+                                            const res = await fetch('/api/orders/voucher/reject', {
+                                              method: 'POST',
+                                              headers: { 'Content-Type': 'application/json' },
+                                              body: JSON.stringify({ orderId: o.id, reason })
+                                            });
+                                            if (res.ok) window.location.reload();
+                                            else alert('Error al rechazar.');
+                                          } catch (e) { alert('Error de conexión'); }
+                                        }}
+                                        className="flex-1 rounded bg-red-600 py-1.5 text-[10px] font-bold text-white hover:bg-red-700"
+                                      >
+                                        Rechazar
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                            )}
 
                             <div className="space-y-2">
                               {!isDigitalOrder && !(o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup') ? (

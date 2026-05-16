@@ -942,7 +942,11 @@ export default function CheckoutPage() {
         // console.warn('[CHECKOUT] Error vaciando carrito (no crítico):', clearErr);
       }
 
-      window.location.href = `/compra-exitosa?orderId=${createdOrderIds[0]}`;
+      if (paymentMethod === 'direct_contact') {
+        window.location.href = `/orders/${createdOrderIds[0]}/pay`;
+      } else {
+        window.location.href = `/compra-exitosa?orderId=${createdOrderIds[0]}`;
+      }
     } catch (err: unknown) {
       // console.error(err);
       setSuccess(null);
@@ -1008,21 +1012,56 @@ export default function CheckoutPage() {
 
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
-            <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-brand-emerald/20 sm:p-8">
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-brand-emerald/10 text-brand-emerald">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17 6.1H3" />
-                    <path d="M21 12.1H3" />
-                    <path d="M15.1 18H3" />
-                  </svg>
-                </div>
-                <div>
-                  <h2 className="text-lg font-bold text-gray-900">Trato Directo</h2>
-                  <p className="mt-1 text-sm text-gray-600">
-                    GoVendy no retiene tu dinero. Una vez que confirmes tu compra, te pondremos en contacto directo con el vendedor para que acuerden el método de pago y la entrega.
-                  </p>
-                </div>
+            <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
+              <h2 className="text-lg font-bold text-gray-900">Método de Pago</h2>
+              <p className="mt-1 text-sm text-gray-600">Selecciona cómo deseas pagar tu compra.</p>
+              
+              <div className="mt-4 grid gap-3">
+                {enabledMethods.some(m => m.key === 'mercadopago') && (
+                  <label className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${paymentMethod === 'mercadopago' ? 'border-brand-emerald bg-emerald-50 ring-1 ring-brand-emerald' : 'border-black/5 bg-white hover:bg-gray-50'}`}>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex min-w-0 items-center gap-3">
+                        <img src="/payment-logos/mercadopago.png" alt="MercadoPago" className="h-8 w-auto object-contain" />
+                        <div>
+                          <div className="font-bold text-gray-900">Pago en Línea Seguro</div>
+                          <div className="text-xs text-gray-500">Paga con tarjeta de crédito, débito o saldo en MercadoPago.</div>
+                        </div>
+                      </div>
+                      <input 
+                        type="radio" 
+                        name="paymentMethod" 
+                        value="mercadopago" 
+                        checked={paymentMethod === 'mercadopago'} 
+                        onChange={() => setPaymentMethod('mercadopago')}
+                        className="h-4 w-4 text-brand-emerald focus:ring-brand-emerald" 
+                      />
+                    </div>
+                  </label>
+                )}
+
+                <label className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${paymentMethod === 'direct_contact' ? 'border-brand-emerald bg-emerald-50 ring-1 ring-brand-emerald' : 'border-black/5 bg-white hover:bg-gray-50'}`}>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex min-w-0 items-center gap-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900">Pago Directo al Vendedor</div>
+                        <div className="text-xs text-gray-500">Acuerda el pago y sube tu comprobante (Transferencia, Oxxo, etc).</div>
+                      </div>
+                    </div>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="direct_contact" 
+                      checked={paymentMethod === 'direct_contact'} 
+                      onChange={() => setPaymentMethod('direct_contact')}
+                      className="h-4 w-4 text-brand-emerald focus:ring-brand-emerald" 
+                    />
+                  </div>
+                </label>
               </div>
             </section>
 
