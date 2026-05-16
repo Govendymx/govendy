@@ -41,24 +41,24 @@ export function TrustPanel() {
         <div className="space-y-5">
           <div className="flex gap-3">
             <div className="shrink-0">
-              <RefreshCw className="h-5 w-5 text-green-600" />
+              <ShieldCheck className="h-5 w-5 text-brand-emerald" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-gray-900">Devoluciones fáciles</h4>
+              <h4 className="text-sm font-bold text-gray-900">Tu paquete asegurado</h4>
               <p className="mt-1 text-xs leading-relaxed text-gray-600">
-                Realiza devoluciones locales gratuitas por defectos en compras elegibles.
+                Con envíos GoVendy tu paquete está asegurado, pídele a tu vendedor que te envíe por envío GoVendy para que podamos vigilar tu producto.
               </p>
             </div>
           </div>
 
           <div className="flex gap-3">
             <div className="shrink-0">
-              <DollarSign className="h-5 w-5 text-green-600" />
+              <DollarSign className="h-5 w-5 text-brand-emerald" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-gray-900">Garantía de devolución de dinero</h4>
+              <h4 className="text-sm font-bold text-gray-900">Pagos Seguros</h4>
               <p className="mt-1 text-xs leading-relaxed text-gray-600">
-                Solicita un reembolso si tu pedido no se envía, no llega o hay defectos en el producto.
+                Transacciones monitoreadas con tecnología de encriptación líder para proteger tu información.
               </p>
             </div>
           </div>
@@ -66,7 +66,7 @@ export function TrustPanel() {
 
         {/* Footer */}
         <div className="mt-2 text-[10px] text-gray-400 leading-tight">
-          Solo los pedidos realizados y pagados a través de GoVendy reciben la protección gratuita de <span className="font-bold text-yellow-500">GoVendy Compra Segura</span>
+          Solo los pedidos realizados y pagados a través de GoVendy reciben la protección gratuita de <span className="font-bold text-yellow-500">GoVendy Entrega Segura</span>
         </div>
       </div>
     </div>
