@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import type { TemplateBlock } from '@/lib/templates/blocks';
 import { blocksToPlainText } from '@/lib/templates/text';
@@ -15,7 +15,8 @@ import ImageUploader from '@/components/listings/ImageUploader';
 import { SmartCategorySelector } from '@/components/listings/SmartCategorySelector';
 import { MLCategorySelector } from '@/components/listings/MLCategorySelector';
 import { detectCategory } from '@/lib/category-detection';
-import { useDomainDiscovery } from '@/lib/hooks/useDomainDiscovery';
+import { useDomainDiscovery, type DomainSuggestion } from '@/lib/hooks/useDomainDiscovery';
+import { mapMlSuggestionToLocal } from '@/lib/meli/mapMlSuggestionToLocal';
 import { useMeliAttributes, type MeliAttribute, type MeliAttributeGroup } from '@/lib/hooks/useMeliAttributes';
 import { taskQueue } from '@/lib/queue/TaskQueue';
 import { PublicationAssistantPocky } from '@/components/mascot/PublicationAssistantPocky';

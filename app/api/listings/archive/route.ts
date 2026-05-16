@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { ListingsRepository } from '@/lib/repositories/listings.repository';
+import { r2UrlToBaseKey, deleteR2ImageVariants, isR2Configured } from '@/lib/r2.service';
 
 type Body = {
   listingId: string;
@@ -63,6 +64,17 @@ export async function POST(req: NextRequest) {
 
     // Update with Repository (includes fallbacks)
     await repo.update(listingId, patch);
+
+    // ── Borrar imágenes de R2 de forma asíncrona (no bloqueante) ─────────────
+    if (isR2Configured()) {
+      const images: string[] = Array.isArray(listing.images) ? listing.images : [];
+      setImmediate(async () => {
+        for (const url of images) {
+          const base = r2UrlToBaseKey(url);
+          if (base) await deleteR2ImageVariants(base).catch(() => null);
+        }
+      });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (e: unknown) {
