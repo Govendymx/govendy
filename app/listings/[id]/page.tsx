@@ -22,7 +22,7 @@ import { LiveBadge } from '@/components/LiveBadge';
 import { RelatedProducts } from '@/components/listings/RelatedProducts';
 import { SidebarBanner } from '@/components/listings/SidebarBanner';
 import { SellerSidebarReputation } from '@/components/listings/SellerSidebarReputation';
-import { PocketCashPromo } from '@/components/listings/PocketCashPromo';
+import { SafeShoppingPromo } from '@/components/listings/SafeShoppingPromo';
 import { Flame, Gavel, Flag, Play } from 'lucide-react';
 import { ReportModal } from '@/components/listings/ReportModal';
 import { ClothingSizeChart } from '@/components/listings/ClothingSizeChart';
@@ -1338,7 +1338,7 @@ export default function ListingDetailPage() {
               {/* Trust Panels in Empty Space */}
               <div className="hidden lg:grid gap-4 grid-cols-2">
                 <TrustPanel />
-                <PocketCashPromo />
+                <SafeShoppingPromo />
               </div>
 
               {/* Wholesale Pricing Table */}
