@@ -518,11 +518,10 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   const handleRteChange = (html: string) => {
     setRichTextContent(html);
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const plain = doc.body.textContent || '';
+    const plain = (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
     setDescription(plain);
-    if (!selectedTemplateId) {
-      setDescriptionBlocks([{ type: 'richtext', content: html }]);
-    }
+    // Siempre guardar HTML en description_blocks (fuente de verdad para publicar)
+    setDescriptionBlocks([{ type: 'richtext', content: html }]);
   };
 
   const categories = useMemo(() => {
@@ -923,8 +922,11 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
       // 1. Fix plain description (used for fallbacks/search)
       const finalDescriptionText = replaceBlobsInString(description);
 
-      // 2. Fix blocks (used for rendering)
+      // 2. Fix blocks (used for rendering) — en modo editor rico, forzar HTML actual
       let finalDescriptionBlocks = descriptionBlocks ? JSON.parse(JSON.stringify(descriptionBlocks)) : null;
+      if (descriptionMode === 'richtext' && richTextContent.trim()) {
+        finalDescriptionBlocks = [{ type: 'richtext', content: replaceBlobsInString(richTextContent) }];
+      }
       if (finalDescriptionBlocks) {
         finalDescriptionBlocks = finalDescriptionBlocks.map((block: any) => {
           // Fix RichText blocks (HTML content)
@@ -2250,12 +2252,12 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     </>
                   )}
 
-                  <div className={`mt-4 rounded-xl border ${(!limitsUsage || limitsUsage.plan === 'free') ? 'border-amber-200 bg-amber-50/50' : 'border-gray-100 bg-gray-50'} p-4`} data-mode-id="seller_managed">
+                  <div className={`mt-4 rounded-xl border ${(!limitsUsage || limitsUsage.plan === 'basic') ? 'border-amber-200 bg-amber-50/50' : 'border-gray-100 bg-gray-50'} p-4`} data-mode-id="seller_managed">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-bold text-gray-900">Envío Gestionado por Vendedor</p>
                         <p className="text-xs text-gray-500">Tú te encargas de la logística y el costo</p>
-                        {(!limitsUsage || limitsUsage.plan === 'free') && (
+                        {(!limitsUsage || limitsUsage.plan === 'basic') && (
                           <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold text-amber-800">
                             <span>🔒</span> Solo para planes Pro y Platinum
                           </div>
@@ -2264,13 +2266,13 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       <input
                         id="shipping-mode-seller"
                         type="checkbox"
-                        disabled={!limitsUsage || limitsUsage.plan === 'free'}
-                        checked={shippingBySeller && limitsUsage?.plan !== 'free'}
+                        disabled={!limitsUsage || limitsUsage.plan === 'basic'}
+                        checked={shippingBySeller && limitsUsage?.plan !== 'basic'}
                         onChange={e => setShippingBySeller(e.target.checked)}
                         className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald disabled:cursor-not-allowed disabled:opacity-40"
                       />
                     </div>
-                    {(shippingBySeller && limitsUsage?.plan !== 'free') && (
+                    {(shippingBySeller && limitsUsage?.plan !== 'basic') && (
                       <div className="mt-4 grid gap-4 sm:grid-cols-2">
                         <div>
                           <label className="block text-xs font-medium text-gray-700">Precio de Envío (MXN)</label>
