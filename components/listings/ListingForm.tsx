@@ -2056,7 +2056,9 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     </div>
                   )}
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <div className={`rounded-xl border p-4 ${saleType === 'auction' ? 'border-gray-100 bg-gray-50 opacity-60' : 'border-gray-200'}`}>
+                    {/* Envío Gratis - Oculto temporalmente por solicitud del usuario */}
+                    {/*
+                    <div className={`rounded-xl border ${saleType === 'auction' ? 'border-gray-100 bg-gray-50 opacity-60' : 'border-gray-200'} p-4`}>
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-bold text-gray-900">Envío Gratis</p>
@@ -2075,21 +2077,28 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                         />
                       </div>
                     </div>
-                    <div className="rounded-xl border border-gray-200 p-4" data-mode-id="pickup">
+                    */}
+                    <div className={`rounded-xl border ${limitsUsage?.plan !== 'platinum' ? 'border-amber-200 bg-amber-50/50' : 'border-gray-200'} p-4`} data-mode-id="pickup">
                       <div className="flex items-center justify-between">
                         <div>
                           <p className="text-sm font-bold text-gray-900">Entrega Personal</p>
                           <p className="text-xs text-gray-500">Permitir entrega en persona</p>
+                          {limitsUsage?.plan !== 'platinum' && (
+                            <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold text-amber-800">
+                              <span>🔒</span> Solo para plan Platinum
+                            </div>
+                          )}
                         </div>
                         <input
                           id="shipping-mode-pickup"
                           type="checkbox"
-                          checked={allowPersonalDelivery}
+                          disabled={limitsUsage?.plan !== 'platinum'}
+                          checked={allowPersonalDelivery && limitsUsage?.plan === 'platinum'}
                           onChange={e => setAllowPersonalDelivery(e.target.checked)}
-                          className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
+                          className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald disabled:cursor-not-allowed disabled:opacity-40"
                         />
                       </div>
-                      {allowPersonalDelivery && (
+                      {(allowPersonalDelivery && limitsUsage?.plan === 'platinum') && (
                         <p className="mt-2 text-[11px] text-blue-600 leading-snug">
                           ℹ️ Si activas esta opción solo será visible para los compradores de tu ciudad y el comprador podrá elegirla al comprar.
                         </p>
@@ -2243,21 +2252,27 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     </>
                   )}
 
-                  <div className="mt-4 rounded-xl border border-gray-100 bg-gray-50 p-4" data-mode-id="seller_managed">
+                  <div className={`mt-4 rounded-xl border ${(!limitsUsage || limitsUsage.plan === 'free') ? 'border-amber-200 bg-amber-50/50' : 'border-gray-100 bg-gray-50'} p-4`} data-mode-id="seller_managed">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-bold text-gray-900">Envío Gestionado por Vendedor</p>
                         <p className="text-xs text-gray-500">Tú te encargas de la logística y el costo</p>
+                        {(!limitsUsage || limitsUsage.plan === 'free') && (
+                          <div className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold text-amber-800">
+                            <span>🔒</span> Solo para planes Pro y Platinum
+                          </div>
+                        )}
                       </div>
                       <input
                         id="shipping-mode-seller"
                         type="checkbox"
-                        checked={shippingBySeller}
+                        disabled={!limitsUsage || limitsUsage.plan === 'free'}
+                        checked={shippingBySeller && limitsUsage?.plan !== 'free'}
                         onChange={e => setShippingBySeller(e.target.checked)}
-                        className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald"
+                        className="h-5 w-5 rounded border-gray-300 text-brand-emerald focus:ring-brand-emerald disabled:cursor-not-allowed disabled:opacity-40"
                       />
                     </div>
-                    {shippingBySeller && (
+                    {(shippingBySeller && limitsUsage?.plan !== 'free') && (
                       <div className="mt-4 grid gap-4 sm:grid-cols-2">
                         <div>
                           <label className="block text-xs font-medium text-gray-700">Precio de Envío (MXN)</label>
