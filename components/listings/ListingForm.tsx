@@ -2158,14 +2158,14 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                               {isCalculatingShipping && <span className="text-[10px] font-bold text-blue-500 animate-pulse">COTIZANDO...</span>}
                             </div>
                             <p className="text-[10px] text-blue-700/70 mb-1">
-                              📦 La paquetería se asigna al azar y depende de la ubicación, medidas y peso de tu paquete.
+                              📦 La paquetería se asigna al azar y depende de la ubicación, medidas y peso declarados.
                             </p>
-                            <p className="text-[10px] text-amber-700 font-semibold mb-4">
-                              ⚠️ Evita sobrepesos: agrega medidas y peso exacto de tu producto para calcular el peso volumétrico correcto. Si el comprador requiere más de 2 piezas, puedes generarle una publicación especial para que pague el envío correcto sin generarte sobrepesos.
-                            </p>
-                            <p className="text-[10px] text-blue-600 font-semibold mb-4">
-                              📦 Si tu paquete pesa de 6 kg en adelante requiere un envío por producto. En esos casos incentiva a tus clientes a comprar en tu publicación que es necesario un envío por producto.
-                            </p>
+                            <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 mb-4">
+                              <p className="text-[10px] font-black text-red-800 uppercase tracking-wide mb-1">⚠️ ADVERTENCIA: Declaración correcta de medidas</p>
+                              <p className="text-[10px] text-red-700 leading-relaxed">
+                                Es <strong>obligatorio</strong> declarar el peso y dimensiones <strong>reales del paquete empacado</strong> (no solo el producto). Usar medidas incorrectas genera <strong>cargos por sobrepeso</strong> que se descontarán de tus ganancias directamente. La reiteración de infracciones por sobrepeso puede resultar en el <strong>bloqueo permanente de tu cuenta</strong> en GoVendy.
+                              </p>
+                            </div>
                             <div className="grid gap-4 sm:grid-cols-3">
                               <div className="bg-white/60 p-3 rounded-xl border border-white">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Peso Volumétrico</p>

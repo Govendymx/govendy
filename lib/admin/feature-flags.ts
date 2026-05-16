@@ -12,7 +12,7 @@ export type FeatureFlagKey = keyof typeof FEATURE_FLAG_KEYS;
 export type FeatureFlagsState = Record<FeatureFlagKey, boolean>;
 
 export const DEFAULT_FEATURE_FLAGS: FeatureFlagsState = {
-  gopocket_shipping: true,
+  gopocket_shipping: false,
 };
 
 export function mergeFeatureFlags(raw: unknown): FeatureFlagsState {
