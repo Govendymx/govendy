@@ -574,7 +574,8 @@ function AdminLogisticaContent() {
       return <span className="inline-flex items-center rounded-xl bg-red-50 px-3 py-2 text-xs font-extrabold text-red-700 ring-1 ring-red-200">Disputa</span>;
     }
 
-    const st = String(o?.status || '').trim().toLowerCase();
+    const stRaw = String(o?.status || '').trim().toLowerCase();
+    const st = stRaw === 'received' || stRaw === 'completed' ? 'delivered' : stRaw;
     const deliveredAt = String(o?.delivered_at || '').trim();
     const shippedAt = String(o?.shipped_at || '').trim();
     const tracking = String(o?.tracking_number || '').trim();
@@ -802,6 +803,8 @@ function AdminLogisticaContent() {
                           handleNotifyDelay={handleNotifyDelay}
                           uploadLabel={uploadLabel}
                           setPanelOrderId={setPanelOrderId}
+                          onUpdateOrder={updateOrder}
+                          isSaving={isSaving}
                           isUploading={isUploading}
                           uploadingOrderId={uploadingOrderId}
                           payments={payments}

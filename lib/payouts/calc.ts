@@ -88,14 +88,4 @@ export function payoutNet(o: OrderLike): number {
   return 0;
 }
 
-export function statusLabel(s: string): string {
-  const low = String(s || '').toLowerCase();
-  if (low === 'pending_payment') return 'Pendiente de pago';
-  if (low === 'paid') return 'Pagado';
-  if (low === 'shipped') return 'Enviado';
-  if (low === 'delivered') return 'Completado';
-  if (low === 'cancelled' || low === 'canceled') return 'Cancelado';
-  if (low === 'refunded') return 'Reembolsado';
-  if (low === 'disputed') return 'En disputa';
-  return s || '—';
-}
+export { orderStatusLabel as statusLabel } from '@/lib/orders/orderStatus';

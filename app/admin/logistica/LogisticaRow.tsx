@@ -27,6 +27,8 @@ export interface LogisticaRowProps {
     handleNotifyDelay: (orderId: string) => void;
     uploadLabel: (orderId: string, file: File) => Promise<void>;
     setPanelOrderId: (id: string) => void;
+    onUpdateOrder?: (orderId: string, action?: 'mark_shipped' | 'mark_delivered' | 'clear_tracking') => void;
+    isSaving?: boolean;
     // upload state
     isUploading: boolean;
     uploadingOrderId: string | null;
@@ -41,9 +43,11 @@ export function LogisticaRow({
     productTypeByOrderId, disputeByOrderId,
     fmt, formatMoney, formatAddress, shipmentBadge,
     handleNotifyDelay, uploadLabel, setPanelOrderId,
+    onUpdateOrder, isSaving = false,
     isUploading, uploadingOrderId,
     payments, disputes,
 }: LogisticaRowProps) {
+    const st = String(o?.status || '').trim().toLowerCase();
     const buyerId = String(o?.buyer_id || '');
     const sellerId = String(o?.seller_id || '');
     const buyerName = buyerId ? nameById[buyerId] || `${buyerId.slice(0, 6)}…` : '—';
@@ -358,6 +362,36 @@ export function LogisticaRow({
                             ) : null}
                             <Link href={`/admin/chat/${oid}`} className="inline-flex rounded-xl bg-white px-3 py-2 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-black/5 hover:bg-gray-50">Ver chat</Link>
                             <button onClick={() => handleNotifyDelay(oid)} className="inline-flex rounded-xl bg-yellow-50 px-3 py-2 text-xs font-semibold text-yellow-800 shadow-sm ring-1 ring-yellow-200 hover:bg-yellow-100" title="Enviar notificación flotante de retraso">🔔 Notificar</button>
+                            {onUpdateOrder && (st === 'paid' || st === 'pending_payment') && !shippedAt && (
+                                <button
+                                    type="button"
+                                    disabled={isSaving}
+                                    onClick={(e) => { e.stopPropagation(); onUpdateOrder(oid, 'mark_shipped'); }}
+                                    className="inline-flex rounded-xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-sky-700 disabled:opacity-50"
+                                >
+                                    Marcar enviado
+                                </button>
+                            )}
+                            {onUpdateOrder && (st === 'shipped' || st === 'paid') && !deliveredAt && (
+                                <button
+                                    type="button"
+                                    disabled={isSaving}
+                                    onClick={(e) => { e.stopPropagation(); onUpdateOrder(oid, 'mark_delivered'); }}
+                                    className="inline-flex rounded-xl bg-green-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-green-700 disabled:opacity-50"
+                                >
+                                    Marcar entregado
+                                </button>
+                            )}
+                            {onUpdateOrder && tracking && (st === 'shipped' || st === 'paid') && (
+                                <button
+                                    type="button"
+                                    disabled={isSaving}
+                                    onClick={(e) => { e.stopPropagation(); if (confirm('¿Limpiar rastreo de esta orden?')) onUpdateOrder(oid, 'clear_tracking'); }}
+                                    className="inline-flex rounded-xl bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-700 shadow-sm ring-1 ring-black/5 hover:bg-gray-200 disabled:opacity-50"
+                                >
+                                    Limpiar rastreo
+                                </button>
+                            )}
                             <Link href={`/admin/operations?orderId=${oid}`} className="inline-flex rounded-xl bg-purple-50 px-3 py-2 text-xs font-semibold text-purple-800 shadow-sm ring-1 ring-purple-200 hover:bg-purple-100">Ver completo</Link>
                             <button type="button" onClick={() => setPanelOrderId(oid)} className="inline-flex rounded-xl bg-gray-100 px-3 py-2 text-xs font-semibold text-gray-800 ring-1 ring-black/5 hover:bg-gray-200">Remitente / Destinatario</button>
                         </div>

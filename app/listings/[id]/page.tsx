@@ -1779,7 +1779,9 @@ export default function ListingDetailPage() {
                     </div>
                   )}
                   {(() => {
-                    const bySeller = Boolean(listing.shipping_by_seller);
+                    const pt = sellerPlanType || listing.seller?.plan_type;
+                    const isProSeller = pt === 'pro' || pt === 'platinum';
+                    const bySeller = Boolean(listing.shipping_by_seller) && isProSeller;
                     const allowPickup = Boolean(listing.allow_personal_delivery);
                     const isFree = Boolean(listing.free_shipping);
                     const hasWeight = Number(listing.weight_kg || 0) > 0;
@@ -2235,7 +2237,9 @@ export default function ListingDetailPage() {
                   {/* Shipping info — show ALL applicable methods */}
                   <div className="px-4 py-2.5 space-y-1.5">
                     {(() => {
-                      const bySeller = Boolean(listing.shipping_by_seller);
+                      const pt = sellerPlanType || listing.seller?.plan_type;
+                      const isProSeller = pt === 'pro' || pt === 'platinum';
+                      const bySeller = Boolean(listing.shipping_by_seller) && isProSeller;
                       const allowPickup = Boolean(listing.allow_personal_delivery);
                       const isFree = Boolean(listing.free_shipping);
                       const hasWeight = Number(listing.weight_kg || 0) > 0;

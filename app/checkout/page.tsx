@@ -397,7 +397,9 @@ export default function CheckoutPage() {
     for (const ci of cartItems) {
       const l = listingsById[ci.listing_id];
       if (!l) continue;
-      if (l.shipping_by_seller) anySellerManaged = true;
+      const sid = getSellerId(l);
+      const isPro = sid ? (sellerProfiles[sid]?.plan_type === 'pro' || sellerProfiles[sid]?.plan_type === 'platinum') : false;
+      if (l.shipping_by_seller && isPro) anySellerManaged = true;
       else anyGoVendy = true;
     }
     if (anySellerManaged && anyGoVendy) {
@@ -406,8 +408,8 @@ export default function CheckoutPage() {
     if (anySellerManaged) {
       return { label: 'Envío gestionado por Vendedor', tone: 'seller' as const };
     }
-    return { label: 'Envío por GoVendy (plataforma)', tone: 'gopocket' as const };
-  }, [cartItems, listingsById, selectedShippingOptionId, allDigitalCart, hasAnyT1Selection, selectedT1BySeller, t1QuotesBySeller]);
+    return { label: 'Envío Estándar', tone: 'gopocket' as const };
+  }, [cartItems, listingsById, selectedShippingOptionId, allDigitalCart, hasAnyT1Selection, selectedT1BySeller, t1QuotesBySeller, sellerProfiles]);
 
   const enabledMethods = useMemo(() => {
     const pm = settings.payment_methods || {};

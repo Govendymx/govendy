@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { OrderChatFloating } from '@/components/OrderChatFloating';
 import { payoutNet } from '@/lib/payouts/calc';
@@ -13,6 +13,10 @@ import { Countdown48Hours } from '@/components/orders/Countdown48Hours';
 import { AuctionDeadline } from '@/components/orders/AuctionDeadline';
 import { OrderSourceChip } from '@/components/ui/ShippingBadge';
 import { useImpersonation } from '@/components/ImpersonationProvider';
+import { OrderStatusBadge } from '@/components/orders/OrderStatusBadge';
+import { isOrderDelivered, normalizeOrderStatus } from '@/lib/orders/orderStatus';
+import { resolveBuyerAddress } from '@/lib/orders/buyerAddress';
+import { useOrderUpdatesRealtime } from '@/lib/hooks/useOrderUpdatesRealtime';
 
 function isUuid(v: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
@@ -192,6 +196,13 @@ export default function DashboardVentasPage() {
   const [filtersExpanded, setFiltersExpanded] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [ventasPage, setVentasPage] = useState(1);
+  const [ordersRefreshToken, setOrdersRefreshToken] = useState(0);
+
+  const bumpOrdersRefresh = useCallback(() => {
+    setOrdersRefreshToken((t) => t + 1);
+  }, []);
+
+  useOrderUpdatesRealtime(bumpOrdersRefresh);
 
   useEffect(() => {
     let cancelled = false;
@@ -706,7 +717,7 @@ export default function DashboardVentasPage() {
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isImpersonating, targetUserId]);
+  }, [isImpersonating, targetUserId, ordersRefreshToken]);
 
   const submitRateBuyer = async () => {
     setError(null);
@@ -752,12 +763,12 @@ export default function DashboardVentasPage() {
     const query = searchQuery.trim().toLowerCase();
 
     return orders.filter((o) => {
-      const status = String(o?.status || '').trim();
+      const status = normalizeOrderStatus(o?.status);
       const labelUrl = String(o?.shipping_label_url || '').trim();
       const tracking = String(o?.tracking_number || '').trim();
       const orderId = String(o?.id || '').trim();
       const hasRating = Boolean(ratedByOrderId[orderId]);
-      const isCompleted = status === 'delivered';
+      const isCompleted = isOrderDelivered(o?.status);
 
       // Aplicar filtro de estado
       let matchesFilter = true;
@@ -827,12 +838,12 @@ export default function DashboardVentasPage() {
     };
 
     for (const o of orders) {
-      const status = String(o?.status || '').trim();
+      const status = normalizeOrderStatus(o?.status);
       const labelUrl = String(o?.shipping_label_url || '').trim();
       const tracking = String(o?.tracking_number || '').trim();
       const orderId = String(o?.id || '').trim();
       const hasRating = Boolean(ratedByOrderId[orderId]);
-      const isCompleted = status === 'delivered';
+      const isCompleted = isOrderDelivered(o?.status);
 
       if (status === 'pending_payment') counts.pending_payment++;
       if ((status === 'paid' || labelUrl) && !tracking) counts.pending_shipping++;
@@ -1352,7 +1363,7 @@ export default function DashboardVentasPage() {
                   const shippedAt = String(o?.shipped_at || '').trim();
                   const canMarkShipped = orderId && (String(o?.status || '') === 'paid' || String(o?.status || '') === 'pending_payment');
                   const hasUnread = Boolean(hasUnreadByOrderId[orderId]);
-                  const status = String(o?.status || '').trim();
+                  const status = normalizeOrderStatus(o?.status);
                   const alreadyRated = Boolean(ratedByOrderId[orderId]);
                   const bothRated = Boolean(bothRatedByOrderId[orderId]);
                   const isPickupOrder = (o?.shipping_option_id === 'pickup' || carrier === 'pickup');
@@ -1373,7 +1384,7 @@ export default function DashboardVentasPage() {
                         return { border: 'border-red-500 ring-red-200 hover:border-red-600', left: 'border-red-500', bg: 'bg-red-50/30' };
                       }
                     }
-                    if (status === 'delivered' || status === 'received') {
+                    if (isOrderDelivered(o?.status)) {
                       return { border: 'border-green-500 ring-green-200 hover:border-green-600', left: 'border-green-500', bg: 'bg-white/30' };
                     }
                     return { border: 'border-yellow-500 ring-yellow-200 hover:border-yellow-600', left: 'border-yellow-500', bg: 'bg-yellow-50/30' };
@@ -1381,7 +1392,7 @@ export default function DashboardVentasPage() {
 
                   const borderColors = getBorderColor();
 
-                  const isOrderCompleted = status === 'delivered' || status === 'received';
+                  const isOrderCompleted = isOrderDelivered(o?.status);
                   const daysSinceShipped = shippedAt ? (() => {
                     const shippedDate = new Date(shippedAt);
                     const daysDiff = (currentTime.getTime() - shippedDate.getTime()) / (1000 * 60 * 60 * 24);
@@ -1462,7 +1473,7 @@ export default function DashboardVentasPage() {
                   const sellerManagedAllComplete = isSellerManagedOrder ? Boolean(
                     tracking.length >= 2 &&
                     carrier.length >= 1 &&
-                    (status === 'shipped' || status === 'delivered' || status === 'received') &&
+                    (status === 'shipped' || status === 'delivered') &&
                     (o?.delivery_proof_url || labelUrl)
                   ) : false;
                   const canRateBuyer = Boolean(orderId && buyerId && !alreadyRated && (
@@ -1470,7 +1481,7 @@ export default function DashboardVentasPage() {
                       ? pickupAllComplete
                       : isSellerManagedOrder
                         ? sellerManagedAllComplete
-                        : (labelUrl || status === 'delivered' || status === 'received' || status === 'shipped' || tracking)
+                        : (labelUrl || status === 'delivered' || status === 'shipped' || tracking)
                   ));
 
                   return (
@@ -1502,31 +1513,7 @@ export default function DashboardVentasPage() {
                                   Copiar
                                 </button>
                               </div>
-                              {status === 'pending_payment' ? (
-                                <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-bold text-red-800 ring-1 ring-red-300">
-                                  PENDIENTE PAGO
-                                </span>
-                              ) : status === 'paid' ? (
-                                <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-[10px] font-extrabold text-green-800 ring-1 ring-green-300">
-                                  PAGADO
-                                </span>
-                              ) : status === 'shipped' ? (
-                                <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-0.5 text-[10px] font-bold text-blue-800 ring-1 ring-blue-300">
-                                  ENVIADO
-                                </span>
-                              ) : status === 'delivered' ? (
-                                <span className="inline-flex items-center gap-1 rounded-full bg-purple-100 px-2 py-0.5 text-[10px] font-bold text-purple-800 ring-1 ring-purple-300">
-                                  COMPLETADO
-                                </span>
-                              ) : status === 'cancelled' ? (
-                                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-600 ring-1 ring-gray-200">
-                                  Cancelado
-                                </span>
-                              ) : (
-                                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-700">
-                                  {String(o?.status || '—')}
-                                </span>
-                              )}
+                              <OrderStatusBadge status={o?.status} />
                               {(o as any)?.payment_method === 'mercadopago' && (
                                 <span className="inline-flex items-center gap-1 rounded-full bg-sky-100 px-2 py-0.5 text-[10px] font-bold text-sky-800 ring-1 ring-sky-300">
                                   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" /><path d="M12 5l7 7-7 7" /></svg>
@@ -2172,7 +2159,7 @@ export default function DashboardVentasPage() {
                                   >
                                     {isProofDownloaded ? 'Constancia Descargada' : 'Descargar Constancia'}
                                   </Link>
-                                  {!o.delivery_proof_url && status !== 'delivered' && status !== 'completed' ? (
+                                  {!o.delivery_proof_url && status !== 'delivered' ? (
                                     <div className="flex flex-col gap-1.5">
                                       {/* Botón: Constancia de Entrega */}
                                       {constanciaUrlByOrderId[orderId] ? (
@@ -2241,7 +2228,7 @@ export default function DashboardVentasPage() {
 
                                   {!o.delivery_proof_url ? (() => {
                                     // Para seller-managed: solo permitir subir guía DESPUÉS de marcar como enviado
-                                    const needsShipFirst = isSellerManagedOrder && status !== 'shipped' && status !== 'delivered' && status !== 'received';
+                                    const needsShipFirst = isSellerManagedOrder && status !== 'shipped' && status !== 'delivered';
                                     return (
                                       <div className="flex flex-col gap-1">
                                         <label className={`flex w-full items-center justify-center gap-1.5 rounded-lg px-2 py-1.5 text-[10px] font-bold shadow-sm ${needsShipFirst ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : `bg-green-600 text-white hover:bg-green-700 cursor-pointer ${isMarking[orderId] ? 'opacity-50 cursor-wait' : ''}`}`}>
@@ -2277,8 +2264,8 @@ export default function DashboardVentasPage() {
 
                               {/* --- Botón Ver Dirección del Comprador (Envío Gestionado por Vendedor) --- */}
                               {isSellerManagedOrder && status !== 'pending_payment' && (() => {
-                                const addr = buyerAddressById[buyerId] || null;
-                                const isLocked = alreadyRated || status === 'completed';
+                                const addr = resolveBuyerAddress(o, buyerAddressById[buyerId]);
+                                const isLocked = alreadyRated || isOrderCompleted;
                                 const isOpen = showAddressByOrderId[orderId];
                                 const hasAddr = addr && (addr.full || addr.phone);
                                 return (
@@ -2305,6 +2292,12 @@ export default function DashboardVentasPage() {
                                       <div className="mt-1.5 rounded-lg border border-blue-100 bg-white px-3 py-2.5 text-[10px] text-gray-800 space-y-1 shadow-sm">
                                         {hasAddr ? (
                                           <>
+                                            {addr!.source === 'order' && (
+                                              <div className="text-[9px] font-bold uppercase text-blue-600">Dirección del checkout</div>
+                                            )}
+                                            {addr!.source === 'profile' && (
+                                              <div className="text-[9px] font-bold uppercase text-gray-500">Dirección del perfil</div>
+                                            )}
                                             {addr!.full && <div className="font-semibold text-gray-900">📍 {addr!.full}</div>}
                                             {addr!.colonia && <div className="text-gray-600">Col. {addr!.colonia}</div>}
                                             {addr!.city && addr!.state && <div className="text-gray-600">{addr!.city}, {addr!.state}</div>}
@@ -2313,7 +2306,7 @@ export default function DashboardVentasPage() {
                                             {addr!.phone && <div className="text-blue-600 font-semibold">📞 {addr!.phone}</div>}
                                           </>
                                         ) : (
-                                          <div className="text-amber-600 font-semibold">⚠️ El comprador no tiene dirección registrada en su perfil. Contacta al comprador por Chat para solicitar su dirección de envío.</div>
+                                          <div className="text-amber-600 font-semibold">⚠️ Sin dirección en la orden ni en el perfil. Contacta al comprador por Chat.</div>
                                         )}
                                       </div>
                                     )}

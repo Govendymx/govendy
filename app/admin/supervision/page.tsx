@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase/client';
 import UnifiedDashboardWidget from '../components/UnifiedDashboardWidget';
 import { Pagination, usePagination } from '@/components/ui/Pagination';
+import { orderStatusLabel, normalizeOrderStatus } from '@/lib/orders/orderStatus';
 
 function fmtDate(d: any) {
   if (!d) return '—';
@@ -675,7 +676,7 @@ function SupervisionContent() {
             <tbody>
               {paginatedOps.map((o) => {
                 const oid = String(o?.id || '').trim();
-                const st = String(o?.status || '').trim().toLowerCase();
+                const st = normalizeOrderStatus(o?.status);
                 const d = o?.dispute;
                 return (
                   <tr key={oid || Math.random()} className="border-b border-black/5 hover:bg-white/30">
@@ -734,7 +735,7 @@ function SupervisionContent() {
                                 : 'bg-gray-100 text-gray-700'
                           }`}
                       >
-                        {st || '—'}
+                        {orderStatusLabel(o?.status)}
                       </span>
                     </td>
                     <td className="px-4 py-2 text-gray-700">
