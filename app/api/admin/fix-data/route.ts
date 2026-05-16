@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase/admin';
+import { requireAdmin } from '@/lib/auth/middleware';
+import { handleApiError } from '@/lib/utils/errors';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
-    const admin = supabaseAdmin();
+    const auth = await requireAdmin(req);
+    const admin = auth.admin;
     const results: any = {
       pro_fixed: 0,
       stores_fixed: 0,
@@ -69,7 +71,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json(results);
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    return handleApiError(err);
   }
 }

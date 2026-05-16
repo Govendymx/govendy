@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import ListingForm, { ListingFormData } from '@/components/listings/ListingForm';
+import { normalizeListingFormInitialData } from '@/lib/listings/normalizeListingFormData';
 import Link from 'next/link';
 
 export default function EditListingPage() {
@@ -33,38 +34,18 @@ export default function EditListingPage() {
         if (!data) throw new Error('Publicación no encontrada');
         if (data.seller_id !== sessionData.session.user.id) throw new Error('No tienes permiso para editar esta publicación');
 
-        // Map database fields to ListingFormData
-        const mappedData: Partial<ListingFormData> = {
+        const mappedData = normalizeListingFormInitialData({
+          ...data,
           id: data.id,
-          title: data.title,
-          description: data.description || '',
-          price: String(data.price),
-          gender: data.gender || 'Mujer',
-          size: data.size || '',
-          brand: data.brand || '',
-          model: data.model || '',
-          color: data.color || '',
-          category: data.category || '',
-          subcategory: data.subcategory || '',
           status: data.status,
           sale_type: data.sale_type || 'direct',
           condition: data.condition || null,
-          stock: String(data.stock || 1),
-          images: data.images || [],
-          description_blocks: data.description_blocks || [],
-
-          // Producto Digital
           product_type: data.product_type || 'physical',
           digital_delivery_type: data.digital_delivery_type || null,
-          digital_delivery_fields: Array.isArray(data.digital_delivery_fields) ? data.digital_delivery_fields : undefined,
-
-          // Subasta
           auction_start_at: data.auction_start_at || undefined,
           auction_end_at: data.auction_end_at || undefined,
           auction_starting_bid: String(data.auction_starting_bid || ''),
           auction_bid_increment: String(data.auction_bid_increment || ''),
-
-          // Envío
           free_shipping: data.free_shipping || false,
           shipping_subsidy: String(data.shipping_subsidy || ''),
           weight_kg: String(data.weight_kg || '1'),
@@ -76,21 +57,9 @@ export default function EditListingPage() {
           handling_days: String(data.handling_days || '0'),
           custom_shipping_price: String(data.shipping_price || ''),
           shipping_carrier: data.shipping_carrier || '',
-
-          // Variantes
-          color_variants: Array.isArray(data.color_variants) ? data.color_variants : [],
-          size_variants: Array.isArray(data.size_variants) ? data.size_variants : [],
-          size_stock: data.size_stock || {},
-
-          // Meta
-          attributes: data.attributes || {},
-          tags: data.tags || [],
           is_featured: data.is_featured || false,
-          wholesale_tiers: Array.isArray(data.wholesale_tiers) ? data.wholesale_tiers : [],
-
-          // Video
           youtube_url: data.youtube_url || '',
-        };
+        }) as Partial<ListingFormData>;
 
         setInitialData(mappedData);
       } catch (err: any) {
@@ -125,5 +94,12 @@ export default function EditListingPage() {
     );
   }
 
-  return <ListingForm mode="edit" listingId={listingId} initialData={initialData} />;
+  return (
+    <ListingForm
+      key={listingId}
+      mode="edit"
+      listingId={listingId}
+      initialData={initialData}
+    />
+  );
 }

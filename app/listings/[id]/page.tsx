@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { redirectToLogin } from '@/lib/auth/redirect';
 import { BlocksRenderer } from '@/components/templates/BlocksRenderer';
+import { RichDescriptionContent } from '@/components/templates/RichDescriptionContent';
 import type { TemplateBlock } from '@/lib/templates/blocks';
 import { NEW_CATEGORIES_CONFIG, UNIVERSAL_ATTRIBUTES } from '@/lib/categories';
 import { EmojiPicker } from '@/components/EmojiPicker';
@@ -1618,13 +1619,30 @@ export default function ListingDetailPage() {
                 {/* Descripción */}
                 <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
                   <div className="text-sm font-semibold text-gray-900">Descripción</div>
-                  {Array.isArray((listing as any).description_blocks) && (listing as any).description_blocks.length > 0 ? (
-                    <div className="mt-3 rounded-3xl border border-black/5 bg-white p-5 shadow-sm">
-                      <BlocksRenderer blocks={((listing as any).description_blocks as TemplateBlock[]) ?? []} />
-                    </div>
-                  ) : (
-                    <p className="mt-2 text-sm text-gray-600 whitespace-pre-wrap">{listing.description || '—'}</p>
-                  )}
+                  {(() => {
+                    const blocks = (listing as any).description_blocks as TemplateBlock[] | null | undefined;
+                    const hasBlocks = Array.isArray(blocks) && blocks.length > 0;
+                    const descHtml = String(listing.description || '');
+                    const looksLikeHtml = /<[a-z][\s\S]*>/i.test(descHtml);
+
+                    if (hasBlocks) {
+                      return (
+                        <div className="mt-3 rounded-3xl border border-black/5 bg-white p-5 shadow-sm">
+                          <BlocksRenderer blocks={blocks ?? []} />
+                        </div>
+                      );
+                    }
+                    if (looksLikeHtml) {
+                      return (
+                        <div className="mt-3 rounded-3xl border border-black/5 bg-white p-5 shadow-sm">
+                          <RichDescriptionContent html={descHtml} />
+                        </div>
+                      );
+                    }
+                    return (
+                      <p className="mt-2 text-sm text-gray-600 whitespace-pre-wrap">{listing.description || '—'}</p>
+                    );
+                  })()}
                   <div className="mt-8 flex justify-center">
                     <button
                       onClick={() => {

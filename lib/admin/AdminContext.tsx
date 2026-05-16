@@ -259,7 +259,12 @@ export function AdminProvider({ children }: AdminProviderProps) {
       const token = await getToken();
       if (!token) throw new Error('No hay token');
       
-      const res = await fetch('/api/admin/logistica/orders/update', {
+      const action =
+        status === 'shipped' ? 'mark_shipped' : status === 'delivered' ? 'mark_delivered' : null;
+      if (!action) {
+        throw new Error(`Estado no soportado para actualización rápida: ${status}`);
+      }
+      const res = await fetch('/api/admin/logistica/order/update', {
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
@@ -267,7 +272,7 @@ export function AdminProvider({ children }: AdminProviderProps) {
         },
         body: JSON.stringify({
           orderId,
-          status,
+          action,
         }),
       });
       
@@ -289,14 +294,15 @@ export function AdminProvider({ children }: AdminProviderProps) {
       const token = await getToken();
       if (!token) throw new Error('No hay token');
       
-      const res = await fetch(`/api/admin/disputes/${disputeId}/resolve`, {
+      const res = await fetch('/api/admin/disputes/resolve', {
         method: 'POST',
         headers: {
           authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          resolution,
+          disputeId,
+          decision: resolution,
         }),
       });
       

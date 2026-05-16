@@ -1,5 +1,10 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import {
+  adminCacheCookieValue,
+  isAdminProtectedPath,
+  resolveAdminAccess,
+} from '@/lib/auth/adminAccess'
 
 // Routes suspended users ARE allowed to visit (within /dashboard)
 const SUSPENDED_ALLOWED = [
@@ -49,10 +54,44 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser()
 
+  const { pathname } = request.nextUrl
+
+  // ── ADMIN: /admin y /api/admin (excepto webhooks públicos) ──
+  if (isAdminProtectedPath(pathname)) {
+    if (!user) {
+      if (pathname.startsWith('/api/admin/')) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      }
+      const loginUrl = request.nextUrl.clone()
+      loginUrl.pathname = '/login'
+      loginUrl.searchParams.set('returnTo', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
+
+    const { isAdmin } = await resolveAdminAccess(request)
+    response.cookies.set('_gp_is_admin', adminCacheCookieValue(isAdmin), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60,
+      path: '/',
+    })
+
+    if (!isAdmin) {
+      if (pathname.startsWith('/api/admin/')) {
+        return NextResponse.json({ error: 'No autorizado (admin requerido)' }, { status: 403 })
+      }
+      const deniedUrl = request.nextUrl.clone()
+      deniedUrl.pathname = '/dashboard'
+      deniedUrl.searchParams.set('admin_denied', '1')
+      return NextResponse.redirect(deniedUrl)
+    }
+
+    return response
+  }
+
   // Only enforce on authenticated users visiting protected routes
   if (!user) return response
-
-  const { pathname } = request.nextUrl
 
   // Skip enforcement for public pages, static assets, auth callbacks
   if (

@@ -417,8 +417,8 @@ function TopsDiagram() {
 function PantsDiagram() {
     return (
         <svg viewBox="0 0 200 290" className="w-full max-w-[170px]" aria-label="Diagrama pantalones">
-            <rect x="58" y="28" width="84" height="14" rx="4" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
-            <path d="M58 42 L58 230 L96 230 L100 145 L104 145 L142 230 L142 42 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <rect x="58" y="28" width="84" height="14" rx="3" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <path d="M58 42 L54 240 L92 240 Q100 135 108 240 L146 240 L142 42 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" strokeLinejoin="round" />
 
             {/* ② Contorno de Cintura */}
             <MeasLine x1={58} y1={35} x2={142} y2={35} />
@@ -442,8 +442,8 @@ function PantsDiagram() {
 function ShortsDiagram() {
     return (
         <svg viewBox="0 0 200 240" className="w-full max-w-[170px]" aria-label="Diagrama shorts">
-            <rect x="58" y="28" width="84" height="14" rx="4" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
-            <path d="M58 42 L58 130 L96 130 L100 110 L104 110 L142 130 L142 42 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <rect x="58" y="28" width="84" height="14" rx="3" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <path d="M58 42 L52 140 L92 140 Q100 100 108 140 L148 140 L142 42 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" strokeLinejoin="round" />
 
             {/* ② Contorno de Cintura */}
             <MeasLine x1={58} y1={35} x2={142} y2={35} />
@@ -558,8 +558,8 @@ function KidsTopsDiagram() {
 function KidsPantsDiagram() {
     return (
         <svg viewBox="0 0 200 280" className="w-full max-w-[170px]" aria-label="Diagrama kids pants">
-            <rect x="70" y="70" width="60" height="15" rx="4" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
-            <path d="M70 85 L70 230 L95 230 L100 145 L105 145 L130 230 L130 85 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <rect x="70" y="70" width="60" height="15" rx="3" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <path d="M70 85 L64 235 L92 235 Q100 145 108 235 L136 235 L130 85 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" strokeLinejoin="round" />
 
             {/* ① Estatura Niño */}
             <Arrow x1={42} y1={70} x2={42} y2={230} />
@@ -606,7 +606,7 @@ function BabyMamelucoDiagram() {
     return (
         <svg viewBox="0 0 200 280" className="w-full max-w-[170px]" aria-label="Diagrama mameluco">
             <ellipse cx="100" cy="22" rx="14" ry="18" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
-            <path d="M75 55 Q100 50 125 55 L125 240 L75 240 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" />
+            <path d="M75 55 Q100 50 125 55 L132 245 L108 245 Q100 160 92 245 L68 245 Z" fill={BODY_FILL} stroke={BODY_STROKE} strokeWidth="1.5" strokeLinejoin="round" />
 
             {/* ① Peso (Báscula) */}
             <rect x="25" y="20" width="35" height="25" rx="4" fill="white" stroke={PINK} strokeWidth="1" />

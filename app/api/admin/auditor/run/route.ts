@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/middleware';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 import { payoutNet } from '@/lib/payouts/calc';
 
@@ -34,6 +35,7 @@ function getCarrierCost(listing: any, shippingBase: number, estafetaConfig: any)
 
 // ── Main ─────────────────────────────────────────────────────────────────────
 export async function POST(req: NextRequest) {
+  await requireAdmin(req);
   const admin = supabaseAdmin();
   const discrepancies: any[] = [];
 

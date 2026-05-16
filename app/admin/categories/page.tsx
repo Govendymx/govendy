@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import Link from 'next/link';
 
@@ -16,35 +16,53 @@ type Request = {
 export default function CategoryRequestsPage() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const fetchRequests = async () => {
+  const fetchRequests = useCallback(async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    setError(null);
+    const { data, error: fetchErr } = await supabase
       .from('category_requests')
       .select('*')
       .order('created_at', { ascending: false });
 
-    if (data) {
-      setRequests(data);
+    if (fetchErr) {
+      setError(fetchErr.message);
+    } else if (data) {
+      setRequests(data as Request[]);
     }
     setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchRequests();
   }, []);
 
-  const handleAction = async (id: string, status: 'approved' | 'rejected') => {
-    const { error } = await supabase
-      .from('category_requests')
-      .update({ status })
-      .eq('id', id);
+  useEffect(() => {
+    void fetchRequests();
+  }, [fetchRequests]);
 
-    if (!error) {
-      // Refresh or local update
-      setRequests(prev => prev.map(r => r.id === id ? { ...r, status } : r));
-    } else {
-        alert('Error al actualizar: ' + error.message);
+  const handleAction = async (id: string, status: 'approved' | 'rejected') => {
+    try {
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token;
+      if (!token) {
+        window.location.href = '/login?returnTo=/admin/categories';
+        return;
+      }
+
+      const res = await fetch('/api/admin/category-requests/update', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ id, status }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || 'No se pudo actualizar la solicitud');
+      }
+
+      setRequests((prev) => prev.map((r) => (r.id === id ? { ...r, status } : r)));
+    } catch (e: unknown) {
+      alert(e instanceof Error ? e.message : 'Error al actualizar');
     }
   };
 
@@ -56,6 +74,10 @@ export default function CategoryRequestsPage() {
           &larr; Volver al Dashboard
         </Link>
       </div>
+
+      {error ? (
+        <div className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-800 ring-1 ring-red-200">{error}</div>
+      ) : null}
 
       {loading ? (
         <div>Cargando...</div>
@@ -84,12 +106,17 @@ export default function CategoryRequestsPage() {
                     {req.gender}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                      ${req.status === 'approved' ? 'bg-green-100 text-green-800' : 
-                        req.status === 'rejected' ? 'bg-red-100 text-red-800' : 
-                        'bg-yellow-100 text-yellow-800'}`}>
-                      {req.status === 'pending' ? 'Pendiente' : 
-                       req.status === 'approved' ? 'Aprobado' : 'Rechazado'}
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                      ${
+                        req.status === 'approved'
+                          ? 'bg-green-100 text-green-800'
+                          : req.status === 'rejected'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-yellow-100 text-yellow-800'
+                      }`}
+                    >
+                      {req.status === 'pending' ? 'Pendiente' : req.status === 'approved' ? 'Aprobado' : 'Rechazado'}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">

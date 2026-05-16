@@ -1,15 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase/admin';
+import { requireAdmin } from '@/lib/auth/middleware';
+import { handleApiError } from '@/lib/utils/errors';
 
 export async function POST(req: NextRequest) {
   try {
+    const auth = await requireAdmin(req);
+    const admin = auth.admin;
     const { userIds } = await req.json();
 
     if (!userIds || !Array.isArray(userIds) || userIds.length === 0) {
       return NextResponse.json({ profiles: [] });
     }
 
-    const admin = supabaseAdmin();
     const uniqueIds = Array.from(new Set(userIds)) as string[];
 
     // 1. Try to fetch existing profiles

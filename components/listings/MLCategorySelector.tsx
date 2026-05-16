@@ -10,6 +10,8 @@ interface MLCategorySelectorProps {
     onSelect: (suggestion: DomainSuggestion) => void;
     onManualSearch: (query: string) => void;
     disabled?: boolean;
+    /** Ruta guardada en BD (género › categoría › subcategoría) — se usa al editar sin re-detectar */
+    savedPath?: string[] | null;
 }
 
 /**
@@ -23,6 +25,7 @@ export function MLCategorySelector({
     onSelect,
     onManualSearch,
     disabled,
+    savedPath,
 }: MLCategorySelectorProps) {
     const [isSearching, setIsSearching] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -37,6 +40,8 @@ export function MLCategorySelector({
     const path = suggestion?.category_path || [];
     const hasPath = path.length > 0;
     const categoryName = suggestion?.category_name;
+    const savedSegments = savedPath?.filter((s) => s.trim().length > 0) ?? [];
+    const hasSavedPath = savedSegments.length > 0;
 
     // Handle search submit
     const handleSearch = () => {
@@ -144,6 +149,45 @@ export function MLCategorySelector({
                         ) : (
                             <p className="text-sm font-bold text-gray-900">{categoryName}</p>
                         )}
+                    </div>
+                    {!disabled && (
+                        <button
+                            type="button"
+                            onClick={() => setIsSearching(true)}
+                            className="shrink-0 rounded-lg px-2.5 py-1.5 text-[11px] font-bold text-orange-600 hover:text-orange-700 hover:bg-orange-100 transition-colors"
+                        >
+                            Cambiar
+                        </button>
+                    )}
+                </div>
+            </div>
+        );
+    }
+
+    // State 3b: Categoría guardada al editar (sin re-detectar por título)
+    if (hasSavedPath) {
+        return (
+            <div className="rounded-xl border-2 border-emerald-200 bg-gradient-to-r from-emerald-50/70 to-white p-4">
+                <div className="flex items-start justify-between gap-3">
+                    <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-1.5">
+                            <span className="text-xs">📁</span>
+                            <span className="text-[10px] font-semibold text-emerald-800 uppercase tracking-wider">
+                                {disabled ? 'Categoría de la publicación' : 'Categoría guardada'}
+                            </span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-0.5 text-sm text-gray-700">
+                            {savedSegments.map((name, i) => (
+                                <span key={`${name}-${i}`} className="flex items-center gap-0.5">
+                                    <span className={i === savedSegments.length - 1 ? 'font-bold text-gray-900' : ''}>
+                                        {name}
+                                    </span>
+                                    {i < savedSegments.length - 1 && (
+                                        <span className="text-gray-300 mx-0.5">›</span>
+                                    )}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                     {!disabled && (
                         <button

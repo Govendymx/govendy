@@ -67,3 +67,9 @@ export function handleError(error: unknown): { message: string; code: string; st
     statusCode: 500,
   };
 }
+
+/** Respuesta JSON estándar para route handlers de Next.js App Router. */
+export function handleApiError(error: unknown) {
+  const { message, code, statusCode } = handleError(error);
+  return Response.json({ ok: false, error: message, code }, { status: statusCode });
+}

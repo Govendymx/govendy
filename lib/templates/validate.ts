@@ -75,8 +75,9 @@ export function validateTemplateBlocks(
     }
 
     if (type === 'richtext') {
-      const content = limitString(asTrimmedString((b as any).content), 10000);
-      if (!content) return { ok: false, error: `Bloque #${i + 1} (richtext) sin contenido.` };
+      // HTML con imágenes puede ser largo; no recortar en 10k o se rompe el markup
+      const content = limitString(String((b as any).content ?? ''), 200_000);
+      if (!content.trim()) return { ok: false, error: `Bloque #${i + 1} (richtext) sin contenido.` };
       out.push({ type: 'richtext', content });
       continue;
     }

@@ -57,12 +57,14 @@ export function SizeVariantSelector({
         }
     };
 
+    const assignedStockTotal = Object.values(sizeStock).reduce((a, b) => a + Number(b), 0);
+
     const updateStock = (size: string, stock: number) => {
         let newStockVal = Math.max(0, stock);
         if (maxTotalStock !== undefined) {
             const currentOtherTotal = Object.entries(sizeStock)
                 .filter(([k]) => k !== size)
-                .reduce((a, [_, v]) => a + v, 0);
+                .reduce((a, [_, v]) => a + Number(v), 0);
             if (currentOtherTotal + newStockVal > maxTotalStock) {
                 newStockVal = Math.max(0, maxTotalStock - currentOtherTotal);
             }
@@ -193,7 +195,7 @@ export function SizeVariantSelector({
                                 <input
                                     type="number"
                                     min="0"
-                                    value={sizeStock[size] ?? 1}
+                                    value={sizeStock[size] !== undefined ? sizeStock[size] : 1}
                                     onChange={(e) => {
                                         const val = e.target.value === '' ? 0 : parseInt(e.target.value);
                                         updateStock(size, isNaN(val) ? 0 : val);
@@ -204,9 +206,9 @@ export function SizeVariantSelector({
                             </div>
                         ))}
                     </div>
-                    <div className={`mt-3 rounded-xl p-3 border ${maxTotalStock !== undefined && Object.values(sizeStock).reduce((a, b) => a + b, 0) === maxTotalStock ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}`}>
-                        <p className={`text-sm font-semibold ${maxTotalStock !== undefined && Object.values(sizeStock).reduce((a, b) => a + b, 0) === maxTotalStock ? 'text-green-800' : 'text-gray-900'}`}>
-                            Stock asignado: {Object.values(sizeStock).reduce((a, b) => a + b, 0)} {maxTotalStock !== undefined ? `/ ${maxTotalStock}` : ''} unidades
+                    <div className={`mt-3 rounded-xl p-3 border ${maxTotalStock !== undefined && assignedStockTotal === maxTotalStock ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}`}>
+                        <p className={`text-sm font-semibold ${maxTotalStock !== undefined && assignedStockTotal === maxTotalStock ? 'text-green-800' : 'text-gray-900'}`}>
+                            Stock asignado: {assignedStockTotal} {maxTotalStock !== undefined ? `/ ${maxTotalStock}` : ''} unidades
                         </p>
                     </div>
                 </div>

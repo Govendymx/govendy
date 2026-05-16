@@ -1,10 +1,12 @@
-import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase/admin';
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/middleware';
+import { handleApiError } from '@/lib/utils/errors';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
-  const admin = supabaseAdmin();
+export async function GET(req: NextRequest) {
+  const auth = await requireAdmin(req);
+  const admin = auth.admin;
   const logs: string[] = [];
 
   try {

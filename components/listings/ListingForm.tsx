@@ -27,6 +27,12 @@ import { TemplateSelector } from './TemplateSelector';
 import { TemplateEditor } from '@/components/templates/TemplateEditor';
 import { WholesaleTierEditor, type WholesaleTier } from '@/components/listings/WholesaleTierEditor';
 import { detectClothingType, DiagramForType, type CustomSizeChart } from '@/components/listings/ClothingSizeChart';
+import {
+  buildSavedCategoryPath,
+  getDescriptionModeForForm,
+  normalizeListingFormInitialData,
+  parseDescriptionBlocks,
+} from '@/lib/listings/normalizeListingFormData';
 
 // Tipos auxiliares para el formulario
 export type ListingFormMode = 'create' | 'edit' | 'clone';
@@ -166,31 +172,46 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   const isClone = mode === 'clone';
   const isCreate = mode === 'create';
 
+  const initialNorm = normalizeListingFormInitialData(
+    initialData as Record<string, unknown> | undefined,
+  );
+  const initialBlocks = parseDescriptionBlocks(initialNorm.description_blocks);
+
   const [pageError, setPageError] = useState<string | null>(null);
   const [commissionRates, setCommissionRates] = useState<{ basic: number; pro: number; platinum: number } | null>(null);
   const [userProfile, setUserProfile] = useState<any>(null);
 
   // Estados del formulario
-  const [title, setTitle] = useState(initialData?.title || '');
-  const [description, setDescription] = useState(initialData?.description || '');
+  const [title, setTitle] = useState(String(initialNorm.title || ''));
+  const [description, setDescription] = useState(String(initialNorm.description || ''));
   const [richTextContent, setRichTextContent] = useState('');
-  const [priceInput, setPriceInput] = useState<string>(initialData?.price || '');
-  const [gender, setGender] = useState<string>(initialData?.gender || 'Mujer');
-  const [category, setCategory] = useState<string>(initialData?.category || '');
-  const [subcategory, setSubcategory] = useState<string>(initialData?.subcategory || '');
-  const [brand, setBrand] = useState<string>(initialData?.brand || '');
-  const [model, setModel] = useState<string>(initialData?.model || '');
-  const [color, setColor] = useState<string>(initialData?.color || '');
-  const [condition, setCondition] = useState<'nuevo' | 'usado' | 'casi_nuevo' | null>(initialData?.condition || null);
-  const [stock, setStock] = useState<string>(initialData?.stock || '');
+  const [priceInput, setPriceInput] = useState<string>(String(initialNorm.price || ''));
+  const [gender, setGender] = useState<string>(String(initialNorm.gender || 'Mujer'));
+  const [category, setCategory] = useState<string>(String(initialNorm.category || ''));
+  const [subcategory, setSubcategory] = useState<string>(String(initialNorm.subcategory || ''));
+  const [brand, setBrand] = useState<string>(String(initialNorm.brand || ''));
+  const [model, setModel] = useState<string>(String(initialNorm.model || ''));
+  const [color, setColor] = useState<string>(String(initialNorm.color || ''));
+  const [condition, setCondition] = useState<'nuevo' | 'usado' | 'casi_nuevo' | null>(
+    (initialNorm.condition as 'nuevo' | 'usado' | 'casi_nuevo' | null) || null,
+  );
+  const [stock, setStock] = useState<string>(String(initialNorm.stock || ''));
 
   // Variantes
-  const [colorVariants, setColorVariants] = useState<string[]>(initialData?.color_variants || []);
+  const [colorVariants, setColorVariants] = useState<string[]>(
+    (initialNorm.color_variants as string[]) || [],
+  );
   const [newColorVariant, setNewColorVariant] = useState<string>('');
-  const [sizeVariants, setSizeVariants] = useState<string[]>(initialData?.size_variants || []);
+  const [sizeVariants, setSizeVariants] = useState<string[]>(
+    (initialNorm.size_variants as string[]) || [],
+  );
   const [newSizeVariant, setNewSizeVariant] = useState<string>('');
-  const [sizeType, setSizeType] = useState<'clothing' | 'shoes'>(initialData?.size_type || 'clothing');
-  const [sizeStock, setSizeStock] = useState<Record<string, number>>(initialData?.size_stock || {});
+  const [sizeType, setSizeType] = useState<'clothing' | 'shoes'>(
+    (initialNorm.size_type as 'clothing' | 'shoes') || 'clothing',
+  );
+  const [sizeStock, setSizeStock] = useState<Record<string, number>>(
+    (initialNorm.size_stock as Record<string, number>) || {},
+  );
 
   // Guía de Tallas personalizada del vendedor
   const [customSizeChart, setCustomSizeChart] = useState<CustomSizeChart | null>(
@@ -201,13 +222,17 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   );
 
   // Atributos y Tags
-  const [attributes, setAttributes] = useState<Record<string, any>>(initialData?.attributes || {});
+  const [attributes, setAttributes] = useState<Record<string, any>>(
+    (initialNorm.attributes as Record<string, any>) || {},
+  );
   const [disabledAttributes, setDisabledAttributes] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>(initialData?.tags || []);
   const [newTag, setNewTag] = useState('');
 
   // Imágenes
-  const [existingImages, setExistingImages] = useState<string[]>(initialData?.images || []);
+  const [existingImages, setExistingImages] = useState<string[]>(
+    (initialNorm.images as string[]) || [],
+  );
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
 
@@ -251,8 +276,8 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
 
   // Plantillas UI
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
-  const [descriptionMode, setDescriptionMode] = useState<'richtext' | 'blocks'>(
-    initialData?.description_blocks && Array.isArray(initialData.description_blocks) && initialData.description_blocks.length > 0 ? 'blocks' : 'richtext'
+  const [descriptionMode, setDescriptionMode] = useState<'richtext' | 'blocks'>(() =>
+    getDescriptionModeForForm(mode, initialBlocks),
   );
 
   const [shippingCost, setShippingCost] = useState<number | null>(null);
@@ -376,7 +401,9 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   }, [weight, length, width, height, freeShipping, shippingBySeller, saleType, needsShippingCalc]);
 
   // Templates
-  const [descriptionBlocks, setDescriptionBlocks] = useState<TemplateBlock[] | null>(initialData?.description_blocks || null);
+  const [descriptionBlocks, setDescriptionBlocks] = useState<TemplateBlock[] | null>(
+    initialBlocks.length > 0 ? initialBlocks : null,
+  );
   const [templates, setTemplates] = useState<any[]>([]);
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>('');
   const [selectedTemplateTitle, setSelectedTemplateTitle] = useState<string>('');
@@ -483,15 +510,103 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
   }, [isEdit]);
 
   useEffect(() => {
-    if (initialData?.description_blocks) {
-      const rtBlock = initialData.description_blocks.find((b: any) => b.type === 'richtext') as any;
-      if (rtBlock && rtBlock.content) {
-        setRichTextContent(rtBlock.content);
-      }
-    } else if (description && !richTextContent) {
-      setRichTextContent(description.replace(/\n/g, '<br>'));
+    const blocks = parseDescriptionBlocks(
+      initialData?.description_blocks ?? initialNorm.description_blocks,
+    );
+    const rtBlock = blocks.find((b) => b.type === 'richtext') as { content?: string } | undefined;
+    if (rtBlock?.content) {
+      setRichTextContent(rtBlock.content);
+      return;
     }
-  }, [initialData?.description_blocks, description]);
+    const desc = initialData?.description || description;
+    if (desc) {
+      setRichTextContent(desc.replace(/\n/g, '<br>'));
+    }
+  }, [initialData?.id, initialData?.description_blocks, initialData?.description, description, initialNorm.description_blocks]);
+
+  // Hidratar todos los campos al editar (una vez por publicación)
+  useEffect(() => {
+    if (!isEdit || !initialData?.id) return;
+    const n = normalizeListingFormInitialData(initialData as Record<string, unknown>);
+    const attrs = (n.attributes || {}) as Record<string, any>;
+
+    setTitle(String(n.title || ''));
+    setDescription(String(n.description || ''));
+    setPriceInput(String(n.price || ''));
+    setGender(String(n.gender || 'Mujer'));
+    setCategory(String(n.category || ''));
+    setSubcategory(String(n.subcategory || ''));
+    setBrand(String(n.brand || attrs.brand || ''));
+    setModel(String(n.model || attrs.model || ''));
+    setColor(String(n.color || attrs.color || ''));
+    setCondition((n.condition as typeof condition) || null);
+    setStock(String(n.stock || ''));
+    setAttributes(attrs);
+    setTags((n.tags as string[]) || []);
+    setExistingImages((n.images as string[]) || []);
+    setSaleType((n.sale_type as 'direct' | 'auction') || 'direct');
+    setIsFeatured(Boolean(n.is_featured));
+    setProductType((n.product_type as 'physical' | 'digital') || 'physical');
+    setFreeShipping(Boolean(n.free_shipping));
+    setCustomShippingPrice(String(n.custom_shipping_price || ''));
+    setSelectedShippingCarrier(String(n.shipping_carrier || ''));
+    setShippingSubsidy(String(n.shipping_subsidy || ''));
+    setWeight(String(n.weight_kg || '1'));
+    setLength(String(n.length_cm || '20'));
+    setWidth(String(n.width_cm || '20'));
+    setHeight(String(n.height_cm || '10'));
+    setShippingBySeller(Boolean(n.shipping_by_seller));
+    setAllowPersonalDelivery(Boolean(n.allow_personal_delivery));
+    setHandlingDays(String(n.handling_days || '3'));
+    setYoutubeUrl(String(n.youtube_url || ''));
+    setSizeVariants((n.size_variants as string[]) || []);
+    setSizeStock((n.size_stock as Record<string, number>) || {});
+    setSizeType((n.size_type as 'clothing' | 'shoes') || 'clothing');
+    setColorVariants((n.color_variants as string[]) || []);
+    setWholesaleTiers((n.wholesale_tiers as WholesaleTier[]) || []);
+    setShowWholesaleEditor(Array.isArray(n.wholesale_tiers) && (n.wholesale_tiers as unknown[]).length > 0);
+    setCustomSizeChart(attrs.custom_size_chart ?? null);
+    setShowSizeChartEditor(Boolean(attrs.custom_size_chart));
+    setMlCategoryId(attrs.ml_category_id || null);
+
+    const savedMl = attrs.ml_attributes;
+    if (savedMl && typeof savedMl === 'object') {
+      const restored: Record<string, string> = {};
+      for (const [attrId, info] of Object.entries(savedMl as Record<string, unknown>)) {
+        if (info && typeof info === 'object' && 'value' in (info as object)) {
+          restored[attrId] = String((info as { value: unknown }).value);
+        } else if (typeof info === 'string') {
+          restored[attrId] = info;
+        }
+      }
+      setMeliAttrValues(restored);
+    }
+
+    if (n.auction_start_at) {
+      setAuctionStartDateTime(new Date(String(n.auction_start_at)).toISOString().slice(0, 16));
+    }
+    if (n.auction_end_at) {
+      setAuctionEndDateTime(new Date(String(n.auction_end_at)).toISOString().slice(0, 16));
+    }
+    setAuctionStartingBidInput(String(n.auction_starting_bid || ''));
+    setAuctionBidIncrementInput(String(n.auction_bid_increment || '10'));
+
+    const blocks = parseDescriptionBlocks(n.description_blocks);
+    setDescriptionBlocks(blocks.length > 0 ? blocks : null);
+    const rtBlock = blocks.find((b) => b.type === 'richtext') as { content?: string } | undefined;
+    if (rtBlock?.content) {
+      setRichTextContent(rtBlock.content);
+    } else if (n.description) {
+      setRichTextContent(String(n.description).replace(/\n/g, '<br>'));
+    }
+    setDescriptionMode('richtext');
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- solo al cargar el listing
+  }, [isEdit, initialData?.id]);
+
+  const savedCategoryPath = useMemo(
+    () => buildSavedCategoryPath(gender, category, subcategory || null),
+    [gender, category, subcategory],
+  );
 
   const onSelectFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -1294,6 +1409,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="block text-sm font-medium text-gray-700">Descripción</label>
+                  {!isEdit && (
                   <div className="flex gap-2">
                     <button
                       type="button"
@@ -1325,9 +1441,10 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       </button>
                     )}
                   </div>
+                  )}
                 </div>
 
-                {descriptionMode === 'richtext' ? (
+                {isEdit || descriptionMode === 'richtext' ? (
                   <RichTextEditor
                     content={richTextContent}
                     onChange={handleRteChange}
@@ -1531,13 +1648,13 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                 <MLCategorySelector
                   suggestion={domainSuggestion}
                   allSuggestions={allDomainSuggestions}
-                  isLoading={isDomainLoading}
+                  isLoading={isDomainLoading && !isEdit}
+                  savedPath={savedCategoryPath}
                   onSelect={(s) => {
                     handleSelectDomainSuggestion(s);
                     setManualSearchTitle('');
                   }}
                   onManualSearch={(q) => setManualSearchTitle(q)}
-                  disabled={mode === 'edit'}
                 />
               </div>
 

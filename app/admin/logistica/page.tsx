@@ -547,10 +547,19 @@ function AdminLogisticaContent() {
   const handleNotifyDelay = async (orderId: string) => {
     if (!confirm('¿Enviar notificación de retraso al vendedor?')) return;
     try {
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token;
+      if (!token) {
+        window.location.href = '/login?returnTo=/admin/logistica';
+        return;
+      }
       const res = await fetch('/api/admin/notify-delay', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orderId, type: 'shipping_delay' })
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ orderId, type: 'shipping_delay' }),
       });
       if (res.ok) {
         alert('Notificación enviada');

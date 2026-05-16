@@ -1,4 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/middleware';
+import { handleApiError } from '@/lib/utils/errors';
 import { getEnhancedAdminContext } from '@/lib/admin/ai-data-service';
 import { PLATFORM_KNOWLEDGE_BASE } from '@/lib/admin/ai-knowledge-base';
 import Replicate from "replicate";
@@ -10,8 +12,9 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   try {
+    await requireAdmin(req);
     const body = await req.json();
     const { message } = body;
 

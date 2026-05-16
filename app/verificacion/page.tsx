@@ -32,15 +32,29 @@ type ProfileRow = {
 
 type UploadResult = { url: string };
 
+async function getAccessToken(): Promise<string> {
+  const { data: sess, error } = await supabase.auth.getSession();
+  if (error) throw error;
+  let token = sess.session?.access_token;
+  if (!token) throw new Error('Tu sesión expiró. Vuelve a iniciar sesión.');
+
+  const expiresAt = sess.session?.expires_at ? sess.session.expires_at * 1000 : 0;
+  if (expiresAt && expiresAt < Date.now() + 60_000) {
+    const { data: refreshed, error: refreshErr } = await supabase.auth.refreshSession();
+    if (refreshErr) throw refreshErr;
+    token = refreshed.session?.access_token || token;
+  }
+  return token;
+}
+
 async function uploadFile(file: File): Promise<string> {
   const fd = new FormData();
   fd.append('file', file);
   fd.append('kind', 'verification');
-  const { data } = await supabase.auth.getSession();
-  const token = data.session?.access_token;
+  const token = await getAccessToken();
   const res = await fetch('/api/upload', {
     method: 'POST',
-    headers: token ? { authorization: `Bearer ${token}` } : undefined,
+    headers: { authorization: `Bearer ${token}` },
     body: fd,
   });
   const json = (await res.json().catch(() => ({}))) as Partial<UploadResult> & { error?: string };
@@ -56,6 +70,7 @@ function isFilled(value: string) {
 export default function VerificacionPage() {
   const [isBooting, setIsBooting] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [saveStep, setSaveStep] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -255,60 +270,118 @@ export default function VerificacionPage() {
 
     try {
       setIsSaving(true);
-      const { data: userData, error: userErr } = await supabase.auth.getUser();
-      if (userErr) throw userErr;
-      const user = userData.user;
-      if (!user) {
-        window.location.href = '/';
-        return;
+      const token = await getAccessToken();
+
+      let frontUrl = form.ine_front_url.trim();
+      let backUrl = form.ine_back_url.trim();
+      let selfieUrl = form.selfie_ine_url.trim();
+
+      const uploadTasks: Array<Promise<void>> = [];
+      if (ineFrontFile) {
+        uploadTasks.push(
+          (async () => {
+            setSaveStep('Subiendo INE (frente)…');
+            frontUrl = await uploadFile(ineFrontFile);
+          })(),
+        );
+      }
+      if (ineBackFile) {
+        uploadTasks.push(
+          (async () => {
+            setSaveStep('Subiendo INE (reverso)…');
+            backUrl = await uploadFile(ineBackFile);
+          })(),
+        );
+      }
+      if (selfieFile) {
+        uploadTasks.push(
+          (async () => {
+            setSaveStep('Subiendo selfie con INE…');
+            selfieUrl = await uploadFile(selfieFile);
+          })(),
+        );
+      }
+      if (uploadTasks.length > 0) {
+        await Promise.all(uploadTasks);
       }
 
-      let frontUrl = form.ine_front_url;
-      let backUrl = form.ine_back_url;
-      let selfieUrl = form.selfie_ine_url;
+      if (!frontUrl || !backUrl || !selfieUrl) {
+        throw new Error('Debes subir INE frente, reverso y selfie con INE.');
+      }
 
-      if (ineFrontFile) frontUrl = await uploadFile(ineFrontFile);
-      if (ineBackFile) backUrl = await uploadFile(ineBackFile);
-      if (selfieFile) selfieUrl = await uploadFile(selfieFile);
+      setSaveStep('Guardando datos en tu perfil…');
 
-      const computedFullName = `${form.first_name.trim()} ${form.apellido_paterno.trim()} ${form.apellido_materno.trim()}`.trim();
-
-      const payload: Record<string, unknown> = {
-        first_name: form.first_name.trim(),
-        apellido_paterno: form.apellido_paterno.trim(),
-        apellido_materno: form.apellido_materno.trim(),
-        nickname: form.nickname.trim(),
-        rfc: form.rfc.trim().toUpperCase(),
-        curp: form.curp.trim().toUpperCase(),
-        full_name: computedFullName,
-        address_street: form.address_street.trim(),
-        ext_number: form.ext_number.trim(),
-        int_number: form.int_number.trim(),
-        neighborhood: form.neighborhood.trim(),
-        zip_code: form.zip_code.trim(),
-        state: form.state.trim(),
-        city: form.city.trim(),
-        references: form.references.trim(),
-        cross_streets: form.cross_streets.trim(),
-        phone: form.phone.trim(),
-        ine_front_url: frontUrl.trim(),
-        ine_back_url: backUrl.trim(),
-        selfie_ine_url: selfieUrl.trim(),
-        verification_status: 'pending',
-        verification_rejection_reason: null,
-        verification_submitted_at: new Date().toISOString(),
+      const submitBody = {
+        first_name: form.first_name,
+        apellido_paterno: form.apellido_paterno,
+        apellido_materno: form.apellido_materno,
+        nickname: form.nickname,
+        rfc: form.rfc,
+        curp: form.curp,
+        address_street: form.address_street,
+        ext_number: form.ext_number,
+        int_number: form.int_number,
+        neighborhood: form.neighborhood,
+        zip_code: form.zip_code,
+        state: form.state,
+        city: form.city,
+        references: form.references,
+        cross_streets: form.cross_streets,
+        phone: form.phone,
+        ine_front_url: frontUrl,
+        ine_back_url: backUrl,
+        selfie_ine_url: selfieUrl,
       };
 
-      const { error: updErr } = await supabase.from('profiles').update(payload).eq('id', user.id);
-      if (updErr) throw updErr;
+      const res = await fetch('/api/verification/submit', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(submitBody),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || 'No se pudo guardar tu verificación.');
+      }
 
-      setForm((p) => ({ ...p, verification_status: 'pending', verification_rejection_reason: '' }));
-      setSuccess('Documentos enviados. Tu verificación será revisada por nuestro equipo.');
+      const saved = json.profile as Record<string, unknown> | undefined;
+      setForm((p) => ({
+        ...p,
+        first_name: String(saved?.first_name ?? p.first_name),
+        apellido_paterno: String(saved?.apellido_paterno ?? p.apellido_paterno),
+        apellido_materno: String(saved?.apellido_materno ?? p.apellido_materno),
+        nickname: String(saved?.nickname ?? p.nickname),
+        rfc: String(saved?.rfc ?? p.rfc),
+        curp: String(saved?.curp ?? p.curp),
+        full_name: String(saved?.full_name ?? p.full_name),
+        address_street: String(saved?.address_street ?? p.address_street),
+        ext_number: String(saved?.ext_number ?? p.ext_number),
+        int_number: String(saved?.int_number ?? p.int_number),
+        neighborhood: String(saved?.neighborhood ?? p.neighborhood),
+        zip_code: String(saved?.zip_code ?? p.zip_code),
+        state: String(saved?.state ?? p.state),
+        city: String(saved?.city ?? p.city),
+        references: String(saved?.references ?? p.references),
+        cross_streets: String(saved?.cross_streets ?? p.cross_streets),
+        phone: String(saved?.phone ?? p.phone),
+        ine_front_url: String(saved?.ine_front_url ?? frontUrl),
+        ine_back_url: String(saved?.ine_back_url ?? backUrl),
+        selfie_ine_url: String(saved?.selfie_ine_url ?? selfieUrl),
+        verification_status: (saved?.verification_status as ProfileRow['verification_status']) ?? 'pending',
+        verification_rejection_reason: '',
+      }));
+      setIneFrontFile(null);
+      setIneBackFile(null);
+      setSelfieFile(null);
+      setSuccess('Documentos enviados. Los mismos datos ya están en tu perfil; serán revisados por nuestro equipo.');
     } catch (err: unknown) {
       console.error(err);
       setError(err instanceof Error ? err.message : 'No se pudo guardar tu verificación.');
     } finally {
       setIsSaving(false);
+      setSaveStep(null);
     }
   };
 
@@ -653,10 +726,13 @@ export default function VerificacionPage() {
                 disabled={!canSave}
                 className="rounded-xl bg-brand-emerald px-6 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
               >
-                {isSaving ? 'Enviando…' : form.verification_status === 'rejected' ? 'Reenviar documentos' : 'Enviar para revisión'}
+                {isSaving ? saveStep || 'Enviando…' : form.verification_status === 'rejected' ? 'Reenviar documentos' : 'Enviar para revisión'}
               </button>
             </div>
           )}
+          {isSaving && saveStep ? (
+            <p className="mt-2 text-right text-xs text-gray-500">{saveStep}</p>
+          ) : null}
         </form>
       </main>
     </div>

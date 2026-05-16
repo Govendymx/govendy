@@ -193,7 +193,7 @@ export default function DashboardPerfilPage() {
         const { data, error: pErr } = await supabase
           .from('profiles')
           .select(
-            'id,full_name,first_name,last_name,apellido_paterno,apellido_materno,curp,phone,rfc,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,ine_front_url,ine_back_url,payout_bank_name,payout_account_holder,payout_clabe,payout_account_number,payout_notes,mercadopago_account,has_seen_onboarding_tour,plan_type,store_logo_url,is_official_store,official_store_name,official_store_banner_url,official_store_brand_color,official_store_slogan,nickname',
+            'id,full_name,first_name,last_name,apellido_paterno,apellido_materno,curp,phone,rfc,address_street,ext_number,int_number,neighborhood,zip_code,state,city,references,cross_streets,ine_front_url,ine_back_url,selfie_ine_url,verification_status,verification_rejection_reason,payout_bank_name,payout_account_holder,payout_clabe,payout_account_number,payout_notes,mercadopago_account,has_seen_onboarding_tour,plan_type,store_logo_url,is_official_store,official_store_name,official_store_banner_url,official_store_brand_color,official_store_slogan,nickname',
           )
           .eq('id', user.id)
           .maybeSingle();
@@ -465,7 +465,35 @@ export default function DashboardPerfilPage() {
                 ) : (
                   <span className="font-semibold text-amber-700">Pendiente de verificación</span>
                 )}
+                {(() => {
+                  const vs = String((profile as any)?.verification_status || 'none');
+                  if (vs === 'pending') {
+                    return (
+                      <span className="ml-2 inline-flex rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-800">
+                        Verificación en revisión
+                      </span>
+                    );
+                  }
+                  if (vs === 'approved') {
+                    return (
+                      <span className="ml-2 inline-flex rounded-full bg-green-100 px-2 py-0.5 text-xs font-bold text-green-800">
+                        Verificado
+                      </span>
+                    );
+                  }
+                  if (vs === 'rejected') {
+                    return (
+                      <span className="ml-2 inline-flex rounded-full bg-red-100 px-2 py-0.5 text-xs font-bold text-red-800">
+                        Verificación rechazada
+                      </span>
+                    );
+                  }
+                  return null;
+                })()}
               </div>
+              <p className="mt-1 text-xs text-gray-500">
+                Los datos de contacto y dirección que guardes aquí son los mismos que en Verificación.
+              </p>
               <div className="mt-2 text-xs text-gray-500">
                 Email: <span className="font-semibold text-gray-700">{email || '—'}</span> · Ingreso: <span className="font-semibold text-gray-700">{createdAt ? new Date(createdAt).toLocaleDateString('es-MX') : '—'}</span>
               </div>

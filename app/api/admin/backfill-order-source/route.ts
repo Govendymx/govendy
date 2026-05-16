@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabase/admin';
+import { NextRequest, NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/auth/middleware';
+import { handleApiError } from '@/lib/utils/errors';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,9 +11,10 @@ export const dynamic = 'force-dynamic';
  *
  * Safe to run multiple times (idempotent).
  */
-export async function POST() {
+export async function POST(req: NextRequest) {
     try {
-        const admin = supabaseAdmin();
+        const auth = await requireAdmin(req);
+        const admin = auth.admin;
 
         // 1. Find orders that came from auctions:
         //    order_items → listings where sale_type='auction'

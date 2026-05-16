@@ -49,6 +49,7 @@
     "hls.js": "^1.6.15",
     "html2canvas": "^1.4.1",
     "imapflow": "^1.0.166",
+    "isomorphic-dompurify": "^3.13.0",
     "jspdf": "^4.1.0",
     "jspdf-autotable": "^5.0.7",
     "leaflet": "^1.9.4",
