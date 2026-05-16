@@ -235,8 +235,14 @@ export function ListingCard({ p, badge, mediaOverlay, meta, showDescription = fa
         setIsAdding(true);
 
         try {
+            let token: string | undefined;
             const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
+            token = session?.access_token;
+            if (!token) {
+                const { data: refreshed } = await supabase.auth.refreshSession();
+                token = refreshed.session?.access_token;
+            }
+            if (!token) {
                 if (onLoginRequired) {
                     onLoginRequired();
                 } else {
@@ -249,7 +255,7 @@ export function ListingCard({ p, badge, mediaOverlay, meta, showDescription = fa
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${session.access_token}`
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({ listingId: p.id, quantity: 1 })
             });

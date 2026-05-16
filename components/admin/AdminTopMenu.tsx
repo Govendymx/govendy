@@ -170,6 +170,7 @@ export function AdminTopMenu() {
 
       // === CONTENIDO Y USUARIOS ===
       { label: 'Usuarios', href: '/admin/usuarios' },
+      { label: 'Solicitudes', href: '/admin/solicitudes', tone: 'pink' },
       { label: 'Usuarios PRO', href: '/admin/usuarios-pro' },
       { label: 'Platinum', href: '/admin/platinum', tone: 'pink' },
       { label: 'Lives', href: '/admin/lives' },

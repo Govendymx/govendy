@@ -1192,39 +1192,61 @@ export default function ListingDetailPage() {
   const addToCart = async () => {
     setError(null);
     setSuccess(null);
+
+    if (!listing) {
+      setError('Publicación no encontrada.');
+      return;
+    }
+    if (listing.sale_type === 'auction') {
+      setError('Las subastas no usan carrito. Usa el botón de pujar.');
+      return;
+    }
+    if (listing.status !== 'active') {
+      setError('Esta publicación no está disponible para compra.');
+      return;
+    }
+    if (listing.seller_id && viewerId && listing.seller_id === viewerId) {
+      setError('No puedes agregar tu propia publicación al carrito.');
+      return;
+    }
+    if (currentStock <= 0) {
+      setError('No hay stock disponible.');
+      return;
+    }
+
     setIsAdding(true);
 
     try {
-      const { data: { session }, error: sessionErr } = await supabase.auth.getSession();
-      if (sessionErr || !session) {
-        const { data: userData } = await supabase.auth.getUser();
-        if (!userData.user) {
-          window.location.href = '/login';
-          return;
-        }
+      let accessToken: string | undefined;
+      const { data: sessionData } = await supabase.auth.getSession();
+      accessToken = sessionData.session?.access_token;
+
+      if (!accessToken) {
+        const { data: refreshed } = await supabase.auth.refreshSession();
+        accessToken = refreshed.session?.access_token;
       }
 
-      if (!listing) {
-        setError('Publicación no encontrada.');
+      if (!accessToken) {
+        const returnTo = typeof window !== 'undefined' ? window.location.pathname : '/listings';
+        window.location.href = `/login?returnTo=${encodeURIComponent(returnTo)}`;
         return;
       }
 
-      // Call API to add to cart (handles stock, variants, and quantity increment)
       const res = await fetch('/api/cart/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session?.access_token || ''}`
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify({
           listingId: listing.id,
           quantity: buyerQty,
           selected_size: selectedSize || undefined,
-          selected_color: selectedColor || undefined
-        })
+          selected_color: selectedColor || undefined,
+        }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
         throw new Error(data.error || 'Error al agregar al carrito');
@@ -1232,9 +1254,16 @@ export default function ListingDetailPage() {
 
       setSuccess('Agregado al carrito.');
       window.dispatchEvent(new CustomEvent('cart-updated'));
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } catch (err: unknown) {
       console.error(err);
-      setError(err instanceof Error ? err.message : 'No se pudo agregar al carrito.');
+      const msg = err instanceof Error ? err.message : 'No se pudo agregar al carrito.';
+      setError(msg);
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     } finally {
       setIsAdding(false);
     }
@@ -1448,7 +1477,7 @@ export default function ListingDetailPage() {
                       <button
                         type="button"
                         onClick={addToCart}
-                        disabled={isAdding}
+                        disabled={isAdding || currentStock <= 0 || listing.seller_id === viewerId}
                         className="mx-4 mt-3 flex w-[calc(100%-2rem)] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/40 transition-all hover:scale-[1.02] hover:shadow-blue-600/50 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed group relative overflow-hidden"
                       >
                         <div className="relative z-10 flex items-center gap-2">
@@ -1897,7 +1926,7 @@ export default function ListingDetailPage() {
                     <button
                       type="button"
                       onClick={addToCart}
-                      disabled={isAdding}
+                      disabled={isAdding || currentStock <= 0 || listing.seller_id === viewerId}
                       className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-500 text-white shadow-lg shadow-orange-500/30 transition-all hover:bg-orange-600 hover:shadow-orange-600/40 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                       aria-label="Agregar al carrito"
                       title="Agregar al carrito"
@@ -2538,12 +2567,14 @@ export default function ListingDetailPage() {
                     <button
                       type="button"
                       onClick={addToCart}
-                      disabled={isAdding || listing.status !== 'active' || listing.seller_id === viewerId}
+                      disabled={isAdding || listing.status !== 'active' || listing.seller_id === viewerId || currentStock <= 0}
                       className="relative w-full rounded-xl bg-brand-emerald px-5 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60 overflow-hidden animate-rotating-border animate-border-glow"
                     >
                       {listing.seller_id === viewerId
                         ? 'Es tu publicación'
-                        : (isAdding ? 'Agregando…' : 'Agregar al carrito')}
+                        : currentStock <= 0
+                          ? 'Agotado'
+                          : (isAdding ? 'Agregando…' : 'Agregar al carrito')}
                     </button>
                     <Link
                       href="/cart"

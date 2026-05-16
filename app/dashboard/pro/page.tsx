@@ -12,7 +12,9 @@ export default function ProPage() {
   const [updating, setUpdating] = useState(false);
   const [dates, setDates] = useState<{ start: string; end: string } | null>(null);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState<'pro' | 'platinum'>('pro');
+  const [selectedPlan, setSelectedPlan] = useState<'pro' | 'platinum' | 'verification'>('pro');
+  const [contactPref, setContactPref] = useState('whatsapp');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [paymentStep, setPaymentStep] = useState<'idle' | 'processing' | 'success'>('idle');
   const router = useRouter();
 
@@ -36,17 +38,42 @@ export default function ProPage() {
     load();
   }, [router]);
 
-    setPaymentStep('processing');
-    setTimeout(() => {
+  const submitRequest = async () => {
+    setIsSubmitting(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error('No session');
+
+      const res = await fetch('/api/user/request-plan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ plan: selectedPlan, contact_preference: contactPref }),
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Error al enviar la solicitud');
+      }
+
       setPaymentStep('success');
-    }, 1500);
+    } catch (err) {
+      alert('Error: ' + (err instanceof Error ? err.message : 'Error desconocido'));
+      setPaymentStep('idle');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleSwitch = async (newPlan: string) => {
-    if (newPlan === plan) return;
+    if (newPlan === plan && newPlan !== 'verification') return;
 
-    if (newPlan === 'pro' || newPlan === 'platinum') {
-      setSelectedPlan(newPlan as 'pro' | 'platinum');
+    if (newPlan === 'pro' || newPlan === 'platinum' || newPlan === 'verification') {
+      setSelectedPlan(newPlan as 'pro' | 'platinum' | 'verification');
       setShowPaymentModal(true);
+      setPaymentStep('idle');
       return;
     }
   };
@@ -360,6 +387,51 @@ export default function ProPage() {
         </div>
       </div>
 
+      {/* Verificación de Insignia Azul */}
+      <div className="mt-12 mb-8 bg-blue-50 border border-blue-200 rounded-3xl p-8 max-w-4xl mx-auto shadow-sm hover:shadow-md transition-all">
+        <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+          <div className="flex-1">
+            <div className="flex items-center gap-2 mb-2">
+              <Check className="w-6 h-6 text-blue-600 bg-blue-100 rounded-full p-1" />
+              <h2 className="text-2xl font-bold text-blue-900">Insignia Azul Oficial</h2>
+            </div>
+            <p className="text-blue-800 font-medium mb-4">Aumenta tus ventas generando máxima confianza en tus compradores.</p>
+            <ul className="space-y-3 text-sm text-blue-900 mb-6">
+              <li className="flex items-center gap-2.5">
+                <Check className="w-5 h-5 shrink-0 text-blue-600" />
+                <span>Verificación de <strong>identidad</strong></span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Check className="w-5 h-5 shrink-0 text-blue-600" />
+                <span>Verificación de <strong>Domicilio</strong></span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Check className="w-5 h-5 shrink-0 text-blue-600" />
+                <span>Videollamada con un <strong>ejecutivo</strong></span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Check className="w-5 h-5 shrink-0 text-blue-600" />
+                <span>Solicitud de <strong>Datos y documentos de Identidad</strong></span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Check className="w-5 h-5 shrink-0 text-blue-600" />
+                <span>Incluye envío de <strong>verificación</strong></span>
+              </li>
+            </ul>
+          </div>
+          <div className="w-full md:w-auto flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-blue-100 shadow-sm shrink-0">
+            <div className="text-3xl font-extrabold text-gray-900 mb-1">$750.00</div>
+            <div className="text-sm font-bold text-blue-600 uppercase tracking-wide mb-6">ANUAL</div>
+            <button
+              onClick={() => handleSwitch('verification')}
+              className="w-full py-3 px-6 rounded-xl font-bold text-sm bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
+            >
+              Iniciar tu proceso
+            </button>
+          </div>
+        </div>
+      </div>
+
       {/* Comparison note */}
       <div className="mt-8 text-center">
         <p className="text-sm text-gray-500">
@@ -375,7 +447,7 @@ export default function ProPage() {
               <>
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-xl font-bold text-gray-900">
-                    Activar {selectedPlan === 'platinum' ? 'Platinum ⭐' : 'PRO'}
+                    {selectedPlan === 'platinum' ? 'Activar Platinum ⭐' : selectedPlan === 'pro' ? 'Activar PRO' : 'Solicitar Verificación'}
                   </h3>
                   <button onClick={() => setShowPaymentModal(false)} className="rounded-full p-1 hover:bg-gray-100">
                     <X className="h-5 w-5 text-gray-500" />
@@ -383,36 +455,72 @@ export default function ProPage() {
                 </div>
 
                 <div className="mb-6 space-y-4">
-                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : 'bg-white border-emerald-100'}`}>
+                  <div className={`rounded-xl p-4 border ${selectedPlan === 'platinum' ? 'bg-amber-50 border-amber-200' : selectedPlan === 'verification' ? 'bg-blue-50 border-blue-200' : 'bg-white border-emerald-100'}`}>
                     <div className="flex flex-col gap-2 mb-2 text-center">
                       <span className="font-semibold text-gray-900 text-lg">
-                        ¡Estás a un paso de mejorar tu cuenta!
+                        {selectedPlan === 'verification' ? '¡Inicia tu proceso de verificación!' : '¡Estás a un paso de mejorar tu cuenta!'}
                       </span>
                       <p className="text-sm text-gray-600">
-                        Para activar tu plan <strong>{selectedPlan === 'platinum' ? 'Platinum' : 'PRO'}</strong> y recibir los datos de pago, por favor contacta a un administrador.
+                        {selectedPlan === 'verification' 
+                          ? 'Envía tu solicitud y un ejecutivo se pondrá en contacto contigo para comenzar el trámite de la Insignia Azul.'
+                          : `Para activar tu plan <strong>${selectedPlan === 'platinum' ? 'Platinum' : 'PRO'}</strong> y recibir los datos de pago, por favor envía tu solicitud.`
+                        }
                       </p>
                     </div>
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Preferencia de contacto</label>
+                    <select
+                      value={contactPref}
+                      onChange={(e) => setContactPref(e.target.value)}
+                      className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-brand-emerald focus:ring-1 focus:ring-brand-emerald bg-white"
+                    >
+                      <option value="whatsapp">Contactarme por WhatsApp</option>
+                      <option value="phone">Llamada telefónica</option>
+                      <option value="email">Por Correo Electrónico</option>
+                    </select>
+                  </div>
                 </div>
 
-                <a
-                  href="https://wa.me/5211234567890?text=Hola,%20me%20gustar%C3%ADa%20activar%20el%20plan%20Premium%20en%20GoVendy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] ${selectedPlan === 'platinum'
+                <button
+                  onClick={submitRequest}
+                  disabled={isSubmitting}
+                  className={`flex items-center justify-center gap-2 w-full rounded-xl py-3.5 text-center font-bold text-white shadow-lg transition-all active:scale-[0.98] disabled:opacity-70 ${selectedPlan === 'platinum'
                     ? 'bg-gradient-to-r from-amber-500 to-yellow-500 shadow-amber-200 hover:from-amber-600 hover:to-yellow-600'
-                    : 'bg-brand-emerald shadow-emerald-200 hover:bg-emerald-600'
+                    : selectedPlan === 'verification'
+                      ? 'bg-blue-600 shadow-blue-200 hover:bg-blue-700'
+                      : 'bg-brand-emerald shadow-emerald-200 hover:bg-emerald-600'
                     }`}
                 >
-                  Contactar por WhatsApp
-                </a>
+                  {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
+                </button>
                 <button
                   onClick={() => setShowPaymentModal(false)}
                   className="mt-3 w-full rounded-xl py-3.5 text-center font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-all active:scale-[0.98]"
                 >
-                  Cerrar
+                  Cancelar
                 </button>
               </>
+            )}
+
+            {paymentStep === 'success' && (
+              <div className="flex flex-col items-center justify-center py-8 text-center">
+                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 text-green-600">
+                  <Check className="h-8 w-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  ¡Solicitud Enviada!
+                </h3>
+                <p className="mt-2 text-gray-600">Hemos recibido tu solicitud correctamente.</p>
+                <p className="mt-2 text-sm text-gray-500">Un miembro de nuestro equipo se pondrá en contacto contigo a la brevedad posible.</p>
+                <button
+                  onClick={() => setShowPaymentModal(false)}
+                  className="mt-6 w-full rounded-xl py-3 text-center font-bold text-white bg-brand-emerald hover:bg-emerald-600 transition-all active:scale-[0.98]"
+                >
+                  Entendido
+                </button>
+              </div>
             )}
           </div>
         </div>

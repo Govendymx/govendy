@@ -1,0 +1,70 @@
+-- =============================================================================
+-- GoVendy — ORDEN MÍNIMO RECOMENDADO (ejecutar en Supabase SQL Editor)
+-- Idempotente: puedes re-ejecutar bloques sin romper lo ya aplicado.
+--
+-- PASO 0: Diagnóstico
+--   → VERIFICAR_SQL_FALTANTE.sql  (ver qué marca ❌)
+--
+-- PASO 1: Base (si el proyecto es nuevo o faltan tablas core)
+--   → TODOS_LOS_SQL_CONSOLIDADOS.sql  (40 scripts en uno, enero 2026)
+--   O solo: supabase_profiles_table.sql + supabase_listings.sql +
+--           supabase_cart_and_orders.sql + supabase_notifications.sql
+--
+-- PASO 2: Carrito + variantes (OBLIGATORIO para "Agregar al carrito")
+--   1) supabase_cart_items_complete.sql     ← el que ya corriste
+--   2) supabase_cart_items_selected_color.sql  (redundante si corriste complete)
+--   3) supabase_listings_stock_and_variants.sql
+--   4) supabase_listings_size_variants.sql
+--   5) supabase_sizes_system.sql
+--   6) supabase_order_items_variants.sql
+--
+-- PASO 3: Listings extendido (publicar productos sin errores 42703)
+--   → scripts/add-listings-columns.sql
+--   → ADD_SHIPPING_BY_SELLER_TO_LISTINGS.sql
+--   → ADD_BRAND_MODEL_TO_LISTINGS.sql
+--   → supabase/migrations/20250207000000_add_tags_and_attributes.sql
+--   → supabase/migrations/20260220_add_youtube_url_to_listings.sql
+--
+-- PASO 4: Perfil / verificación / dirección
+--   → supabase_profiles_address_migration.sql
+--   → supabase_profiles_ine_migration.sql
+--   → supabase/migrations/20260220_identity_verification.sql
+--   → supabase/migrations/20260220_add_nickname.sql
+--   → supabase/migrations/20260210_add_first_last_name.sql
+--
+-- PASO 5: Pagos, wallet, checkout
+--   → CREAR_SISTEMA_WALLET.sql
+--   → supabase_payments.sql
+--   → supabase_checkout_sessions_offline.sql
+--   → supabase/migrations/20240603000000_add_pocketcash_to_enum.sql
+--   → SETUP_POCKETCASH_PAYMENT.sql
+--
+-- PASO 6: Preguntas y notificaciones (si no responden / no llegan avisos)
+--   → supabase_listing_questions.sql
+--   → supabase_listing_questions_rls_fix.sql
+--   → supabase_notifications_triggers.sql
+--   → CONFIGURACION_COMPLETA_NOTIFICACIONES_Y_PREGUNTAS.sql
+--
+-- PASO 7: Órdenes, chat, disputas, envíos
+--   → supabase_orders_logistics.sql
+--   → supabase_order_chat.sql + supabase_order_chat_reads.sql
+--   → supabase_disputes.sql
+--   → CREAR_TABLA_ESTAFETA_QUOTES.sql + AGREGAR_CAMPOS_ESTAFETA_...
+--   → update_decrement_stock_rpc.sql
+--
+-- PASO 8: Migraciones recientes (carpeta supabase/migrations/, por fecha)
+--   Ejecutar TODAS las que aún no hayas corrido, especialmente:
+--   → 20260514120000_app_settings_feature_flags.sql
+--   → 20260207_create_category_requests.sql
+--   → 20250206_featured_listings_system.sql
+--   → 20260222_live_hours.sql + 20260223_gopocket_tv.sql
+--
+-- PASO 9: Verificar de nuevo
+--   → VERIFICAR_SQL_FALTANTE.sql
+--   → VERIFICAR_CONFIGURACION_COMPLETA.sql
+-- =============================================================================
+
+-- Este archivo es solo documentación ejecutable como comentarios.
+-- No hace cambios en la base de datos.
+
+SELECT 'Lee los comentarios arriba: orden de archivos .sql en el repo' AS instruccion;
