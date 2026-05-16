@@ -823,60 +823,62 @@ export function ClothingSizeChart({ category, subcategory, mlCategoryId, gender,
                             </div>
                         )}
 
-                        {/* Table */}
-                        <div className="min-w-0 flex-1 overflow-x-auto">
-                            {customChart ? (
-                                // Custom seller table
-                                <table className="w-full border-collapse text-xs">
-                                    <thead>
-                                        <tr className="bg-gradient-to-r from-[#c0005a] via-[#e3127d] to-[#ff4fa0]">
-                                            <th className="rounded-tl-lg px-3 py-2.5 text-left font-bold text-white">Talla</th>
-                                            {customChart.columns.map((col) => (
-                                                <th key={col.key} className="px-3 py-2.5 text-left font-bold text-white last:rounded-tr-lg">{col.label}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {customChart.rows.map((row, idx) => (
-                                            <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-pink-50/40'}>
-                                                <td className="px-3 py-2 font-extrabold text-[#c0005a]">{row.size}</td>
+                        {/* Table and Tip */}
+                        <div className="min-w-0 flex-1 flex flex-col gap-4">
+                            <div className="overflow-x-auto rounded-xl ring-1 ring-pink-100">
+                                {customChart ? (
+                                    // Custom seller table
+                                    <table className="w-full border-collapse text-xs">
+                                        <thead>
+                                            <tr className="bg-gradient-to-r from-[#c0005a] via-[#e3127d] to-[#ff4fa0]">
+                                                <th className="px-3 py-2.5 text-left font-bold text-white whitespace-nowrap">Talla</th>
                                                 {customChart.columns.map((col) => (
-                                                    <td key={col.key} className="px-3 py-2 tabular-nums text-gray-700">
-                                                        {row.values[col.key] ?? '—'} {!NON_UNIT_KEYS.has(col.key) && row.values[col.key] ? unitSuffix(col.key, unit) : ''}
-                                                    </td>
+                                                    <th key={col.key} className="px-3 py-2.5 text-left font-bold text-white whitespace-nowrap">{col.label}</th>
                                                 ))}
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            ) : defaultConfig ? (
-                                // Default generic table
-                                <table className="w-full border-collapse text-xs">
-                                    <thead>
-                                        <tr className="bg-gradient-to-r from-[#c0005a] via-[#e3127d] to-[#ff4fa0]">
-                                            <th className="rounded-tl-lg px-3 py-2.5 text-left font-bold text-white">Talla</th>
-                                            {defaultConfig.measurementKeys.map((k) => (
-                                                <th key={k.key} className="px-3 py-2.5 text-left font-bold text-white last:rounded-tr-lg">{k.label}</th>
+                                        </thead>
+                                        <tbody>
+                                            {customChart.rows.map((row, idx) => (
+                                                <tr key={idx} className={idx % 2 === 0 ? 'bg-white' : 'bg-pink-50/40'}>
+                                                    <td className="px-3 py-2 font-extrabold text-[#c0005a] whitespace-nowrap">{row.size}</td>
+                                                    {customChart.columns.map((col) => (
+                                                        <td key={col.key} className="px-3 py-2 tabular-nums text-gray-700 whitespace-nowrap">
+                                                            {row.values[col.key] ?? '—'} {!NON_UNIT_KEYS.has(col.key) && row.values[col.key] ? unitSuffix(col.key, unit) : ''}
+                                                        </td>
+                                                    ))}
+                                                </tr>
                                             ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {defaultConfig.sizes.map((row, idx) => (
-                                            <tr key={`${row.size}-${idx}`} className={idx % 2 === 0 ? 'bg-white' : 'bg-pink-50/40'}>
-                                                <td className="px-3 py-2 font-extrabold text-[#c0005a]">{row.size}</td>
+                                        </tbody>
+                                    </table>
+                                ) : defaultConfig ? (
+                                    // Default generic table
+                                    <table className="w-full border-collapse text-xs">
+                                        <thead>
+                                            <tr className="bg-gradient-to-r from-[#c0005a] via-[#e3127d] to-[#ff4fa0]">
+                                                <th className="px-3 py-2.5 text-left font-bold text-white whitespace-nowrap">Talla</th>
                                                 {defaultConfig.measurementKeys.map((k) => (
-                                                    <td key={k.key} className="px-3 py-2 tabular-nums text-gray-700">
-                                                        {convertVal(row.measurements[k.key] ?? '—', unit)}{unitSuffix(k.key, unit)}
-                                                    </td>
+                                                    <th key={k.key} className="px-3 py-2.5 text-left font-bold text-white whitespace-nowrap">{k.label}</th>
                                                 ))}
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            ) : null}
+                                        </thead>
+                                        <tbody>
+                                            {defaultConfig.sizes.map((row, idx) => (
+                                                <tr key={`${row.size}-${idx}`} className={idx % 2 === 0 ? 'bg-white' : 'bg-pink-50/40'}>
+                                                    <td className="px-3 py-2 font-extrabold text-[#c0005a] whitespace-nowrap">{row.size}</td>
+                                                    {defaultConfig.measurementKeys.map((k) => (
+                                                        <td key={k.key} className="px-3 py-2 tabular-nums text-gray-700 whitespace-nowrap">
+                                                            {convertVal(row.measurements[k.key] ?? '—', unit)}{unitSuffix(k.key, unit)}
+                                                        </td>
+                                                    ))}
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                ) : null}
+                            </div>
 
                             {/* Tip box */}
-                            <div className="mt-4 rounded-xl bg-blue-50 px-4 py-3 ring-1 ring-blue-100">
+                            <div className="rounded-xl bg-blue-50 px-4 py-3 ring-1 ring-blue-100">
                                 <div className="flex items-start gap-2">
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="mt-0.5 shrink-0 text-blue-500" stroke="currentColor" strokeWidth="2">
                                         <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
