@@ -547,6 +547,9 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
     setSaleType((n.sale_type as 'direct' | 'auction') || 'direct');
     setIsFeatured(Boolean(n.is_featured));
     setProductType((n.product_type as 'physical' | 'digital') || 'physical');
+    if (n.digital_delivery_fields && Array.isArray(n.digital_delivery_fields) && n.digital_delivery_fields.length > 0) {
+      setDigitalDeliveryFields(n.digital_delivery_fields as { label: string }[]);
+    }
     setFreeShipping(Boolean(n.free_shipping));
     setCustomShippingPrice(String(n.custom_shipping_price || ''));
     setSelectedShippingCarrier(String(n.shipping_carrier || ''));
@@ -2225,49 +2228,6 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
 
                   {gopocketFlagReady && gopocketShippingEnabled && !shippingBySeller && (
                     <>
-                      <div className="mt-4 grid gap-4 sm:grid-cols-4">
-                        <div>
-                          <label className="block text-xs font-medium text-gray-700">Peso real (kg)</label>
-                          <input
-                            type="number"
-                            value={weight}
-                            onChange={e => setWeight(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
-                            placeholder="0.5"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-gray-700">Largo (cm)</label>
-                          <input
-                            type="number"
-                            value={length}
-                            onChange={e => setLength(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
-                            placeholder="20"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-gray-700">Ancho (cm)</label>
-                          <input
-                            type="number"
-                            value={width}
-                            onChange={e => setWidth(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
-                            placeholder="15"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-medium text-gray-700">Alto (cm)</label>
-                          <input
-                            type="number"
-                            value={height}
-                            onChange={e => setHeight(e.target.value)}
-                            className="mt-1 block w-full rounded-lg border-gray-300 px-3 py-2 text-sm shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50"
-                            placeholder="10"
-                          />
-                        </div>
-                      </div>
-
                       {/* --- Envíos GoVendy (Estafeta) Checkbox --- */}
                       <div className={`mt-4 rounded-xl border transition-all ${!shippingBySeller ? 'border-blue-200 bg-blue-50/50' : 'border-gray-200 bg-white'} p-4`} data-mode-id="gopocket">
                         <div className="flex items-center justify-between">
@@ -2286,6 +2246,49 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
 
                         {!shippingBySeller && (
                           <div className="mt-4 border-t border-blue-200/50 pt-4">
+                            <div className="mb-5 grid gap-4 sm:grid-cols-4 bg-white/60 p-3 rounded-xl border border-blue-100">
+                              <div>
+                                <label className="block text-[10px] font-bold text-blue-800 uppercase tracking-wide">Peso real (kg)</label>
+                                <input
+                                  type="number"
+                                  value={weight}
+                                  onChange={e => setWeight(e.target.value)}
+                                  className="mt-1 block w-full rounded-lg border-blue-200 px-3 py-2 text-sm shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 bg-white"
+                                  placeholder="0.5"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold text-blue-800 uppercase tracking-wide">Largo (cm)</label>
+                                <input
+                                  type="number"
+                                  value={length}
+                                  onChange={e => setLength(e.target.value)}
+                                  className="mt-1 block w-full rounded-lg border-blue-200 px-3 py-2 text-sm shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 bg-white"
+                                  placeholder="20"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold text-blue-800 uppercase tracking-wide">Ancho (cm)</label>
+                                <input
+                                  type="number"
+                                  value={width}
+                                  onChange={e => setWidth(e.target.value)}
+                                  className="mt-1 block w-full rounded-lg border-blue-200 px-3 py-2 text-sm shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 bg-white"
+                                  placeholder="15"
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-[10px] font-bold text-blue-800 uppercase tracking-wide">Alto (cm)</label>
+                                <input
+                                  type="number"
+                                  value={height}
+                                  onChange={e => setHeight(e.target.value)}
+                                  className="mt-1 block w-full rounded-lg border-blue-200 px-3 py-2 text-sm shadow-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 bg-white"
+                                  placeholder="10"
+                                />
+                              </div>
+                            </div>
+
                             <div className="flex items-center justify-between mb-2">
                               <h4 className="text-sm font-black text-blue-900 flex items-center gap-2">
                                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
@@ -2296,6 +2299,10 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             <p className="text-[10px] text-blue-700/70 mb-1">
                               📦 La paquetería se asigna al azar y depende de la ubicación, medidas y peso declarados.
                             </p>
+                            <p className="text-[11px] font-bold text-emerald-600 mb-4 bg-emerald-50 px-2 py-1 rounded inline-block">
+                              ✅ CON ESTOS DATOS PUEDES COMPRAR TU GUÍA EN LA TIENDA ESTAFETA EN EL MENÚ DE TU CUENTA
+                            </p>
+                            
                             <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 mb-4">
                               <p className="text-[10px] font-black text-red-800 uppercase tracking-wide mb-1">⚠️ ADVERTENCIA: Declaración correcta de medidas</p>
                               <p className="text-[10px] text-red-700 leading-relaxed">
@@ -2305,7 +2312,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                             <div className="grid gap-4 sm:grid-cols-3">
                               <div className="bg-white/60 p-3 rounded-xl border border-white">
                                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Peso Volumétrico</p>
-                                <p className="text-sm font-black text-gray-700">{volumetricWeight.toFixed(2)} kg</p>
+                                <p className="text-sm font-black text-gray-700">{((Number(length) * Number(width) * Number(height)) / 5000).toFixed(2)} kg</p>
                                 <p className="text-[9px] text-gray-400 mt-1 italic">* Basado en dimensiones</p>
                               </div>
                               <div className="bg-white/60 p-3 rounded-xl border border-white">

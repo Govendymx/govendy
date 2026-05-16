@@ -15,7 +15,7 @@ import { TableHeader } from '@tiptap/extension-table-header';
 import { Underline } from '@tiptap/extension-underline';
 import { Link as LinkExtension } from '@tiptap/extension-link';
 import { EmojiPicker } from '@/components/EmojiPicker';
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 
 type RichTextEditorProps = {
   content: string;
@@ -308,6 +308,14 @@ export default function RichTextEditor({
       },
     },
   });
+
+  useEffect(() => {
+    if (editor && content && content !== editor.getHTML()) {
+      // Avoid resetting content if the user is typing, only update if it genuinely differs 
+      // (like on initial hydration)
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
 
   return (
     <div
