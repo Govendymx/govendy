@@ -885,6 +885,14 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
         }
       }
 
+      // Validar que el stock de variantes no supere el stock principal
+      if (sizeVariants.length > 0) {
+        const variantsTotal = Object.values(sizeStock).reduce((acc, curr) => acc + curr, 0);
+        if (variantsTotal > Number(stock)) {
+          throw new Error('El stock total asignado a las variantes no puede superar el stock principal de la publicación. Revisa la sección de tallas.');
+        }
+      }
+
       setUploadingCount(files.length);
       const uploadedUrls: string[] = [];
       for (const f of files) {
@@ -1581,6 +1589,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                       onStockChange={setSizeStock}
                       onSizeTypeChange={setSizeType}
                       allowedTypes={['clothing']}
+                      maxTotalStock={parseInt(stock) || 0}
                     />
                   </div>
                 )}
@@ -1599,6 +1608,7 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                     onStockChange={setSizeStock}
                     onSizeTypeChange={setSizeType}
                     allowedTypes={['shoes']}
+                    maxTotalStock={parseInt(stock) || 0}
                   />
                 </div>
               )}

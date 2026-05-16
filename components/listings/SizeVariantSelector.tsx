@@ -10,6 +10,7 @@ interface SizeVariantSelectorProps {
     onStockChange: (sizeStock: Record<string, number>) => void;
     onSizeTypeChange: (sizeType: 'clothing' | 'shoes') => void;
     allowedTypes?: ('clothing' | 'shoes')[];
+    maxTotalStock?: number;
 }
 
 const CLOTHING_SIZES = ['SCH', 'CH', 'M', 'G', 'XL', 'XXL', 'XXXL', 'XXXXL'];
@@ -27,7 +28,8 @@ export function SizeVariantSelector({
     onSizesChange,
     onStockChange,
     onSizeTypeChange,
-    allowedTypes = ['clothing', 'shoes']
+    allowedTypes = ['clothing', 'shoes'],
+    maxTotalStock
 }: SizeVariantSelectorProps) {
     const [shoeCategory, setShoeCategory] = useState<'babies' | 'kids' | 'women' | 'men'>('kids');
 
@@ -56,7 +58,16 @@ export function SizeVariantSelector({
     };
 
     const updateStock = (size: string, stock: number) => {
-        onStockChange({ ...sizeStock, [size]: Math.max(0, stock) });
+        let newStockVal = Math.max(0, stock);
+        if (maxTotalStock !== undefined) {
+            const currentOtherTotal = Object.entries(sizeStock)
+                .filter(([k]) => k !== size)
+                .reduce((a, [_, v]) => a + v, 0);
+            if (currentOtherTotal + newStockVal > maxTotalStock) {
+                newStockVal = Math.max(0, maxTotalStock - currentOtherTotal);
+            }
+        }
+        onStockChange({ ...sizeStock, [size]: newStockVal });
     };
 
     return (
@@ -187,15 +198,15 @@ export function SizeVariantSelector({
                                         const val = e.target.value === '' ? 0 : parseInt(e.target.value);
                                         updateStock(size, isNaN(val) ? 0 : val);
                                     }}
-                                    className="w-full rounded-xl border-gray-200 px-3 py-2 text-sm font-semibold focus:border-brand-emerald focus:ring-brand-emerald"
+                                    className="w-full rounded-lg border-gray-300 px-3 py-2 shadow-sm outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 sm:text-sm"
                                     placeholder="Stock"
                                 />
                             </div>
                         ))}
                     </div>
-                    <div className="mt-3 rounded-xl bg-white p-3 border border-gray-200">
-                        <p className="text-sm font-semibold text-gray-900">
-                            Stock total: {Object.values(sizeStock).reduce((a, b) => a + b, 0)} unidades
+                    <div className={`mt-3 rounded-xl p-3 border ${maxTotalStock !== undefined && Object.values(sizeStock).reduce((a, b) => a + b, 0) === maxTotalStock ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}`}>
+                        <p className={`text-sm font-semibold ${maxTotalStock !== undefined && Object.values(sizeStock).reduce((a, b) => a + b, 0) === maxTotalStock ? 'text-green-800' : 'text-gray-900'}`}>
+                            Stock asignado: {Object.values(sizeStock).reduce((a, b) => a + b, 0)} {maxTotalStock !== undefined ? `/ ${maxTotalStock}` : ''} unidades
                         </p>
                     </div>
                 </div>
