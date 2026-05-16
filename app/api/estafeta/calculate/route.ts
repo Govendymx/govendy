@@ -84,19 +84,19 @@ export async function POST(req: NextRequest) {
     }
 
     const DEFAULT_WEIGHT_RANGES = [
-      { max_weight_kg: 1, price: 175 },
-      { max_weight_kg: 5, price: 195 },
-      { max_weight_kg: 10, price: 235 },
-      { max_weight_kg: 15, price: 255 },
-      { max_weight_kg: 20, price: 275 },
-      { max_weight_kg: 25, price: 300 },
-      { max_weight_kg: 30, price: 325 },
-      { max_weight_kg: 35, price: 340 },
-      { max_weight_kg: 40, price: 355 },
-      { max_weight_kg: 45, price: 385 },
-      { max_weight_kg: 50, price: 415 },
-      { max_weight_kg: 55, price: 435 },
-      { max_weight_kg: 60, price: 455 },
+      { max_weight_kg: 1,  price: 165 },  // paquetes ligeros (<1 kg)
+      { max_weight_kg: 5,  price: 205 },  // Estafeta 5 kg
+      { max_weight_kg: 10, price: 245 },  // Estafeta 10 kg
+      { max_weight_kg: 15, price: 265 },  // Estafeta 15 kg
+      { max_weight_kg: 20, price: 285 },  // Estafeta 20 kg
+      { max_weight_kg: 25, price: 310 },  // Estafeta 25 kg
+      { max_weight_kg: 30, price: 335 },  // Estafeta 30 kg
+      { max_weight_kg: 35, price: 350 },  // Estafeta 35 kg
+      { max_weight_kg: 40, price: 365 },  // Estafeta 40 kg
+      { max_weight_kg: 45, price: 395 },  // Estafeta 45 kg
+      { max_weight_kg: 50, price: 425 },  // Estafeta 50 kg
+      { max_weight_kg: 55, price: 445 },  // Estafeta 55 kg
+      { max_weight_kg: 60, price: 465 },  // Estafeta 60 kg
     ];
 
     const estafetaConfig = (settingsRes?.estafeta_config as any) || {
