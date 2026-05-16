@@ -1268,24 +1268,6 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {paymentMethod !== 'pocketcash' && potentialCashback > 0 && (
-              <div className="mt-4 rounded-xl border border-green-200 bg-white p-3 text-center">
-                <div className="text-xs font-bold text-green-800">¡Cashback!</div>
-                <div className="text-sm text-green-900">
-                  Recibirás <span className="font-bold">{formatMoney(potentialCashback)}</span> en PocketCash por esta compra.
-                </div>
-                <div className="mt-1 text-[10px] text-green-700 leading-tight">
-                  (3% sobre el valor de los productos)
-                </div>
-              </div>
-            )}
-            {paymentMethod === 'pocketcash' && (
-              <div className="mt-4 rounded-xl border border-gray-200 bg-gray-50 p-3 text-center">
-                <div className="text-xs text-gray-500">
-                  Al pagar con PocketCash no generas nuevo cashback.
-                </div>
-              </div>
-            )}
 
             <button
               type="button"

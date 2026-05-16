@@ -2285,44 +2285,13 @@ export default function DashboardComprasPage() {
                                 </div>
                                 {toNumber(o?.coupon_discount) > 0 && (
                                   <div className="flex items-center justify-between gap-2 text-brand-emerald font-bold">
-                                    <span>Cup�n/Descuento</span>
+                                    <span>Cupn/Descuento</span>
                                     <span>-{formatMoney(o.coupon_discount)}</span>
                                   </div>
                                 )}
                               </div>
 
-                              {/* Cashback Info */}
-                              {(() => {
-                                const pm = String(o?.payment_method || '');
-                                const st = Number(o?.subtotal) || Number(o?.total) || 0; // Fallback to total if subtotal 0, but usually subtotal is distinct
-                                const cb = st * 0.03;
 
-                                if (pm === 'pocketcash' || cb <= 0) return null;
-
-                                // Estado completado para otorgar cashback
-                                const isCompleted = status === 'completed' || status === 'delivered';
-
-                                return (
-                                  <div className={`mt-2 flex flex-col gap-0.5 rounded-lg border px-2 py-1.5 ${isCompleted
-                                    ? 'border-green-200 bg-white'
-                                    : 'border-dashed border-gray-300 bg-gray-50 opacity-80'
-                                    }`}>
-                                    <div className="flex items-center justify-between">
-                                      <span className={`text-[10px] font-bold ${isCompleted ? 'text-green-800' : 'text-gray-600'}`}>
-                                        {isCompleted ? '�Cashback Ganado!' : 'Cashback (3%)'}
-                                      </span>
-                                      <span className={`text-[11px] font-black ${isCompleted ? 'text-green-700' : 'text-gray-800'}`}>
-                                        +{formatMoney(cb)}
-                                      </span>
-                                    </div>
-                                    <div className="text-[9px] text-gray-500 leading-tight">
-                                      {isCompleted
-                                        ? 'Acreditado en tu PocketCash'
-                                        : 'Se acredita al completar la orden'}
-                                    </div>
-                                  </div>
-                                );
-                              })()}
 
                               {/* Peso y Dimensiones � compact */}
                               {(() => {

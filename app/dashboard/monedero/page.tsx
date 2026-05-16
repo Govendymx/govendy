@@ -1040,7 +1040,6 @@ export default function MonederoPage() {
               </h2>
               <p className="mt-3 text-lg text-gray-300">
                 Usa tu tarjeta PocketCash para comprar y vender sin comisiones bancarias extras.
-                Obtén cashback en compras seleccionadas.
               </p>
             </div>
           </div>

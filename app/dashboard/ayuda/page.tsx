@@ -722,7 +722,6 @@ export default function DashboardAyudaPage() {
               <li><strong>Recarga manual:</strong> Ve a <strong>Mi cuenta → Monedero</strong> y haz clic en &ldquo;Recargar&rdquo;. Puedes depositar fondos mediante transferencia bancaria (SPEI) o depósito en OXXO.</li>
               <li><strong>Gift Cards:</strong> Si compraste o recibiste una <strong>tarjeta de regalo GoVendy</strong>, canjéala en el monedero ingresando el código.</li>
               <li><strong>Reembolsos:</strong> Si se cancela una orden o se resuelve una disputa a tu favor, el monto se abona automáticamente a tu PocketCash.</li>
-              <li><strong>Cashback:</strong> Algunas promociones te dan un porcentaje de cashback que se acredita a tu monedero.</li>
             </ul>
           </div>
           <div>
@@ -731,7 +730,7 @@ export default function DashboardAyudaPage() {
           </div>
           <div>
             <h3 className="font-extrabold text-gray-900">¿Dónde veo mi saldo y movimientos?</h3>
-            <p className="mt-1 text-gray-600">En <strong>Mi cuenta → Monedero</strong> verás tu saldo actual, historial de movimientos (recargas, pagos, reembolsos, cashback) y el estado de cada transacción.</p>
+            <p className="mt-1 text-gray-600">En <strong>Mi cuenta → Monedero</strong> verás tu saldo actual, historial de movimientos (recargas, pagos, reembolsos) y el estado de cada transacción.</p>
           </div>
           <div className="rounded-xl bg-white p-3 text-xs text-green-800">
             <strong>✅ Ventaja:</strong> Pagar con PocketCash es <strong>instantáneo</strong> y no tiene la comisión extra de MercadoPago. Es la forma más rápida de comprar en GoVendy.
