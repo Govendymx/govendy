@@ -370,6 +370,19 @@ function OperationViewContent() {
                     </a>
                   </div>
                 )}
+                {order.buyer_payment_voucher_url && (
+                  <div className="flex justify-between items-start mt-2">
+                    <span className="text-sm text-gray-600">Comprobante (P2P):</span>
+                    <a
+                      href={order.buyer_payment_voucher_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-600 hover:underline font-bold"
+                    >
+                      Ver Comprobante
+                    </a>
+                  </div>
+                )}
                 {order.delivery_proof_url && (
                   <div className="flex justify-between items-start">
                     <span className="text-sm text-gray-600">Evidencia:</span>

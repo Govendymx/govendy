@@ -62,9 +62,9 @@ export async function GET(req: NextRequest) {
     }
 
     const fullSelect =
-      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,shipping_label_uploaded_at,shipping_label_uploaded_by,label_downloaded_at,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,delivery_proof_url,shipping_by_seller';
+      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,shipping_label_uploaded_at,shipping_label_uploaded_by,label_downloaded_at,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,delivery_proof_url,buyer_payment_voucher_url,shipping_by_seller';
     const baseSelect =
-      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,shipping_by_seller';
+      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,buyer_payment_voucher_url,shipping_by_seller';
 
     console.log('[logistica/orders/list] Iniciando consulta...', { status, limit });
 
@@ -82,7 +82,7 @@ export async function GET(req: NextRequest) {
     if (status) {
       console.log('[logistica/orders/list] Aplicando filtro de status:', status);
       // Validar que el status sea válido antes de consultar
-      const validStatuses = ['pending_payment', 'paid', 'shipped', 'delivered', 'cancelled', 'refunded', 'disputed'];
+      const validStatuses = ['pending_payment', 'awaiting_voucher', 'paid', 'shipped', 'delivered', 'cancelled', 'refunded', 'disputed'];
       if (validStatuses.includes(status)) {
         q = q.eq('status', status);
       } else {
@@ -93,7 +93,7 @@ export async function GET(req: NextRequest) {
       console.log('[logistica/orders/list] Sin filtro específico - mostrando órdenes relevantes para logística');
       // Mostrar órdenes que requieren atención logística o tienen evidencia pendiente de revisión
       // Incluimos 'delivered' para que los admins vean las órdenes con constancia de entrega subida
-      q = q.in('status', ['pending_payment', 'paid', 'shipped', 'delivered']);
+      q = q.in('status', ['pending_payment', 'awaiting_voucher', 'paid', 'shipped', 'delivered']);
     }
 
     let res: any = await q;
@@ -106,7 +106,7 @@ export async function GET(req: NextRequest) {
         let q2: any = admin.from('orders').select(baseSelect).order('created_at', { ascending: false }).limit(limit);
         if (status) {
           console.log('[logistica/orders/list] Fallback: Aplicando filtro de status:', status);
-          const validStatuses = ['pending_payment', 'paid', 'shipped', 'delivered', 'cancelled', 'refunded', 'disputed'];
+          const validStatuses = ['pending_payment', 'awaiting_voucher', 'paid', 'shipped', 'delivered', 'cancelled', 'refunded', 'disputed'];
           if (validStatuses.includes(status)) {
             q2 = q2.eq('status', status);
           } else {
