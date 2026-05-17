@@ -1435,9 +1435,6 @@ export default function DashboardVentasPage() {
                     const _calcCost = _match ? _match.price : _WEIGHT_RANGES[_WEIGHT_RANGES.length - 1].price;
                     orderForPayout = { ...o, shipping_subsidy: _calcCost };
                   }
-                  if (orderForPayout.payment_method_type === 'p2p') {
-                    orderForPayout = { ...orderForPayout, commission_fee: 0, isr_withheld: 0, iva_withheld: 0 };
-                  }
                   const netEarnings = payoutNet(orderForPayout);
 
                   // Calcular días de preparación (handling) máximos para esta orden
@@ -1937,14 +1934,13 @@ export default function DashboardVentasPage() {
 
                               {/* Deducciones / Costos Vendedor */}
                               {(() => {
-                                const isP2P = o?.payment_method_type === 'p2p';
-                                const commVal = isP2P ? 0 : toNumber(o?.commission_fee);
+                                const commVal = toNumber(o?.commission_fee);
                                 const subVal = toNumber((o as any)?.subtotal ?? (Number(o?.total || 0) - Number(o?.shipping_fee || 0)));
                                 const pct = subVal > 0 ? (commVal / subVal) * 100 : 0;
                                 const isMin = pct > 23.5;
                                 return (
                                   <div className="flex justify-between text-[10px] text-gray-600">
-                                    <span className="text-gray-500">{isMin && !isP2P ? 'Comisión Mínima' : 'Comisión Venta'}</span>
+                                    <span className="text-gray-500">{isMin ? 'Comisión Mínima' : 'Comisión Venta'}</span>
                                     <span className="text-red-600">-{formatMoney(commVal)}</span>
                                   </div>
                                 );
@@ -2018,9 +2014,13 @@ export default function DashboardVentasPage() {
                                               headers: { 'Content-Type': 'application/json' },
                                               body: JSON.stringify({ orderId: o.id })
                                             });
-                                            if (res.ok) window.location.reload();
-                                            else alert('Error al aprobar el pago.');
-                                          } catch (e) { alert('Error de conexión'); }
+                                            const json = await res.json().catch(() => ({}));
+                                            if (res.ok) {
+                                              bumpOrdersRefresh();
+                                            } else {
+                                              alert(`Error al aprobar el pago: ${json?.error || `HTTP ${res.status}`}`);
+                                            }
+                                          } catch (e: any) { alert(`Error de conexión: ${e?.message || 'Sin detalles'}`); }
                                         }}
                                         className="flex-1 rounded bg-green-600 py-1.5 text-[10px] font-bold text-white hover:bg-green-700"
                                       >
