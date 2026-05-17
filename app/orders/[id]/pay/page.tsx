@@ -119,7 +119,7 @@ export default function OrderPayPage() {
       const { error: updateErr } = await supabase
         .from('orders')
         .update({
-          status: 'verifying_payment',
+          status: 'awaiting_voucher',
           buyer_payment_voucher_url: voucherUrl,
           seller_payment_details: selectedMethod?.details || {},
         })

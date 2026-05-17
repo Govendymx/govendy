@@ -1991,12 +1991,12 @@ export default function DashboardVentasPage() {
                             {o?.payment_method_type === 'direct' && (
                               <div className="my-3 space-y-2 rounded-xl border border-blue-200 bg-blue-50 p-3">
                                 <div className="text-[11px] font-bold text-blue-900">Pago Directo (P2P)</div>
-                                {o?.status === 'awaiting_voucher' && (
+                                {o?.status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url && (
                                   <div className="text-[10px] text-blue-800">
                                     Esperando que el comprador suba su comprobante de pago.
                                   </div>
                                 )}
-                                {o?.status === 'verifying_payment' && o?.buyer_payment_voucher_url && (
+                                {(o?.status === 'verifying_payment' || o?.status === 'awaiting_voucher') && o?.buyer_payment_voucher_url && (
                                   <div className="space-y-2">
                                     <div className="text-[10px] text-blue-800">El comprador ha subido su comprobante.</div>
                                     <a href={o.buyer_payment_voucher_url} target="_blank" rel="noopener noreferrer" className="block text-center text-[10px] font-bold text-blue-700 underline">
