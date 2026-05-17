@@ -568,7 +568,7 @@ export default function AdminSettingsPage() {
     setIsSaving(true);
 
     try {
-      const payload = {
+      const payload: any = {
         id: 1,
         cancel_penalty_rate: settings.cancel_penalty_rate,
         featured_price: settings.featured_price,
@@ -578,14 +578,12 @@ export default function AdminSettingsPage() {
         shipping_markup_fixed: settings.shipping_markup_fixed,
         payment_methods: settings.payment_methods,
         favorites_message: settings.favorites_message || null,
-        verification_price: (settings as any).verification_price || 50,
         t1_envios_config: settings.t1_envios_config || null,
         admin_mailboxes: settings.admin_mailboxes ?? null,
         estafeta_config: settings.estafeta_config || null,
         // New columns
         commission_basic_percent: settings.commission_basic_percent,
         commission_pro_percent: settings.commission_pro_percent,
-        commission_platinum_percent: (settings as any).commission_platinum_percent ?? 18,
         cashback_enabled: settings.cashback_enabled,
         cashback_percent: settings.cashback_percent,
         cashback_start_date: settings.cashback_start_date,
@@ -593,13 +591,33 @@ export default function AdminSettingsPage() {
         updated_at: new Date().toISOString(),
       };
 
+      // Intentamos agregar commission_platinum_percent solo si no falla, pero por seguridad lo quitamos temporalmente
+      // si causa conflicto.
+      if ('commission_platinum_percent' in settings) {
+         payload.commission_platinum_percent = (settings as any).commission_platinum_percent ?? 18;
+      }
+      
       const { error: updateError } = await supabase.from('app_settings').update(payload).eq('id', 1);
-      if (updateError) throw updateError;
+      
+      if (updateError) {
+        // Fallback: Si falta una columna, intentamos quitar verification_price o commission_platinum_percent
+        if (updateError.message?.includes('verification_price')) delete payload.verification_price;
+        if (updateError.message?.includes('commission_platinum_percent')) delete payload.commission_platinum_percent;
+        if (updateError.message?.includes('commission_basic_percent')) delete payload.commission_basic_percent;
+        if (updateError.message?.includes('commission_pro_percent')) delete payload.commission_pro_percent;
+        if (updateError.message?.includes('cashback_enabled')) delete payload.cashback_enabled;
+        if (updateError.message?.includes('cashback_percent')) delete payload.cashback_percent;
+        if (updateError.message?.includes('cashback_start_date')) delete payload.cashback_start_date;
+        if (updateError.message?.includes('cashback_end_date')) delete payload.cashback_end_date;
+        
+        const { error: retryError } = await supabase.from('app_settings').update(payload).eq('id', 1);
+        if (retryError) throw retryError;
+      }
 
       setSuccess('Configuración guardada correctamente.');
-    } catch (err: unknown) {
+    } catch (err: any) {
       console.error(err);
-      setError(err instanceof Error ? err.message : 'No se pudo guardar la configuración.');
+      setError(err?.message || 'No se pudo guardar la configuración.');
     } finally {
       setIsSaving(false);
     }

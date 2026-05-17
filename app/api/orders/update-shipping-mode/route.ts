@@ -77,7 +77,7 @@ export async function POST(req: NextRequest) {
     const { data: listings, error: listingsError } = await admin
       .from('listings')
       .select(
-        'id, sale_type, allow_personal_delivery, shipping_by_seller, free_shipping, shipping_price, weight_kg, length_cm, width_cm, height_cm, shipping_subsidy'
+        'id, seller_id, sale_type, allow_personal_delivery, shipping_by_seller, free_shipping, shipping_price, weight_kg, length_cm, width_cm, height_cm, shipping_subsidy'
       )
       .in('id', listingIds);
 
@@ -86,14 +86,18 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: listingsError.message }, { status: 400 });
     }
 
+    const sellerIds = Array.from(new Set((listings || []).map(l => l.seller_id).filter(Boolean)));
+    const { data: sellerProfiles } = await admin.from('profiles').select('id, plan_type').in('id', sellerIds);
+    const sellerPlans = Object.fromEntries((sellerProfiles || []).map(p => [p.id, p.plan_type]));
+
     // Use any listing that allows personal delivery, falling back to the first one
-    const listing = (listings || []).find(l => l.allow_personal_delivery) || (listings || [])[0];
+    const listing = (listings || []).find(l => l.allow_personal_delivery && (sellerPlans[l.seller_id as string] === 'platinum' || l.sale_type === 'auction')) || (listings || [])[0];
 
     if (!listing) {
       return NextResponse.json({ error: 'No se encontraron publicaciones en la orden' }, { status: 400 });
     }
 
-    const allowPersonalDelivery = Boolean(listing.allow_personal_delivery);
+    const allowPersonalDelivery = Boolean(listing.allow_personal_delivery) && (sellerPlans[listing.seller_id as string] === 'platinum' || listing.sale_type === 'auction');
 
     if (mode === 'pickup') {
       // ─── Switch to personal delivery ───

@@ -1798,7 +1798,7 @@ export default function ListingDetailPage() {
                   )}
                   {(() => {
                     const bySeller = Boolean(listing.shipping_by_seller);
-                    const allowPickup = Boolean(listing.allow_personal_delivery);
+                    const allowPickup = Boolean(listing.allow_personal_delivery) && (listing.seller?.plan_type === 'platinum' || listing.sale_type === 'auction');
                     const isFree = Boolean(listing.free_shipping);
                     const hasWeight = Number(listing.weight_kg || 0) > 0;
                     const hasShippingPrice = Number.isFinite(listingShippingPrice) && listingShippingPrice > 0;

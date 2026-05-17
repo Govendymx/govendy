@@ -686,7 +686,10 @@ export default function CheckoutPage() {
       // Permitir si el listing tiene allow_personal_delivery habilitado
       // No requierimos coincidencia de ubicación: el vendedor y comprador pueden coordinar la entrega
       const groupItems = groups[sid];
-      const allowedByItems = groupItems.every(ci => listingsById[ci.listing_id]?.allow_personal_delivery);
+      const allowedByItems = groupItems.every(ci => {
+        const l = listingsById[ci.listing_id];
+        return l?.allow_personal_delivery && (sProf.plan_type === 'platinum' || l.sale_type === 'auction');
+      });
       if (!allowedByItems) {
         allGroupsEligible = false;
         break;

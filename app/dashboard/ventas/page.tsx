@@ -1559,23 +1559,23 @@ export default function DashboardVentasPage() {
                               ) : isGoVendyOrder ? (
                                 isT1Order ? (
                                   <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-100 to-amber-100 px-3 py-1.5 text-xs font-bold text-orange-800 ring-1 ring-orange-300 shadow-sm w-fit">
-                                    🚀 GOPOCKET PREMIUM {carrier ? `· ${carrier}` : ''}
+                                    🚀 {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : `GOVENDY PREMIUM ${carrier ? `· ${carrier}` : ''}`}
                                   </div>
                                 ) : (
                                   <div className="inline-flex items-center gap-2 rounded-lg bg-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 ring-1 ring-blue-700/20 shadow-sm w-fit">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-                                    ENVIADO POR GOPOCKET
+                                    {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍOS GOVENDY'}
                                   </div>
                                 )
                               ) : o?.self_ship_evidence_url ? (
                                 <div className="inline-flex items-center gap-2 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-bold text-green-800 ring-1 ring-green-600/20 shadow-sm w-fit">
                                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                  ENVÍO GESTIONADO
+                                  {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
                                 </div>
                               ) : (
                                 <div className="inline-flex items-center gap-2 rounded-lg bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-900 ring-1 ring-amber-600/30 shadow-sm w-fit">
                                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19" /><line x1="15" y1="9" x2="15.01" y2="9" /><line x1="19" y1="9" x2="19.01" y2="9" /><line x1="23" y1="9" x2="23.01" y2="9" /><circle cx="7" cy="18" r="2" /><circle cx="17" cy="18" r="2" /></svg>
-                                  ENVÍO POR VENDEDOR
+                                  {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
                                 </div>
                               )}
                             </div>

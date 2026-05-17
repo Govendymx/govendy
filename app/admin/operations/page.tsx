@@ -328,14 +328,15 @@ function OperationViewContent() {
                       const freeForBuyer = Number(order.shipping_fee || 0) === 0;
                       return (
                         <span className="inline-flex items-center gap-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-bold text-blue-800 ring-1 ring-inset ring-blue-600/20" title={freeForBuyer ? 'Envío Gratis (lo cubre vendedor vía subsidio)' : 'Cobrado al comprador'}>
-                          ENVIADO POR GOPOCKET{freeForBuyer ? ' · GRATIS' : ''}
+                          {freeForBuyer ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍOS GOVENDY'}
                         </span>
                       );
                     }
                     if (isSellerManaged) {
+                      const freeForBuyer = Number(order.shipping_fee || 0) === 0;
                       return (
                         <span className="inline-flex items-center gap-1 rounded-md bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800 ring-1 ring-inset ring-amber-600/20">
-                          ENVÍO POR VENDEDOR
+                          {freeForBuyer ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
                         </span>
                       );
                     }

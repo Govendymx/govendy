@@ -551,7 +551,9 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
     if (o?.delivery_proof_url) {
         return (
             <div className="space-y-2">
-                <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">ENVÍO POR VENDEDOR</div>
+                <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                    {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
+                </div>
                 <div className="flex flex-col gap-1">
                     {String(o.delivery_proof_url).split(',').map((url: string, idx: number) => (
                         <a key={idx} href={url.trim()} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 rounded-xl bg-white px-3 py-2 text-xs font-semibold text-brand-emerald shadow-sm ring-1 ring-emerald-200 hover:bg-white">
@@ -601,7 +603,9 @@ function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploa
     if (isSellerManaged2) {
         return (
             <div className="space-y-2">
-                <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">ENVÍO POR VENDEDOR</div>
+                <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
+                    {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
+                </div>
                 <div className="text-[11px] text-gray-700">El vendedor sube su guía/evidencia desde su panel.</div>
             </div>
         );
