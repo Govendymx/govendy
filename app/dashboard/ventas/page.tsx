@@ -1449,6 +1449,8 @@ export default function DashboardVentasPage() {
                   let isPersonalDelivery = false;
                   let isGoVendyOrder = false;
                   let isSellerManagedOrder = false;
+                  const hasSubsidy = Number((o as any)?.shipping_subsidy || 0) > 0;
+                  
                   if (sm) {
                     isPersonalDelivery = sm === 'personal_delivery';
                     isGoVendyOrder = sm === 'gopocket' || sm === 't1';
@@ -1463,7 +1465,6 @@ export default function DashboardVentasPage() {
                     const anyGoVendyCfg = orderItemsCfg.some((it: any) => shippingBySellerByListingId[it.listing_id] === false);
                     const isPickupFallback = carrierField === 'pickup' || optionId === 'pickup';
                     const hasGoVendyShipping = Boolean(optionId) && optionId !== 'pickup' && !isPickupFallback;
-                    const hasSubsidy = Number((o as any)?.shipping_subsidy || 0) > 0;
                     const isGoVendyConfigured = orderItemsCfg.length > 0 ? (anyGoVendyCfg && !anySellerManagedCfg && !isPickupFallback) : false;
                     isPersonalDelivery = isPickupFallback;
                     isGoVendyOrder = !isPersonalDelivery && (hasGoVendyShipping || hasPlatformLabel || hasSubsidy || isGoVendyConfigured);
