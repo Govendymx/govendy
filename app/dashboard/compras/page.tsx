@@ -380,25 +380,25 @@ export default function DashboardComprasPage() {
         </head>
         <body>
           <div class="header">
-            <div class="logo">POCKET</div>
+            <div class="logo"><img src="\${window.location.origin}/logo.png" alt="GoVendy" style="height: 35px;" /></div>
             <div class="invoice-title">Orden de Compra</div>
           </div>
 
           <div class="info-grid">
             <div class="info-col">
               <h3>Orden</h3>
-              <p>#${order.id.slice(0, 8).toUpperCase()}</p>
+              <p>#\${order.id.slice(0, 8).toUpperCase()}</p>
               <div style="margin-top: 20px;">
                 <h3>Fecha</h3>
-                <p>${new Date(order.created_at).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                <p>\${new Date(order.created_at).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
               </div>
             </div>
             <div class="info-col" style="text-align: right;">
               <h3>Vendedor</h3>
-              <p>${sellerName || 'Vendedor Pocket'}</p>
+              <p>\${sellerName || 'Vendedor GoVendy'}</p>
               <div style="margin-top: 20px;">
                 <h3>Estado</h3>
-                <span class="status-badge">${translateStatus(order.status).toUpperCase()}</span>
+                <span class="status-badge">\${translateStatus(order.status).toUpperCase()}</span>
               </div>
             </div>
           </div>
@@ -413,7 +413,7 @@ export default function DashboardComprasPage() {
               </tr>
             </thead>
             <tbody>
-              ${itemsHtml}
+              \${itemsHtml}
             </tbody>
           </table>
 
@@ -421,22 +421,22 @@ export default function DashboardComprasPage() {
             <div class="summary-box">
               <div class="summary-row">
                 <span>Subtotal</span>
-                <span>${formatMoney(order.subtotal || order.total - order.shipping_fee)}</span>
+                <span>\${formatMoney(order.subtotal || order.total - order.shipping_fee)}</span>
               </div>
               <div class="summary-row">
                 <span>Envío</span>
-                <span>${formatMoney(order.shipping_fee)}</span>
+                <span>\${formatMoney(order.shipping_fee)}</span>
               </div>
               <div class="summary-row total">
                 <span>Total</span>
-                <span>${formatMoney(order.total)}</span>
+                <span>\${formatMoney(order.total)}</span>
               </div>
             </div>
           </div>
 
           <div class="footer">
-            <p>Gracias por tu compra en Pocket.</p>
-            <p>ID Completo: ${order.id}</p>
+            <p>Gracias por tu compra en GoVendy.</p>
+            <p>ID Completo: \${order.id}</p>
             <p>Este documento es un comprobante digital generado automáticamente.</p>
           </div>
 
@@ -1538,26 +1538,26 @@ export default function DashboardComprasPage() {
                                  </head>
                                  <body>
                                    <div class="header">
-                                     <div class="logo">POCKET</div>
+                                     <div class="logo"><img src="\${window.location.origin}/logo.png" alt="GoVendy" style="height: 35px;" /></div>
                                      <div class="invoice-title">ORDEN DE RECARGA</div>
                                    </div>
 
                                    <div class="details-grid">
                                      <div class="detail-group">
                                        <h3>Operación</h3>
-                                       <p>#${topup.id.slice(0, 8).toUpperCase()}</p>
+                                       <p>#\${topup.id.slice(0, 8).toUpperCase()}</p>
                                      </div>
                                      <div class="detail-group" style="text-align: right;">
                                        <h3>Fecha</h3>
-                                       <p>${new Date(topup.created_at).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                       <p>\${new Date(topup.created_at).toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                                      </div>
                                      <div class="detail-group">
                                        <h3>Cliente</h3>
-                                       <p>Usuario Pocket</p>
+                                       <p>Usuario GoVendy</p>
                                      </div>
                                      <div class="detail-group" style="text-align: right;">
                                        <h3>Estado</h3>
-                                       <span class="status-badge">${topup.status.toUpperCase()}</span>
+                                       <span class="status-badge">\${topup.status.toUpperCase()}</span>
                                      </div>
                                    </div>
 
@@ -1572,19 +1572,19 @@ export default function DashboardComprasPage() {
                                        <tbody>
                                          <tr>
                                            <td>Recarga de Saldo PocketCash</td>
-                                           <td style="text-align: right;">${formatMoney(topup.amount)}</td>
+                                           <td style="text-align: right;">\${formatMoney(topup.amount)}</td>
                                          </tr>
                                          <tr class="total-row">
                                            <td style="text-align: right;">Total</td>
-                                           <td style="text-align: right;">${formatMoney(topup.amount)}</td>
+                                           <td style="text-align: right;">\${formatMoney(topup.amount)}</td>
                                          </tr>
                                        </tbody>
                                      </table>
                                    </div>
 
                                    <div class="footer">
-                                     <p>Gracias por usar Pocket. Este comprobante es digital.</p>
-                                     <p>ID Completo: ${topup.id}</p>
+                                     <p>Gracias por usar GoVendy. Este comprobante es digital.</p>
+                                     <p>ID Completo: \${topup.id}</p>
                                    </div>
 
                                    <script>window.print();</script>

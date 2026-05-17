@@ -97,23 +97,23 @@ export default function OrderPayPage() {
     try {
       const selectedMethod = methods.find(m => m.id === selectedMethodId);
       
-      // Upload file to Supabase Storage
-      const fileExt = voucherFile.name.split('.').pop();
-      const fileName = `${order.id}-${Date.now()}.${fileExt}`;
-      const { data: uploadData, error: uploadErr } = await supabase.storage
-        .from('images') // Usually GoVendy uses 'images' bucket
-        .upload(`vouchers/${fileName}`, voucherFile, {
-          cacheControl: '3600',
-          upsert: false,
-        });
+      const { data: sessionData } = await supabase.auth.getSession();
+      const token = sessionData.session?.access_token;
+      
+      const formData = new FormData();
+      formData.append('file', voucherFile);
+      formData.append('folder', 'vouchers');
 
-      if (uploadErr) throw uploadErr;
+      const uploadRes = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData
+      });
 
-      const { data: publicUrlData } = supabase.storage
-        .from('images')
-        .getPublicUrl(`vouchers/${fileName}`);
+      const uploadData = await uploadRes.json();
+      if (!uploadRes.ok) throw new Error(uploadData.error || 'Error al subir el comprobante');
 
-      const voucherUrl = publicUrlData.publicUrl;
+      const voucherUrl = uploadData.url;
 
       // Update order
       const { error: updateErr } = await supabase
