@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
         order.seller_id,
         -totalDeduction,
         `Cobro de comisión y servicios por venta directa (Orden #${order.id.slice(0, 8)})`,
-        'expense',
+        'order',
         order.id
       );
     }
