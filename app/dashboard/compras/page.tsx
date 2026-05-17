@@ -31,9 +31,9 @@ function formatMoney(v: any) {
   return toNumber(v).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
 }
 function formatDateTime(input: string | null | undefined) {
-  if (!input) return '�';
+  if (!input) return '-';
   const d = new Date(input);
-  if (Number.isNaN(d.getTime())) return '�';
+  if (Number.isNaN(d.getTime())) return '-';
   return d.toLocaleString('es-MX', { year: 'numeric', month: 'short', day: '2-digit' });
 }
 
@@ -52,23 +52,23 @@ function generatePaymentPDF(topupId: string, amount: number, method: string, ins
   doc.setTextColor(0, 0, 0);
   doc.text('Orden de Pago', 105, 30, { align: 'center' });
 
-  // L�nea separadora
+  // Línea separadora
   doc.setDrawColor(200, 200, 200);
   doc.line(20, 35, 190, 35);
 
   // Detalles
   doc.setFontSize(12);
-  doc.text('Detalles de la Operaci�n:', 20, 45);
+  doc.text('Detalles de la Operación:', 20, 45);
 
   doc.setFontSize(10);
-  doc.text(`ID de Operaci�n: ${topupId}`, 20, 55);
-  doc.text(`Fecha de Emisi�n: ${new Date().toLocaleDateString('es-MX')} ${new Date().toLocaleTimeString('es-MX')}`, 20, 62);
+  doc.text(`ID de Operación: ${topupId}`, 20, 55);
+  doc.text(`Fecha de Emisión: ${new Date().toLocaleDateString('es-MX')} ${new Date().toLocaleTimeString('es-MX')}`, 20, 62);
 
   let methodName = 'Transferencia SPEI';
   if (method === 'oxxo') methodName = 'Pago en OXXO';
-  if (method === 'bank_deposit') methodName = 'Dep�sito Bancario';
+  if (method === 'bank_deposit') methodName = 'Depósito Bancario';
 
-  doc.text(`M�todo de Pago: ${methodName}`, 20, 69);
+  doc.text(`Método de Pago: ${methodName}`, 20, 69);
 
   // Monto
   doc.setFontSize(14);
@@ -132,10 +132,10 @@ export default function DashboardComprasPage() {
   const [ratedByOrderId, setRatedByOrderId] = useState<Record<string, boolean>>({});
   const [bothRatedByOrderId, setBothRatedByOrderId] = useState<Record<string, boolean>>({});
 
-  // Scroll autom�tico cuando se abre el modal de calificaci�n
+  // Scroll automático cuando se abre el modal de calificación
   useEffect(() => {
     if (rateOpen) {
-      // Peque�o delay para asegurar que el modal est� renderizado
+      // Pequeño delay para asegurar que el modal está renderizado
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
@@ -167,7 +167,7 @@ export default function DashboardComprasPage() {
   const [uploadingProofId, setUploadingProofId] = useState<string | null>(null);
   const [selectedTopupForInfo, setSelectedTopupForInfo] = useState<any | null>(null);
 
-  // Gu�as Estafeta
+  // Guías Estafeta
   const [estafetaQuotes, setEstafetaQuotes] = useState<any[]>([]);
 
   // Disputas
@@ -181,13 +181,13 @@ export default function DashboardComprasPage() {
   const [disputeText, setDisputeText] = useState('');
   const [isOpeningDispute, setIsOpeningDispute] = useState(false);
 
-  // Filtros y b�squeda
+  // Filtros y búsqueda
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [filtersExpanded, setFiltersExpanded] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [comprasPage, setComprasPage] = useState(1);
   const [appSettings, setAppSettings] = useState<any>(null);
-  // Rese�a de producto
+  // Reseña de producto
   const [reviewListingId, setReviewListingId] = useState<string | null>(null);
   const [reviewedListingIds, setReviewedListingIds] = useState<Set<string>>(new Set());
 
@@ -208,7 +208,7 @@ export default function DashboardComprasPage() {
     })();
   }, []);
 
-  // Pesta�as principales
+  // Pestañas principales
   const [comprasTab, setComprasTab] = useState<'compras' | 'estafeta' | 'pocketcash'>('compras');
 
   // ALL wallet topups (for PocketCash tab)
@@ -243,16 +243,16 @@ export default function DashboardComprasPage() {
     doc.setFontSize(20);
     doc.text('ORDEN DE PAGO', 190, 24, { align: 'right' });
 
-    // L�nea separadora
+    // Línea separadora
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.line(20, 35, 190, 35);
 
-    // Detalles de la Operaci�n
+    // Detalles de la Operación
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text('ID DE OPERACI�N', 20, 45);
-    doc.text('FECHA DE EMISI�N', 190, 45, { align: 'right' });
+    doc.text('ID DE OPERACIÓN', 20, 45);
+    doc.text('FECHA DE EMISIÓN', 190, 45, { align: 'right' });
 
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
@@ -260,18 +260,18 @@ export default function DashboardComprasPage() {
     doc.text(topupId, 20, 52);
     doc.text(`${new Date().toLocaleDateString('es-MX')} ${new Date().toLocaleTimeString('es-MX')}`, 190, 52, { align: 'right' });
 
-    // M�todo y Monto Box
+    // Método y Monto Box
     doc.setFillColor(249, 250, 251); // Gray 50
     doc.setDrawColor(229, 231, 235); // Gray 200
     doc.roundedRect(20, 65, 170, 40, 3, 3, 'FD');
 
     let methodName = 'Transferencia SPEI';
     if (method === 'oxxo') methodName = 'Pago en OXXO';
-    if (method === 'bank_deposit') methodName = 'Dep�sito Bancario';
+    if (method === 'bank_deposit') methodName = 'Depósito Bancario';
 
     doc.setFontSize(10);
     doc.setTextColor(100, 100, 100);
-    doc.text('M�TODO DE PAGO', 30, 75);
+    doc.text('MÉTODO DE PAGO', 30, 75);
     doc.text('MONTO A PAGAR', 180, 75, { align: 'right' });
 
     doc.setFontSize(14);
@@ -305,9 +305,9 @@ export default function DashboardComprasPage() {
 
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('1. Esta orden de pago es v�lida �nicamente para el monto especificado.', 20, pageHeight - 30);
+    doc.text('1. Esta orden de pago es válida únicamente para el monto especificado.', 20, pageHeight - 30);
     doc.text('2. Conserva este comprobante hasta que tu saldo sea acreditado.', 20, pageHeight - 25);
-    doc.text('3. Si tienes dudas, contacta a soporte con tu ID de Operaci�n.', 20, pageHeight - 20);
+    doc.text('3. Si tienes dudas, contacta a soporte con tu ID de Operación.', 20, pageHeight - 20);
 
     doc.save(`gopocket-orden-${topupId}.pdf`);
   }
@@ -424,7 +424,7 @@ export default function DashboardComprasPage() {
                 <span>${formatMoney(order.subtotal || order.total - order.shipping_fee)}</span>
               </div>
               <div class="summary-row">
-                <span>Env�o</span>
+                <span>Envío</span>
                 <span>${formatMoney(order.shipping_fee)}</span>
               </div>
               <div class="summary-row total">
@@ -437,7 +437,7 @@ export default function DashboardComprasPage() {
           <div class="footer">
             <p>Gracias por tu compra en Pocket.</p>
             <p>ID Completo: ${order.id}</p>
-            <p>Este documento es un comprobante digital generado autom�ticamente.</p>
+            <p>Este documento es un comprobante digital generado automáticamente.</p>
           </div>
 
           <script>window.print();</script>
@@ -469,7 +469,7 @@ export default function DashboardComprasPage() {
       // 2. Confirmar topup
       const { data: sess } = await supabase.auth.getSession();
       const token = sess.session?.access_token;
-      if (!token) throw new Error('No sesi�n');
+      if (!token) throw new Error('No sesión');
 
       const confirmRes = await fetch('/api/wallet/topup/confirm-offline', {
         method: 'POST',
@@ -483,7 +483,7 @@ export default function DashboardComprasPage() {
       if (!confirmRes.ok) throw new Error(confirmJson.error || 'Error al confirmar recarga');
 
       // 3. Actualizar UI
-      setSuccess('Comprobante subido. Tu recarga est� pendiente de aprobaci�n.');
+      setSuccess('Comprobante subido. Tu recarga está pendiente de aprobación.');
       setPendingTopups((prev) => prev.map(t => t.id === topupId ? { ...t, status: 'pending_approval' } : t));
 
     } catch (err: any) {
@@ -494,7 +494,7 @@ export default function DashboardComprasPage() {
     }
   };
 
-  // Filtrar �rdenes seg�n el filtro activo y b�squeda
+  // Filtrar órdenes según el filtro activo y búsqueda
   const filteredOrders = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
@@ -539,7 +539,7 @@ export default function DashboardComprasPage() {
 
       if (!matchesFilter) return false;
 
-      // Aplicar b�squeda si hay query
+      // Aplicar búsqueda si hay query
       if (query) {
         const orderIdLower = orderId.toLowerCase();
         const trackingLower = tracking.toLowerCase();
@@ -643,7 +643,7 @@ export default function DashboardComprasPage() {
         const token = sess.session?.access_token;
         if (!token) throw new Error('Auth session missing');
 
-        // -- FASE 1: Cargar �rdenes --
+        // -- FASE 1: Cargar órdenes --
         const res = await fetch(`/api/orders/buyer-dashboard?limit=500&t=${Date.now()}`, {
           headers: { authorization: `Bearer ${token}` },
           cache: 'no-store',
@@ -657,7 +657,7 @@ export default function DashboardComprasPage() {
         if (cancelled) return;
         setOrders(next);
 
-        // Pre-cargar im�genes y t�tulos de listings directamente desde buyer-dashboard
+        // Pre-cargar imágenes y títulos de listings directamente desde buyer-dashboard
         // Esto funciona SIEMPRE porque buyer-dashboard usa admin client (bypasea RLS)
         const serverThumbs = (json as any)?.thumbsByListingId as Record<string, string> | undefined;
         const serverTitles = (json as any)?.titlesByListingId as Record<string, string> | undefined;
@@ -689,7 +689,7 @@ export default function DashboardComprasPage() {
 
         const ids = next.map((o) => String(o?.id || '')).filter(Boolean);
 
-        // ��������� FASE 2: Todo lo dem�s EN PARALELO ���������
+        // - FASE 2: Todo lo demás EN PARALELO -
         const chunk = <T,>(arr: T[], size: number) => {
           const out: T[][] = [];
           for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
@@ -697,7 +697,7 @@ export default function DashboardComprasPage() {
         };
         const isUuid = (v: string) => /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(v);
 
-        // Funci�n para obtener �tems de orden + datos de listings
+        // Función para obtener ítems de orden + datos de listings
         const loadItemsAndListings = async () => {
           if (ids.length === 0) return;
           const idChunks = chunk(ids, 25);
@@ -705,7 +705,7 @@ export default function DashboardComprasPage() {
           for (const batch of idChunks) {
             try {
               // Query simple sin join a listings (el join falla con 400 por RLS en listings vendidos/pausados)
-              // Los datos de listings se cargan despu�s v�a /api/listings/by-ids (admin, bypasea RLS)
+              // Los datos de listings se cargan después vía /api/listings/by-ids (admin, bypasea RLS)
               let part: any = await supabase
                 .from('order_items')
                 .select('order_id,listing_id,title,quantity,line_total,selected_size,selected_color')
@@ -858,7 +858,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar pendingTopups
+        // Función para cargar pendingTopups
         const loadPendingTopups = async () => {
           try {
             const res = await fetch('/api/wallet/pending-topups', {
@@ -885,7 +885,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar offlineSessions
+        // Función para cargar offlineSessions
         const loadOfflineSessions = async () => {
           try {
             const res = await fetch('/api/offline-payment/pending-sessions', {
@@ -902,7 +902,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar disputas
+        // Función para cargar disputas
         const loadDisputes = async (orderIds: string[]) => {
           try {
             const res = await fetch(`/api/disputes/list?limit=200&t=${Date.now()}`, {
@@ -936,7 +936,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar perfiles de vendedores
+        // Función para cargar perfiles de vendedores
         const loadSellerProfiles = async () => {
           const sellerIds = Array.from(new Set(next.map((o) => String(o?.seller_id || '')).filter(Boolean)));
           if (sellerIds.length === 0) return;
@@ -997,7 +997,7 @@ export default function DashboardComprasPage() {
           if (!cancelled) setSellerOperationsById(opsMap);
         };
 
-        // Funci�n para cargar chat unread
+        // Función para cargar chat unread
         const loadChatUnread = async () => {
           if (ids.length === 0) return;
           try {
@@ -1019,7 +1019,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar ratings
+        // Función para cargar ratings
         const loadRatings = async () => {
           if (ids.length === 0) return;
           try {
@@ -1044,7 +1044,7 @@ export default function DashboardComprasPage() {
           }
         };
 
-        // Funci�n para cargar estafeta + settings + wallet
+        // Función para cargar estafeta + settings + wallet
         const loadSettingsAndExtras = async () => {
           const [settingsRes, walletRes, estafetaRes, appSettingsRes] = await Promise.all([
             supabase.from('app_settings').select('payment_methods').eq('id', 1).maybeSingle(),
@@ -1058,7 +1058,7 @@ export default function DashboardComprasPage() {
           if (appSettingsRes.data) setAppSettings(appSettingsRes.data);
         };
 
-        // ��������� EJECUTAR TODO EN PARALELO ���������
+        // - EJECUTAR TODO EN PARALELO -
         await Promise.allSettled([
           loadItemsAndListings(),
           loadPendingTopups(),
@@ -1120,7 +1120,7 @@ export default function DashboardComprasPage() {
 
       const { data: sess } = await supabase.auth.getSession();
       const token = sess.session?.access_token;
-      if (!token) throw new Error('No hay sesi�n activa');
+      if (!token) throw new Error('No hay sesión activa');
 
       if (selectedMethod === 'mercadopago') {
         // Pago con Tarjeta (MercadoPago)
@@ -1134,7 +1134,7 @@ export default function DashboardComprasPage() {
         if (json.init_point) {
           window.location.href = json.init_point;
         } else {
-          throw new Error('No se recibi� el link de pago de MercadoPago');
+          throw new Error('No se recibió el link de pago de MercadoPago');
         }
 
       } else if (selectedMethod === 'pocketcash') {
@@ -1146,7 +1146,7 @@ export default function DashboardComprasPage() {
         const json = await res.json();
         if (!res.ok) throw new Error(json.error || 'Error al procesar el pago con PocketCash');
 
-        setSuccess('�Pago realizado con �xito usando PocketCash!');
+        setSuccess('¡Pago realizado con éxito usando PocketCash!');
         setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status: 'paid' } : o));
         setPayModalOpen(false);
         setPayOrderData(null);
@@ -1157,7 +1157,7 @@ export default function DashboardComprasPage() {
         });
 
       } else {
-        // Pagos Offline (Transferencia, Dep�sito, OXXO)
+        // Pagos Offline (Transferencia, Depósito, OXXO)
         const res = await fetch('/api/offline-payment/create', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
@@ -1170,16 +1170,16 @@ export default function DashboardComprasPage() {
         const json = await res.json();
         if (!res.ok) throw new Error(json.error || 'Error al crear la referencia de pago');
 
-        // �xito: mostrar instrucciones o redirigir
-        // Por simplicidad, recargamos la p�gina o actualizamos el estado para mostrar "Pendiente de pago" con referencia
-        // Pero lo mejor es redirigir a una p�gina de �xito o mostrar el modal de instrucciones.
-        // Dado que el usuario est� en "Compras", podemos simplemente cerrar el modal y mostrar un mensaje.
+        // éxito: mostrar instrucciones o redirigir
+        // Por simplicidad, recargamos la página o actualizamos el estado para mostrar "Pendiente de pago" con referencia
+        // Pero lo mejor es redirigir a una página de éxito o mostrar el modal de instrucciones.
+        // Dado que el usuario está en "Compras", podemos simplemente cerrar el modal y mostrar un mensaje.
         setSuccess(`Referencia de pago creada (${json.reference_code}). Revisa tu correo o el detalle de la orden.`);
         setCheckoutSessionByOrderId(prev => ({ ...prev, [orderId]: json.checkoutId }));
         setPayModalOpen(false);
         setPayOrderData(null);
 
-        // Redirigir a la p�gina de instrucciones
+        // Redirigir a la página de instrucciones
         router.push(`/pago/${json.checkoutId}`);
       }
 
@@ -1205,7 +1205,7 @@ export default function DashboardComprasPage() {
 
       const { data: sess } = await supabase.auth.getSession();
       const token = sess.session?.access_token;
-      if (!token) throw new Error('No hay sesi�n activa');
+      if (!token) throw new Error('No hay sesión activa');
 
       const res = await fetch('/api/orders/update-shipping-mode', {
         method: 'POST',
@@ -1238,7 +1238,7 @@ export default function DashboardComprasPage() {
         ),
       );
       setShippingMode('pickup');
-      setSuccess('Listo: seleccionaste entrega personal para esta subasta. El env�o ser� gratis.');
+      setSuccess('Listo: seleccionaste entrega personal para esta subasta. El envío será gratis.');
     } catch (e: unknown) {
       console.error(e);
       setError(e instanceof Error ? e.message : 'No se pudo cambiar a entrega personal');
@@ -1259,7 +1259,7 @@ export default function DashboardComprasPage() {
 
       const { data: sess } = await supabase.auth.getSession();
       const token = sess.session?.access_token;
-      if (!token) throw new Error('No hay sesi�n activa');
+      if (!token) throw new Error('No hay sesión activa');
 
       const res = await fetch('/api/orders/update-shipping-mode', {
         method: 'POST',
@@ -1271,7 +1271,7 @@ export default function DashboardComprasPage() {
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) {
-        throw new Error(json?.error || 'No se pudo cambiar a env�o GoVendy');
+        throw new Error(json?.error || 'No se pudo cambiar a envío GoVendy');
       }
 
       const newTotal = Number(json.order?.total ?? payOrderData.total);
@@ -1292,10 +1292,10 @@ export default function DashboardComprasPage() {
         ),
       );
       setShippingMode('gopocket');
-      setSuccess(`Listo: seleccionaste env�o GoVendy. Costo de env�o: $${newShippingFee.toFixed(2)}`);
+      setSuccess(`Listo: seleccionaste envío GoVendy. Costo de envío: $${newShippingFee.toFixed(2)}`);
     } catch (e: unknown) {
       console.error(e);
-      setError(e instanceof Error ? e.message : 'No se pudo cambiar a env�o GoVendy');
+      setError(e instanceof Error ? e.message : 'No se pudo cambiar a envío GoVendy');
     } finally {
       setIsUpdatingShipping(false);
     }
@@ -1327,7 +1327,7 @@ export default function DashboardComprasPage() {
         body: JSON.stringify({ orderId, stars: rateStars, comment: rateComment }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(json?.error || 'No se pudo confirmar recepci�n.');
+      if (!res.ok) throw new Error(json?.error || 'No se pudo confirmar recepción.');
 
       if (path === '/api/orders/confirm-received') {
         setOrders((prev) => prev.map((o) => (String(o?.id || '') === orderId ? { ...o, status: 'completed' } : o)));
@@ -1338,13 +1338,13 @@ export default function DashboardComprasPage() {
       }
       setSuccess(
         path === '/api/orders/confirm-received'
-          ? 'Listo: confirmaste recepci�n. Se liber� el pago y se envi� tu calificaci�n.'
-          : 'Listo: se guard� tu calificaci�n de esta compra.',
+          ? 'Listo: confirmaste recepción. Se liberó el pago y se envió tu calificación.'
+          : 'Listo: se guardé tu calificación de esta compra.',
       );
       setRateOpen(false);
     } catch (e: unknown) {
       console.error(e);
-      setError(e instanceof Error ? e.message : 'No se pudo confirmar recepci�n.');
+      setError(e instanceof Error ? e.message : 'No se pudo confirmar recepción.');
     } finally {
       setIsSubmittingRating(false);
     }
@@ -1423,7 +1423,7 @@ export default function DashboardComprasPage() {
         {error && <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>}
         {success && <div className="mb-6 rounded-2xl border border-green-200 bg-white px-4 py-3 text-sm text-green-800">{success}</div>}
 
-        {/* --- PESTA�AS PRINCIPALES --- */}
+        {/* --- PESTAÑAS PRINCIPALES --- */}
         <div className="mb-6 flex gap-1 rounded-2xl bg-gray-100 p-1 ring-1 ring-black/5">
           <button
             onClick={() => setComprasTab('compras')}
@@ -1432,7 +1432,7 @@ export default function DashboardComprasPage() {
               : 'text-gray-500 hover:text-gray-700'
               }`}
           >
-            ??? Mis Compras
+            🛍️ Mis Compras
             {orders.length > 0 && (
               <span className={`ml-1.5 rounded-full px-2 py-0.5 text-[10px] font-extrabold ${comprasTab === 'compras' ? 'bg-brand-emerald text-white' : 'bg-gray-200 text-gray-600'
                 }`}>{orders.length}</span>
@@ -1445,7 +1445,7 @@ export default function DashboardComprasPage() {
               : 'text-gray-500 hover:text-gray-700'
               }`}
           >
-            ?? Gu�as Estafeta
+            📦 Guías Estafeta
             {estafetaQuotes.length > 0 && (
               <span className={`ml-1.5 rounded-full px-2 py-0.5 text-[10px] font-extrabold ${comprasTab === 'estafeta' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'
                 }`}>{estafetaQuotes.length}</span>
@@ -1458,7 +1458,7 @@ export default function DashboardComprasPage() {
               : 'text-gray-500 hover:text-gray-700'
               }`}
           >
-            ?? PocketCash
+            💸 PocketCash
             {allTopups.length > 0 && (
               <span className={`ml-1.5 rounded-full px-2 py-0.5 text-[10px] font-extrabold ${comprasTab === 'pocketcash' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600'
                 }`}>{allTopups.length}</span>
@@ -1489,19 +1489,19 @@ export default function DashboardComprasPage() {
                         Creado el: {formatDateTime(topup.created_at)}
                       </div>
                       <div className="text-xs text-gray-400 font-mono mt-0.5">
-                        Operaci�n: {topup.id.slice(0, 8)}...
+                        Operación: {topup.id.slice(0, 8)}...
                       </div>
                       <div className="mt-2 inline-flex items-center gap-2 rounded-lg bg-white px-2 py-1 text-xs font-medium shadow-sm ring-1 ring-black/5">
                         {topup.status === 'pending_proof' ? (
                           <span className="text-orange-600">Esperando comprobante</span>
                         ) : (
-                          <span className="text-blue-600">Revisi�n pendiente</span>
+                          <span className="text-blue-600">Revisión pendiente</span>
                         )}
                       </div>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-3">
-                      {/* Bot�n de Continuar Pago / Ver Instrucciones */}
+                      {/* Botón de Continuar Pago / Ver Instrucciones */}
                       <button
                         onClick={() => setSelectedTopupForInfo(topup)}
                         className="rounded-xl bg-purple-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90"
@@ -1509,7 +1509,7 @@ export default function DashboardComprasPage() {
                         {topup.payment_method === 'mercadopago' ? 'Pagar Ahora' : 'Ver Instrucciones'}
                       </button>
 
-                      {/* Bot�n de Descargar Nota */}
+                      {/* Botón de Descargar Nota */}
                       <button
                         onClick={() => {
                           const w = window.open('', '_blank');
@@ -1544,7 +1544,7 @@ export default function DashboardComprasPage() {
 
                                    <div class="details-grid">
                                      <div class="detail-group">
-                                       <h3>Operaci�n</h3>
+                                       <h3>Operación</h3>
                                        <p>#${topup.id.slice(0, 8).toUpperCase()}</p>
                                      </div>
                                      <div class="detail-group" style="text-align: right;">
@@ -1621,7 +1621,7 @@ export default function DashboardComprasPage() {
                       )}
                       {topup.status === 'pending_approval' && (
                         <div className="text-sm font-medium text-gray-500 italic">
-                          Tu comprobante est� siendo revisado.
+                          Tu comprobante está siendo revisado.
                         </div>
                       )}
                     </div>
@@ -1637,10 +1637,10 @@ export default function DashboardComprasPage() {
                 <div className="flex items-center gap-2">
                   <div className="text-lg font-bold text-gray-900">Historial de compras</div>
                   <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-extrabold text-blue-800 ring-1 ring-blue-200">
-                    T� COMPRASTE
+                    TÚ COMPRASTE
                   </span>
                 </div>
-                <div className="mt-1 text-sm text-gray-600">Aqu� ver�s tus compras: vendedor, art�culos y estatus del env�o.</div>
+                <div className="mt-1 text-sm text-gray-600">Aquí verás tus compras: vendedor, artículos y estatus del envío.</div>
               </div>
             </div>
 
@@ -1667,7 +1667,7 @@ export default function DashboardComprasPage() {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Buscar por c�digo de orden, vendedor o n�mero de rastreo..."
+                      placeholder="Buscar por código de orden, vendedor o número de rastreo..."
                       className="w-full rounded-xl border border-gray-300 bg-white px-10 py-2.5 text-sm outline-none placeholder:text-gray-400 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20"
                     />
                     {searchQuery && (
@@ -1675,7 +1675,7 @@ export default function DashboardComprasPage() {
                         type="button"
                         onClick={() => setSearchQuery('')}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        aria-label="Limpiar b�squeda"
+                        aria-label="Limpiar búsqueda"
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <line x1="18" y1="6" x2="6" y2="18" />
@@ -1712,7 +1712,7 @@ export default function DashboardComprasPage() {
                     );
                   })()}
 
-                  {/* Bot�n para expandir/colapsar */}
+                  {/* Botón para expandir/colapsar */}
                   <button
                     type="button"
                     onClick={() => setFiltersExpanded(!filtersExpanded)}
@@ -1731,7 +1731,7 @@ export default function DashboardComprasPage() {
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M6 9l6 6 6-6" />
                         </svg>
-                        M�s filtros
+                        Más filtros
                       </>
                     )}
                   </button>
@@ -1844,19 +1844,19 @@ export default function DashboardComprasPage() {
             {isBooting ? (
               <div className="mt-6 text-sm text-gray-600">Cargando...</div>
             ) : orders.length === 0 ? (
-              <div className="mt-6 text-sm text-gray-600">A�n no tienes compras.</div>
+              <div className="mt-6 text-sm text-gray-600">Aún no tienes compras.</div>
             ) : filteredOrders.length === 0 ? (
-              <div className="mt-6 text-sm text-gray-600">No hay compras que coincidan con este filtro o b�squeda.</div>
+              <div className="mt-6 text-sm text-gray-600">No hay compras que coincidan con este filtro o búsqueda.</div>
             ) : (
               <>
                 <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-3 py-2">
                   <span className="text-[11px] font-bold uppercase text-gray-500">Compras</span>
-                  <span className="text-xs text-gray-600">Filtra y usa Anterior/Siguiente para buscar. No se borra ninguna operaci�n.</span>
+                  <span className="text-xs text-gray-600">Filtra y usa Anterior/Siguiente para buscar. No se borra ninguna operación.</span>
                 </div>
                 <div className="mt-4 space-y-3" data-tour="orders-list">
                   {comprasPaginated.map((o) => {
                     const sellerId = String(o?.seller_id || '');
-                    const seller = sellerId ? sellerNames[sellerId] || `${sellerId.slice(0, 6)}...` : '�';
+                    const seller = sellerId ? sellerNames[sellerId] || `${sellerId.slice(0, 6)}...` : '-';
                     const items = itemsByOrder[String(o?.id || '')] ?? [];
                     const isAuction = String((o as any)?.order_source || '').toLowerCase() === 'auction' || items.some((it: any) => (it.listings as any)?.sale_type === 'auction');
                     const orderId = String(o?.id || '').trim();
@@ -1967,7 +1967,7 @@ export default function DashboardComprasPage() {
                                   </span>
                                 ) : (
                                   <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-gray-700">
-                                    {status?.toUpperCase() || '�'}
+                                    {status?.toUpperCase() || '-'}
                                   </span>
                                 )}
                                 {(o as any)?.payment_method === 'mercadopago' && (
@@ -1999,9 +1999,9 @@ export default function DashboardComprasPage() {
                                         <polyline points="12 6 12 12 16 14" />
                                       </svg>
                                       {ok && !ex ? (
-                                        <span>Disputa � {h}h {m}m {s}s</span>
+                                        <span>Disputa — {h}h {m}m {s}s</span>
                                       ) : (
-                                        <span>Disputa � Admin revisar�</span>
+                                        <span>Disputa — Admin revisará</span>
                                       )}
                                     </Link>
                                   );
@@ -2033,10 +2033,10 @@ export default function DashboardComprasPage() {
 
                                   return (
                                     <>
-                                      <span className="text-[9px] font-extrabold text-gray-400 uppercase tracking-wider">{isDigital ? 'Tipo de Entrega:' : 'M�todo de Env�o:'}</span>
+                                      <span className="text-[9px] font-extrabold text-gray-400 uppercase tracking-wider">{isDigital ? 'Tipo de Entrega:' : 'Método de Envío:'}</span>
                                       {isDigital ? (
                                         <div className="inline-flex items-center gap-2 rounded-lg bg-indigo-100 px-3 py-1.5 text-xs font-bold text-indigo-700 ring-1 ring-indigo-200 shadow-sm w-fit">
-                                          ?? PRODUCTO DIGITAL
+                                          ⚡ PRODUCTO DIGITAL
                                         </div>
                                       ) : isPersonalDeliveryChip ? (
                                         <div className="inline-flex items-center gap-2 rounded-lg bg-purple-100 px-3 py-1.5 text-xs font-bold text-purple-800 ring-1 ring-purple-600/20 shadow-sm w-fit">
@@ -2046,7 +2046,7 @@ export default function DashboardComprasPage() {
                                       ) : isGoVendy ? (
                                         isT1 ? (
                                           <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-100 to-amber-100 px-3 py-1.5 text-xs font-bold text-orange-800 ring-1 ring-orange-300 shadow-sm w-fit">
-                                            ?? GOPOCKET PREMIUM {carrierVal ? `� ${carrierVal}` : ''}
+                                            🚚 GOPOCKET PREMIUM {carrierVal ? `— ${carrierVal}` : ''}
                                           </div>
                                         ) : (
                                           <div className="inline-flex items-center gap-2 rounded-lg bg-blue-100 px-3 py-1.5 text-xs font-bold text-blue-800 ring-1 ring-blue-700/20 shadow-sm w-fit">
@@ -2057,12 +2057,12 @@ export default function DashboardComprasPage() {
                                       ) : o?.self_ship_evidence_url ? (
                                         <div className="inline-flex items-center gap-2 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-bold text-green-800 ring-1 ring-green-600/20 shadow-sm w-fit">
                                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
-                                          ENV�O GESTIONADO
+                                          ENVÍO GESTIONADO
                                         </div>
                                       ) : (
                                         <div className="inline-flex items-center gap-2 rounded-lg bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-900 ring-1 ring-amber-600/30 shadow-sm w-fit">
                                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19" /><line x1="15" y1="9" x2="15.01" y2="9" /><line x1="19" y1="9" x2="19.01" y2="9" /><line x1="23" y1="9" x2="23.01" y2="9" /><circle cx="7" cy="18" r="2" /><circle cx="17" cy="18" r="2" /></svg>
-                                          ENV�O POR VENDEDOR
+                                          ENVÍO POR VENDEDOR
                                         </div>
                                       )}
                                     </>
@@ -2070,7 +2070,7 @@ export default function DashboardComprasPage() {
                                 })()}
                               </div>
 
-                              {/* Contador 7 d�as Subasta */}
+                              {/* Contador 7 días Subasta */}
                               {isAuction && !shippedAt && (status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment' || status === 'paid') && (
                                 <div className="mb-2">
                                   <AuctionDeadline createdAt={o?.created_at} orderStatus={o?.status} />
@@ -2091,15 +2091,15 @@ export default function DashboardComprasPage() {
                                     planType={sellerPlanById[sellerId] ?? 'basic'}
                                   />
                                 ) : (
-                                  <span className="text-[10px] text-gray-600">�</span>
+                                  <span className="text-[10px] text-gray-600">—</span>
                                 )}
                               </div>
-                              {/* Art�culos: lista compacta con miniaturas */}
+                              {/* Artículos: lista compacta con miniaturas */}
                               {items.length > 0 ? (
                                 <div className="mt-2 space-y-1.5">
                                   {items.slice(0, 5).map((it: any, idx: number) => {
                                     const lid = String(it?.listing_id || '').trim();
-                                    const t = (lid && titleByListingId[lid]) ? titleByListingId[lid] : String(it?.title || 'Art�culo');
+                                    const t = (lid && titleByListingId[lid]) ? titleByListingId[lid] : String(it?.title || 'Artículo');
                                     const img = lid ? thumbByListingId[lid] : '';
                                     const quantity = Number(it.quantity ?? 1) || 1;
                                     return (
@@ -2133,14 +2133,14 @@ export default function DashboardComprasPage() {
                                               {formatMoney(it.line_total)}
                                             </div>
                                           )}
-                                          {/* Bot�n rese�a solo para �rdenes completadas/entregadas */}
+                                          {/* Botón reseña solo para órdenes completadas/entregadas */}
                                           {(status === 'completed' || status === 'delivered') && lid && !reviewedListingIds.has(lid) && (
                                             <button
                                               type="button"
                                               onClick={() => setReviewListingId(lid)}
                                               className="mt-2 inline-flex items-center gap-1 rounded-lg bg-amber-50 border border-amber-200 px-2.5 py-1 text-[10px] font-bold text-amber-700 hover:bg-amber-100 transition-colors"
                                             >
-                                              ? Dejar rese�a
+                                              ? Dejar reseña
                                             </button>
                                           )}
                                         </div>
@@ -2149,20 +2149,20 @@ export default function DashboardComprasPage() {
                                   })}
                                   {items.length > 5 && (
                                     <div className="text-[11px] text-gray-500 py-1">
-                                      +{items.length - 5} art�culo{items.length - 5 !== 1 ? 's' : ''} m�s
+                                      +{items.length - 5} artículo{items.length - 5 !== 1 ? 's' : ''} más
                                     </div>
                                   )}
                                 </div>
                               ) : null}
 
-                              {/* Entrega Digital � datos del producto */}
+                              {/* Entrega Digital — datos del producto */}
                               {isDigitalOrder && status !== 'pending_payment' ? (
                                 <div className="mt-3">
                                   <DigitalDeliveryBuyer orderId={orderId} />
                                 </div>
                               ) : null}
 
-                              {/* Informaci�n de estado de pago y producto enviado */}
+                              {/* Información de estado de pago y producto enviado */}
                               {status === 'pending_payment' || status === 'awaiting_voucher' || status === 'verifying_payment' ? (
                                 <div className="mt-3 space-y-2">
                                   <div className="rounded-lg border border-emerald-200 bg-white/80 p-2.5">
@@ -2172,7 +2172,7 @@ export default function DashboardComprasPage() {
                                         <div>
                                           <h4 className="text-[11px] font-bold text-emerald-900">Finaliza tu compra</h4>
                                           <p className="text-[10px] text-emerald-800/80 leading-snug max-w-md">
-                                            Orden reservada. Paga para que te env�en tus productos.
+                                            Orden reservada. Paga para que te envíen tus productos.
                                           </p>
                                         </div>
                                       </div>
@@ -2237,7 +2237,7 @@ export default function DashboardComprasPage() {
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                       </svg>
-                                      Pago seguro v�a MercadoPago. El chat se activa al acreditarse.
+                                      Pago seguro vía MercadoPago. El chat se activa al acreditarse.
                                     </p>
                                   </div>
                                   {/* Contador de 48 horas - Reemplazado por componente estandarizado */}
@@ -2252,7 +2252,7 @@ export default function DashboardComprasPage() {
                                   <div className="mt-3 flex flex-col gap-2 sm:flex-row">
                                     {isPaid ? (
                                       <div className="flex-1 rounded-lg border border-green-200 bg-white px-3 py-2">
-                                        <div className="text-xs font-extrabold text-green-900">Tu compra est� protegida</div>
+                                        <div className="text-xs font-extrabold text-green-900">Tu compra está protegida</div>
                                         <div className="mt-1 text-[11px] text-green-800/80">
                                           El dinero se le libera al vendedor hasta que confirmes de Recibido.
                                         </div>
@@ -2262,7 +2262,7 @@ export default function DashboardComprasPage() {
                                       <div className="flex-1 rounded-xl border border-green-200 bg-white px-3 py-2">
                                         <div className="text-xs font-extrabold text-green-900">? Producto enviado</div>
                                         <div className="mt-1 text-[11px] text-green-800/80">
-                                          Aseg�rate de tomar evidencias del art�culo que recibiste en caso de abrir una disputa.
+                                          Asegúrate de tomar evidencias del artículo que recibiste en caso de abrir una disputa.
                                         </div>
                                       </div>
                                     ) : null}
@@ -2284,7 +2284,7 @@ export default function DashboardComprasPage() {
                                   <span className="font-medium text-gray-900">{formatMoney(o?.subtotal || (toNumber(o?.total) - toNumber(o?.shipping_fee)))}</span>
                                 </div>
                                 <div className="flex items-center justify-between gap-2">
-                                  <span className="text-gray-600">Env�o</span>
+                                  <span className="text-gray-600">Envío</span>
                                   <span className="font-semibold text-gray-900">
                                     {(o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup')
                                       ? 'Entrega Personal (Gratis)'
@@ -2308,7 +2308,7 @@ export default function DashboardComprasPage() {
 
 
 
-                              {/* Peso y Dimensiones � compact */}
+                              {/* Peso y Dimensiones — compact */}
                               {(() => {
                                 const oid = String(o?.id || '').trim();
                                 const w = Number(weightByOrderId[oid] || 0);
@@ -2320,7 +2320,7 @@ export default function DashboardComprasPage() {
                                   <div className="mt-1.5 flex items-center gap-2 text-[10px] text-gray-500">
                                     <svg className="h-3 w-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>
                                     {hasWeight && <span className="font-semibold text-gray-700">{w.toFixed(2)} kg</span>}
-                                    {hasWeight && hasDims && <span className="text-gray-300">�</span>}
+                                    {hasWeight && hasDims && <span className="text-gray-300">-</span>}
                                     {hasDims && <span className="font-semibold text-gray-700">{Number(dims!.length_cm || 0)}x{Number(dims!.width_cm || 0)}x{Number(dims!.height_cm || 0)} cm</span>}
                                   </div>
                                 );
@@ -2330,16 +2330,16 @@ export default function DashboardComprasPage() {
                                 <div className="mt-2 rounded-lg bg-white px-2.5 py-2 text-[10px] ring-1 ring-black/5">
                                   <div className="font-semibold text-gray-900 mb-1">Rastreo</div>
                                   <div className="space-y-0.5 text-gray-700">
-                                    <div><span className="text-gray-500">Paq:</span> <span className="font-semibold">{carrier || '�'}</span></div>
-                                    <div className="truncate"><span className="text-gray-500">C�d:</span> <span className="font-semibold">{tracking}</span></div>
+                                    <div><span className="text-gray-500">Paq:</span> <span className="font-semibold">{carrier || '-'}</span></div>
+                                    <div className="truncate"><span className="text-gray-500">Cód:</span> <span className="font-semibold">{tracking}</span></div>
                                     <div className="text-gray-500 text-[9px]">{formatDateTime(shippedAt)}</div>
                                   </div>
                                 </div>
                               ) : !isDigitalOrder ? (
-                                <div className="mt-2 text-[10px] text-gray-500">Sin rastreo a�n</div>
+                                <div className="mt-2 text-[10px] text-gray-500">Sin rastreo aún</div>
                               ) : null}
 
-                              {/* Contador de 48h para confirmar recepci�n/calificar */}
+                              {/* Contador de 48h para confirmar recepción/calificar */}
                               {status === 'delivered' && !isCompleted && (
                                 <PaymentDeadlineWarning createdAt={o.delivered_at} className="mt-2 text-xs" />
                               )}
@@ -2353,6 +2353,17 @@ export default function DashboardComprasPage() {
                                     >
                                       Visita tienda
                                     </Link>
+                                  ) : status === 'pending_payment' || status === 'awaiting_voucher' ? (
+                                    <button
+                                      disabled
+                                      className="inline-flex w-full items-center justify-center gap-1.5 rounded-xl bg-gray-200 px-2.5 py-2.5 text-[11px] font-bold text-gray-500 cursor-not-allowed shadow-sm ring-1 ring-gray-300"
+                                    >
+                                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                        <line x1="4" y1="4" x2="20" y2="20" />
+                                      </svg>
+                                      Chat Bloqueado
+                                    </button>
                                   ) : (
                                     <button
                                       type="button"
@@ -2420,7 +2431,7 @@ export default function DashboardComprasPage() {
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-sm">
                                           <polyline points="20 6 9 17 4 12" />
                                         </svg>
-                                        <span className="tracking-wide drop-shadow-sm">YA RECIB� - CALIFICAR</span>
+                                        <span className="tracking-wide drop-shadow-sm">YA RECIBÍ - CALIFICAR</span>
                                       </div>
                                     </button>
                                   )}
@@ -2481,14 +2492,14 @@ export default function DashboardComprasPage() {
                                       const adminDecision = disputeInfo?.admin_decision;
                                       const adminNote = disputeInfo?.admin_note;
 
-                                      // Funci�n para obtener el label de la decisi�n
+                                      // Función para obtener el label de la decisión
                                       const getDecisionLabel = (decision: string | null | undefined): string => {
                                         if (!decision) return 'Resuelta';
                                         const d = String(decision).toLowerCase();
                                         if (d === 'release') return 'Pago liberado al vendedor';
                                         if (d === 'refund') return 'Reembolso al comprador';
                                         if (d === 'close') return 'Disputa cerrada';
-                                        if (d === 'assign_return_tracking' || d === 'assign_guide_charged_buyer' || d === 'assign_guide_charged_seller') return 'Gu�a de devoluci�n asignada';
+                                        if (d === 'assign_return_tracking' || d === 'assign_guide_charged_buyer' || d === 'assign_guide_charged_seller') return 'Guía de devolución asignada';
                                         if (d === 'keep_money_seller') return 'Dinero mantenido al vendedor';
                                         if (d === 'partial_refund_seller') return 'Reembolso parcial al vendedor';
                                         if (d === 'partial_refund_buyer') return 'Reembolso parcial al comprador';
@@ -2514,7 +2525,7 @@ export default function DashboardComprasPage() {
                                               </div>
                                             )}
                                             <div className="mt-2 text-[10px] font-semibold text-green-900">
-                                              Esta disputa se finaliz�. Agradecemos tu apoyo.
+                                              Esta disputa se finalizó. Agradecemos tu apoyo.
                                             </div>
                                           </div>
                                         </div>
@@ -2552,7 +2563,7 @@ export default function DashboardComprasPage() {
                                                   Tiempo para resolver: {hoursRemaining}h {minutesRemaining}m {secondsRemaining}s
                                                 </div>
                                                 <div className="mt-0.5 text-[10px] text-red-800">
-                                                  Tienes 72 horas para resolver con el comprador o el vendedor antes de que un mediador vea tu caso y d� una resoluci�n.
+                                                  Tienes 72 horas para resolver con el comprador o el vendedor antes de que un mediador vea tu caso y dé una resolución.
                                                 </div>
                                               </div>
                                             </div>
@@ -2560,11 +2571,11 @@ export default function DashboardComprasPage() {
                                         ) : isOpen && (expired || !hasValidStart) ? (
                                           <div className="rounded-xl border border-gray-300 bg-gray-50 px-3 py-2">
                                             <div className="text-xs font-extrabold text-gray-900">
-                                              El administrador revisar� tu caso
+                                              El administrador revisará tu caso
                                             </div>
                                             <div className="mt-0.5 text-[10px] text-gray-800">
                                               {expired && hasValidStart
-                                                ? 'El tiempo para resolver ha expirado. El administrador tomar� una decisi�n definitiva.'
+                                                ? 'El tiempo para resolver ha expirado. El administrador tomará una decisión definitiva.'
                                                 : 'Puedes ver el estado en el chat de la disputa.'}
                                             </div>
                                           </div>
@@ -2584,7 +2595,7 @@ export default function DashboardComprasPage() {
 
                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
                   <div className="text-xs text-gray-600">
-                    {filteredOrders.length} compra(s) en total � P�gina {Math.min(comprasPage, comprasTotalPages)} de {comprasTotalPages}
+                    {filteredOrders.length} compra(s) en total — Página {Math.min(comprasPage, comprasTotalPages)} de {comprasTotalPages}
                   </div>
                   <div className="flex gap-2">
                     <button
@@ -2608,11 +2619,11 @@ export default function DashboardComprasPage() {
               </>
             )}
 
-            {/* Secci�n de Gu�as Estafeta - moved to its own tab */}
+            {/* Sección de Guías Estafeta - moved to its own tab */}
           </div>
         </>)}
 
-        {/* --- TAB: GU�AS ESTAFETA --- */}
+        {/* --- TAB: GUÍAS ESTAFETA --- */}
         {comprasTab === 'estafeta' && (
           <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
             <div className="mb-4 flex items-center gap-3">
@@ -2638,16 +2649,16 @@ export default function DashboardComprasPage() {
                 />
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Gu�as de env�o Estafeta</h2>
-                <p className="mt-0.5 text-sm text-gray-600">Tus gu�as de env�o compradas</p>
+                <h2 className="text-lg font-bold text-gray-900">Guías de envío Estafeta</h2>
+                <p className="mt-0.5 text-sm text-gray-600">Tus guías de envío compradas</p>
               </div>
             </div>
 
             {estafetaQuotes.length === 0 ? (
               <div className="py-16 text-center">
                 <div className="text-4xl mb-3">??</div>
-                <div className="text-sm font-semibold text-gray-500">No tienes gu�as de env�o</div>
-                <p className="mt-1 text-xs text-gray-400">Cuando compres gu�as Estafeta en la tienda, aparecer�n aqu�</p>
+                <div className="text-sm font-semibold text-gray-500">No tienes guías de envío</div>
+                <p className="mt-1 text-xs text-gray-400">Cuando compres guías Estafeta en la tienda, aparecerán aquí</p>
                 <Link href="/dashboard/estafeta" className="mt-4 inline-block rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition">
                   Ir a Tienda Estafeta
                 </Link>
@@ -2667,7 +2678,7 @@ export default function DashboardComprasPage() {
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-2 mb-2">
                             <span className="rounded-full bg-blue-600 px-2.5 py-1 text-[10px] font-extrabold text-white uppercase">
-                              Gu�a Estafeta
+                              Guía Estafeta
                             </span>
                             <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-700">
                               {quote.id.slice(0, 8)}...
@@ -2682,7 +2693,7 @@ export default function DashboardComprasPage() {
                             <div className="rounded-lg border border-blue-200 bg-white p-2.5">
                               <div className="text-[10px] font-semibold text-gray-600">Paquete</div>
                               <div className="mt-0.5 text-xs text-gray-900">
-                                {quote.weight_kg} kg � {quote.length_cm}x{quote.width_cm}x{quote.height_cm} cm
+                                {quote.weight_kg} kg — {quote.length_cm}x{quote.width_cm}x{quote.height_cm} cm
                               </div>
                               <div className="mt-1 text-sm font-extrabold text-brand-emerald">{formatMoney(quote.calculated_cost)}</div>
                             </div>
@@ -2702,8 +2713,8 @@ export default function DashboardComprasPage() {
                                   <path d="M9 12l2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
                                 <div className="flex-1">
-                                  <div className="text-xs font-extrabold text-green-900">�Gracias por tu compra!</div>
-                                  <div className="mt-0.5 text-[10px] text-green-800">Tu gu�a est� lista para descargar</div>
+                                  <div className="text-xs font-extrabold text-green-900">¡Gracias por tu compra!</div>
+                                  <div className="mt-0.5 text-[10px] text-green-800">Tu guía está lista para descargar</div>
                                 </div>
                                 <a
                                   href={quote.guide_file_url}
@@ -2712,7 +2723,7 @@ export default function DashboardComprasPage() {
                                   download
                                   className="rounded-lg bg-green-600 px-4 py-2.5 text-xs font-semibold text-white shadow-sm hover:bg-green-700 transition-colors"
                                 >
-                                  Descargar Gu�a
+                                  Descargar Guía
                                 </a>
                               </div>
                             </div>
@@ -2720,15 +2731,15 @@ export default function DashboardComprasPage() {
 
                           {!hasGuide && isProcessing && (
                             <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3">
-                              <div className="text-xs font-semibold text-amber-900">? Procesando tu gu�a</div>
-                              <div className="mt-0.5 text-[10px] text-amber-800">Estamos preparando tu gu�a. Te notificaremos cuando est� lista.</div>
+                              <div className="text-xs font-semibold text-amber-900">? Procesando tu guía</div>
+                              <div className="mt-0.5 text-[10px] text-amber-800">Estamos preparando tu guía. Te notificaremos cuando está lista.</div>
                             </div>
                           )}
 
                           {!hasGuide && quote.status === 'paid' && (
                             <div className="mt-3 rounded-lg border border-blue-200 bg-blue-50 p-3">
                               <div className="text-xs font-semibold text-blue-900">? Pago acreditado</div>
-                              <div className="mt-0.5 text-[10px] text-blue-800">Tu gu�a se est� procesando. Estar� disponible pronto.</div>
+                              <div className="mt-0.5 text-[10px] text-blue-800">Tu guía se está procesando. Estar— disponible pronto.</div>
                             </div>
                           )}
                         </div>
@@ -2766,7 +2777,7 @@ export default function DashboardComprasPage() {
               <div className="py-16 text-center">
                 <div className="text-4xl mb-3">??</div>
                 <div className="text-sm font-semibold text-gray-500">No tienes recargas</div>
-                <p className="mt-1 text-xs text-gray-400">Cuando recargues saldo PocketCash, tu historial aparecer� aqu�</p>
+                <p className="mt-1 text-xs text-gray-400">Cuando recargues saldo PocketCash, tu historial aparecer— aquí</p>
                 <Link href="/dashboard/pocketcash" className="mt-4 inline-block rounded-xl bg-green-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition">
                   Recargar Saldo
                 </Link>
@@ -2776,7 +2787,7 @@ export default function DashboardComprasPage() {
                 {allTopups.map((topup) => {
                   const statusConfig: Record<string, { label: string; color: string; bg: string; ring: string }> = {
                     pending_proof: { label: 'Esperando comprobante', color: 'text-orange-800', bg: 'bg-orange-50', ring: 'ring-orange-200' },
-                    pending_approval: { label: 'En revisi�n', color: 'text-blue-800', bg: 'bg-blue-50', ring: 'ring-blue-200' },
+                    pending_approval: { label: 'En revisión', color: 'text-blue-800', bg: 'bg-blue-50', ring: 'ring-blue-200' },
                     approved: { label: 'Aprobada', color: 'text-green-800', bg: 'bg-white', ring: 'ring-green-200' },
                     completed: { label: 'Completada', color: 'text-green-800', bg: 'bg-white', ring: 'ring-green-200' },
                     rejected: { label: 'Rechazada', color: 'text-red-800', bg: 'bg-red-50', ring: 'ring-red-200' },
@@ -2804,7 +2815,7 @@ export default function DashboardComprasPage() {
                           </div>
                           <div className="text-sm font-bold text-gray-900">Recarga de Saldo</div>
                           <div className="text-xs text-gray-500 mt-0.5">
-                            M�todo: {topup.metadata?.payment_method === 'spei' ? 'SPEI' : topup.metadata?.payment_method === 'oxxo' ? 'OXXO' : topup.metadata?.payment_method === 'mercadopago' ? 'MercadoPago' : topup.metadata?.payment_method || 'N/A'}
+                            Método: {topup.metadata?.payment_method === 'spei' ? 'SPEI' : topup.metadata?.payment_method === 'oxxo' ? 'OXXO' : topup.metadata?.payment_method === 'mercadopago' ? 'MercadoPago' : topup.metadata?.payment_method || 'N/A'}
                           </div>
                         </div>
                         <div className="text-right">
@@ -2834,7 +2845,7 @@ export default function DashboardComprasPage() {
                               disabled={uploadingProofId === topup.id}
                               className="w-full rounded-xl bg-brand-emerald px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 disabled:opacity-50"
                             >
-                              {uploadingProofId === topup.id ? 'Subiendo...' : '?? Subir Comprobante'}
+                              {uploadingProofId === topup.id ? 'Subiendo...' : '🧾 Subir Comprobante'}
                             </button>
                           </div>
                           <button
@@ -2847,7 +2858,7 @@ export default function DashboardComprasPage() {
                       )}
                       {topup.status === 'pending_approval' && (
                         <div className="mt-2 text-xs font-medium text-blue-600 italic">
-                          Tu comprobante est� siendo revisado por el equipo.
+                          Tu comprobante está siendo revisado por el equipo.
                         </div>
                       )}
                     </div>
@@ -2876,7 +2887,7 @@ export default function DashboardComprasPage() {
               <div className="border-b border-black/5 px-5 py-4">
                 <div className="text-sm font-extrabold text-gray-900">Abrir disputa</div>
                 <div className="mt-1 text-xs text-gray-600">
-                  Esto abrir� un chat con soporte y notificar� al vendedor. La operaci�n quedar� en revisi�n.
+                  Esto abrir— un chat con soporte y notificar— al vendedor. La operación quedar— en revisión.
                 </div>
               </div>
 
@@ -2887,10 +2898,10 @@ export default function DashboardComprasPage() {
                   onChange={(e) => setDisputeReason(e.target.value as any)}
                   className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 >
-                  <option value="not_received">No recib� mi pedido</option>
-                  <option value="damaged">Lleg� da�ado</option>
-                  <option value="not_as_described">No es como se describ�a</option>
-                  <option value="missing_items">Faltan art�culos</option>
+                  <option value="not_received">No recib— mi pedido</option>
+                  <option value="damaged">Llegó dañado</option>
+                  <option value="not_as_described">No es como se describía</option>
+                  <option value="missing_items">Faltan artículos</option>
                   <option value="other">Otro</option>
                 </select>
 
@@ -2898,10 +2909,10 @@ export default function DashboardComprasPage() {
                 <textarea
                   value={disputeText}
                   onChange={(e) => setDisputeText(e.target.value)}
-                  placeholder="Describe el problema (sin enlaces ni tel�fonos)."
+                  placeholder="Describe el problema (sin enlaces ni teléfonos)."
                   className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
-                <div className="mt-1 text-[11px] text-gray-500">M�x. 600 caracteres.</div>
+                <div className="mt-1 text-[11px] text-gray-500">Máx. 600 caracteres.</div>
               </div>
 
               <div className="flex items-center justify-end gap-2 border-t border-black/5 px-5 py-4">
@@ -2965,12 +2976,12 @@ export default function DashboardComprasPage() {
           <div className="fixed inset-0 z-[70] flex items-end justify-center bg-black/40 p-4 sm:items-center">
             <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-black/10">
               <div className="border-b border-black/5 px-5 py-4">
-                <div className="text-sm font-extrabold text-gray-900">Confirmar recepci�n</div>
+                <div className="text-sm font-extrabold text-gray-900">Confirmar recepción</div>
                 <div className="mt-1 text-xs text-gray-600">Esto libera el pago y te permite calificar al vendedor.</div>
               </div>
 
               <div className="px-5 py-4">
-                <div className="text-xs font-semibold text-gray-900">Calificaci�n (1 a 10)</div>
+                <div className="text-xs font-semibold text-gray-900">Calificación (1 a 10)</div>
                 <div className="mt-2 flex flex-wrap gap-1">
                   {Array.from({ length: 10 }).map((_, i) => {
                     const v = i + 1;
@@ -2997,10 +3008,10 @@ export default function DashboardComprasPage() {
                 <textarea
                   value={rateComment}
                   onChange={(e) => setRateComment(e.target.value)}
-                  placeholder="Cuenta tu experiencia (sin enlaces ni tel�fonos)."
+                  placeholder="Cuenta tu experiencia (sin enlaces ni teléfonos)."
                   className="mt-2 h-28 w-full resize-none rounded-2xl border border-gray-200 px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
                 />
-                <div className="mt-1 text-[11px] text-gray-500">M�x. 600 caracteres.</div>
+                <div className="mt-1 text-[11px] text-gray-500">Máx. 600 caracteres.</div>
               </div>
 
               <div className="flex items-center justify-end gap-2 border-t border-black/5 px-5 py-4">
@@ -3032,13 +3043,13 @@ export default function DashboardComprasPage() {
           <div className="fixed inset-0 z-[80] flex items-end justify-center bg-black/40 p-4 sm:items-center">
             <div className="w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-xl ring-1 ring-black/10">
               <div className="border-b border-black/5 px-5 py-4">
-                <div className="text-sm font-extrabold text-gray-900">Selecciona m�todo de pago</div>
+                <div className="text-sm font-extrabold text-gray-900">Selecciona método de pago</div>
                 <div className="mt-1 text-xs text-gray-600">
                   Total orden: <span className="font-bold text-gray-900">{formatMoney(paymentCalculations.total)}</span>
                   {paymentCalculations.fee > 0 && (
                     <div className="mt-1 flex flex-col gap-0.5">
                       <div className="flex justify-between text-gray-500">
-                        <span>Comisi�n MP + IVA:</span>
+                        <span>Comisión MP + IVA:</span>
                         <span>+ {formatMoney(paymentCalculations.fee)}</span>
                       </div>
                       <div className="flex justify-between border-t border-gray-100 pt-1 text-sm font-extrabold text-blue-600">
@@ -3054,7 +3065,7 @@ export default function DashboardComprasPage() {
                 {error && (
                   <div className="rounded-xl bg-red-50 p-3 text-xs text-red-700 animate-in fade-in slide-in-from-top-1">
                     <div className="flex items-center gap-2 font-bold mb-1">
-                      <span>??���</span> Error
+                      <span></span> Error
                     </div>
                     {error}
                   </div>
@@ -3063,7 +3074,7 @@ export default function DashboardComprasPage() {
                 {success && (
                   <div className="rounded-xl bg-white p-3 text-xs text-emerald-700 animate-in fade-in slide-in-from-top-1">
                     <div className="flex items-center gap-2 font-bold mb-1">
-                      <span>?</span> �xito
+                      <span>?</span> éxito
                     </div>
                     {success}
                   </div>
@@ -3076,8 +3087,8 @@ export default function DashboardComprasPage() {
                       <div className="flex items-center gap-2">
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white text-sm">??</div>
                         <div>
-                          <div className="text-sm font-bold text-gray-900">M�todo de env�o</div>
-                          <div className="text-xs text-gray-500">Elige c�mo recibir tu pedido</div>
+                          <div className="text-sm font-bold text-gray-900">Método de envío</div>
+                          <div className="text-xs text-gray-500">Elige cómo recibir tu pedido</div>
                         </div>
                       </div>
                       <div className={`rounded-full px-3 py-1 text-xs font-bold ${shippingMode === 'pickup'
@@ -3085,10 +3096,10 @@ export default function DashboardComprasPage() {
                         : 'bg-blue-100 text-blue-700'
                         }`}>
                         {shippingMode === 'pickup'
-                          ? '?? Entrega personal'
+                          ? '🤝 Entrega personal'
                           : isSellerShippingPayment || isFreeShippingPayment
-                            ? '?? Env�o vendedor'
-                            : '?? Env�o GoVendy'}
+                            ? '🚚 Envío vendedor'
+                            : '🚚 Envío GoVendy'}
                       </div>
                     </div>
 
@@ -3113,20 +3124,20 @@ export default function DashboardComprasPage() {
                         <div className="flex items-center gap-2">
                           <span className="text-xl">??</span>
                           <span className="text-sm font-bold text-gray-900">
-                            {isSellerShippingPayment || isFreeShippingPayment ? 'Env�o vendedor' : 'Env�o GoVendy'}
+                            {isSellerShippingPayment || isFreeShippingPayment ? 'Envío vendedor' : 'Envío GoVendy'}
                           </span>
                         </div>
                         <div className="text-xs text-gray-500">
                           {isSellerShippingPayment || isFreeShippingPayment
-                            ? 'El vendedor gestiona el env�o'
-                            : 'Estafeta / FedEx � rastreo incluido'}
+                            ? 'El vendedor gestiona el envío'
+                            : 'Estafeta / FedEx — rastreo incluido'}
                         </div>
                         <div className={`text-sm font-extrabold ${shippingFeePayment > 0 ? 'text-blue-700' : 'text-emerald-600'}`}>
-                          {shippingFeePayment > 0 ? formatMoney(shippingFeePayment) : '�Gratis!'}
+                          {shippingFeePayment > 0 ? formatMoney(shippingFeePayment) : '¡Gratis!'}
                         </div>
                       </button>
 
-                      {/* Pickup option � only if seller enabled personal delivery */}
+                      {/* Pickup option — only if seller enabled personal delivery */}
                       {allowPersonalDeliveryPayment && (
                         <button
                           type="button"
@@ -3151,7 +3162,7 @@ export default function DashboardComprasPage() {
                             Coordinas entrega directa con el vendedor
                           </div>
                           <div className="text-sm font-extrabold text-emerald-600">
-                            �Gratis!
+                            ¡Gratis!
                           </div>
                         </button>
                       )}
@@ -3161,7 +3172,7 @@ export default function DashboardComprasPage() {
                     {isUpdatingShipping && (
                       <div className="mt-3 flex items-center gap-2 rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700">
                         <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        Actualizando m�todo de entrega...
+                        Actualizando método de entrega...
                       </div>
                     )}
                   </div>
@@ -3179,7 +3190,7 @@ export default function DashboardComprasPage() {
                   />
                   <div className="flex-1">
                     <div className="text-sm font-bold text-gray-900">Tarjeta (MercadoPago)</div>
-                    <div className="text-xs text-gray-500">Cr�dito, D�bito, MercadoPago</div>
+                    <div className="text-xs text-gray-500">Crédito, Débito, MercadoPago</div>
                   </div>
                 </label>
 
@@ -3221,7 +3232,7 @@ export default function DashboardComprasPage() {
                   </div>
                 </label>
 
-                {/* Dep�sito */}
+                {/* Depósito */}
                 <label className={`flex items-center gap-3 rounded-xl border p-3 cursor-pointer transition-all ${selectedMethod === 'bank_deposit' ? 'border-purple-500 bg-purple-50 ring-1 ring-purple-500' : 'border-gray-200 hover:bg-gray-50'}`}>
                   <input
                     type="radio"
@@ -3232,7 +3243,7 @@ export default function DashboardComprasPage() {
                     className="h-4 w-4 text-purple-600 focus:ring-purple-500"
                   />
                   <div className="flex-1">
-                    <div className="text-sm font-bold text-gray-900">Dep�sito Bancario</div>
+                    <div className="text-sm font-bold text-gray-900">Depósito Bancario</div>
                     <div className="text-xs text-gray-500">Practicaja o Ventanilla</div>
                   </div>
                 </label>
@@ -3318,7 +3329,7 @@ export default function DashboardComprasPage() {
                     <span className="text-[10px] font-medium opacity-80 uppercase bg-white/10 px-2 py-0.5 rounded">
                       {(() => {
                         const m = (selectedTopupForInfo.metadata?.payment_method || selectedTopupForInfo.payment_method || '').replace('bank_', '');
-                        return m === 'transfer' ? 'Transferencia' : m === 'deposit' ? 'Dep�sito' : m;
+                        return m === 'transfer' ? 'Transferencia' : m === 'deposit' ? 'Depósito' : m;
                       })()}
                     </span>
                   </div>
@@ -3406,7 +3417,7 @@ export default function DashboardComprasPage() {
                   <div>
                     <h4 className="text-sm font-bold text-amber-900">Importante</h4>
                     <p className="mt-1 text-xs text-amber-700">
-                      No te olvides de enviar foto de tu comprobante de pago en <strong>Mis Compras</strong> para validar tu recarga r�pidamente.
+                      No te olvides de enviar foto de tu comprobante de pago en <strong>Mis Compras</strong> para validar tu recarga rápidamente.
                     </p>
                   </div>
                 </div>
@@ -3461,7 +3472,7 @@ export default function DashboardComprasPage() {
         )
       }
 
-      {/* Modal de rese�a de producto */}
+      {/* Modal de reseña de producto */}
       {reviewListingId && (
         <ReviewForm
           listingId={reviewListingId}
@@ -3469,7 +3480,7 @@ export default function DashboardComprasPage() {
           onSuccess={() => {
             if (reviewListingId) setReviewedListingIds(prev => new Set(prev).add(reviewListingId));
             setReviewListingId(null);
-            setSuccess('�Gracias! Tu rese�a fue enviada.');
+            setSuccess('¡Gracias! Tu reseña fue enviada.');
           }}
         />
       )}

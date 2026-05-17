@@ -374,7 +374,8 @@ export class CheckoutService {
       const percentageCommission = Math.round(groupSubtotal * appliedRate * 100) / 100;
       // Minimum flat commission — fixed regardless of rate changes in app_settings
       // BASIC: $23.00, PRO/PLATINUM: $18.00
-      const minCommission = sellerPlan === 'basic' ? 23.00 : 18.00;
+      // SIN EMBARGO: Si la tasa es 0%, ignoramos la comisión mínima.
+      const minCommission = appliedRate === 0 ? 0 : (sellerPlan === 'basic' ? 23.00 : 18.00);
       // Apply MAX(percentage, minimum) — platform never loses on low-value sales
       let commissionFee = Math.max(percentageCommission, minCommission);
       // Final round to centavos (2 decimal precision)

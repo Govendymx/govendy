@@ -770,6 +770,11 @@ export default function DashboardVentasPage() {
       const hasRating = Boolean(ratedByOrderId[orderId]);
       const isCompleted = isOrderDelivered(o?.status);
 
+      // Ocultar al vendedor las órdenes que no han sido pagadas / sin voucher
+      if (status === 'pending_payment' || status === 'awaiting_voucher') {
+        return false;
+      }
+
       // Aplicar filtro de estado
       let matchesFilter = true;
       switch (activeFilter) {
