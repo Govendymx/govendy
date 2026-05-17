@@ -62,9 +62,9 @@ export async function GET(req: NextRequest) {
     }
 
     const fullSelect =
-      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,shipping_label_uploaded_at,shipping_label_uploaded_by,label_downloaded_at,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,delivery_proof_url,buyer_payment_voucher_url,shipping_by_seller';
+      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,shipping_label_uploaded_at,shipping_label_uploaded_by,label_downloaded_at,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,delivery_proof_url,buyer_payment_voucher_url,shipping_by_seller';
     const baseSelect =
-      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,buyer_payment_voucher_url,shipping_by_seller';
+      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_to_seller_at,shipping_full_name,shipping_phone,shipping_address,shipping_label_url,tracking_number,shipped_at,delivered_at,shipping_carrier,shipping_option_id,shipping_subsidy,buyer_payment_voucher_url,shipping_by_seller';
 
     console.log('[logistica/orders/list] Iniciando consulta...', { status, limit });
 

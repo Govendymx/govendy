@@ -301,7 +301,7 @@ export async function GET(req: NextRequest) {
         .from('orders')
         .select('id,buyer_id,seller_id,payment_method,status,total,commission_fee,shipping_fee,shipping_option_id,created_at')
         .in('payment_method', ['bank_transfer', 'bank_deposit', 'oxxo', 'mercadopago'])
-        .eq('status', 'pending_payment')
+        .in('status', ['pending_payment', 'awaiting_voucher', 'verifying_payment'])
         .order('created_at', { ascending: false })
         .limit(500); // Buscar TODAS las órdenes huérfanas sin restricción de tiempo
 

@@ -72,7 +72,7 @@ function AdminPagosContent() {
       } else if (statusFilter === 'pending') {
         result = result.filter(r => {
           const s = String(r.status || '').toLowerCase();
-          return s === 'pending' || s === 'pending_approval';
+          return s === 'pending' || s === 'pending_approval' || s === 'pending_payment' || s === 'awaiting_voucher' || s === 'verifying_payment';
         });
       } else {
         // Otros filtros específicos si los hubiera

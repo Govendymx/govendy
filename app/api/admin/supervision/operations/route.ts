@@ -49,7 +49,7 @@ export async function GET(req: NextRequest) {
     const search = String(u.searchParams.get('search') || '').trim();
 
     const base =
-      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,' +
+      'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,' +
       'shipping_full_name,shipping_phone,shipping_address,shipping_label_url,shipping_label_uploaded_at,label_downloaded_at,' +
       'tracking_number,shipped_at,delivered_at,shipping_carrier,paid_to_seller_at,paid_to_seller_by';
 
@@ -84,7 +84,7 @@ export async function GET(req: NextRequest) {
       const code = String((res.error as any)?.code ?? '');
       const msg = String((res.error as any)?.message ?? '').toLowerCase();
       if (code === '42703' || msg.includes('column')) {
-        const fallback = 'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,paid_at,shipping_full_name,shipping_phone,shipping_address,tracking_number,shipped_at,delivered_at,paid_to_seller_at,paid_to_seller_by';
+        const fallback = 'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,shipping_full_name,shipping_phone,shipping_address,tracking_number,shipped_at,delivered_at,paid_to_seller_at,paid_to_seller_by';
         let q2: any = admin.from('orders').select(fallback).order('created_at', { ascending: false }).limit(limit);
         if (status) {
           const statusToFilter = status === 'pending' ? 'pending_payment' : status;
