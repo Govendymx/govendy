@@ -55,13 +55,29 @@ export async function POST(req: NextRequest) {
     const totalDeduction = commission + subsidy + platformShippingCost + isr + iva;
 
     if (totalDeduction > 0) {
-      await WalletService.addFunds(
-        order.seller_id,
-        -totalDeduction,
-        `Cobro de comisión y servicios por venta directa (Orden #${order.id.slice(0, 8)})`,
-        'order',
-        order.id
-      );
+      // Bypassing WalletService to allow negative balances (debt) for platform fees
+      const { data: w } = await admin
+        .from('wallets')
+        .select('balance')
+        .eq('user_id', order.seller_id)
+        .single();
+        
+      const currentBalance = w ? Number(w.balance) : 0;
+      
+      if (!w) {
+        await admin.from('wallets').insert({ user_id: order.seller_id, balance: -totalDeduction });
+      } else {
+        await admin.from('wallets').update({ balance: currentBalance - totalDeduction }).eq('user_id', order.seller_id);
+      }
+      
+      await admin.from('wallet_transactions').insert({
+        wallet_id: order.seller_id,
+        type: 'debit',
+        amount: totalDeduction,
+        concept: `Cobro de comisión y servicios por venta directa (Orden #${order.id.slice(0, 8)})`,
+        reference_type: 'order',
+        reference_id: order.id
+      });
     }
 
     return NextResponse.json({ success: true });
