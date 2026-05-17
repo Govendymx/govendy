@@ -315,7 +315,7 @@ function OperationViewContent() {
                   <span className="text-sm text-gray-600">Método de Envío:</span>
                   {(() => {
                     const isPickup = order.shipping_option_id === 'pickup' || order.shipping_carrier === 'pickup';
-                    const isGoVendyCarrier = String(order.shipping_carrier).toLowerCase() === 'gopocket' || String(order.shipping_method).toLowerCase().startsWith('gopocket');
+                    const isGoVendyCarrier = String(order.shipping_carrier).toLowerCase() === 'gopocket' || String((order as any).shipping_method).toLowerCase().startsWith('gopocket');
                     const isGoVendy = !isPickup && (isGoVendyCarrier || Boolean(order.shipping_option_id) || Boolean(order.shipping_label_url));
                     const isSellerManaged = !isPickup && !isGoVendy && Boolean(order.shipping_carrier);
                     if (isPickup) {
