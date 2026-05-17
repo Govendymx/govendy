@@ -57,6 +57,7 @@ export interface Order {
   shipping_full_name?: string | null;
   shipping_phone?: string | null;
   shipping_address?: any;
+  buyer_payment_voucher_url?: string | null;
   order_source?: OrderSource | null;
   isr_withheld?: number | null;
   iva_withheld?: number | null;
