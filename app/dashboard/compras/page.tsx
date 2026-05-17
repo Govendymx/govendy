@@ -2168,7 +2168,7 @@ export default function DashboardComprasPage() {
                                   <div className="rounded-lg border border-emerald-200 bg-white/80 p-2.5">
                                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                       <div className="flex items-start gap-2">
-                                        <span className="text-lg">??</span>
+                                        <span className="text-lg">🛍️</span>
                                         <div>
                                           <h4 className="text-[11px] font-bold text-emerald-900">Finaliza tu compra</h4>
                                           <p className="text-[10px] text-emerald-800/80 leading-snug max-w-md">
@@ -2656,7 +2656,7 @@ export default function DashboardComprasPage() {
 
             {estafetaQuotes.length === 0 ? (
               <div className="py-16 text-center">
-                <div className="text-4xl mb-3">??</div>
+                <div className="text-4xl mb-3">📦</div>
                 <div className="text-sm font-semibold text-gray-500">No tienes guías de envío</div>
                 <p className="mt-1 text-xs text-gray-400">Cuando compres guías Estafeta en la tienda, aparecerán aquí</p>
                 <Link href="/dashboard/estafeta" className="mt-4 inline-block rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition">
@@ -2775,9 +2775,9 @@ export default function DashboardComprasPage() {
 
             {allTopups.length === 0 ? (
               <div className="py-16 text-center">
-                <div className="text-4xl mb-3">??</div>
+                <div className="text-4xl mb-3">💳</div>
                 <div className="text-sm font-semibold text-gray-500">No tienes recargas</div>
-                <p className="mt-1 text-xs text-gray-400">Cuando recargues saldo PocketCash, tu historial aparecer— aquí</p>
+                <p className="mt-1 text-xs text-gray-400">Cuando recargues saldo PocketCash, tu historial aparecerá aquí</p>
                 <Link href="/dashboard/pocketcash" className="mt-4 inline-block rounded-xl bg-green-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-green-700 transition">
                   Recargar Saldo
                 </Link>

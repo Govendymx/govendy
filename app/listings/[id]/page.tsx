@@ -1860,7 +1860,7 @@ export default function ListingDetailPage() {
                       type="button"
                       onClick={toggleFavorite}
                       disabled={isFavLoading}
-                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5 hover:bg-gray-50 disabled:opacity-60 transition-colors ${isFav ? 'text-brand-emerald' : 'text-gray-700'
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-black/5 hover:bg-gray-50 disabled:opacity-60 transition-colors ${isFav ? 'text-[#E91E63]' : 'text-gray-700'
                         }`}
                       aria-label={isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'}
                       title={isFav ? 'Quitar de favoritos' : 'Agregar a favoritos'}
@@ -1869,8 +1869,8 @@ export default function ListingDetailPage() {
                         width="20"
                         height="20"
                         viewBox="0 0 24 24"
-                        fill={isFav ? '#1FB59B' : 'none'}
-                        stroke={isFav ? '#1FB59B' : 'currentColor'}
+                        fill={isFav ? '#E91E63' : 'none'}
+                        stroke={isFav ? '#E91E63' : 'currentColor'}
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
