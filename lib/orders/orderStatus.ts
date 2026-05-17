@@ -12,7 +12,7 @@ export type NormalizedOrderStatus =
 export function normalizeOrderStatus(raw: string | null | undefined): NormalizedOrderStatus {
   const s = String(raw || '').trim().toLowerCase();
   if (!s) return 'unknown';
-  if (s === 'pending' || s === 'pending_payment') return 'pending_payment';
+  if (s === 'pending' || s === 'pending_payment' || s === 'awaiting_voucher' || s === 'verifying_payment') return 'pending_payment';
   if (s === 'received' || s === 'completed') return 'delivered';
   if (s === 'canceled') return 'cancelled';
   if (

@@ -2170,9 +2170,15 @@ export default function DashboardComprasPage() {
                                       <div className="flex items-start gap-2">
                                         <span className="text-lg">🛍️</span>
                                         <div>
-                                          <h4 className="text-[11px] font-bold text-emerald-900">Finaliza tu compra</h4>
+                                          <h4 className="text-[11px] font-bold text-emerald-900">
+                                            {status === 'awaiting_voucher' && o?.buyer_payment_voucher_url 
+                                              ? 'Comprobante en revisión' 
+                                              : 'Finaliza tu compra'}
+                                          </h4>
                                           <p className="text-[10px] text-emerald-800/80 leading-snug max-w-md">
-                                            Orden reservada. Paga para que te envíen tus productos.
+                                            {status === 'awaiting_voucher' && o?.buyer_payment_voucher_url 
+                                              ? 'Hemos recibido tu comprobante y el vendedor lo está verificando.' 
+                                              : 'Orden reservada. Paga para que te envíen tus productos.'}
                                           </p>
                                         </div>
                                       </div>
@@ -2227,7 +2233,7 @@ export default function DashboardComprasPage() {
                                               <polyline points="17 8 12 3 7 8" />
                                               <line x1="12" y1="3" x2="12" y2="15" />
                                             </svg>
-                                            {status === 'awaiting_voucher' ? 'Subir Comprobante' : 'Ver Comprobante'}
+                                            {status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url ? 'Subir Comprobante' : 'Ver Comprobante'}
                                           </Link>
                                         )}
                                       </div>
