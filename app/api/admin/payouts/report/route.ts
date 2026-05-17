@@ -128,6 +128,26 @@ export async function GET(req: NextRequest) {
       }
     }
 
+    // Datos bancarios desde seller_payment_methods
+    const paymentMethodsById: Record<string, any> = {};
+    if (sellerIds.length > 0) {
+      const pmRes: any = await admin
+        .from('seller_payment_methods')
+        .select('seller_id, bank_name, account_holder_name, clabe')
+        .in('seller_id', sellerIds)
+        .eq('is_default', true)
+        .limit(5000);
+      
+      if (!pmRes?.error && Array.isArray(pmRes.data)) {
+        for (const pm of pmRes.data as any[]) {
+          const id = String(pm?.seller_id || '').trim();
+          if (id) {
+            paymentMethodsById[id] = pm;
+          }
+        }
+      }
+    }
+
     // Compradores: nombre (para mostrar "quién compró" con link a su perfil/reputación)
     const buyerIds = Array.from(new Set(orders.map((o) => String(o?.buyer_id || '').trim()).filter(Boolean)));
     const buyerNameById: Record<string, string> = {};
@@ -224,12 +244,13 @@ export async function GET(req: NextRequest) {
       const payout = payoutNet(o);
 
       const prof = profileById[sid] || {};
+      const pm = paymentMethodsById[sid] || {};
       const name = String(prof?.full_name || '').trim() || `${sid.slice(0, 6)}…`;
       const phone = String(prof?.phone || '').trim() || null;
       const email = emailById[sid] ? String(emailById[sid]) : null;
-      const payout_bank_name = String(prof?.payout_bank_name || '').trim() || null;
-      const payout_account_holder = String(prof?.payout_account_holder || '').trim() || null;
-      const payout_clabe = String(prof?.payout_clabe || '').trim() || null;
+      const payout_bank_name = String(pm?.bank_name || prof?.payout_bank_name || '').trim() || null;
+      const payout_account_holder = String(pm?.account_holder_name || prof?.payout_account_holder || '').trim() || null;
+      const payout_clabe = String(pm?.clabe || prof?.payout_clabe || '').trim() || null;
       const payout_account_number = String(prof?.payout_account_number || '').trim() || null;
 
       const buyerId = String(o?.buyer_id || '').trim();

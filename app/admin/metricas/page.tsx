@@ -678,7 +678,7 @@ export default function AdminMetricasPage() {
                       payoutSellers.map((s: any) => {
                         const sid = String(s?.seller_id || '').trim();
                         if (!sid) return null;
-                        const orders = [] as any[];
+                        const orders = (payoutData?.rows || []).filter((o: any) => o.seller_id === sid);
                         const totalOrders = Number(s?.orders_count ?? 0) || 0;
                         const paidCount = paidCountBySeller[sid] || 0;
                         const allPaid = paidCount >= totalOrders;
@@ -759,11 +759,14 @@ export default function AdminMetricasPage() {
                                         <div className="flex items-start justify-between">
                                           <div>
                                             <div className="flex items-center gap-1 text-xs font-semibold text-gray-900">
-                                              Orden {String(o?.id || '').slice(0, 8)}…
+                                              Orden {String(o?.id || '')}
                                               <CopyButton text={String(o?.id || '')} size="sm" className="text-gray-400 hover:text-brand-emerald" />
                                             </div>
                                             <div className="mt-1 text-[11px] text-gray-600">
-                                              Total: {formatMoney(Number(o?.total ?? 0) || 0)} · Comisión:{' '}
+                                              <span className="font-semibold text-blue-600">Comprador:</span> {o?.buyer_name || '—'} · <span className="font-semibold text-orange-500">Vendedor:</span> {o?.seller_name || '—'}
+                                            </div>
+                                            <div className="mt-1 text-[11px] text-gray-600">
+                                              Total: {formatMoney(Number(o?.total_paid ?? 0) || 0)} · Comisión:{' '}
                                               {formatMoney(Number(o?.commission_fee ?? 0) || 0)} · Envío:{' '}
                                               {formatMoney(Number(o?.shipping_fee ?? 0) || 0)}
                                             </div>
