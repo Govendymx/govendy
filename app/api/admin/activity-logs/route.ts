@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
 
     if (dbError) {
       // Si la tabla no existe, devolver array vacío en lugar de error 500 para no romper el dashboard
-      if (dbError.code === '42P01') { // undefined_table
+      if (dbError.code === '42P01' || dbError.code === 'PGRST205') { 
         console.warn('Table admin_operation_events does not exist yet.');
         return NextResponse.json({ logs: [] });
       }

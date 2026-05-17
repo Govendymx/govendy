@@ -211,7 +211,7 @@ export function AdminTopMenu() {
   const hasAlerts = unreadCount > 0;
 
   return (
-    <div className="sticky top-0 z-[80] border-b border-black/5 bg-white/80 backdrop-blur">
+    <div className="sticky top-[52px] z-[80] border-b border-black/5 bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
         <Link href="/admin" className="flex items-center gap-3 hover:opacity-95 group">
           <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 bg-white -mt-1 transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl animate-pulse-slow">
