@@ -387,7 +387,7 @@ export function OrderChatFloating({
 
   return (
     <div className="fixed bottom-24 right-5 z-[70] w-[320px] overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10 sm:w-[360px]">
-      <div className="flex items-center justify-between bg-gradient-to-r from-brand-emerald to-liverpool-700 px-4 py-3 text-white">
+      <div className="flex items-center justify-between bg-gradient-to-r from-brand-emerald to-teal-500 px-4 py-3 text-white">
         <div className="flex items-center gap-3">
           {sellerInfo?.plan === 'pro' && sellerInfo.logo ? (
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full bg-white ring-2 ring-white/20">

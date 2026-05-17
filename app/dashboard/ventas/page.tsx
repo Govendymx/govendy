@@ -208,7 +208,7 @@ export default function DashboardVentasPage() {
     let cancelled = false;
     const boot = async () => {
       try {
-        setIsBooting(true);
+        if (orders.length === 0) setIsBooting(true);
         setError(null);
         setSuccess(null);
 
@@ -1153,8 +1153,9 @@ export default function DashboardVentasPage() {
       <div className="sticky top-0 z-40 border-b border-black/5 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-3 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-emerald text-white shadow-sm">
-              <span className="text-xs font-extrabold tracking-widest">GP</span>
+            <div className="flex h-10 w-auto items-center justify-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="GoVendy" className="h-full w-auto object-contain" />
             </div>
             <div className="leading-tight">
               <div className="text-sm font-semibold text-gray-900">Ventas</div>
@@ -1433,6 +1434,9 @@ export default function DashboardVentasPage() {
                     const _match = _WEIGHT_RANGES.find(r => _finalWeight <= r.max_weight_kg);
                     const _calcCost = _match ? _match.price : _WEIGHT_RANGES[_WEIGHT_RANGES.length - 1].price;
                     orderForPayout = { ...o, shipping_subsidy: _calcCost };
+                  }
+                  if (orderForPayout.payment_method_type === 'p2p') {
+                    orderForPayout = { ...orderForPayout, commission_fee: 0, isr_withheld: 0, iva_withheld: 0 };
                   }
                   const netEarnings = payoutNet(orderForPayout);
 
@@ -1933,13 +1937,14 @@ export default function DashboardVentasPage() {
 
                               {/* Deducciones / Costos Vendedor */}
                               {(() => {
-                                const commVal = toNumber(o?.commission_fee);
+                                const isP2P = o?.payment_method_type === 'p2p';
+                                const commVal = isP2P ? 0 : toNumber(o?.commission_fee);
                                 const subVal = toNumber((o as any)?.subtotal ?? (Number(o?.total || 0) - Number(o?.shipping_fee || 0)));
                                 const pct = subVal > 0 ? (commVal / subVal) * 100 : 0;
                                 const isMin = pct > 23.5;
                                 return (
                                   <div className="flex justify-between text-[10px] text-gray-600">
-                                    <span className="text-gray-500">{isMin ? 'Comisión Mínima' : 'Comisión Venta'}</span>
+                                    <span className="text-gray-500">{isMin && !isP2P ? 'Comisión Mínima' : 'Comisión Venta'}</span>
                                     <span className="text-red-600">-{formatMoney(commVal)}</span>
                                   </div>
                                 );

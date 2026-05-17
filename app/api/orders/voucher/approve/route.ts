@@ -43,10 +43,10 @@ export async function POST(req: NextRequest) {
     const isPickup = order.shipping_option_id === 'pickup' || order.shipping_carrier === 'pickup';
     const isSellerManaged = order.shipping_by_seller === true && !isPickup;
 
-    const commission = Number(order.commission_fee) || 0;
+    const commission = 0;
     const subsidy = Number(order.shipping_subsidy) || 0;
-    const isr = Number(order.isr_withheld) || 0;
-    const iva = Number(order.iva_withheld) || 0;
+    const isr = 0;
+    const iva = 0;
     const shippingFee = Number(order.shipping_fee) || 0;
 
     // Si es envío gestionado por GoVendy, el vendedor debe pagar el shipping_fee a la plataforma.
