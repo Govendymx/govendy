@@ -1,31 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 import { supabaseAdmin } from '@/lib/supabase/admin';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
-    // Verificar autenticación (Bearer token)
     const authHeader = req.headers.get('authorization');
     if (!authHeader) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    const token = authHeader.replace('Bearer ', '');
-    const admin = supabaseAdmin();
-    const { data: { user }, error: authError } = await admin.auth.getUser(token);
+    const token = authHeader.replace(/^Bearer\s+/i, '').trim();
+
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+    const supabaseAnon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+    
+    const supabase = createClient(supabaseUrl, supabaseAnon, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+    });
+
+    const { data: { user }, error: authError } = await supabase.auth.getUser(token);
 
     if (authError || !user) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Verificar rol de admin
-    const { data: adminUser } = await admin
-      .from('admin_users')
-      .select('id')
-      .eq('user_id', user.id)
-      .single();
+    const admin = supabaseAdmin();
 
-    if (!adminUser) {
+    // Verificar rol de admin
+    const { data: adminUser, error: adminErr } = await admin
+      .from('admin_users')
+      .select('user_id')
+      .eq('user_id', user.id)
+      .maybeSingle();
+
+    if (adminErr || !adminUser) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
