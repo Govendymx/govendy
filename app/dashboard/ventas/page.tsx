@@ -771,7 +771,7 @@ export default function DashboardVentasPage() {
       const isCompleted = isOrderDelivered(o?.status);
 
       // Ocultar al vendedor las órdenes que no han sido pagadas / sin voucher
-      if (status === 'pending_payment' || status === 'awaiting_voucher') {
+      if (o?.status === 'pending_payment' || o?.status === 'awaiting_voucher') {
         return false;
       }
 
