@@ -64,9 +64,11 @@ export async function GET(req: NextRequest) {
     // Solo aplicar filtro de status si se especifica explícitamente
     // Nota: 'pending' en el filtro puede referirse a 'pending_payment' en la BD
     if (status) {
-      // Mapear 'pending' del filtro a 'pending_payment' de la BD si es necesario
-      const statusToFilter = status === 'pending' ? 'pending_payment' : status;
-      q = q.eq('status', statusToFilter);
+      if (status === 'pending') {
+        q = q.in('status', ['pending_payment', 'awaiting_voucher', 'verifying_payment']);
+      } else {
+        q = q.eq('status', status);
+      }
     }
     if (buyerId) q = q.eq('buyer_id', buyerId);
     if (sellerId) q = q.eq('seller_id', sellerId);
@@ -87,8 +89,11 @@ export async function GET(req: NextRequest) {
         const fallback = 'id,buyer_id,seller_id,status,payment_method,subtotal,shipping_fee,commission_fee,total,created_at,shipping_full_name,shipping_phone,shipping_address,tracking_number,shipped_at,delivered_at,paid_to_seller_at,paid_to_seller_by';
         let q2: any = admin.from('orders').select(fallback).order('created_at', { ascending: false }).limit(limit);
         if (status) {
-          const statusToFilter = status === 'pending' ? 'pending_payment' : status;
-          q2 = q2.eq('status', statusToFilter);
+          if (status === 'pending') {
+            q2 = q2.in('status', ['pending_payment', 'awaiting_voucher', 'verifying_payment']);
+          } else {
+            q2 = q2.eq('status', status);
+          }
         }
         if (buyerId) q2 = q2.eq('buyer_id', buyerId);
         if (sellerId) q2 = q2.eq('seller_id', sellerId);

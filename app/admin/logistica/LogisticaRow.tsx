@@ -552,7 +552,11 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
         return (
             <div className="space-y-2">
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
-                    {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
+                    {(() => {
+                        const isGoVendyCarrier = String(o?.shipping_carrier || '').toLowerCase() === 'gopocket' || String(o?.shipping_method || '').toLowerCase().startsWith('gopocket');
+                        if (isGoVendyCarrier) return 'ENVÍOS GOVENDY';
+                        return (Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR';
+                    })()}
                 </div>
                 <div className="flex flex-col gap-1">
                     {String(o.delivery_proof_url).split(',').map((url: string, idx: number) => (
@@ -604,7 +608,11 @@ function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploa
         return (
             <div className="space-y-2">
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
-                    {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
+                    {(() => {
+                        const isGoVendyCarrier = String(o?.shipping_carrier || '').toLowerCase() === 'gopocket' || String(o?.shipping_method || '').toLowerCase().startsWith('gopocket');
+                        if (isGoVendyCarrier) return 'ENVÍOS GOVENDY';
+                        return (Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR';
+                    })()}
                 </div>
                 <div className="text-[11px] text-gray-700">El vendedor sube su guía/evidencia desde su panel.</div>
             </div>
