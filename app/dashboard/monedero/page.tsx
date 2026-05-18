@@ -1174,55 +1174,69 @@ export default function MonederoPage() {
             </button>
             */}
 
-            <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-              <h3 className="text-lg font-bold text-gray-900">Recargar Saldo</h3>
-              <p className="mt-1 text-sm text-gray-500">
-                Elige tu método de pago y monto para agregar saldo.
-              </p>
+            <div className="mt-6 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-gray-200/60 relative overflow-hidden">
+              <div className="absolute top-0 right-0 h-32 w-32 -translate-y-1/2 translate-x-1/2 rounded-full bg-brand-emerald/5 blur-3xl"></div>
+              
+              <div className="relative">
+                <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-emerald/10 text-brand-emerald">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4"/></svg>
+                  </span>
+                  Recargar Saldo
+                </h3>
+                <p className="mt-2 text-sm text-gray-500">
+                  Agrega fondos a tu PocketCash para adquirir servicios y herramientas profesionales.
+                </p>
+              </div>
 
               {offlineSuccessId ? (
-                <div className="mt-4 rounded-xl bg-white p-4 border border-green-200">
-                  <div className="flex items-start gap-3">
-                    <div className="mt-0.5 text-green-600">
-                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-green-900">Solicitud creada con éxito</h4>
-                      <p className="mt-1 text-sm text-green-700">
-                        Tu solicitud de recarga ha sido registrada.
-                        Ve a &quot;Mis Compras&quot; para subir tu comprobante y completar el proceso.
-                      </p>
-                      <div className="mt-3 flex items-center gap-3">
-                        <Link href="/dashboard/compras" className="inline-flex items-center rounded-lg bg-green-600 px-3 py-1.5 text-sm font-bold text-white hover:bg-green-700">
-                          Ir a Mis Compras →
-                        </Link>
-                        <button
-                          onClick={() => setOfflineSuccessId(null)}
-                          className="text-sm text-green-600 hover:text-green-800 underline"
-                        >
-                          Nueva recarga
-                        </button>
+                <div className="mt-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <div className="rounded-2xl border border-green-200 bg-green-50 p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-base font-bold text-green-900">Solicitud creada con éxito</h4>
+                        <p className="mt-1 text-sm text-green-700 leading-relaxed">
+                          Tu orden de pago ha sido generada. Ve a &quot;Mis Compras&quot; para consultar las instrucciones y subir tu comprobante.
+                        </p>
+                        <div className="mt-4 flex flex-wrap items-center gap-3">
+                          <Link href="/dashboard/compras" className="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition-all hover:bg-green-700 hover:shadow-md">
+                            Ir a Mis Compras
+                            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                          </Link>
+                          <button
+                            onClick={() => setOfflineSuccessId(null)}
+                            className="rounded-xl px-4 py-2 text-sm font-bold text-green-700 transition-all hover:bg-green-100"
+                          >
+                            Nueva recarga
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               ) : (
-                <>
+                <div className="mt-6 space-y-6">
                   {/* ── Método de pago ── */}
-                  <div className="mt-5">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Método de pago</p>
-                    <div className="flex rounded-xl bg-gray-100 p-1">
+                  <div>
+                    <label className="text-[11px] font-bold tracking-widest text-gray-400 uppercase mb-3 block">
+                      Selecciona Método
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
                       {enabledMethods.includes('mercadopago') && (
                         <button
                           onClick={() => setPaymentMethod('mercadopago')}
-                          className={`flex-1 flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold transition-all ${paymentMethod === 'mercadopago'
-                            ? 'bg-white text-gray-900 shadow-sm'
-                            : 'text-gray-500 hover:text-gray-700'
+                          className={`relative flex flex-col items-center justify-center gap-2 rounded-2xl border-2 p-4 text-sm font-bold transition-all ${paymentMethod === 'mercadopago'
+                            ? 'border-[#009ee3] bg-[#009ee3]/5 text-[#009ee3] shadow-sm'
+                            : 'border-gray-100 bg-gray-50/50 text-gray-500 hover:border-gray-200 hover:bg-gray-50'
                             }`}
                         >
-                          <span className="text-base">💳</span>
+                          {paymentMethod === 'mercadopago' && <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#009ee3] text-white shadow-sm"><svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg></div>}
+                          <span className="text-2xl drop-shadow-sm">💳</span>
                           MercadoPago
                         </button>
                       )}
@@ -1231,12 +1245,13 @@ export default function MonederoPage() {
                           const first = enabledMethods.find(m => m !== 'mercadopago') as 'bank_transfer' | 'bank_deposit' | 'oxxo' | undefined;
                           if (first) setPaymentMethod(first);
                         }}
-                        className={`flex-1 flex items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold transition-all ${paymentMethod !== 'mercadopago'
-                          ? 'bg-white text-gray-900 shadow-sm'
-                          : 'text-gray-500 hover:text-gray-700'
+                        className={`relative flex flex-col items-center justify-center gap-2 rounded-2xl border-2 p-4 text-sm font-bold transition-all ${paymentMethod !== 'mercadopago'
+                          ? 'border-gray-900 bg-gray-900 text-white shadow-lg shadow-gray-900/20'
+                          : 'border-gray-100 bg-gray-50/50 text-gray-500 hover:border-gray-200 hover:bg-gray-50'
                           }`}
                       >
-                        <span className="text-base">🏦</span>
+                        {paymentMethod !== 'mercadopago' && <div className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-emerald text-white shadow-sm"><svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7"/></svg></div>}
+                        <span className="text-2xl drop-shadow-sm">🏦</span>
                         Pago Manual
                       </button>
                     </div>
@@ -1244,110 +1259,121 @@ export default function MonederoPage() {
 
                   {/* Sub-opciones de pago manual */}
                   {paymentMethod !== 'mercadopago' && (
-                    <div className="mt-3 flex gap-2">
-                      {enabledMethods.includes('bank_transfer') && (
-                        <button
-                          onClick={() => setPaymentMethod('bank_transfer')}
-                          className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition border ${paymentMethod === 'bank_transfer'
-                            ? 'bg-blue-50 border-blue-400 text-blue-700'
-                            : 'bg-white border-gray-200 text-gray-500 hover:border-blue-300'
-                            }`}
-                        >
-                          🏦 Transferencia
-                        </button>
-                      )}
-                      {enabledMethods.includes('bank_deposit') && (
-                        <button
-                          onClick={() => setPaymentMethod('bank_deposit')}
-                          className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition border ${paymentMethod === 'bank_deposit'
-                            ? 'bg-purple-50 border-purple-400 text-purple-700'
-                            : 'bg-white border-gray-200 text-gray-500 hover:border-purple-300'
-                            }`}
-                        >
-                          📍 Depósito
-                        </button>
-                      )}
-                      {enabledMethods.includes('oxxo') && (
-                        <button
-                          onClick={() => setPaymentMethod('oxxo')}
-                          className={`flex-1 rounded-lg px-3 py-2 text-xs font-medium transition border ${paymentMethod === 'oxxo'
-                            ? 'bg-red-50 border-red-400 text-red-700'
-                            : 'bg-white border-gray-200 text-gray-500 hover:border-red-300'
-                            }`}
-                        >
-                          🏪 OXXO
-                        </button>
-                      )}
+                    <div className="animate-in slide-in-from-top-2 fade-in duration-200">
+                      <div className="rounded-2xl border border-gray-100 bg-gray-50/50 p-4">
+                        <label className="text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-3 block text-center">
+                          Opciones Disponibles
+                        </label>
+                        <div className="flex flex-wrap justify-center gap-2">
+                          {enabledMethods.includes('bank_transfer') && (
+                            <button
+                              onClick={() => setPaymentMethod('bank_transfer')}
+                              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all border ${paymentMethod === 'bank_transfer'
+                                ? 'border-brand-emerald bg-white text-brand-emerald shadow-sm scale-105'
+                                : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                }`}
+                            >
+                              <span className="text-sm">🏦</span> Transferencia
+                            </button>
+                          )}
+                          {enabledMethods.includes('bank_deposit') && (
+                            <button
+                              onClick={() => setPaymentMethod('bank_deposit')}
+                              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all border ${paymentMethod === 'bank_deposit'
+                                ? 'border-brand-emerald bg-white text-brand-emerald shadow-sm scale-105'
+                                : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                }`}
+                            >
+                              <span className="text-sm">📍</span> Depósito
+                            </button>
+                          )}
+                          {enabledMethods.includes('oxxo') && (
+                            <button
+                              onClick={() => setPaymentMethod('oxxo')}
+                              className={`flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold transition-all border ${paymentMethod === 'oxxo'
+                                ? 'border-brand-emerald bg-white text-brand-emerald shadow-sm scale-105'
+                                : 'border-gray-200 bg-white text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                                }`}
+                            >
+                              <span className="text-sm">🏪</span> OXXO
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   )}
 
                   {/* ── Monto ── */}
-                  <div className="mt-5">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-3">Monto a recargar</p>
+                  <div>
+                    <label className="text-[11px] font-bold tracking-widest text-gray-400 uppercase mb-3 block">
+                      Ingresa el Monto
+                    </label>
 
-                    {/* Botones de monto rápido */}
-                    <div className="grid grid-cols-4 gap-2 mb-3">
-                      {[50, 100, 200, 500].map(amt => (
-                        <button
-                          key={amt}
-                          onClick={() => setTopupAmount(String(amt))}
-                          className={`rounded-lg py-2 text-sm font-bold transition border ${String(amt) === topupAmount
-                            ? 'bg-gray-900 text-white border-gray-900'
-                            : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400'
-                            }`}
-                        >
-                          ${amt}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Input personalizado */}
-                    <div className="relative rounded-xl shadow-sm">
-                      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                        <span className="text-gray-400 font-bold text-lg">$</span>
+                    {/* Input personalizado tipo tarjeta */}
+                    <div className="group relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-white shadow-sm focus-within:border-brand-emerald focus-within:ring-4 focus-within:ring-brand-emerald/10 transition-all">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-5">
+                        <span className="text-2xl font-bold text-gray-400 group-focus-within:text-brand-emerald transition-colors">$</span>
                       </div>
                       <input
                         type="number"
                         name="amount"
                         id="amount"
-                        className="block w-full rounded-xl border-gray-300 pl-9 pr-4 py-3 text-lg font-bold text-gray-900 focus:border-brand-emerald focus:ring-brand-emerald"
-                        placeholder="Otro monto..."
+                        className="block w-full border-0 bg-transparent py-5 pl-11 pr-16 text-3xl font-black tracking-tight text-gray-900 placeholder:text-gray-300 focus:ring-0 outline-none"
+                        placeholder="0"
                         min="10"
                         value={topupAmount}
                         onChange={(e) => setTopupAmount(e.target.value)}
                       />
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-5 pointer-events-none bg-gradient-to-l from-white via-white to-transparent pl-4">
+                        <span className="text-sm font-bold text-gray-400">MXN</span>
+                      </div>
+                    </div>
+
+                    {/* Botones de monto rápido */}
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[50, 100, 200, 500].map(amt => (
+                        <button
+                          key={amt}
+                          onClick={() => setTopupAmount(String(amt))}
+                          className={`flex-1 rounded-xl py-2.5 text-sm font-bold transition-all border ${String(amt) === topupAmount
+                            ? 'border-gray-900 bg-gray-900 text-white shadow-md scale-[1.02]'
+                            : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
+                            }`}
+                        >
+                          +${amt}
+                        </button>
+                      ))}
                     </div>
                   </div>
 
-                  {/* Desglose de Comisión (Solo MercadoPago) */}
+                  {/* Info Box */}
                   {paymentMethod === 'mercadopago' && calculatedTotal && (
-                    <div className="mt-4 rounded-xl bg-gray-50 p-4 text-sm border border-gray-100">
-                      <div className="flex justify-between mb-1 text-gray-600">
-                        <span>Monto a recargar:</span>
-                        <span className="font-medium">{formatMoney(Number(topupAmount))}</span>
+                    <div className="rounded-2xl border border-gray-100 bg-gray-50 p-5 animate-in fade-in">
+                      <div className="flex items-center justify-between text-sm text-gray-500">
+                        <span>Monto de recarga</span>
+                        <span className="font-medium text-gray-900">{formatMoney(Number(topupAmount))}</span>
                       </div>
-                      <div className="flex justify-between mb-1 text-orange-600 text-xs">
-                        <span>Comisión MercadoPago:</span>
+                      <div className="mt-2 flex items-center justify-between text-sm text-[#009ee3]">
+                        <span className="flex items-center gap-1.5">
+                          <svg className="h-4 w-4 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                          Comisión por servicio
+                        </span>
                         <span className="font-medium">+{formatMoney(calculatedTotal.fee)}</span>
                       </div>
-                      <div className="flex justify-between pt-2 border-t border-gray-200 font-bold text-gray-900">
-                        <span>Total a pagar:</span>
-                        <span>{formatMoney(calculatedTotal.total)}</span>
+                      <div className="mt-4 flex items-center justify-between border-t border-gray-200 pt-4">
+                        <span className="text-sm font-bold text-gray-900">Total a Pagar</span>
+                        <span className="text-2xl font-black tracking-tight text-gray-900">{formatMoney(calculatedTotal.total)}</span>
                       </div>
                     </div>
                   )}
 
-                  {/* Info de método manual */}
                   {paymentMethod !== 'mercadopago' && (
-                    <div className="mt-4 flex items-start gap-3 rounded-xl bg-blue-50/70 p-3 border border-blue-100">
-                      <span className="text-blue-500 mt-0.5">
-                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                    <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3 text-sm text-blue-800 animate-in fade-in">
+                      <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                       </span>
-                      <p className="text-xs text-blue-700">
-                        Al hacer clic se generará una ficha con los datos de pago ({paymentMethod === 'oxxo' ? 'código OXXO' : paymentMethod === 'bank_deposit' ? 'cuenta para depósito' : 'CLABE para transferencia'}).
-                        Sube tu comprobante después para acreditar el saldo (1-24 hrs).
+                      <p className="leading-relaxed">
+                        Se generará una ficha de pago. Sube tu comprobante desde la sección de compras para acreditar el saldo. <span className="font-bold">Acreditación: 1 a 24 hrs.</span>
                       </p>
                     </div>
                   )}
@@ -1355,29 +1381,32 @@ export default function MonederoPage() {
                   {/* Botón principal */}
                   <button
                     onClick={handleTopup}
-                    disabled={isTopupLoading || !topupAmount}
-                    className={`mt-4 w-full flex items-center justify-center gap-2 rounded-xl py-3.5 text-sm font-bold shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed ${paymentMethod === 'mercadopago'
-                      ? 'bg-[#009ee3] text-white hover:bg-[#0087c9] shadow-blue-200'
-                      : 'bg-gray-900 text-white hover:bg-gray-800 shadow-gray-200'
+                    disabled={isTopupLoading || !topupAmount || Number(topupAmount) < 10}
+                    className={`group relative w-full overflow-hidden rounded-2xl py-4 text-[15px] font-bold tracking-wide transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100 disabled:cursor-not-allowed ${paymentMethod === 'mercadopago'
+                      ? 'bg-[#009ee3] text-white hover:bg-[#008cc9] hover:shadow-lg hover:shadow-[#009ee3]/20'
+                      : 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-lg'
                       }`}
                   >
-                    {isTopupLoading ? (
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    ) : paymentMethod === 'mercadopago' ? (
-                      <>
-                        <span>💳</span>
-                        Pagar con MercadoPago
-                      </>
-                    ) : (
-                      <>
-                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        Generar Orden de Pago
-                      </>
-                    )}
+                    <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                      <div className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100"></div>
+                    </div>
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {isTopupLoading ? (
+                        <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                      ) : paymentMethod === 'mercadopago' ? (
+                        <>
+                          <span className="text-xl">💳</span>
+                          Pagar {calculatedTotal ? formatMoney(calculatedTotal.total) : ''} con MercadoPago
+                        </>
+                      ) : (
+                        <>
+                          Generar Orden de Pago
+                          <svg className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </>
+                      )}
+                    </span>
                   </button>
-                </>
+                </div>
               )}
             </div>
 
