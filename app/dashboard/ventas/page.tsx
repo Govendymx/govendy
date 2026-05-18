@@ -159,6 +159,11 @@ export default function DashboardVentasPage() {
   const [ratedByOrderId, setRatedByOrderId] = useState<Record<string, boolean>>({});
   const [bothRatedByOrderId, setBothRatedByOrderId] = useState<Record<string, boolean>>({});
 
+  // Inline confirmation states for P2P Voucher approval
+  const [confirmingApproveOrderId, setConfirmingApproveOrderId] = useState<string | null>(null);
+  const [rejectingOrderId, setRejectingOrderId] = useState<string | null>(null);
+  const [rejectReason, setRejectReason] = useState<string>('');
+
   // Scroll automático cuando se abre el modal de calificación
   useEffect(() => {
     if (rateOpen) {
@@ -2006,45 +2011,89 @@ export default function DashboardVentasPage() {
                                       Ver Comprobante
                                     </a>
                                     <div className="flex gap-2">
-                                      <button
-                                        onClick={async () => {
-                                          if (!confirm('¿Confirmas que ya recibiste el dinero en tu cuenta?')) return;
-                                          try {
-                                            const res = await fetch('/api/orders/voucher/approve', {
-                                              method: 'POST',
-                                              headers: { 'Content-Type': 'application/json' },
-                                              body: JSON.stringify({ orderId: o.id })
-                                            });
-                                            const json = await res.json().catch(() => ({}));
-                                            if (res.ok) {
-                                              bumpOrdersRefresh();
-                                            } else {
-                                              alert(`Error al aprobar el pago: ${json?.error || `HTTP ${res.status}`}`);
-                                            }
-                                          } catch (e: any) { alert(`Error de conexión: ${e?.message || 'Sin detalles'}`); }
-                                        }}
-                                        className="flex-1 rounded bg-green-600 py-1.5 text-[10px] font-bold text-white hover:bg-green-700"
-                                      >
-                                        Aprobar Pago
-                                      </button>
-                                      <button
-                                        onClick={async () => {
-                                          const reason = prompt('Motivo del rechazo:');
-                                          if (!reason) return;
-                                          try {
-                                            const res = await fetch('/api/orders/voucher/reject', {
-                                              method: 'POST',
-                                              headers: { 'Content-Type': 'application/json' },
-                                              body: JSON.stringify({ orderId: o.id, reason })
-                                            });
-                                            if (res.ok) window.location.reload();
-                                            else alert('Error al rechazar.');
-                                          } catch (e) { alert('Error de conexión'); }
-                                        }}
-                                        className="flex-1 rounded bg-red-600 py-1.5 text-[10px] font-bold text-white hover:bg-red-700"
-                                      >
-                                        Rechazar
-                                      </button>
+                                      {confirmingApproveOrderId === o.id ? (
+                                        <div className="flex-1 rounded border border-green-200 bg-green-50 p-2 text-center flex flex-col gap-2">
+                                          <div className="text-[10px] font-bold text-green-900">¿Recibiste el dinero?</div>
+                                          <div className="flex gap-2">
+                                            <button
+                                              onClick={async () => {
+                                                try {
+                                                  const res = await fetch('/api/orders/voucher/approve', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ orderId: o.id })
+                                                  });
+                                                  const json = await res.json().catch(() => ({}));
+                                                  if (res.ok) {
+                                                    setConfirmingApproveOrderId(null);
+                                                    bumpOrdersRefresh();
+                                                  } else {
+                                                    alert(`Error: ${json?.error || `HTTP ${res.status}`}`);
+                                                  }
+                                                } catch (e: any) { alert(`Error de conexión: ${e?.message || 'Sin detalles'}`); }
+                                              }}
+                                              className="flex-1 rounded bg-green-600 py-1 text-[10px] font-bold text-white hover:bg-green-700"
+                                            >
+                                              Sí, Aprobar
+                                            </button>
+                                            <button onClick={() => setConfirmingApproveOrderId(null)} className="flex-1 rounded bg-gray-200 py-1 text-[10px] font-bold text-gray-700 hover:bg-gray-300">
+                                              Cancelar
+                                            </button>
+                                          </div>
+                                        </div>
+                                      ) : rejectingOrderId === o.id ? (
+                                        <div className="flex-1 rounded border border-red-200 bg-red-50 p-2 flex flex-col gap-2">
+                                          <div className="text-[10px] font-bold text-red-900">Motivo del rechazo</div>
+                                          <input 
+                                            type="text" 
+                                            className="w-full rounded border border-red-300 px-2 py-1 text-[10px] outline-none focus:border-red-500" 
+                                            placeholder="Escribe el motivo..." 
+                                            value={rejectReason}
+                                            onChange={(e) => setRejectReason(e.target.value)}
+                                          />
+                                          <div className="flex gap-2">
+                                            <button
+                                              disabled={!rejectReason.trim()}
+                                              onClick={async () => {
+                                                if (!rejectReason.trim()) return;
+                                                try {
+                                                  const res = await fetch('/api/orders/voucher/reject', {
+                                                    method: 'POST',
+                                                    headers: { 'Content-Type': 'application/json' },
+                                                    body: JSON.stringify({ orderId: o.id, reason: rejectReason.trim() })
+                                                  });
+                                                  if (res.ok) {
+                                                    setRejectingOrderId(null);
+                                                    setRejectReason('');
+                                                    bumpOrdersRefresh();
+                                                  } else alert('Error al rechazar.');
+                                                } catch (e) { alert('Error de conexión'); }
+                                              }}
+                                              className="flex-1 rounded bg-red-600 py-1 text-[10px] font-bold text-white hover:bg-red-700 disabled:opacity-50"
+                                            >
+                                              Confirmar
+                                            </button>
+                                            <button onClick={() => { setRejectingOrderId(null); setRejectReason(''); }} className="flex-1 rounded bg-gray-200 py-1 text-[10px] font-bold text-gray-700 hover:bg-gray-300">
+                                              Cancelar
+                                            </button>
+                                          </div>
+                                        </div>
+                                      ) : (
+                                        <>
+                                          <button
+                                            onClick={() => setConfirmingApproveOrderId(o.id)}
+                                            className="flex-1 rounded bg-green-600 py-1.5 text-[10px] font-bold text-white hover:bg-green-700"
+                                          >
+                                            Aprobar Pago
+                                          </button>
+                                          <button
+                                            onClick={() => { setRejectingOrderId(o.id); setRejectReason(''); }}
+                                            className="flex-1 rounded bg-red-600 py-1.5 text-[10px] font-bold text-white hover:bg-red-700"
+                                          >
+                                            Rechazar
+                                          </button>
+                                        </>
+                                      )}
                                     </div>
                                   </div>
                                 )}
