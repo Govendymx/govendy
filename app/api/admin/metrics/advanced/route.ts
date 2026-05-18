@@ -27,25 +27,18 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Verify admin status
+    // Verify admin status using correct column (user_id is the PK, not id)
     const adminClient = supabaseAdmin();
     const { data: adminUser } = await adminClient
       .from('admin_users')
-      .select('id')
+      .select('user_id')
       .eq('user_id', user.id)
-      .single();
+      .maybeSingle();
 
     if (!adminUser) {
-      const { data: profile } = await adminClient
-        .from('profiles')
-        .select('is_admin')
-        .eq('id', user.id)
-        .single();
-        
-      if (!profile?.is_admin) {
-        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-      }
+      return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
+
 
     const searchParams = req.nextUrl.searchParams;
     const type = searchParams.get('type'); // 'top-searches', 'top-products', etc.
