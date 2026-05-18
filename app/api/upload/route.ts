@@ -42,9 +42,10 @@ function isImage(file: File, buf: Buffer): boolean {
 
 async function uploadToSupabaseAdmin(file: File, folder: string, bucket: string): Promise<string> {
   const admin = supabaseAdmin();
-  await admin.storage.getBucket(bucket).catch(async () => {
+  const { error: bucketError } = await admin.storage.getBucket(bucket);
+  if (bucketError) {
     await admin.storage.createBucket(bucket, { public: true }).catch(() => null);
-  });
+  }
   const buf  = Buffer.from(await file.arrayBuffer());
   const path = `${sanitize(folder)}/${Date.now()}-${Math.random().toString(16).slice(2)}-${sanitize(file.name || 'image')}`;
   const up   = await admin.storage.from(bucket).upload(path, buf, { contentType: file.type || 'application/octet-stream', upsert: false });
