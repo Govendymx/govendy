@@ -1368,13 +1368,38 @@ export default function MonederoPage() {
                   )}
 
                   {paymentMethod !== 'mercadopago' && (
-                    <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-4 flex items-start gap-3 text-sm text-blue-800 animate-in fade-in">
-                      <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
-                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                      </span>
-                      <p className="leading-relaxed">
-                        Se generará una ficha de pago. Sube tu comprobante desde la sección de compras para acreditar el saldo. <span className="font-bold">Acreditación: 1 a 24 hrs.</span>
-                      </p>
+                    <div className="rounded-2xl border border-gray-200 bg-gray-50 p-5 animate-in fade-in">
+                      <h4 className="mb-4 text-sm font-bold text-gray-900 flex items-center gap-2">
+                        <span className="text-lg">
+                          {paymentMethod === 'bank_transfer' ? '🏦' : paymentMethod === 'bank_deposit' ? '📍' : '🏪'}
+                        </span>
+                        ¿Cómo funciona este método?
+                      </h4>
+                      <ol className="relative border-l border-gray-300 ml-3 space-y-5">
+                        <li className="pl-6 relative">
+                          <span className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand-emerald text-xs font-bold text-white ring-4 ring-gray-50">1</span>
+                          <h5 className="font-semibold text-gray-900 text-sm">
+                            {paymentMethod === 'bank_transfer' ? 'Desde tu app bancaria' : paymentMethod === 'bank_deposit' ? 'Acude a sucursal' : 'Ve a tu OXXO más cercano'}
+                          </h5>
+                          <p className="text-sm text-gray-500 mt-1">
+                            {paymentMethod === 'bank_transfer' ? 'Abre la aplicación de tu banco y selecciona Transferencia SPEI a otros bancos.' : paymentMethod === 'bank_deposit' ? 'Dirígete a la ventanilla o practicaja del banco indicado.' : 'Acércate a la caja y solicita un "Depósito a Tarjeta" en efectivo.'}
+                          </p>
+                        </li>
+                        <li className="pl-6 relative">
+                          <span className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand-emerald text-xs font-bold text-white ring-4 ring-gray-50">2</span>
+                          <h5 className="font-semibold text-gray-900 text-sm">Usa los datos de la ficha</h5>
+                          <p className="text-sm text-gray-500 mt-1">
+                            {paymentMethod === 'bank_transfer' ? 'Ingresa la CLABE, cuenta o tarjeta que aparecerá al generar tu orden de pago.' : paymentMethod === 'bank_deposit' ? 'Dicta o ingresa el número de cuenta/tarjeta que viene en tu orden de pago.' : 'Dicta al cajero los 16 dígitos de la tarjeta proporcionados en tu ficha.'}
+                          </p>
+                        </li>
+                        <li className="pl-6 relative">
+                          <span className="absolute -left-3 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-brand-emerald text-xs font-bold text-white ring-4 ring-gray-50">3</span>
+                          <h5 className="font-semibold text-gray-900 text-sm">Sube tu comprobante</h5>
+                          <p className="text-sm text-gray-500 mt-1 leading-relaxed">
+                            Conserva tu {paymentMethod === 'bank_transfer' ? 'comprobante digital' : 'ticket físico'} y súbelo en la sección de Mis Compras. <span className="font-bold text-brand-emerald">Acreditación: 1 a 24 hrs.</span>
+                          </p>
+                        </li>
+                      </ol>
                     </div>
                   )}
 
