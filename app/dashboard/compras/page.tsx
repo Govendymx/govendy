@@ -2173,12 +2173,16 @@ export default function DashboardComprasPage() {
                                           <h4 className="text-[11px] font-bold text-emerald-900">
                                             {status === 'awaiting_voucher' && o?.buyer_payment_voucher_url 
                                               ? 'Comprobante en revisión' 
-                                              : 'Finaliza tu compra'}
+                                              : status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url
+                                                ? 'Comprobante rechazado'
+                                                : 'Finaliza tu compra'}
                                           </h4>
                                           <p className="text-[10px] text-emerald-800/80 leading-snug max-w-md">
                                             {status === 'awaiting_voucher' && o?.buyer_payment_voucher_url 
                                               ? 'Hemos recibido tu comprobante y el vendedor lo está verificando.' 
-                                              : 'Orden reservada. Paga para que te envíen tus productos.'}
+                                              : status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url
+                                                ? 'El vendedor rechazó tu comprobante anterior. Por favor, sube uno nuevo.'
+                                                : 'Orden reservada. Paga para que te envíen tus productos.'}
                                           </p>
                                         </div>
                                       </div>

@@ -772,7 +772,8 @@ export default function DashboardVentasPage() {
 
       // Ocultar al vendedor las órdenes que no han sido pagadas / sin voucher
       // Ocultar al vendedor las órdenes que no han sido pagadas / sin voucher
-      if (o?.status === 'pending_payment' || (o?.status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url)) {
+      // Mostrar 'awaiting_voucher' siempre, incluso si no hay URL (ej: si fue rechazado y espera que se suba de nuevo)
+      if (o?.status === 'pending_payment') {
         return false;
       }
 
@@ -780,7 +781,7 @@ export default function DashboardVentasPage() {
       let matchesFilter = true;
       switch (activeFilter) {
         case 'pending_payment':
-          matchesFilter = status === 'pending_payment';
+          matchesFilter = status === 'pending_payment' || status === 'verifying_payment';
           break;
         case 'pending_shipping':
           matchesFilter = (status === 'paid' || Boolean(labelUrl)) && !tracking;

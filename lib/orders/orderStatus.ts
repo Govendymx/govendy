@@ -1,5 +1,6 @@
 export type NormalizedOrderStatus =
   | 'pending_payment'
+  | 'verifying_payment'
   | 'paid'
   | 'shipped'
   | 'delivered'
@@ -12,10 +13,12 @@ export type NormalizedOrderStatus =
 export function normalizeOrderStatus(raw: string | null | undefined): NormalizedOrderStatus {
   const s = String(raw || '').trim().toLowerCase();
   if (!s) return 'unknown';
-  if (s === 'pending' || s === 'pending_payment' || s === 'awaiting_voucher' || s === 'verifying_payment') return 'pending_payment';
+  if (s === 'pending' || s === 'pending_payment') return 'pending_payment';
+  if (s === 'awaiting_voucher' || s === 'verifying_payment') return 'verifying_payment';
   if (s === 'received' || s === 'completed') return 'delivered';
   if (s === 'canceled') return 'cancelled';
   if (
+    s === 'verifying_payment' ||
     s === 'paid' ||
     s === 'shipped' ||
     s === 'delivered' ||
@@ -32,6 +35,8 @@ export function orderStatusLabel(raw: string | null | undefined): string {
   switch (normalizeOrderStatus(raw)) {
     case 'pending_payment':
       return 'Pendiente de pago';
+    case 'verifying_payment':
+      return 'Verificando pago';
     case 'paid':
       return 'Pagado';
     case 'shipped':
@@ -53,6 +58,8 @@ export function orderStatusBadgeShort(raw: string | null | undefined): string {
   switch (normalizeOrderStatus(raw)) {
     case 'pending_payment':
       return 'PENDIENTE PAGO';
+    case 'verifying_payment':
+      return 'REVISANDO PAGO';
     case 'paid':
       return 'PAGADO';
     case 'shipped':
@@ -75,6 +82,8 @@ export function orderStatusBadgeClass(raw: string | null | undefined): string {
   switch (normalizeOrderStatus(raw)) {
     case 'pending_payment':
       return `${base} bg-red-100 text-red-800 ring-red-300`;
+    case 'verifying_payment':
+      return `${base} bg-orange-100 text-orange-800 ring-orange-300`;
     case 'paid':
       return `${base} bg-green-100 text-green-800 ring-green-300`;
     case 'shipped':
