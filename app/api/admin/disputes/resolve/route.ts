@@ -52,9 +52,20 @@ const VALID_DECISIONS = [
   'partial_refund_split',
   'refund_buyer_minus_fees',
   'refund_seller_minus_fees',
-  'assign_guide_charged_buyer',
   'assign_guide_charged_seller',
   'delete_operation',
+  'close_favor_seller',
+  'close_favor_buyer',
+  'request_money_return_seller',
+  'request_product_return_buyer',
+  'block_seller_3_days',
+  'block_seller_permanent',
+  'block_buyer_3_days',
+  'block_buyer_permanent',
+  'suspend_seller_temp',
+  'suspend_buyer_temp',
+  'pause_seller_listings',
+  'pause_buyer_purchases',
 ] as const;
 
 type Body = {
@@ -387,7 +398,11 @@ export async function POST(req: NextRequest) {
       } catch (_) { }
     };
 
-    const nextDisputeStatus = decision === 'close' ? 'closed' : 'resolved';
+    const nextDisputeStatus = ['close', 'close_favor_seller', 'close_favor_buyer'].includes(decision) 
+      ? 'closed' 
+      : ['request_money_return_seller', 'request_product_return_buyer', 'block_seller_3_days', 'block_seller_permanent', 'block_buyer_3_days', 'block_buyer_permanent', 'suspend_seller_temp', 'suspend_buyer_temp', 'pause_seller_listings', 'pause_buyer_purchases'].includes(decision)
+      ? 'open'
+      : 'resolved';
     const updatePayload: Record<string, unknown> = {
       status: nextDisputeStatus,
       admin_decision: decision,
@@ -659,6 +674,35 @@ export async function POST(req: NextRequest) {
       text = `Soporte resolvió: reembolso al comprador descontando comisión y envío ($${refundMinusFees.toFixed(2)}).`;
     } else if (decision === 'refund_seller_minus_fees') {
       text = `Soporte resolvió: devolución al vendedor descontando comisión y envío ($${refundMinusFees.toFixed(2)}).`;
+    } else if (decision === 'close_favor_seller') {
+      text = 'Soporte resolvió la disputa a favor del vendedor. La disputa será cerrada.';
+    } else if (decision === 'close_favor_buyer') {
+      text = 'Soporte resolvió la disputa a favor del comprador. La disputa será cerrada.';
+    } else if (decision === 'request_money_return_seller') {
+      text = 'Soporte requiere que el vendedor devuelva el dinero.';
+    } else if (decision === 'request_product_return_buyer') {
+      text = 'Soporte requiere que el comprador devuelva el producto para continuar.';
+    } else if (decision === 'block_seller_3_days') {
+      text = 'Sanción aplicada: Vendedor bloqueado por 3 días.';
+      await admin.from('profiles').update({ blocked_until: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() }).eq('id', sellerId);
+    } else if (decision === 'block_seller_permanent') {
+      text = 'Sanción aplicada: Vendedor bloqueado permanentemente.';
+      await admin.from('profiles').update({ is_blocked: true }).eq('id', sellerId);
+    } else if (decision === 'block_buyer_3_days') {
+      text = 'Sanción aplicada: Comprador bloqueado por 3 días.';
+      await admin.from('profiles').update({ blocked_until: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() }).eq('id', buyerId);
+    } else if (decision === 'block_buyer_permanent') {
+      text = 'Sanción aplicada: Comprador bloqueado permanentemente.';
+      await admin.from('profiles').update({ is_blocked: true }).eq('id', buyerId);
+    } else if (decision === 'suspend_seller_temp') {
+      text = 'Sanción aplicada: Suspensión temporal al vendedor (no puede publicar ni editar).';
+      await admin.from('profiles').update({ can_publish: false, suspension_until: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() }).eq('id', sellerId);
+    } else if (decision === 'suspend_buyer_temp' || decision === 'pause_buyer_purchases') {
+      text = 'Sanción aplicada: Suspensión temporal al comprador (no puede realizar compras).';
+      await admin.from('profiles').update({ can_buy: false, suspension_until: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString() }).eq('id', buyerId);
+    } else if (decision === 'pause_seller_listings') {
+      text = 'Sanción aplicada: Se han pausado todas las publicaciones del vendedor.';
+      await admin.from('listings').update({ status: 'paused' }).eq('seller_id', sellerId);
     } else {
       text = 'Soporte cerró la disputa.';
     }
@@ -715,6 +759,30 @@ export async function POST(req: NextRequest) {
     } else if (decision === 'refund_seller_minus_fees') {
       title = 'Disputa resuelta (pago al vendedor descontando comisión y envío)';
       bodyText = `Soporte resolvió: devolución al vendedor de $${refundMinusFees.toFixed(2)} (descontando comisión y envío).`;
+    } else if (decision === 'close_favor_seller') {
+      title = 'Disputa cerrada a favor del vendedor';
+      bodyText = 'Soporte ha cerrado la disputa a favor del vendedor.';
+    } else if (decision === 'close_favor_buyer') {
+      title = 'Disputa cerrada a favor del comprador';
+      bodyText = 'Soporte ha cerrado la disputa a favor del comprador.';
+    } else if (decision === 'request_money_return_seller') {
+      title = 'Se requiere devolución de dinero';
+      bodyText = 'Soporte requiere la devolución del dinero por parte del vendedor.';
+    } else if (decision === 'request_product_return_buyer') {
+      title = 'Se requiere devolución del producto';
+      bodyText = 'Soporte requiere la devolución del producto por parte del comprador.';
+    } else if (decision === 'block_seller_3_days' || decision === 'block_buyer_3_days') {
+      title = 'Sanción de Bloqueo (3 Días)';
+      bodyText = 'Tu cuenta ha sido bloqueada temporalmente por 3 días debido a violaciones en el proceso de disputa.';
+    } else if (decision === 'block_seller_permanent' || decision === 'block_buyer_permanent') {
+      title = 'Sanción de Bloqueo Permanente';
+      bodyText = 'Tu cuenta ha sido bloqueada permanentemente debido a violaciones graves o repetidas en el proceso de disputa.';
+    } else if (decision === 'suspend_seller_temp' || decision === 'suspend_buyer_temp' || decision === 'pause_buyer_purchases') {
+      title = 'Suspensión Temporal de Cuenta';
+      bodyText = 'Tu cuenta ha recibido una suspensión parcial temporal. Revisa tu panel para más detalles.';
+    } else if (decision === 'pause_seller_listings') {
+      title = 'Sanción Aplicada a Publicaciones';
+      bodyText = 'Tus publicaciones han sido pausadas administrativamente.';
     } else {
       title = 'Disputa cerrada';
       bodyText = 'Soporte cerró la disputa.';

@@ -110,18 +110,24 @@ export async function GET(req: NextRequest) {
     }
 
     const orderId = String((d.row as any)?.order_id || '').trim();
-    const [msgRes, buyerProf, sellerProf, orderRow] = await Promise.all([
+    const [msgRes, buyerProf, sellerProf, orderRow, buyerDisputes, sellerDisputes] = await Promise.all([
       admin
         .from('dispute_messages')
         .select('id,dispute_id,sender_id,sender_role,body,attachments,created_at')
         .eq('dispute_id', disputeId)
         .order('created_at', { ascending: true })
         .limit(limit),
-      buyerId ? admin.from('profiles').select('full_name').eq('id', buyerId).maybeSingle() : Promise.resolve({ data: null }),
-      sellerId ? admin.from('profiles').select('full_name').eq('id', sellerId).maybeSingle() : Promise.resolve({ data: null }),
+      buyerId ? admin.from('profiles').select(isAdmin ? '*' : 'full_name').eq('id', buyerId).maybeSingle() : Promise.resolve({ data: null }),
+      sellerId ? admin.from('profiles').select(isAdmin ? '*' : 'full_name').eq('id', sellerId).maybeSingle() : Promise.resolve({ data: null }),
       isAdmin && orderId
-        ? admin.from('orders').select('subtotal,shipping_fee,commission_fee,total').eq('id', orderId).maybeSingle()
+        ? admin.from('orders').select('subtotal,shipping_fee,commission_fee,total,listing_id').eq('id', orderId).maybeSingle()
         : Promise.resolve({ data: null }),
+      isAdmin && buyerId
+        ? admin.from('disputes').select('id', { count: 'exact', head: true }).eq('buyer_id', buyerId)
+        : Promise.resolve({ count: 0 }),
+      isAdmin && sellerId
+        ? admin.from('disputes').select('id', { count: 'exact', head: true }).eq('seller_id', sellerId)
+        : Promise.resolve({ count: 0 })
     ]);
 
     const res = msgRes as any;
@@ -149,6 +155,12 @@ export async function GET(req: NextRequest) {
           refund_minus_fees: Math.max(0, n(ord.total) - n(ord.commission_fee) - n(ord.shipping_fee)),
         }
       : null;
+      
+    let listingData = null;
+    if (isAdmin && ord?.listing_id) {
+      const { data: lData } = await admin.from('listings').select('title, price, cover_url, condition, status').eq('id', ord.listing_id).maybeSingle();
+      listingData = lData;
+    }
 
     const return_guide =
       (d as any).hasReturnGuide === false
@@ -178,6 +190,11 @@ export async function GET(req: NextRequest) {
         admin_note: (d.row as any)?.admin_note || null,
         buyer_name: buyerName,
         seller_name: sellerName,
+        buyer_data: isAdmin ? (buyerProf as any)?.data : undefined,
+        seller_data: isAdmin ? (sellerProf as any)?.data : undefined,
+        buyer_disputes_count: (buyerDisputes as any)?.count || 0,
+        seller_disputes_count: (sellerDisputes as any)?.count || 0,
+        listing_data: listingData,
         order_details: isAdmin ? order_details : undefined,
         return_guide,
       },

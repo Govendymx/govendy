@@ -66,7 +66,19 @@ type ResolveDecision =
   | 'partial_refund_split'
   | 'refund_buyer_minus_fees'
   | 'refund_seller_minus_fees'
-  | 'delete_operation';
+  | 'delete_operation'
+  | 'close_favor_seller'
+  | 'close_favor_buyer'
+  | 'request_money_return_seller'
+  | 'request_product_return_buyer'
+  | 'block_seller_3_days'
+  | 'block_seller_permanent'
+  | 'block_buyer_3_days'
+  | 'block_buyer_permanent'
+  | 'suspend_seller_temp'
+  | 'suspend_buyer_temp'
+  | 'pause_seller_listings'
+  | 'pause_buyer_purchases';
 
 export default function AdminDisputeChatPage() {
   const p = useParams<{ disputeId: string }>();
@@ -80,6 +92,11 @@ export default function AdminDisputeChatPage() {
   const [status, setStatus] = useState<string>('open');
   const [buyerName, setBuyerName] = useState<string>('');
   const [sellerName, setSellerName] = useState<string>('');
+  const [buyerData, setBuyerData] = useState<any>(null);
+  const [sellerData, setSellerData] = useState<any>(null);
+  const [buyerDisputesCount, setBuyerDisputesCount] = useState<number>(0);
+  const [sellerDisputesCount, setSellerDisputesCount] = useState<number>(0);
+  const [listingData, setListingData] = useState<any>(null);
 
   const [input, setInput] = useState('');
   const [pending, setPending] = useState<Attachment[]>([]);
@@ -199,6 +216,11 @@ export default function AdminDisputeChatPage() {
       setDisputeCreatedAt(newCreatedAt);
       setBuyerName(String(json?.dispute?.buyer_name ?? '').trim());
       setSellerName(String(json?.dispute?.seller_name ?? '').trim());
+      setBuyerData(json?.dispute?.buyer_data || null);
+      setSellerData(json?.dispute?.seller_data || null);
+      setBuyerDisputesCount(json?.dispute?.buyer_disputes_count || 0);
+      setSellerDisputesCount(json?.dispute?.seller_disputes_count || 0);
+      setListingData(json?.dispute?.listing_data || null);
       const od = json?.dispute?.order_details;
       setOrderDetails(
         od && typeof od === 'object'
@@ -588,7 +610,8 @@ export default function AdminDisputeChatPage() {
         </div>
       </div>
 
-      <main className="mx-auto max-w-6xl px-4 py-8">
+      <main className="mx-auto max-w-7xl px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 space-y-4">
         {error ? (
           <div className="mb-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</div>
         ) : null}
@@ -776,6 +799,98 @@ export default function AdminDisputeChatPage() {
             </div>
           </div>
         </div>
+
+        {/* CONTENEDOR DERECHO: CONTEXTO (INFO VENDEDOR, COMPRADOR, PRODUCTO) */}
+        <div className="space-y-6">
+          {/* PRODUCTO INFO */}
+          {listingData && (
+            <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+              <div className="border-b border-black/5 bg-gray-50 px-5 py-4">
+                <h3 className="text-sm font-extrabold text-gray-900">Artículo en Disputa</h3>
+              </div>
+              <div className="p-5 flex gap-4 items-start">
+                {listingData.cover_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={listingData.cover_url} alt="Cover" className="h-16 w-16 rounded-xl object-cover ring-1 ring-black/10" />
+                ) : (
+                  <div className="h-16 w-16 rounded-xl bg-gray-100 ring-1 ring-black/10" />
+                )}
+                <div>
+                  <div className="text-sm font-bold text-gray-900 line-clamp-2">{listingData.title}</div>
+                  <div className="mt-1 text-xs text-gray-500 flex items-center gap-2">
+                    <span className="font-semibold text-brand-emerald">{formatMoney(listingData.price)}</span>
+                    <span>·</span>
+                    <span className="uppercase">{listingData.condition}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* VENDEDOR INFO */}
+          {sellerData && (
+            <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+              <div className="border-b border-black/5 bg-amber-50 px-5 py-4 flex justify-between items-center">
+                <h3 className="text-sm font-extrabold text-amber-900">Datos del Vendedor</h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-200 text-amber-800">
+                  {sellerDisputesCount} Disputas Recibidas
+                </span>
+              </div>
+              <div className="p-5 space-y-3">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Nombre:</span>
+                  <span className="font-semibold text-gray-900">{sellerData.full_name}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Teléfono:</span>
+                  <span className="font-semibold text-gray-900">{sellerData.phone || '—'}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Estado:</span>
+                  {sellerData.is_blocked ? (
+                    <span className="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded-md">BLOQUEADO</span>
+                  ) : sellerData.suspension_until && new Date(sellerData.suspension_until) > new Date() ? (
+                    <span className="text-orange-600 font-bold text-xs bg-orange-50 px-2 py-1 rounded-md">SUSPENDIDO</span>
+                  ) : (
+                    <span className="text-green-600 font-bold text-xs bg-green-50 px-2 py-1 rounded-md">ACTIVO</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* COMPRADOR INFO */}
+          {buyerData && (
+            <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5">
+              <div className="border-b border-black/5 bg-blue-50 px-5 py-4 flex justify-between items-center">
+                <h3 className="text-sm font-extrabold text-blue-900">Datos del Comprador</h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-200 text-blue-800">
+                  {buyerDisputesCount} Disputas Abiertas
+                </span>
+              </div>
+              <div className="p-5 space-y-3">
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Nombre:</span>
+                  <span className="font-semibold text-gray-900">{buyerData.full_name}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Teléfono:</span>
+                  <span className="font-semibold text-gray-900">{buyerData.phone || '—'}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-500">Estado:</span>
+                  {buyerData.is_blocked ? (
+                    <span className="text-red-600 font-bold text-xs bg-red-50 px-2 py-1 rounded-md">BLOQUEADO</span>
+                  ) : buyerData.suspension_until && new Date(buyerData.suspension_until) > new Date() ? (
+                    <span className="text-orange-600 font-bold text-xs bg-orange-50 px-2 py-1 rounded-md">SUSPENDIDO</span>
+                  ) : (
+                    <span className="text-green-600 font-bold text-xs bg-green-50 px-2 py-1 rounded-md">ACTIVO</span>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </main>
 
       {resolveOpen ? (
@@ -878,23 +993,40 @@ export default function AdminDisputeChatPage() {
                 }}
                 className="mt-2 w-full rounded-2xl border border-gray-200 bg-white px-3 py-3 text-sm outline-none focus:ring-2 focus:ring-brand-emerald"
               >
-                <option value="release">Liberar pago al vendedor</option>
-                <option value="refund">Reembolsar al comprador</option>
-                <option value="close">Cerrar disputa (sin decisión)</option>
-                <option value="partial_refund_seller">Devolver pago parcial al vendedor</option>
-                <option value="partial_refund_buyer">Devolver pago parcial al comprador</option>
-                <option value="partial_refund_split">Reembolso parcial al comprador y pago parcial al vendedor</option>
-                <option value="refund_buyer_minus_fees">Devolver dinero descontando comisión y envío al comprador</option>
-                <option value="refund_seller_minus_fees">Devolver dinero descontando comisión y envío al vendedor</option>
-                <option value="assign_guide_charged_buyer">Asignar guía con cargo al comprador</option>
-                <option value="assign_guide_charged_seller">Asignar guía con cargo al vendedor</option>
-                <option value="delete_operation">⚠️ Eliminar operación (Cancelar y borrar todo)</option>
-                {disputeCreatedAt && (Date.now() - new Date(disputeCreatedAt).getTime()) >= 72 * 60 * 60 * 1000 ? (
-                  <>
-                    <option value="assign_return_tracking">Asignar guía de devolución (reembolso después de recibir)</option>
-                    <option value="keep_money_seller">Mantener dinero al vendedor (por trayectoria)</option>
-                  </>
-                ) : null}
+                <optgroup label="⚖️ Resolución Financiera">
+                  <option value="release">Liberar pago al vendedor</option>
+                  <option value="refund">Reembolsar al comprador</option>
+                  <option value="close_favor_seller">Cerrar a favor del Vendedor</option>
+                  <option value="close_favor_buyer">Cerrar a favor del Comprador</option>
+                  <option value="request_money_return_seller">Solicitar devolución de dinero al Vendedor</option>
+                  <option value="request_product_return_buyer">Solicitar devolución de producto al Comprador</option>
+                  <option value="partial_refund_seller">Devolver pago parcial al Vendedor</option>
+                  <option value="partial_refund_buyer">Devolver pago parcial al Comprador</option>
+                  <option value="partial_refund_split">Dividir pago (Comprador y Vendedor)</option>
+                  <option value="refund_buyer_minus_fees">Reembolsar a comprador (menos comisiones/envío)</option>
+                  <option value="refund_seller_minus_fees">Devolver a vendedor (menos comisiones/envío)</option>
+                </optgroup>
+                <optgroup label="🛑 Sanciones a Vendedor">
+                  <option value="block_seller_3_days">Bloquear 3 días</option>
+                  <option value="block_seller_permanent">Bloqueo permanente</option>
+                  <option value="suspend_seller_temp">Suspensión temporal (no publicar)</option>
+                  <option value="pause_seller_listings">Pausar todas sus publicaciones</option>
+                </optgroup>
+                <optgroup label="🛑 Sanciones a Comprador">
+                  <option value="block_buyer_3_days">Bloquear 3 días</option>
+                  <option value="block_buyer_permanent">Bloqueo permanente</option>
+                  <option value="suspend_buyer_temp">Suspensión temporal (no comprar)</option>
+                </optgroup>
+                <optgroup label="📦 Guías de Devolución">
+                  <option value="assign_return_tracking">Asignar guía de devolución (reembolso al recibir)</option>
+                  <option value="assign_guide_charged_buyer">Asignar guía con cargo al Comprador</option>
+                  <option value="assign_guide_charged_seller">Asignar guía con cargo al Vendedor</option>
+                </optgroup>
+                <optgroup label="⚠️ Administrativas">
+                  <option value="close">Cerrar disputa (sin decisión ni impacto)</option>
+                  <option value="keep_money_seller">Mantener dinero al vendedor (decisión final)</option>
+                  <option value="delete_operation">☢️ ELIMINACIÓN NUCLEAR DE OPERACIÓN</option>
+                </optgroup>
               </select>
               {resolveDecision === 'partial_refund_seller' ? (
                 <div className="mt-4 space-y-3">
