@@ -337,8 +337,8 @@ export default function CheckoutPage() {
     return total;
   }, [selectedT1BySeller, t1QuotesBySeller]);
 
-  // Costo EFECTIVO de envío: T1 si hay selección T1, sino base
-  const effectiveShippingFee = hasAnyT1Selection && t1Fee > 0 ? t1Fee : shippingFee;
+  // Costo EFECTIVO de envío forzado a 0 por petición (se acuerda con el vendedor)
+  const effectiveShippingFee = 0;
   // ¿Todos los artículos del carrito son digitales?
   const allDigitalCart = useMemo(() => {
     if (cartItems.length === 0) return false;
@@ -383,31 +383,8 @@ export default function CheckoutPage() {
     if (allDigitalCart) {
       return { label: '💎 Entrega digital — sin envío físico', tone: 'gopocket' as const };
     }
-    if (hasAnyT1Selection) {
-      const names = Object.entries(selectedT1BySeller).map(([sid, qkey]) => { const quotes = t1QuotesBySeller[sid] || []; return quotes.find((q, i) => `${q.carrier_id}_${i}` === qkey)?.carrier_name; }).filter(Boolean);
-      return { label: `🚀 GOPOCKET PREMIUM · vía ${[...new Set(names)].join(', ') || 'T1'}`, tone: 'gopocket' as const };
-    }
-    const isPickup = selectedShippingOptionId === 'pickup';
-    if (isPickup) {
-      return { label: 'Entrega Personal', tone: 'pickup' as const };
-    }
-    // Detectar presencia de modos por vendedor vs GoVendy
-    let anySellerManaged = false;
-    let anyGoVendy = false;
-    for (const ci of cartItems) {
-      const l = listingsById[ci.listing_id];
-      if (!l) continue;
-      if (l.shipping_by_seller) anySellerManaged = true;
-      else anyGoVendy = true;
-    }
-    if (anySellerManaged && anyGoVendy) {
-      return { label: 'Mixto: GoVendy + Vendedor', tone: 'mixed' as const };
-    }
-    if (anySellerManaged) {
-      return { label: 'Envío gestionado por Vendedor', tone: 'seller' as const };
-    }
-    return { label: 'Envío por GoVendy (plataforma)', tone: 'gopocket' as const };
-  }, [cartItems, listingsById, selectedShippingOptionId, allDigitalCart, hasAnyT1Selection, selectedT1BySeller, t1QuotesBySeller]);
+    return { label: 'A acordar con el vendedor', tone: 'mixed' as const };
+  }, [allDigitalCart]);
 
   const enabledMethods = useMemo(() => {
     const pm = settings.payment_methods || {};
@@ -1074,141 +1051,22 @@ export default function CheckoutPage() {
 
 
 
-            {!allDigitalCart && (shippingOptions.length > 0 || t1Loading || Object.keys(t1QuotesBySeller).length > 0) && (
+            {!allDigitalCart && (
               <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
-                {shippingOptions.length > 0 && (
-                  <>
-                    <h2 className="text-lg font-bold text-gray-900">Opción de envío</h2>
-                    <p className="mt-1 text-sm text-gray-600">Elige la paquetería y método de envío que prefieras.</p>
-                  </>
-                )}
-
-                <div className="mt-4 grid gap-3">
-                  {shippingOptions.map((option) => (
-                    <label
-                      key={option.id}
-                      className={`cursor-pointer rounded-2xl border p-4 text-sm transition ${selectedShippingOptionId === option.id && !hasAnyT1Selection ? 'border-brand-emerald bg-white' : 'border-black/5 bg-white hover:bg-gray-50'
-                        }`}
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex min-w-0 items-center gap-3">
-                          {option.logo_url ? (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-black/5">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={option.logo_url} alt={option.name} className="h-10 w-10 object-contain" />
-                            </div>
-                          ) : option.id === 'pickup' ? (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white ring-1 ring-green-200">
-                              <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                              </svg>
-                            </div>
-                          ) : (
-                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50 ring-1 ring-blue-200">
-                              <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25m-2.25 0h-2.25m0 0v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                              </svg>
-                            </div>
-                          )}
-                          <div className="min-w-0 flex-1">
-                            <div className="font-semibold text-gray-900">{option.name}</div>
-                            <div className="mt-0.5 text-xs text-gray-600">
-                              {option.delivery_days === 1 ? 'Entrega en 1 día' : `Entrega en ${option.delivery_days} días`} · {option.id === 'pickup' ? 'GRATIS' : (option.id === 'standard' || option.id === 'seller_managed') ? formatMoney(shippingFee) : formatMoney(applyShippingMarkup(option.cost, settings.shipping_markup_percent ?? 0, settings.shipping_markup_fixed ?? 0))}
-                              {option.id !== 'pickup' && option.id !== 'standard' && option.id !== 'seller_managed' && option.max_weight_kg ? ` · Hasta ${option.max_weight_kg} KG` : ''}
-                            </div>
-                          </div>
-                        </div>
-                        <input
-                          type="radio"
-                          name="shippingOption"
-                          value={option.id}
-                          checked={selectedShippingOptionId === option.id && !hasAnyT1Selection}
-                          onChange={() => { setSelectedShippingOptionId(option.id); setSelectedT1BySeller({}); }}
-                          className="h-4 w-4 text-brand-emerald focus:ring-brand-emerald"
-                        />
-                      </div>
-                    </label>
-                  ))}
-                </div>
-
-                {/* T1 Carriers — GoVendy Premium (por vendedor) */}
-                {/* Ocultar T1 cuando TODOS los productos usan envío gestionado por vendedor */}
-                {t1Loading && !allSelfShipping && (
-                  <div className="mt-4 rounded-2xl border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-800 animate-pulse">
-                    🚀 Cargando opciones GoVendy Premium...
+                <h2 className="text-lg font-bold text-gray-900">Envío</h2>
+                <div className="mt-4 rounded-2xl border border-blue-100 bg-blue-50 p-4 flex items-start gap-3">
+                  <div className="mt-0.5 text-blue-600">
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                   </div>
-                )}
-                {Object.keys(t1QuotesBySeller).length > 0 && !allSelfShipping && (
-                  <div className="mt-4 space-y-4">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-orange-400 to-amber-400 px-3 py-1 text-xs font-bold text-white shadow-sm">🚀 GOPOCKET PREMIUM</span>
-                      <span className="text-xs text-gray-500">Multi-carrier vía T1 Envíos</span>
+                  <div>
+                    <div className="text-sm font-semibold text-blue-900">A acordar con el vendedor</div>
+                    <div className="mt-1 text-sm text-blue-800">
+                      El costo de envío no se cobra por GoVendy. Una vez confirmada tu compra, deberás coordinar y pagar el envío directamente con el vendedor.
                     </div>
-                    {Object.entries(t1QuotesBySeller).map(([sellerId, quotes]) => {
-                      const sp = sellerProfiles[sellerId];
-                      const sellerName = (() => { const items = cartItems.filter(ci => { const l = listingsById[ci.listing_id]; return l && getSellerId(l) === sellerId; }); const l = items[0] ? listingsById[items[0].listing_id] : null; return (l as any)?.profiles?.full_name || (l as any)?.profiles?.nickname || 'Vendedor'; })();
-                      return (
-                        <div key={sellerId} className="rounded-2xl border border-orange-100 bg-orange-50/30 p-3">
-                          <div className="mb-2 text-xs font-bold text-orange-700">📦 {sellerName} {sp?.city ? `· ${sp.city}` : ''}</div>
-                          <div className="grid gap-2">
-                            {quotes.map((q, qi) => {
-                              const qKey = `${q.carrier_id}_${qi}`;
-                              const isSelected = selectedT1BySeller[sellerId] === qKey;
-                              return (
-                                <label
-                                  key={`${sellerId}_${qKey}`}
-                                  className={`cursor-pointer rounded-xl border p-3 text-sm transition ${isSelected
-                                    ? 'border-orange-400 bg-white ring-1 ring-orange-300'
-                                    : 'border-black/5 bg-white hover:bg-orange-50/50'
-                                    }`}
-                                >
-                                  <div className="flex items-center justify-between gap-3">
-                                    <div className="flex min-w-0 items-center gap-3">
-                                      <div className={`flex h-10 w-14 shrink-0 items-center justify-center rounded-lg overflow-hidden bg-white ring-1 p-1 ${isSelected ? 'ring-orange-400' : 'ring-gray-200'}`}>
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img
-                                          src={
-                                            q.carrier_name.toLowerCase().includes('dhl') ? 'https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg' :
-                                              q.carrier_name.toLowerCase().includes('fedex') || q.carrier_name.toLowerCase().includes('fed') ? `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70"><rect width="200" height="70" fill="white"/><text x="100" y="50" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="48" letter-spacing="-2"><tspan fill="#4D148C">Fed</tspan><tspan fill="#FF6600">Ex</tspan></text></svg>')}` :
-                                                q.carrier_name.toLowerCase().includes('paquete') ? `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 50"><rect width="280" height="50" fill="white"/><text x="140" y="37" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="32" fill="#003B71" letter-spacing="-1">PAQUETEXPRESS</text></svg>')}` :
-                                                  q.carrier_name.toLowerCase().includes('ups') ? `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80"><rect width="120" height="80" rx="8" fill="#351C15"/><text x="60" y="52" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="34" fill="#FFB500" letter-spacing="2">UPS</text></svg>')}` :
-                                                    q.carrier_name.toLowerCase().includes('estafeta') ? `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50"><rect width="200" height="50" fill="white"/><text x="100" y="38" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-style="italic" font-size="36" fill="#B71C1C" letter-spacing="-1">estafeta</text></svg>')}` :
-                                                      `https://ui-avatars.com/api/?name=${encodeURIComponent(q.carrier_name)}&background=FF6B00&color=fff&bold=true&size=64`
-                                          }
-                                          alt={q.carrier_name}
-                                          className="h-full w-full object-contain"
-                                          loading="lazy"
-                                        />
-                                      </div>
-                                      <div className="min-w-0 flex-1">
-                                        <div className="font-semibold text-gray-900">{q.carrier_name}</div>
-                                        <div className="mt-0.5 text-xs text-gray-600">
-                                          {q.service_level} · {q.delivery_days === 1 ? '1 día' : `${q.delivery_days} días`} · {formatMoney(q.cost)}
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <input
-                                      type="radio"
-                                      name={`t1_${sellerId}`}
-                                      value={qKey}
-                                      checked={isSelected}
-                                      onChange={() => {
-                                        setSelectedT1BySeller(prev => ({ ...prev, [sellerId]: qKey }));
-                                        setSelectedShippingOptionId(null);
-                                      }}
-                                      className="h-4 w-4 text-orange-500 focus:ring-orange-500"
-                                    />
-                                  </div>
-                                </label>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      );
-                    })}
                   </div>
-                )}
+                </div>
               </section>
             )}
 
@@ -1283,7 +1141,7 @@ export default function CheckoutPage() {
               )}
               <div className="flex items-center justify-between">
                 <span className="text-gray-600">Envío</span>
-                <span className={`font-semibold ${effectiveShippingFee === 0 ? 'text-green-600' : 'text-gray-900'}`}>{effectiveShippingFee === 0 ? 'GRATIS' : formatMoney(effectiveShippingFee)}</span>
+                <span className="font-semibold text-blue-600">A acordar</span>
               </div>
               <div className="mt-1">
                 <span
