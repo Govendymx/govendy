@@ -1148,11 +1148,7 @@ export default function CheckoutPage() {
                   className={
                     shippingModeSummary.tone === 'gopocket'
                       ? 'inline-flex items-center gap-1 rounded-lg bg-blue-50 px-2 py-1 text-[11px] font-bold text-blue-800 ring-1 ring-blue-700/10'
-                      : shippingModeSummary.tone === 'seller'
-                        ? 'inline-flex items-center gap-1 rounded-lg bg-gray-100 px-2 py-1 text-[11px] font-bold text-gray-800 ring-1 ring-gray-700/10'
-                        : shippingModeSummary.tone === 'pickup'
-                          ? 'inline-flex items-center gap-1 rounded-lg bg-white px-2 py-1 text-[11px] font-bold text-green-800 ring-1 ring-green-700/10'
-                          : 'inline-flex items-center gap-1 rounded-lg bg-purple-50 px-2 py-1 text-[11px] font-bold text-purple-800 ring-1 ring-purple-700/10'
+                      : 'inline-flex items-center gap-1 rounded-lg bg-purple-50 px-2 py-1 text-[11px] font-bold text-purple-800 ring-1 ring-purple-700/10'
                   }
                   title={shippingModeSummary.label}
                 >
