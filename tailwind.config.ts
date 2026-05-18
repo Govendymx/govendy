@@ -14,6 +14,10 @@ const config: Config = {
         'brand-volt': '#CCFF00',
         'brand-mango': '#F0B130',
         'brand-onyx': '#212121',
+        // white0 es un alias del verde de marca usado en toda la app
+        'white0': '#1FB59B',
+        // Liverpool (verde oscuro para degradados)
+        'liverpool-700': '#0d9488',
         
         // Colores primarios derivados del Esmeralda
         primary: {

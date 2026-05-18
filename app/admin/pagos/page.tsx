@@ -294,9 +294,11 @@ function AdminPagosContent() {
 
   const countLabel = useMemo(() => {
     if (isLoading) return 'Cargando…';
+    const total = displayedOperations.length;
+    if (total === 0) return '0 operaciones';
     const from = (currentPage - 1) * PAGE_SIZE + 1;
-    const to = Math.min(currentPage * PAGE_SIZE, displayedOperations.length);
-    return `${from}-${to} de ${displayedOperations.length} operaciones`;
+    const to = Math.min(currentPage * PAGE_SIZE, total);
+    return `${from}-${to} de ${total} operaciones`;
   }, [isLoading, displayedOperations.length, currentPage]);
 
 
@@ -634,7 +636,7 @@ function AdminPagosContent() {
             <div className="flex flex-wrap gap-2">
               <button onClick={() => setStatusFilter('')} className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${!statusFilter ? 'bg-purple-600 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>Todos</button>
               <button onClick={() => setStatusFilter('pending')} className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${statusFilter === 'pending' ? 'bg-amber-500 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>⏳ Pendientes</button>
-              <button onClick={() => setStatusFilter('paid')} className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${statusFilter === 'paid' || statusFilter === 'approved' ? 'bg-white0 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>✅ Pagados/Aprobados</button>
+              <button onClick={() => setStatusFilter('paid')} className={`rounded-lg px-4 py-2 text-xs font-bold transition-all ${statusFilter === 'paid' || statusFilter === 'approved' ? 'bg-green-600 text-white shadow-lg' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>✅ Pagados/Aprobados</button>
             </div>
           </div>
           <div className="text-sm font-bold text-gray-700 bg-gray-50 px-4 py-2 rounded-lg">
