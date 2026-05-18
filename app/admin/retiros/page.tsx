@@ -116,8 +116,28 @@ export default function AdminRetirosPage() {
         </div>
 
         {error && (
-          <div className="mb-6 rounded-lg bg-red-50 p-4 text-sm text-red-700 ring-1 ring-red-200">
-            {error}
+          <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">⚠️</span>
+              <div className="flex-1">
+                {error.toLowerCase().includes('seller_withdrawals') || error.toLowerCase().includes('schema cache') ? (
+                  <>
+                    <div className="font-bold text-amber-900 text-sm">Tabla de retiros pendiente de crear</div>
+                    <p className="mt-1 text-sm text-amber-800">
+                      La tabla <code className="bg-amber-100 px-1 rounded font-mono text-xs">seller_withdrawals</code> aún no existe en la base de datos.
+                    </p>
+                    <p className="mt-2 text-sm text-amber-700">
+                      👉 Ejecuta el script <code className="bg-amber-100 px-1 rounded font-mono text-xs">scripts/create_missing_admin_tables.sql</code> en el SQL Editor de Supabase para activar esta sección.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <div className="font-bold text-red-900 text-sm">Error al cargar retiros</div>
+                    <div className="mt-1 text-sm text-red-800">{error}</div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         )}
 

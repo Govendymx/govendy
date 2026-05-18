@@ -7,6 +7,7 @@ import {
 } from 'recharts';
 import { Loader2, Download, TrendingUp, Search, Share2, Heart, Eye, ShoppingBag, User, AlertCircle, ArrowUp, ArrowDown, Minus } from 'lucide-react';
 import { CopyButton } from '@/components/ui/CopyButton';
+import { supabase } from '@/lib/supabase/client';
 import * as XLSX from 'xlsx';
 
 type Period = '24h' | '7d' | '30d' | 'all';
@@ -115,8 +116,23 @@ export function AdvancedMetrics({ initialPeriod = '30d' }: AdvancedMetricsProps)
     if (data[key].length === 0) setLoading(prev => ({ ...prev, [key]: true }));
     
     try {
-      const res = await fetch(`/api/admin/metrics/advanced?type=${type}&period=${period}&limit=50`);
+      // Get the current session token for Authorization header
+      const { data: sessData } = await supabase.auth.getSession();
+      const token = sessData.session?.access_token;
+      if (!token) {
+        console.warn('[AdvancedMetrics] No session token — skipping fetch for', type);
+        return;
+      }
+
+      const res = await fetch(`/api/admin/metrics/advanced?type=${type}&period=${period}&limit=50`, {
+        headers: { authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      });
       const json = await res.json();
+      if (!res.ok) {
+        console.error(`[AdvancedMetrics] ${type} → ${res.status}:`, json?.error || json);
+        return;
+      }
       if (json.data) {
         setData(prev => ({ ...prev, [key]: json.data }));
       }
