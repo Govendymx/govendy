@@ -1036,10 +1036,10 @@ export default function MonederoPage() {
             <div className="absolute right-0 top-0 h-full w-1/2 translate-x-1/3 transform bg-gradient-to-l from-brand-emerald/20 to-transparent blur-3xl"></div>
             <div className="relative z-10 max-w-2xl">
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                ¡Tu dinero, más seguro y rápido!
+                Tu saldo exclusivo para servicios GoVendy
               </h2>
               <p className="mt-3 text-lg text-gray-300">
-                Usa tu tarjeta PocketCash para comprar y vender sin comisiones bancarias extras.
+                Recarga tu monedero digital y utilízalo para adquirir beneficios, herramientas y servicios profesionales de forma rápida y segura dentro de la plataforma.
               </p>
             </div>
           </div>
