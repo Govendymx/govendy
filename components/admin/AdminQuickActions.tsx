@@ -2,12 +2,14 @@
 
 // Acciones rápidas flotantes para administración
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAdminContext } from '@/lib/admin/AdminContext';
 
 export function AdminQuickActions() {
   const router = useRouter();
   const { metrics, alerts } = useAdminContext();
+  const [dismissed, setDismissed] = useState<Set<string>>(new Set());
   
   if (!metrics) return null;
   
@@ -42,7 +44,7 @@ export function AdminQuickActions() {
     },
   ];
   
-  const actionsWithCount = quickActions.filter(a => a.count > 0);
+  const actionsWithCount = quickActions.filter(a => a.count > 0 && !dismissed.has(a.label));
   
   if (actionsWithCount.length === 0) {
     return null;
@@ -56,7 +58,7 @@ export function AdminQuickActions() {
             key={action.label}
             onClick={action.onClick}
             className={`
-              flex items-center gap-3 rounded-2xl px-5 py-4 shadow-2xl
+              flex items-center gap-3 rounded-2xl pl-5 pr-3 py-4 shadow-2xl relative
               font-bold text-white transition-all hover:scale-105 hover:shadow-2xl
               backdrop-blur-sm
               ${action.color === 'green' ? 'bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800' : ''}
@@ -68,12 +70,24 @@ export function AdminQuickActions() {
             <div className="rounded-full bg-white/20 backdrop-blur-sm p-2">
               <span className="text-2xl">{action.icon}</span>
             </div>
-            <div className="text-left">
+            <div className="text-left flex-1 pr-2">
               <div className="text-sm font-bold">{action.label}</div>
               <div className="text-xs opacity-90">{action.count} pendiente(s)</div>
             </div>
-            <div className="ml-2 rounded-full bg-white/30 backdrop-blur-sm px-3 py-1.5 text-xs font-bold shadow-md">
-              {action.count}
+            <div className="flex items-center gap-1">
+              <div className="rounded-full bg-white/30 backdrop-blur-sm px-3 py-1.5 text-xs font-bold shadow-md">
+                {action.count}
+              </div>
+              <div 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDismissed(prev => new Set(prev).add(action.label));
+                }}
+                className="ml-1 p-1 rounded-full text-white/60 hover:text-white hover:bg-white/20 transition-colors"
+                title="Ocultar notificación"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+              </div>
             </div>
           </button>
         ))}
