@@ -26,6 +26,25 @@ function formatDate(dateStr: string) {
   });
 }
 
+function getPocketCashId(uuid?: string) {
+  if (!uuid) return '•••• •••• •••• ••••';
+  const hex = uuid.replace(/-/g, '').substring(0, 12);
+  let numStr = parseInt(hex, 16).toString();
+  numStr = numStr.padStart(15, '0').substring(0, 15);
+  let sum = 0;
+  for (let i = 0; i < 15; i++) {
+    let digit = parseInt(numStr[14 - i]);
+    if (i % 2 === 0) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+  }
+  let checkDigit = (10 - (sum % 10)) % 10;
+  const fullStr = numStr + checkDigit;
+  return fullStr.replace(/(\d{4})/g, '$1 ').trim();
+}
+
 export default function MonederoPage() {
   const { isImpersonating, targetUserId, targetData } = useImpersonation();
   const [wallet, setWallet] = useState<Wallet | null>(null);
@@ -66,7 +85,7 @@ export default function MonederoPage() {
   const [redeemError, setRedeemError] = useState('');
 
   // All methods enabled for Topups
-  const enabledMethods = ['mercadopago', 'bank_transfer', 'bank_deposit', 'oxxo'];
+  const enabledMethods = ['bank_transfer', 'bank_deposit', 'oxxo'];
 
   const currentInstruction = useMemo(() => {
     if (!settings?.payment_methods) return '';
@@ -176,6 +195,11 @@ export default function MonederoPage() {
       if (!walletRes.ok) throw new Error('Error al cargar el monedero');
       const walletData = await walletRes.json();
       setWallet(walletData);
+
+      // Fetch Profile for user name
+      const { data: profile } = await supabase.from('profiles').select('full_name, nickname').eq('id', session.user.id).single();
+      const displayName = profile?.full_name || profile?.nickname || session.user.email || 'Miembro GoVendy';
+      setUserName(displayName);
 
       // Fetch Transactions
       const txRes = await fetch('/api/wallet/transactions', {
@@ -698,10 +722,10 @@ export default function MonederoPage() {
                   <span class="label">Método de Pago</span>
                   <span class="value">${methodName}</span>
                 </div>
-                ${wallet?.pocket_cash_number ? `
+                ${wallet?.user_id ? `
                 <div class="row">
                   <span class="label">ID PocketCash</span>
-                  <span class="value mono">${wallet.pocket_cash_number}</span>
+                  <span class="value mono">${getPocketCashId(wallet.user_id)}</span>
                 </div>
                 ` : ''}
                 <div class="row">
@@ -904,10 +928,7 @@ export default function MonederoPage() {
     }
   }
 
-  function formatCardNumber(num: string | undefined) {
-    if (!num) return '•••• •••• •••• ••••';
-    return num.replace(/(\d{4})/g, '$1 ').trim();
-  }
+
 
   function downloadWalletStatement() {
     try {
@@ -930,7 +951,7 @@ export default function MonederoPage() {
       // Datos de cuenta (estilo bancario)
       const accY = titleY + 60;
       const holder = userName || 'Miembro GoVendy';
-      const card = formatCardNumber(wallet?.pocket_cash_number || '');
+      const card = getPocketCashId(wallet?.user_id);
       const balanceText = (wallet?.balance ?? 0).toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
 
       doc.setFont('helvetica', 'bold');
@@ -1096,12 +1117,12 @@ export default function MonederoPage() {
               <div className="relative z-10 mt-6">
                 <div className="flex items-center gap-2 group/copy">
                   <div className="font-mono text-xs tracking-[0.12em] text-white drop-shadow-md select-all whitespace-nowrap flex-shrink-0">
-                    {formatCardNumber(wallet?.pocket_cash_number)}
+                    {getPocketCashId(wallet?.user_id)}
                   </div>
-                  {wallet?.pocket_cash_number && (
+                  {wallet?.user_id && (
                     <button
                       onClick={() => {
-                        navigator.clipboard.writeText(wallet.pocket_cash_number!);
+                        navigator.clipboard.writeText(getPocketCashId(wallet.user_id));
                       }}
                       className="opacity-0 group-hover/copy:opacity-100 transition-opacity p-1 hover:bg-white/10 rounded flex-shrink-0"
                       title="Copiar ID"
