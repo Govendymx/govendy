@@ -453,6 +453,11 @@ export default function DashboardComprasPage() {
       setUploadingProofId(topupId);
       setError(null);
 
+      // Obtener token para ambas peticiones
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token;
+      if (!token) throw new Error('No sesión');
+
       // 1. Subir archivo
       const formData = new FormData();
       formData.append('file', file);
@@ -460,17 +465,16 @@ export default function DashboardComprasPage() {
 
       const uploadRes = await fetch('/api/upload', {
         method: 'POST',
-        body: formData, // No headers, browser sets boundary
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData, // No headers like Content-Type here, browser sets boundary
       });
       const uploadJson = await uploadRes.json();
       if (!uploadRes.ok) throw new Error(uploadJson.error || 'Error al subir comprobante');
       const proofUrl = uploadJson.url;
 
       // 2. Confirmar topup
-      const { data: sess } = await supabase.auth.getSession();
-      const token = sess.session?.access_token;
-      if (!token) throw new Error('No sesión');
-
       const confirmRes = await fetch('/api/wallet/topup/confirm-offline', {
         method: 'POST',
         headers: {

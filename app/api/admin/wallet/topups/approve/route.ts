@@ -41,8 +41,7 @@ export async function POST(request: Request) {
          .single();
          
        if (!profile?.is_admin) {
-         console.warn('[ADMIN CHECK BYPASS] Allowing non-admin user to approve:', user.id);
-         // return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
+         return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
        }
     }
 
