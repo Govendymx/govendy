@@ -131,6 +131,7 @@ export default function CheckoutPage() {
   // Perfiles para validar entrega personal
   const [buyerProfile, setBuyerProfile] = useState<{ state?: string; city?: string; zip_code?: string } | null>(null);
   const [sellerProfiles, setSellerProfiles] = useState<Record<string, { state?: string; city?: string; zip_code?: string; plan_type?: string }>>({});
+  const [sellerAcceptedMethods, setSellerAcceptedMethods] = useState<Record<string, string[]>>({});
 
   // T1 Envíos (GoVendy Premium) — por vendedor
   type T1Quote = { carrier_name: string; carrier_id: string; service_level: string; cost: number; base_cost: number; markup: number; delivery_days: number; estimated_delivery: string | null; token: string };
@@ -389,8 +390,23 @@ export default function CheckoutPage() {
   const enabledMethods = useMemo(() => {
     const pm = settings.payment_methods || {};
     const list: Array<{ key: PaymentKey; label: string }> = [];
+
+    // Obtener IDs de vendedores actuales en el carrito
+    const currentSids = Array.from(new Set(cartItems.map(ci => {
+      const l = listingsById[ci.listing_id];
+      return l ? getSellerId(l) : null;
+    }).filter(Boolean))) as string[];
+
+    let allSellersAcceptMP = currentSids.length > 0;
+    for (const sid of currentSids) {
+      if (!sellerAcceptedMethods[sid]?.includes('mercadopago')) {
+        allSellersAcceptMP = false;
+        break;
+      }
+    }
+
     // MercadoPago incluye pagos con tarjeta (débito/crédito) y opciones según país/cuenta.
-    if (pm?.mercadopago?.enabled) list.push({ key: 'mercadopago', label: 'Tarjeta (MercadoPago)' });
+    if (pm?.mercadopago?.enabled && allSellersAcceptMP) list.push({ key: 'mercadopago', label: 'Tarjeta (MercadoPago)' });
     if (pm?.bank_transfer?.enabled) list.push({ key: 'bank_transfer', label: 'Transferencia bancaria' });
     if (pm?.bank_deposit?.enabled) list.push({ key: 'bank_deposit', label: 'Depósito bancario' });
     if (pm?.oxxo?.enabled) list.push({ key: 'oxxo', label: 'OXXO' });
@@ -409,7 +425,7 @@ export default function CheckoutPage() {
     list.push({ key: 'direct_contact' as any, label: 'Pago Directo al Vendedor' });
     
     return list;
-  }, [settings]);
+  }, [settings, cartItems, listingsById, sellerAcceptedMethods]);
 
   useEffect(() => {
     let cancelled = false;
@@ -493,6 +509,21 @@ export default function CheckoutPage() {
             sMap[p.id] = { state: p.state, city: p.city, zip_code: p.zip_code, plan_type: p.plan_type };
           });
           if (!cancelled) setSellerProfiles(sMap);
+
+          // Cargar métodos de pago de los vendedores
+          const { data: spMethods } = await supabase
+            .from('seller_payment_methods')
+            .select('seller_id, method_type')
+            .in('seller_id', sIds)
+            .eq('is_active', true);
+          
+          const methodsMap: Record<string, string[]> = {};
+          sIds.forEach(id => methodsMap[id] = []);
+          spMethods?.forEach(m => {
+            if (!methodsMap[m.seller_id]) methodsMap[m.seller_id] = [];
+            methodsMap[m.seller_id].push(m.method_type);
+          });
+          if (!cancelled) setSellerAcceptedMethods(methodsMap);
         }
 
         // Cargar perfil de comprador (para validar ubicación)
