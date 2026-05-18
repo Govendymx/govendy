@@ -27,22 +27,14 @@ export async function POST(request: Request) {
     );
 
     // Verify Admin
-    const { data: adminUser } = await adminClient
+    const { data: adminUser, error: adminErr } = await adminClient
       .from('admin_users')
-      .select('id')
+      .select('user_id')
       .eq('user_id', user.id)
       .single();
 
-    if (!adminUser) {
-       const { data: profile } = await adminClient
-         .from('profiles')
-         .select('is_admin')
-         .eq('id', user.id)
-         .single();
-         
-       if (!profile?.is_admin) {
-         return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
-       }
+    if (adminErr || !adminUser) {
+      return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
     }
 
     const { topupId } = await request.json();

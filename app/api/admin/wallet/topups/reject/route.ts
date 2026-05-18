@@ -27,22 +27,14 @@ export async function POST(request: Request) {
     const admin = supabaseAdmin();
     
     // Verificar si es admin
-    const { data: adminUser } = await admin
+    const { data: adminUser, error: adminErr } = await admin
       .from('admin_users')
-      .select('id')
+      .select('user_id')
       .eq('user_id', user.id)
       .single();
 
-    if (!adminUser) {
-       const { data: profile } = await admin
-         .from('profiles')
-         .select('is_admin')
-         .eq('id', user.id)
-         .single();
-         
-       if (!profile?.is_admin) {
-         return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
-       }
+    if (adminErr || !adminUser) {
+      return NextResponse.json({ error: 'Forbidden: Admin access required' }, { status: 403 });
     }
 
     // 3. Obtener datos
