@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useDragControls } from 'framer-motion';
 import { X, Send, BarChart3, Loader2 } from 'lucide-react';
 
 export default function AdminChatAssistant() {
@@ -12,6 +12,7 @@ export default function AdminChatAssistant() {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const dragControls = useDragControls();
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +49,14 @@ export default function AdminChatAssistant() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <motion.div 
+      drag
+      dragControls={dragControls}
+      dragListener={false}
+      dragMomentum={false}
+      className="fixed bottom-6 right-6 z-50 flex flex-col items-end"
+      style={{ touchAction: "none" }}
+    >
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -58,8 +66,11 @@ export default function AdminChatAssistant() {
             className="mb-4 w-80 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black/10 sm:w-96"
           >
             {/* Header */}
-            <div className="bg-gray-900 p-4 text-white">
-              <div className="flex items-center justify-between">
+            <div 
+              className="bg-gray-900 p-4 text-white cursor-move"
+              onPointerDown={(e) => dragControls.start(e)}
+            >
+              <div className="flex items-center justify-between pointer-events-none">
                 <div className="flex items-center space-x-2">
                   <div className="h-8 w-8 rounded-full bg-white/10 flex items-center justify-center">
                     <BarChart3 className="h-5 w-5" />
@@ -70,8 +81,11 @@ export default function AdminChatAssistant() {
                   </div>
                 </div>
                 <button
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-full p-1 hover:bg-white/20 transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsOpen(false);
+                  }}
+                  className="rounded-full p-1 hover:bg-white/20 transition-colors pointer-events-auto"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -131,17 +145,19 @@ export default function AdminChatAssistant() {
       </AnimatePresence>
 
       {!isOpen && (
-        <button 
+        <motion.button 
+          onPointerDown={(e) => dragControls.start(e)}
           onClick={() => setIsOpen(true)}
-          className="bg-gray-900 text-white p-4 rounded-full shadow-xl hover:scale-105 transition-transform ring-4 ring-gray-900/20 group"
+          className="bg-gray-900 text-white p-4 rounded-full shadow-xl hover:scale-105 transition-transform ring-4 ring-gray-900/20 group cursor-move"
+          title="Arrastrar para mover o clic para abrir"
         >
-          <BarChart3 className="h-6 w-6" />
-          <span className="absolute right-0 top-0 flex h-3 w-3 -mr-1 -mt-1">
+          <BarChart3 className="h-6 w-6 pointer-events-none" />
+          <span className="absolute right-0 top-0 flex h-3 w-3 -mr-1 -mt-1 pointer-events-none">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-white0"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-emerald"></span>
           </span>
-        </button>
+        </motion.button>
       )}
-    </div>
+    </motion.div>
   );
 }
