@@ -799,6 +799,7 @@ export default function AdminDisputeChatPage() {
             </div>
           </div>
         </div>
+        </div>
 
         {/* CONTENEDOR DERECHO: CONTEXTO (INFO VENDEDOR, COMPRADOR, PRODUCTO) */}
         <div className="space-y-6">
