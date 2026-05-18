@@ -53,6 +53,7 @@ const VALID_DECISIONS = [
   'refund_buyer_minus_fees',
   'refund_seller_minus_fees',
   'assign_guide_charged_seller',
+  'assign_guide_charged_buyer',
   'delete_operation',
   'close_favor_seller',
   'close_favor_buyer',
