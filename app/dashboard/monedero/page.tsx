@@ -971,12 +971,16 @@ export default function MonederoPage() {
           const concepto = t.concept || (t.type === 'credit' ? 'Abono' : 'Cargo');
           const abono = t.type === 'credit' ? (Number(t.amount) || 0) : 0;
           const cargo = t.type === 'debit' ? (Number(t.amount) || 0) : 0;
-          return [fecha, concepto, abono ? abono.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) : '', cargo ? cargo.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' }) : ''];
+          
+          const abonoText = abono ? `+ ${abono.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}` : '';
+          const cargoText = cargo ? `- ${cargo.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })}` : '';
+          
+          return [fecha, concepto, abonoText, cargoText];
         });
 
       autoTable(doc, {
         startY: accY + 80,
-        head: [['Fecha', 'Concepto', 'Abono', 'Cargo']],
+        head: [['Fecha', 'Concepto', 'Abono (+)', 'Cargo (-)']],
         body: rows,
         styles: { fontSize: 9 },
         headStyles: { fillColor: [233, 30, 99], textColor: 255 },
