@@ -50,14 +50,14 @@ export async function GET(req: NextRequest) {
         let profiles: any[] = [];
         const { data: profData, error: profError } = await admin
             .from('profiles')
-            .select('id, full_name, nickname, plan_type, reputation_score, rating_good_count, rating_total_count, avatar_url, store_logo_url')
+            .select('id, full_name, nickname, plan_type, reputation_score, rating_good_count, rating_total_count, store_logo_url')
             .in('id', sellerIds);
 
         if (profError) {
             // Fallback without new columns in case they don't exist
             const { data: fallbackData } = await admin
                 .from('profiles')
-                .select('id, full_name, avatar_url')
+                .select('id, full_name, store_logo_url')
                 .in('id', sellerIds);
             profiles = fallbackData || [];
         } else {

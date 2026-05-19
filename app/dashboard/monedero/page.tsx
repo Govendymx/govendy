@@ -8,6 +8,7 @@ import { calculateMercadoPagoFee } from '@/lib/fees';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useImpersonation } from '@/components/ImpersonationProvider';
+import { toast } from 'sonner';
 
 function formatMoney(amount: number) {
   return amount.toLocaleString('es-MX', {
@@ -844,7 +845,7 @@ export default function MonederoPage() {
       }
 
       const key = data?.tracking_key || null;
-      alert(`Transferencia exitosa${key ? `\nClave de rastreo: ${key}` : ''}`);
+      toast.success(`Transferencia exitosa${key ? ` - Clave de rastreo: ${key}` : ''}`);
       setIsTransferModalOpen(false);
       setTransferRecipient('');
       setTransferAmount('');
@@ -853,7 +854,7 @@ export default function MonederoPage() {
       setTransferReference('');
       fetchData(); // Refresh balance
     } catch (err: any) {
-      alert(err.message);
+      toast.error(err.message);
     } finally {
       setTransferLoading(false);
     }
@@ -889,7 +890,7 @@ export default function MonederoPage() {
 
       // Success
       setIsWithdrawModalOpen(false);
-      alert('Solicitud de retiro recibida exitosamente.');
+      toast.success('Solicitud de retiro recibida exitosamente.');
 
       // Refresh data
       fetchData();
@@ -998,7 +999,7 @@ export default function MonederoPage() {
       doc.save(`PocketCash-Estado-${dateSlug}.pdf`);
     } catch (e) {
       console.error(e);
-      alert('No se pudo generar el estado de cuenta.');
+      toast.error('No se pudo generar el estado de cuenta.');
     }
   }
 
