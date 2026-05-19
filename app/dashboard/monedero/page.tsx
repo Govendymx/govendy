@@ -1456,92 +1456,11 @@ export default function MonederoPage() {
               )}
             </div>
 
-            {/* ═══ Canjear Tarjeta de Regalo ═══ */}
+            {/* ═══ Canjear Tarjeta de Regalo ═══
             <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-2xl">🎁</span>
-                <h3 className="text-lg font-bold text-gray-900">Canjear Tarjeta de Regalo</h3>
-              </div>
-              <p className="text-sm text-gray-500 mb-4">Ingresa el código de tu tarjeta para acreditar el saldo.</p>
-
-              {redeemResult ? (
-                <div className={`rounded-xl p-4 border ${redeemResult.ok
-                  ? 'bg-white border-green-200 text-green-800'
-                  : 'bg-red-50 border-red-200 text-red-800'
-                  }`}>
-                  <p className="font-medium text-sm">{redeemResult.ok ? '✅' : '❌'} {redeemResult.message}</p>
-                  <button
-                    onClick={() => { setRedeemResult(null); setRedeemCode(''); setRedeemError(''); }}
-                    className="mt-2 text-sm underline opacity-70 hover:opacity-100"
-                  >
-                    {redeemResult.ok ? 'Canjear otra' : 'Intentar de nuevo'}
-                  </button>
-                </div>
-              ) : (
-                <div className="flex gap-2">
-                  <input
-                    type="text"
-                    value={redeemCode}
-                    onChange={(e) => {
-                      let v = e.target.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
-                      // Auto-format: GP-XXXX-XXXX-XXXX
-                      if (v.length === 2 && !v.includes('-')) v = v + '-';
-                      if (v.length === 7 && v.charAt(6) !== '-') v = v.slice(0, 7) + '-' + v.slice(7);
-                      if (v.length === 12 && v.charAt(11) !== '-') v = v.slice(0, 12) + '-' + v.slice(12);
-                      setRedeemCode(v.slice(0, 17));
-                      setRedeemError('');
-                    }}
-                    placeholder="GP-XXXX-XXXX-XXXX"
-                    maxLength={17}
-                    className="flex-1 rounded-xl border border-gray-300 px-4 py-3 font-mono text-lg tracking-wider text-center focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none uppercase"
-                  />
-                  <button
-                    onClick={async () => {
-                      if (redeemLoading || redeemCode.length < 17) return;
-                      setRedeemLoading(true);
-                      setRedeemError('');
-                      try {
-                        const { data: session } = await supabase.auth.getSession();
-                        const token = session?.session?.access_token;
-                        if (!token) throw new Error('Inicia sesión');
-                        const res = await fetch('/api/gift-cards/redeem', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json', authorization: `Bearer ${token}` },
-                          body: JSON.stringify({ code: redeemCode }),
-                        });
-                        const json = await res.json();
-                        if (res.ok && json.ok) {
-                          setRedeemResult({ ok: true, message: json.message || '¡Saldo acreditado!' });
-                          // Refresh wallet balance
-                          const supa = supabase;
-                          const { data: { user: u } } = await supa.auth.getUser();
-                          if (u) {
-                            const { data: w } = await supa.from('wallets').select('*').eq('user_id', u.id).maybeSingle();
-                            if (w) setWallet(w as any);
-                          }
-                        } else {
-                          setRedeemResult({ ok: false, message: json.error || 'Error al canjear' });
-                        }
-                      } catch (err: any) {
-                        setRedeemResult({ ok: false, message: err.message || 'Error inesperado' });
-                      } finally {
-                        setRedeemLoading(false);
-                      }
-                    }}
-                    disabled={redeemLoading || redeemCode.length < 17}
-                    className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold px-6 py-3 rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
-                  >
-                    {redeemLoading ? (
-                      <span className="flex items-center gap-2">
-                        <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      </span>
-                    ) : 'Canjear'}
-                  </button>
-                </div>
-              )}
-              {redeemError && <p className="text-sm text-red-500 mt-2">{redeemError}</p>}
-              <p className="text-xs text-gray-400 mt-3">¿No tienes uno? <a href="/gift-cards" className="text-orange-500 hover:underline font-medium">Compra una tarjeta de regalo →</a></p>
+              ... code hidden ...
             </div>
+            */}
 
             <div className="mt-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
               <h3 className="font-semibold text-gray-900">Información Importante</h3>
