@@ -244,12 +244,12 @@ export class WalletService {
 
     // 2. Ejecutar transferencia Pseudo-Atómica usando métodos seguros
     try {
-        // A. Descontar al emisor
-        const debitTx = await this.deductFunds(senderId, amount, concept, 'p2p_transfer');
+        // A. Descontar al emisor (Usamos 'manual_adjustment' para evitar error de ENUM p2p_transfer faltante en BD)
+        const debitTx = await this.deductFunds(senderId, amount, concept, 'manual_adjustment');
         
         try {
             // B. Abonar al destinatario
-            await this.addFunds(recipientId, amount, concept, 'p2p_transfer', debitTx.id);
+            await this.addFunds(recipientId, amount, concept, 'manual_adjustment', debitTx.id);
             
             // C. Finalizar con éxito
             const senderWallet = await this.getWallet(senderId);

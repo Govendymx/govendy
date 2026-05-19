@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
       .from('wallet_transactions')
       .select('reference_id, created_at')
       .eq('wallet_id', userId)
-      .eq('reference_type', 'p2p_transfer')
+      .eq('reference_type', 'manual_adjustment')
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
