@@ -198,28 +198,80 @@ export class WalletService {
     }
   }
 
-  /**
-   * Transferencia P2P usando ID de PocketCash (16 dígitos).
-   * Utiliza función RPC segura para atomicidad.
-   */
   static async transferFunds(
     senderId: string,
     recipientCardNumber: string,
     amount: number,
     concept: string = 'Transferencia P2P'
   ): Promise<{ success: boolean; message: string; new_balance?: number }> {
-    const { data, error } = await supabaseAdmin()
-      .rpc('transfer_pocket_funds', {
-        p_sender_id: senderId,
-        p_recipient_card: recipientCardNumber,
-        p_amount: amount,
-        p_concept: concept
-      });
-
-    if (error) throw error;
     
-    // Parse JSON result from RPC
-    return data as { success: boolean; message: string; new_balance?: number };
+    // 1. Convertir la tarjeta de 16 dígitos a prefijo UUID (Ingeniería Inversa)
+    const numericStr = String(recipientCardNumber).replace(/\D/g, '');
+    if (numericStr.length !== 16) {
+       return { success: false, message: 'La tarjeta PocketCash no es válida' };
+    }
+    
+    const base15 = numericStr.substring(0, 15);
+    let hexPrefix;
+    try {
+        hexPrefix = BigInt(base15).toString(16).padStart(12, '0');
+    } catch (e) {
+        return { success: false, message: 'Formato de tarjeta inválido' };
+    }
+    
+    const uuidPrefix = hexPrefix.substring(0, 8) + '-' + hexPrefix.substring(8, 12);
+    const startUuid = uuidPrefix + '-0000-0000-000000000000';
+    const endUuid = uuidPrefix + '-ffff-ffff-ffffffffffff';
+    
+    const admin = supabaseAdmin();
+    const { data: recipientWallet } = await admin
+       .from('wallets')
+       .select('user_id')
+       .gte('user_id', startUuid)
+       .lte('user_id', endUuid)
+       .limit(1)
+       .maybeSingle();
+       
+    if (!recipientWallet) {
+        return { success: false, message: 'No se encontró el destinatario (Tarjeta inválida o inactiva)' };
+    }
+    
+    const recipientId = recipientWallet.user_id;
+
+    if (senderId === recipientId) {
+        return { success: false, message: 'No puedes transferir saldo a ti mismo' };
+    }
+
+    // 2. Ejecutar transferencia Pseudo-Atómica usando métodos seguros
+    try {
+        // A. Descontar al emisor
+        const debitTx = await this.deductFunds(senderId, amount, concept, 'p2p_transfer');
+        
+        try {
+            // B. Abonar al destinatario
+            await this.addFunds(recipientId, amount, concept, 'p2p_transfer', debitTx.id);
+            
+            // C. Finalizar con éxito
+            const senderWallet = await this.getWallet(senderId);
+            return { 
+                success: true, 
+                message: 'Transferencia exitosa',
+                new_balance: senderWallet?.balance || 0 
+            };
+        } catch (addError: any) {
+            // ROLLBACK: Reembolsar si el abono falló
+            await this.addFunds(
+                senderId, 
+                amount, 
+                `Reembolso por fallo en transferencia: ${concept}`, 
+                'refund', 
+                debitTx.id
+            );
+            return { success: false, message: 'Error de conexión. Se devolvió el saldo a tu cuenta.' };
+        }
+    } catch (deductError: any) {
+        return { success: false, message: deductError.message || 'Saldo insuficiente o error al procesar la transferencia' };
+    }
   }
 
 
