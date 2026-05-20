@@ -1451,13 +1451,9 @@ export default function AdminSettingsPage() {
             </section>
 
             <section className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
-              <h2 className="text-lg font-bold text-gray-900">Integración T1 Envíos</h2>
+              <h2 className="text-lg font-bold text-gray-900">Gestor de Paqueterías (T1 Envíos)</h2>
               <p className="mt-1 text-sm text-gray-600">
-                Configura las credenciales de T1 Envíos para cotización automática y generación de guías. Contacta a{' '}
-                <a href="mailto:soporte@t1envios.com" className="text-brand-emerald hover:underline">
-                  soporte@t1envios.com
-                </a>{' '}
-                para obtener acceso a la API.
+                Sube los logos de las paqueterías (DHL, FedEx, etc.) que se mostrarán en la cotización. También puedes configurar la integración automática con T1.
               </p>
 
               <div className="mt-6 space-y-4">
@@ -1568,7 +1564,10 @@ export default function AdminSettingsPage() {
                       </div>
                     </div>
 
-                    <div className="mt-8 border-t border-gray-200 pt-6">
+                  </>
+                ) : null}
+
+                <div className="mt-8 border-t border-gray-200 pt-6">
                       <div className="flex items-center justify-between mb-4">
                         <div>
                           <div className="text-sm font-semibold text-gray-900">Paqueterías</div>
@@ -1633,12 +1632,12 @@ export default function AdminSettingsPage() {
                                       // Usamos window.supabase si está disponible, o el ya importado
                                       const ext = file.name.split('.').pop();
                                       const filePath = `carriers/${carrier.id}-${Date.now()}.${ext}`;
-                                      const { error: uploadErr } = await supabase.storage.from('pocket').upload(filePath, file, {
+                                      const { error: uploadErr } = await supabase.storage.from('upload').upload(filePath, file, {
                                         cacheControl: '3600',
                                         upsert: true
                                       });
                                       if (uploadErr) throw uploadErr;
-                                      const { data: { publicUrl } } = supabase.storage.from('pocket').getPublicUrl(filePath);
+                                      const { data: { publicUrl } } = supabase.storage.from('upload').getPublicUrl(filePath);
                                       setSettings((p) => ({
                                         ...p,
                                         t1_envios_config: {
@@ -1702,8 +1701,7 @@ export default function AdminSettingsPage() {
                         ))}
                       </div>
                     </div>
-                  </>
-                ) : null}
+                    </div>
               </div>
             </section>
 

@@ -106,17 +106,18 @@ export default function AdminEnviosPage() {
       const fileName = `${optionId}-${Date.now()}.${fileExt}`;
       const filePath = `shipping-logos/${fileName}`;
 
-      const { error: uploadErr } = await supabase.storage.from('pocket').upload(filePath, file, {
+      const { error: uploadErr } = await supabase.storage.from('upload').upload(filePath, file, {
         cacheControl: '3600',
-        upsert: false,
+        upsert: true
       });
 
-      if (uploadErr) throw uploadErr;
+      if (uploadErr) {
+        throw uploadErr;
+      }
 
-      // Obtener URL pública
       const {
         data: { publicUrl },
-      } = supabase.storage.from('pocket').getPublicUrl(filePath);
+      } = supabase.storage.from('upload').getPublicUrl(filePath);
 
       // Actualizar la opción con la URL del logo
       const { error: updateErr } = await supabase
