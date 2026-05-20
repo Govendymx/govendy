@@ -20,14 +20,28 @@ export async function GET(req: NextRequest) {
       .order('created_at', { ascending: false })
       .limit(limit);
 
-    if (error) {
-      return NextResponse.json(
-        { ok: false, error: error.message || 'Error cargando ventas' },
-        { status: 500 },
-      );
+    const orders = data ?? [];
+
+    if (orders.length > 0) {
+      const buyerIds = Array.from(new Set(orders.map((o: any) => o.buyer_id).filter(Boolean)));
+      if (buyerIds.length > 0) {
+        const { data: buyersData } = await admin
+          .from('profiles')
+          .select('id, full_name, nickname, zip_code')
+          .in('id', buyerIds);
+
+        const buyersMap: Record<string, any> = {};
+        buyersData?.forEach((b: any) => {
+          buyersMap[b.id] = b;
+        });
+
+        orders.forEach((o: any) => {
+          o.buyer = buyersMap[o.buyer_id] || null;
+        });
+      }
     }
 
-    return NextResponse.json({ ok: true, orders: data ?? [] });
+    return NextResponse.json({ ok: true, orders });
   } catch (e: any) {
     return NextResponse.json(
       { ok: false, error: e?.message || 'Error interno cargando ventas' },

@@ -1589,6 +1589,31 @@ export default function DashboardVentasPage() {
                               )}
                             </div>
 
+                            {!isOrderCompleted && !isDigitalOrder && !isPersonalDelivery && (
+                              <div className="mt-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-150 shadow-xs max-w-md">
+                                <div className="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                  <svg className="w-3.5 h-3.5 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                  </svg>
+                                  Paga y genera tu etiqueta de envío:
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  <Link 
+                                    href="/estafeta/cotizar" 
+                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-red-600 via-orange-500 to-red-500 hover:from-red-700 hover:via-orange-600 hover:to-red-600 transition-all shadow-xs hover:shadow-md transform hover:-translate-y-0.5"
+                                  >
+                                    <span>🏪 Tienda Estafeta</span>
+                                  </Link>
+                                  <Link 
+                                    href="/dashboard/envios" 
+                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-700 hover:via-teal-600 hover:to-emerald-600 transition-all shadow-xs hover:shadow-md transform hover:-translate-y-0.5"
+                                  >
+                                    <span>🚚 Envíos GoVendy</span>
+                                  </Link>
+                                </div>
+                              </div>
+                            )}
+
                             <div className="w-full mt-2 mb-2 flex items-center gap-3">
                               <div className="h-12 w-12 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 bg-gray-100">
                                 {thumbByListingId[listingId] ? (

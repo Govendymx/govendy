@@ -69,10 +69,10 @@ export default function EnviosPage() {
         const orderIds = sales.map((s: any) => s.id);
         const buyerIds = Array.from(new Set(sales.map((s: any) => s.buyer_id).filter(Boolean)));
 
-        // Enriquecer con profiles de compradores (con fallback seguro)
+        // Enriquecer con profiles de compradores (con fallback seguro y columnas correctas)
         const { data: buyersData, error: buyersErr } = await supabase
           .from('profiles')
-          .select('id, full_name, nickname, username, zip_code')
+          .select('id, full_name, nickname, zip_code')
           .in('id', buyerIds);
         
         let finalBuyers: any[] = buyersData || [];
@@ -85,7 +85,7 @@ export default function EnviosPage() {
         finalBuyers.forEach((b: any) => {
           buyerMap[b.id] = {
             ...b,
-            full_name: b.full_name || b.nickname || b.username || `Usuario ${b.id.substring(0,6)}`
+            full_name: b.full_name || b.nickname || `Usuario ${b.id.substring(0,6)}`
           };
         });
 
@@ -143,13 +143,14 @@ export default function EnviosPage() {
               // Ignore
             }
           }
-          if (!destZip && buyerMap[s.buyer_id]?.zip_code) {
-            destZip = buyerMap[s.buyer_id].zip_code;
+          const activeBuyer = s.buyer || buyerMap[s.buyer_id];
+          if (!destZip && activeBuyer?.zip_code) {
+            destZip = activeBuyer.zip_code;
           }
 
           return {
             ...s,
-            buyer: buyerMap[s.buyer_id],
+            buyer: activeBuyer,
             addressName,
             items: sItems,
             destZip,
