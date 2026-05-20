@@ -202,6 +202,7 @@ export default function DashboardVentasPage() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [ventasPage, setVentasPage] = useState(1);
   const [ordersRefreshToken, setOrdersRefreshToken] = useState(0);
+  const [sellerPlan, setSellerPlan] = useState<string>('basic');
 
   const bumpOrdersRefresh = useCallback(() => {
     setOrdersRefreshToken((t) => t + 1);
@@ -219,6 +220,16 @@ export default function DashboardVentasPage() {
 
         // ── IMPERSONATION MODE ──
         if (isImpersonating && targetUserId) {
+          // Obtener plan del vendedor impersonado
+          const { data: prof, error: profErr } = await supabase
+            .from('profiles')
+            .select('plan_type')
+            .eq('id', targetUserId)
+            .single();
+          if (!profErr && prof && !cancelled) {
+            setSellerPlan(prof.plan_type || 'basic');
+          }
+
           // Órdenes como vendedor del usuario impersonado
           const ordersResult = await queryAsUser({
             table: 'orders',
@@ -702,6 +713,22 @@ export default function DashboardVentasPage() {
           }
         };
 
+        // Función para cargar plan del vendedor
+        const loadSellerProfile = async () => {
+          try {
+            const { data: prof, error: profErr } = await supabase
+              .from('profiles')
+              .select('plan_type')
+              .eq('id', user.id)
+              .single();
+            if (!profErr && prof && !cancelled) {
+              setSellerPlan(prof.plan_type || 'basic');
+            }
+          } catch (err) {
+            console.error('[VENTAS] Error al cargar plan del vendedor:', err);
+          }
+        };
+
         // ── EJECUTAR TODO EN PARALELO ──
         await Promise.allSettled([
           loadItemsAndListings(),
@@ -709,6 +736,7 @@ export default function DashboardVentasPage() {
           loadChatUnread(),
           loadRatings(),
           loadDisputes(),
+          loadSellerProfile(),
         ]);
       } catch (e: unknown) {
         console.error(e);
@@ -1600,13 +1628,13 @@ export default function DashboardVentasPage() {
                                 <div className="flex flex-wrap gap-2">
                                   <Link 
                                     href="/estafeta/cotizar" 
-                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-red-600 via-orange-500 to-red-500 hover:from-red-700 hover:via-orange-600 hover:to-red-600 transition-all shadow-xs hover:shadow-md transform hover:-translate-y-0.5"
+                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100/80 border border-red-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
                                   >
                                     <span>🏪 Tienda Estafeta</span>
                                   </Link>
                                   <Link 
                                     href="/dashboard/envios" 
-                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-700 hover:via-teal-600 hover:to-emerald-600 transition-all shadow-xs hover:shadow-md transform hover:-translate-y-0.5"
+                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-emerald-600 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
                                   >
                                     <span>🚚 Envíos GoVendy</span>
                                   </Link>
@@ -1729,8 +1757,8 @@ export default function DashboardVentasPage() {
                                         );
                                       }
                                       return (
-                                        <div className="rounded-lg bg-amber-50 p-2 text-center text-[11px] font-bold text-amber-700 animate-pulse border border-amber-200">
-                                          2- Pago Acreditado, Generando Guía puede demorar desde unos minutos hasta 24 horas
+                                        <div className="rounded-lg bg-amber-50 p-2 text-center text-[11px] font-bold text-amber-700 border border-amber-200">
+                                          2- Pago Acreditado. Pendiente de generar etiqueta de envío arriba.
                                         </div>
                                       );
                                     }
@@ -1903,7 +1931,9 @@ export default function DashboardVentasPage() {
                           <div className="shrink-0 w-full sm:w-[260px] rounded-xl bg-gray-50 px-3 py-2.5 text-xs ring-1 ring-black/5">
                             <div className="flex justify-between items-center mb-2 border-b border-gray-200 pb-2">
                               <span className="text-[10px] font-bold text-gray-800">Total Venta (Cliente)</span>
-                              <span className="font-extrabold text-gray-900">{formatMoney(o?.total)}</span>
+                              <span className="font-extrabold text-gray-900">
+                                {formatMoney(o?.payment_method_type === 'direct' ? (o?.subtotal || (Number(o?.total || 0) - Number(o?.shipping_fee || 0))) : o?.total)}
+                              </span>
                             </div>
 
                             {/* Desglose detallado de la venta */}
@@ -1914,8 +1944,8 @@ export default function DashboardVentasPage() {
                                 <span>{formatMoney(o?.subtotal || (Number(o?.total || 0) - Number(o?.shipping_fee || 0)))}</span>
                               </div>
 
-                              {/* Envío — ocultar para productos digitales */}
-                              {!isDigitalOrder && !(isPickupOrder) && (
+                              {/* Envío — ocultar para productos digitales o de pago directo por transferencia */}
+                              {!isDigitalOrder && !isPickupOrder && o?.payment_method_type !== 'direct' && (
                                 <div className="flex justify-between text-[10px] text-gray-600">
                                   <span className="flex items-center gap-1">
                                     {isT1Order
@@ -2023,7 +2053,7 @@ export default function DashboardVentasPage() {
                             {/* Acciones de Pago Directo */}
                             {o?.payment_method_type === 'direct' && (
                               <div className="my-3 space-y-2 rounded-xl border border-blue-200 bg-blue-50 p-3">
-                                <div className="text-[11px] font-bold text-blue-900">Pago Directo (P2P)</div>
+                                <div className="text-[11px] font-bold text-blue-900">Pago Directo por Transferencia</div>
                                 {o?.status === 'awaiting_voucher' && !o?.buyer_payment_voucher_url && (
                                   <div className="text-[10px] text-blue-800">
                                     Esperando que el comprador suba su comprobante de pago.
@@ -2128,11 +2158,11 @@ export default function DashboardVentasPage() {
                             <div className="space-y-2">
                               {!isDigitalOrder && !(o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup') ? (
                                 <div className="space-y-2 relative">
-                                  {/* Estado: Generando Guía */}
+                                  {/* Estado: Pendiente de Generar Guía */}
                                   {!labelUrl && o?.shipping_option_id && !o?.shipping_label_url && (
                                     <div className="rounded-lg border border-amber-200 bg-amber-50 px-2 py-1.5 text-center">
-                                      <div className="text-[10px] font-bold text-amber-900 animate-pulse">Generando guía...</div>
-                                      <div className="text-[10px] text-amber-700">Tu guía se está procesando.</div>
+                                      <div className="text-[10px] font-bold text-amber-950">Pendiente de generar guía</div>
+                                      <div className="text-[10px] text-amber-700">Selecciona una opción arriba para obtener tu etiqueta.</div>
                                     </div>
                                   )}
 
@@ -2246,7 +2276,9 @@ export default function DashboardVentasPage() {
                                         ) : (
                                           <>
                                             <option value="" disabled>Paquetería</option>
-                                            <option value="Entrega Personal">Entrega Personal</option>
+                                            {sellerPlan === 'platinum' && (
+                                              <option value="Entrega Personal">Entrega Personal</option>
+                                            )}
                                             <option value="Estafeta">Estafeta</option>
                                             <option value="Fedex">Fedex</option>
                                             <option value="DHL">DHL</option>
