@@ -68,6 +68,7 @@ export async function getT1ConfigFromDB(): Promise<T1Config> {
                 markup_basic: Number(raw.markup_basic ?? defaultConfig.markup_basic),
                 markup_pro: Number(raw.markup_pro ?? defaultConfig.markup_pro),
                 markup_platinum: Number(raw.markup_platinum ?? defaultConfig.markup_platinum),
+                carriers_config: raw.carriers_config || defaultConfig.carriers_config,
             };
             configCache = { config, loadedAt: Date.now() };
             return config;

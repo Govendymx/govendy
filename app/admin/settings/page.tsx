@@ -111,12 +111,19 @@ type PaymentMethodsConfig = {
   oxxo: { enabled: boolean; instructions?: string };
 };
 
+type T1CarrierConfig = {
+  id: string;
+  active: boolean;
+  logo_url?: string;
+};
+
 type T1EnviosConfig = {
   enabled: boolean;
   api_key: string;
   api_secret: string;
   endpoint_url: string;
   test_mode: boolean;
+  carriers_config?: Record<string, T1CarrierConfig>;
 };
 
 type AdminMailbox = {
@@ -266,6 +273,7 @@ export default function AdminSettingsPage() {
       api_secret: '',
       endpoint_url: '',
       test_mode: true,
+      carriers_config: {},
     },
     admin_mailboxes: [defaultMailbox(), defaultMailbox(), defaultMailbox()],
     estafeta_config: {
@@ -393,6 +401,7 @@ export default function AdminSettingsPage() {
               api_secret: '',
               endpoint_url: '',
               test_mode: true,
+              carriers_config: {},
             },
             // Legacy JSON config - keeping it for compatibility if needed, but we use columns now
             cashback_config: ((settingsRow as any).cashback_config as CashbackConfig) ?? {
@@ -1556,6 +1565,106 @@ export default function AdminSettingsPage() {
                           <li>Generar guías de envío automáticamente</li>
                           <li>Aplicar el margen configurado sobre los costos de T1</li>
                         </ul>
+                      </div>
+                    </div>
+
+                    <div className="mt-8 border-t border-gray-200 pt-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <div className="text-sm font-semibold text-gray-900">Paqueterías</div>
+                          <div className="mt-1 text-xs text-gray-500">Activa o desactiva paqueterías y sube sus logos.</div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const id = window.prompt('ID de la paquetería (ej. dhl, fedex, paquetexpress):');
+                            if (id && id.trim()) {
+                              const cleanId = id.trim().toLowerCase().replace(/\s+/g, '_');
+                              setSettings((p) => ({
+                                ...p,
+                                t1_envios_config: {
+                                  ...p.t1_envios_config!,
+                                  carriers_config: {
+                                    ...(p.t1_envios_config?.carriers_config || {}),
+                                    [cleanId]: { id: cleanId, active: true, logo_url: '' },
+                                  },
+                                },
+                              }));
+                            }
+                          }}
+                          className="rounded-lg bg-brand-emerald px-3 py-1.5 text-xs font-semibold text-white shadow-sm hover:opacity-90"
+                        >
+                          + Añadir paquetería
+                        </button>
+                      </div>
+
+                      <div className="space-y-3">
+                        {Object.values(settings.t1_envios_config?.carriers_config || {}).map((carrier) => (
+                          <div key={carrier.id} className="flex flex-wrap items-center gap-4 rounded-xl border border-gray-200 p-4">
+                            <div className="flex-1 min-w-[200px]">
+                              <div className="text-sm font-bold capitalize">{carrier.id.replace(/_/g, ' ')}</div>
+                              <input
+                                type="text"
+                                placeholder="URL del logo (ej. https://.../logo.png)"
+                                value={carrier.logo_url || ''}
+                                onChange={(e) => {
+                                  setSettings((p) => ({
+                                    ...p,
+                                    t1_envios_config: {
+                                      ...p.t1_envios_config!,
+                                      carriers_config: {
+                                        ...p.t1_envios_config!.carriers_config,
+                                        [carrier.id]: { ...carrier, logo_url: e.target.value },
+                                      },
+                                    },
+                                  }));
+                                }}
+                                className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-xs outline-none focus:ring-1 focus:ring-brand-emerald"
+                              />
+                            </div>
+                            <label className="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                checked={carrier.active}
+                                onChange={(e) => {
+                                  setSettings((p) => ({
+                                    ...p,
+                                    t1_envios_config: {
+                                      ...p.t1_envios_config!,
+                                      carriers_config: {
+                                        ...p.t1_envios_config!.carriers_config,
+                                        [carrier.id]: { ...carrier, active: e.target.checked },
+                                      },
+                                    },
+                                  }));
+                                }}
+                                className="rounded text-brand-emerald focus:ring-brand-emerald"
+                              />
+                              <span className="text-xs text-gray-700">Activo</span>
+                            </label>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (window.confirm(`¿Eliminar la paquetería ${carrier.id}?`)) {
+                                  setSettings((p) => {
+                                    const newConfig = { ...p.t1_envios_config!.carriers_config };
+                                    delete newConfig[carrier.id];
+                                    return {
+                                      ...p,
+                                      t1_envios_config: {
+                                        ...p.t1_envios_config!,
+                                        carriers_config: newConfig,
+                                      },
+                                    };
+                                  });
+                                }
+                              }}
+                              className="rounded-lg border border-red-200 bg-red-50 px-2 py-1 text-xs font-semibold text-red-600 hover:bg-red-100"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </>

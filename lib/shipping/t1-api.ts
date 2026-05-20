@@ -203,9 +203,17 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
                 'JTEXT': 'JT Express',
             };
 
+            const carrierId = (result.clave || 'unknown').toLowerCase().replace(/\s+/g, '_');
+            const carrierConfig = config.carriers_config?.[carrierId];
+            
+            // Si la paquetería está explícitamente desactivada en la config, no la mostramos
+            if (carrierConfig && carrierConfig.active === false) {
+                continue;
+            }
+
             quotes.push({
                 carrier_name: carrierNames[carrierKey] || result.clave,
-                carrier_id: (result.clave || 'unknown').toLowerCase().replace(/\s+/g, '_'),
+                carrier_id: carrierId,
                 service_level: service.tipo_servicio || service.servicio || 'Estándar',
                 cost: totalCost,
                 base_cost: baseCost,
@@ -213,6 +221,7 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
                 delivery_days: service.dias_entrega || 0,
                 estimated_delivery: service.fecha_mensajeria_entrega || null,
                 token: service.token,
+                logo_url: carrierConfig?.logo_url,
             });
         }
     }

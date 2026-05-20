@@ -23,6 +23,12 @@ export interface T1AuthResponse {
 
 // ─── Config (from DB app_settings.t1_envios_config) ─────
 
+export interface T1CarrierConfig {
+    id: string; // e.g., "dhl", "fedex"
+    active: boolean;
+    logo_url?: string;
+}
+
 export interface T1Config {
     enabled: boolean;
     api_url: string;       // e.g. https://apiv2.t1envios.com
@@ -35,6 +41,7 @@ export interface T1Config {
     markup_basic: number;     // e.g. 60
     markup_pro: number;       // e.g. 50
     markup_platinum: number;  // e.g. 40
+    carriers_config?: Record<string, T1CarrierConfig>;
 }
 
 export const DEFAULT_T1_CONFIG: T1Config = {
@@ -48,6 +55,7 @@ export const DEFAULT_T1_CONFIG: T1Config = {
     markup_basic: 60,
     markup_pro: 50,
     markup_platinum: 40,
+    carriers_config: {},
 };
 
 // ─── Quote ──────────────────────────────────────────────
@@ -118,6 +126,7 @@ export interface T1UnifiedQuote {
     delivery_days: number;
     estimated_delivery: string | null;
     token: string;          // Token for guide generation
+    logo_url?: string;      // Optional logo url from config
 }
 
 // ─── Label ──────────────────────────────────────────────
