@@ -1603,24 +1603,59 @@ export default function AdminSettingsPage() {
                           <div key={carrier.id} className="flex flex-wrap items-center gap-4 rounded-xl border border-gray-200 p-4">
                             <div className="flex-1 min-w-[200px]">
                               <div className="text-sm font-bold capitalize">{carrier.id.replace(/_/g, ' ')}</div>
-                              <input
-                                type="text"
-                                placeholder="URL del logo (ej. https://.../logo.png)"
-                                value={carrier.logo_url || ''}
-                                onChange={(e) => {
-                                  setSettings((p) => ({
-                                    ...p,
-                                    t1_envios_config: {
-                                      ...p.t1_envios_config!,
-                                      carriers_config: {
-                                        ...p.t1_envios_config!.carriers_config,
-                                        [carrier.id]: { ...carrier, logo_url: e.target.value },
+                              <div className="mt-2 flex items-center gap-2">
+                                <input
+                                  type="text"
+                                  placeholder="URL del logo (ej. https://.../logo.png)"
+                                  value={carrier.logo_url || ''}
+                                  onChange={(e) => {
+                                    setSettings((p) => ({
+                                      ...p,
+                                      t1_envios_config: {
+                                        ...p.t1_envios_config!,
+                                        carriers_config: {
+                                          ...p.t1_envios_config!.carriers_config,
+                                          [carrier.id]: { ...carrier, logo_url: e.target.value },
+                                        },
                                       },
-                                    },
-                                  }));
-                                }}
-                                className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-1.5 text-xs outline-none focus:ring-1 focus:ring-brand-emerald"
-                              />
+                                    }));
+                                  }}
+                                  className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-xs outline-none focus:ring-1 focus:ring-brand-emerald"
+                                />
+                                <span className="text-xs text-gray-500">o</span>
+                                <input
+                                  type="file"
+                                  accept="image/*"
+                                  onChange={async (e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+                                    try {
+                                      // Usamos window.supabase si está disponible, o el ya importado
+                                      const ext = file.name.split('.').pop();
+                                      const filePath = `carriers/${carrier.id}-${Date.now()}.${ext}`;
+                                      const { error: uploadErr } = await supabase.storage.from('pocket').upload(filePath, file, {
+                                        cacheControl: '3600',
+                                        upsert: true
+                                      });
+                                      if (uploadErr) throw uploadErr;
+                                      const { data: { publicUrl } } = supabase.storage.from('pocket').getPublicUrl(filePath);
+                                      setSettings((p) => ({
+                                        ...p,
+                                        t1_envios_config: {
+                                          ...p.t1_envios_config!,
+                                          carriers_config: {
+                                            ...p.t1_envios_config!.carriers_config,
+                                            [carrier.id]: { ...carrier, logo_url: publicUrl },
+                                          },
+                                        },
+                                      }));
+                                    } catch (err: any) {
+                                      alert('Error al subir imagen: ' + err.message);
+                                    }
+                                  }}
+                                  className="w-full text-xs text-gray-600 file:mr-2 file:cursor-pointer file:rounded-lg file:border-0 file:bg-brand-emerald file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-brand-emerald/90"
+                                />
+                              </div>
                             </div>
                             <label className="flex items-center gap-2">
                               <input
