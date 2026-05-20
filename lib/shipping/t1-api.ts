@@ -176,11 +176,6 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
 
     if (!response?.success || !Array.isArray(response.result)) return [];
 
-    // Determine markup based on seller plan
-    const markup = input.seller_plan === 'platinum' ? config.markup_platinum
-        : input.seller_plan === 'pro' ? config.markup_pro
-            : config.markup_basic;
-
     const quotes: T1UnifiedQuote[] = [];
 
     for (const result of response.result) {

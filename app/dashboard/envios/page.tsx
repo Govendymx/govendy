@@ -312,16 +312,16 @@ export default function EnviosPage() {
                     )}
 
                     <div className="space-y-3">
-                      {quoteData?.quotes?.map((q, i) => (
+                      {quoteData?.quotes?.map((q: any, i: number) => (
                         <div key={i} className="bg-white border border-gray-200 rounded-xl p-4 flex justify-between items-center hover:border-brand-emerald transition-colors cursor-pointer shadow-sm group">
                           <div>
                             <div className="font-bold text-gray-900 group-hover:text-brand-emerald transition-colors">
-                              {q.carrier} <span className="text-xs font-normal text-gray-500 ml-1">{q.service}</span>
+                              {q.carrier_name} <span className="text-xs font-normal text-gray-500 ml-1">{q.service_level}</span>
                             </div>
-                            <div className="text-xs text-gray-500 mt-0.5">Entrega est. {q.estimated_delivery_days} días</div>
+                            <div className="text-xs text-gray-500 mt-0.5">Entrega est. {q.delivery_days} días</div>
                           </div>
                           <div className="text-right">
-                            <div className="text-lg font-black text-gray-900">{formatMoney(q.total_price)}</div>
+                            <div className="text-lg font-black text-gray-900">{formatMoney(q.cost)}</div>
                             <button className="text-[10px] font-bold text-brand-emerald uppercase tracking-wider mt-1 hover:underline">Seleccionar</button>
                           </div>
                         </div>
