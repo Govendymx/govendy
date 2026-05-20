@@ -315,8 +315,12 @@ function OperationViewContent() {
                   <span className="text-sm text-gray-600">Método de Envío:</span>
                   {(() => {
                     const sm = String((order as any).shipping_method || '').trim().toLowerCase();
+                    const tracking = String(order.tracking_number || '').trim();
+                    const labelUrl = String(order.shipping_label_url || '').trim();
+                    const isSellerManagedUploaded = sm === 'seller_managed' || tracking === 'VER_GUIA_PDF' || labelUrl.includes('/delivery-proofs/');
+
                     const isPickup = sm === 'personal_delivery' || order.shipping_option_id === 'pickup' || order.shipping_carrier === 'pickup';
-                    const isSellerManaged = !isPickup && (sm === 'seller_managed' || (!sm && !order.shipping_option_id && Boolean(order.shipping_carrier) && String(order.shipping_carrier).toLowerCase() !== 'gopocket'));
+                    const isSellerManaged = !isPickup && (isSellerManagedUploaded || (!sm && !order.shipping_option_id && Boolean(order.shipping_carrier) && String(order.shipping_carrier).toLowerCase() !== 'gopocket'));
                     const isGoVendy = !isPickup && !isSellerManaged && (sm.startsWith('gopocket') || sm === 't1' || String(order.shipping_carrier).toLowerCase() === 'gopocket' || Boolean(order.shipping_option_id) || Boolean(order.shipping_label_url));
                     if (isPickup) {
                       return (

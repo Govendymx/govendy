@@ -8,6 +8,8 @@ export interface ShippingBadgeProps {
     shippingBySeller?: boolean | null;
     shippingFee?: number | null;
     shippingMethod?: string | null;
+    shippingLabelUrl?: string | null;
+    trackingNumber?: string | null;
     isDigital?: boolean;
     isGoVendyFree?: boolean;
     /** Show Subasta or Venta Directa chip */
@@ -25,6 +27,8 @@ function ShippingTypeChip({
     shippingBySeller,
     shippingFee,
     shippingMethod,
+    shippingLabelUrl,
+    trackingNumber,
     isDigital,
     isGoVendyFree,
 }: ShippingBadgeProps) {
@@ -32,7 +36,12 @@ function ShippingTypeChip({
     const optId = String(shippingOptionId || '').toLowerCase().trim();
     const carrier = String(shippingCarrier || '').trim();
     const carrierLower = carrier.toLowerCase();
-    const bySeller = Boolean(shippingBySeller) || method === 'seller_managed';
+    const tracking = String(trackingNumber || '').trim();
+    const labelUrl = String(shippingLabelUrl || '').trim();
+    
+    // Auto-detect if seller uploaded their own guide PDF or marked as own shipping
+    const isSellerManagedUploaded = method === 'seller_managed' || tracking === 'VER_GUIA_PDF' || labelUrl.includes('/delivery-proofs/');
+    const bySeller = Boolean(shippingBySeller) || isSellerManagedUploaded;
     const fee = Number(shippingFee || 0);
     const isPickup = optId === 'pickup' || carrierLower === 'pickup';
 

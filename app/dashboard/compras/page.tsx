@@ -2030,10 +2030,15 @@ export default function DashboardComprasPage() {
                                   const optId = String(o?.shipping_option_id || '').trim().toLowerCase();
                                   const orderProductType = String((o as any)?.product_type || '').toLowerCase();
                                   const snapProductType = String((o as any)?.shipping_snapshot?.product_type || '').toLowerCase();
+                                  const trackingVal = String(o?.tracking_number || '').trim();
+                                  const labelUrlVal = String(o?.shipping_label_url || '').trim();
+
+                                  const isSellerManagedUploaded = sm === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
                                   const isDigital = isDigitalOrder || sm === 'digital' || optId === 'digital' || carrierVal.toLowerCase() === 'digital' || orderProductType === 'digital' || snapProductType === 'digital';
                                   const isPersonalDeliveryChip = optId === 'pickup' || sm === 'personal_delivery' || carrierVal.toLowerCase() === 'pickup';
                                   const isT1 = sm === 't1';
-                                  const isGoVendy = !isDigital && (sm === 'gopocket' || sm === 't1' || (!sm && optId !== 'pickup' && !Boolean((o as any)?.shipping_by_seller)));
+                                  const isGoVendy = !isDigital && !isSellerManagedUploaded && (sm === 'gopocket' || sm === 't1' || (!sm && optId !== 'pickup' && !Boolean((o as any)?.shipping_by_seller)));
+                                  const isSellerManaged = isSellerManagedUploaded || (sm === 'seller_managed') || (!isDigital && !isPersonalDeliveryChip && !isGoVendy);
 
                                   return (
                                     <>
@@ -2058,9 +2063,14 @@ export default function DashboardComprasPage() {
                                             {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍOS GOVENDY'}
                                           </div>
                                         )
-                                      ) : (sm === 'seller_managed' || o?.self_ship_evidence_url) ? (
+                                      ) : (isSellerManaged && (o?.delivery_proof_url || labelUrlVal || o?.self_ship_evidence_url)) ? (
                                         <div className="inline-flex items-center gap-2 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-bold text-green-800 ring-1 ring-green-600/20 shadow-sm w-fit">
                                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+                                          {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
+                                        </div>
+                                      ) : isSellerManaged ? (
+                                        <div className="inline-flex items-center gap-2 rounded-lg bg-amber-100 px-3 py-1.5 text-xs font-bold text-amber-900 ring-1 ring-amber-600/30 shadow-sm w-fit">
+                                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-3.19" /><line x1="15" y1="9" x2="15.01" y2="9" /><line x1="19" y1="9" x2="19.01" y2="9" /><line x1="23" y1="9" x2="23.01" y2="9" /><circle cx="7" cy="18" r="2" /><circle cx="17" cy="18" r="2" /></svg>
                                           {(Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}
                                         </div>
                                       ) : (

@@ -144,6 +144,9 @@ export function LogisticaRow({
                                 shippingCarrier={o?.shipping_carrier}
                                 shippingBySeller={o?.shipping_by_seller}
                                 shippingFee={fee}
+                                shippingMethod={o?.shipping_method}
+                                shippingLabelUrl={o?.shipping_label_url}
+                                trackingNumber={o?.tracking_number}
                                 isDigital={isDigitalProduct}
                                 isGoVendyFree={hasGoVendyFree}
                                 isAuction={isAuction}
@@ -226,8 +229,11 @@ export function LogisticaRow({
                                     <div className="text-[10px] font-bold uppercase text-gray-400 mb-1">Envío</div>
                                     {(() => {
                                         const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+                                        const trackingVal = String(o?.tracking_number || '').trim();
+                                        const labelUrlVal = String(o?.shipping_label_url || '').trim();
+                                        const isSellerManagedUploaded = smVal === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
                                         const isGoVendyCarrier = ['gopocket', 'estafeta', 'fedex', 'tuenvio', 'dhl', 'ups'].includes(carrierVal);
-                                        const isSellerRow = smVal === 'seller_managed' || Boolean(o?.shipping_by_seller) || (carrierVal && carrierVal !== 'pickup' && !o?.shipping_option_id && !isGoVendyCarrier);
+                                        const isSellerRow = isSellerManagedUploaded || Boolean(o?.shipping_by_seller) || (carrierVal && carrierVal !== 'pickup' && !o?.shipping_option_id && !isGoVendyCarrier);
                                         const isFreeRow = fee === 0 && subsidy > 0;
                                         if (isDigitalProduct) {
                                             return (
@@ -416,11 +422,17 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
     const isSellerManagedDirect = orderShippingBySeller === true;
     const isGoVendyDirect = orderShippingBySeller === false;
     const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+    const trackingVal = String(o?.tracking_number || '').trim();
+    const labelUrlVal = String(o?.shipping_label_url || '').trim();
+    const isSellerManagedUploaded = smVal === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
     const isPickup2 = smVal === 'personal_delivery' || o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup';
     let isSellerManaged = false;
     let isGoVendyOrder = false;
 
-    if (smVal) {
+    if (isSellerManagedUploaded) {
+        isSellerManaged = true;
+        isGoVendyOrder = false;
+    } else if (smVal) {
         isSellerManaged = smVal === 'seller_managed';
         isGoVendyOrder = !isPickup2 && !isSellerManaged && (smVal.startsWith('gopocket') || smVal === 't1');
     } else {
@@ -564,8 +576,12 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
             <div className="space-y-2">
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
                     {(() => {
+                        const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+                        const trackingVal = String(o?.tracking_number || '').trim();
+                        const labelUrlVal = String(o?.shipping_label_url || '').trim();
+                        const isSellerManagedUploaded = smVal === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
                         const isGoVendyCarrier = String(o?.shipping_carrier || '').toLowerCase() === 'gopocket' || String(o?.shipping_method || '').toLowerCase().startsWith('gopocket');
-                        if (isGoVendyCarrier) return 'ENVÍOS GOVENDY';
+                        if (isGoVendyCarrier && !isSellerManagedUploaded) return 'ENVÍOS GOVENDY';
                         return (Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR';
                     })()}
                 </div>
@@ -584,17 +600,31 @@ function GuiaPdfContent({ o, labelUrl, hasLabel, isDownloaded, fmt }: any) {
 }
 
 function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploading, uploadingOrderId, uploadLabel, isDigitalProduct, isPickupRow, itemsByOrder, fmt }: any) {
+    const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+    const trackingVal = String(o?.tracking_number || '').trim();
+    const labelUrlVal = String(o?.shipping_label_url || '').trim();
+    const isSellerManagedUploaded = smVal === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
+
     const hasPlatformLabel = Boolean(String(o?.shipping_label_url || '').trim());
     const subsidy3 = Number((o as any)?.shipping_subsidy || 0);
     const orderItemsCfg2 = itemsByOrder[oid] || [];
     const anySellerManagedCfg2 = orderItemsCfg2.some((it: any) => it?.shipping_by_seller === true);
     const anyGoVendyCfg2 = orderItemsCfg2.some((it: any) => it?.shipping_by_seller === false);
     const isGoVendyConfigured2 = anyGoVendyCfg2 && !anySellerManagedCfg2;
-    const isGoVendyOrder2 = (!isPickupRow) && (
-        (o?.shipping_option_id && o?.shipping_option_id !== 'pickup') ||
-        hasPlatformLabel || subsidy3 > 0 || isGoVendyConfigured2
-    );
-    const isSellerManaged2 = !isPickupRow && !isGoVendyOrder2;
+    
+    let isGoVendyOrder2 = false;
+    let isSellerManaged2 = false;
+
+    if (isSellerManagedUploaded) {
+        isSellerManaged2 = true;
+        isGoVendyOrder2 = false;
+    } else {
+        isGoVendyOrder2 = (!isPickupRow) && (
+            (o?.shipping_option_id && o?.shipping_option_id !== 'pickup') ||
+            hasPlatformLabel || subsidy3 > 0 || isGoVendyConfigured2
+        );
+        isSellerManaged2 = !isPickupRow && !isGoVendyOrder2;
+    }
 
     if (isDigitalProduct) {
         return (
@@ -620,8 +650,12 @@ function UploadContent({ o, oid, fileInputId, labelStatus, isDownloaded, isUploa
             <div className="space-y-2">
                 <div className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-700 ring-1 ring-inset ring-amber-600/20">
                     {(() => {
+                        const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+                        const trackingVal = String(o?.tracking_number || '').trim();
+                        const labelUrlVal = String(o?.shipping_label_url || '').trim();
+                        const isSellerManagedUploaded = smVal === 'seller_managed' || trackingVal === 'VER_GUIA_PDF' || labelUrlVal.includes('/delivery-proofs/');
                         const isGoVendyCarrier = String(o?.shipping_carrier || '').toLowerCase() === 'gopocket' || String(o?.shipping_method || '').toLowerCase().startsWith('gopocket');
-                        if (isGoVendyCarrier) return 'ENVÍOS GOVENDY';
+                        if (isGoVendyCarrier && !isSellerManagedUploaded) return 'ENVÍOS GOVENDY';
                         return (Number(o?.shipping_fee || 0) === 0) ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR';
                     })()}
                 </div>
