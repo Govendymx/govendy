@@ -817,7 +817,6 @@ export default function AdminSettingsPage() {
                   onChange={(e) => setAdminPasswordInput(e.target.value)}
                   className="mt-1 w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none focus:border-transparent focus:ring-2 focus:ring-brand-emerald"
                   placeholder="Ingresa tu contraseña para confirmar"
-                  required
                 />
                 <div className="mt-1 text-xs text-gray-500">Se requiere tu contraseña por seguridad para agregar o quitar administradores.</div>
               </div>
@@ -1631,7 +1630,7 @@ export default function AdminSettingsPage() {
                                     <span className="text-xs text-gray-500">o</span>
                                     <input
                                       type="file"
-                                      accept="image/*"
+                                      accept="image/*,.svg"
                                       onChange={async (e) => {
                                         const file = e.target.files?.[0];
                                         if (!file) return;

@@ -44,6 +44,9 @@ function mimeFromMagic(buf: Buffer): string | null {
 function isImage(file: File, buf: Buffer): boolean {
   const t = (file.type || '').toLowerCase();
   if (t.startsWith('image/')) return true;
+  if (t === 'text/xml' || t === 'application/xml' || t === 'image/svg+xml') return true;
+  const ext = (file.name || '').split('.').pop()?.toLowerCase();
+  if (ext === 'svg') return true;
   if (t === '' || t === 'application/octet-stream') return !!(mimeFromFilename(file.name) || mimeFromMagic(buf));
   return false;
 }
@@ -56,7 +59,11 @@ async function uploadToSupabaseAdmin(file: File, folder: string, bucket: string)
   }
   const buf  = Buffer.from(await file.arrayBuffer());
   const path = `${sanitize(folder)}/${Date.now()}-${Math.random().toString(16).slice(2)}-${sanitize(file.name || 'image')}`;
-  const contentType = file.type || mimeFromFilename(file.name) || mimeFromMagic(buf) || 'application/octet-stream';
+  let contentType = file.type || mimeFromFilename(file.name) || mimeFromMagic(buf) || 'application/octet-stream';
+  const ext = (file.name || '').split('.').pop()?.toLowerCase();
+  if (ext === 'svg' || contentType === 'text/xml' || contentType === 'application/xml') {
+    contentType = 'image/svg+xml';
+  }
   const up   = await admin.storage.from(bucket).upload(path, buf, { contentType, upsert: false });
   if (up.error) throw up.error;
   const pub = admin.storage.from(bucket).getPublicUrl(path);

@@ -707,7 +707,7 @@ export default function AdminBannersPage() {
                       <span>{isUploading ? 'Subiendo...' : '📂 Subir imagen desde mi equipo'}</span>
                       <input
                         type="file"
-                        accept="image/*"
+                        accept="image/*,.svg"
                         onChange={handleFileUpload}
                         disabled={isUploading}
                         className="hidden"

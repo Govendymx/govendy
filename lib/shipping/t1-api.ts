@@ -204,7 +204,15 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
             };
 
             const carrierId = (result.clave || 'unknown').toLowerCase().replace(/\s+/g, '_');
-            const carrierConfig = config.carriers_config?.[carrierId];
+            const idMapping: Record<string, string> = {
+                'dhl': 'dhl_express',
+                '99min': '99_minutos',
+                'paquetexpress': 'paquete_express',
+                'express': 'paquete_express',
+                'ampm': 'am_pm'
+            };
+            const mappedCarrierId = idMapping[carrierId] || carrierId;
+            const carrierConfig = config.carriers_config?.[mappedCarrierId];
             
             // Si la paquetería está explícitamente desactivada en la config, no la mostramos
             if (carrierConfig && carrierConfig.active === false) {
@@ -213,7 +221,7 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
 
             quotes.push({
                 carrier_name: carrierNames[carrierKey] || result.clave,
-                carrier_id: carrierId,
+                carrier_id: mappedCarrierId,
                 service_level: service.tipo_servicio || service.servicio || 'Estándar',
                 cost: totalCost,
                 base_cost: baseCost,

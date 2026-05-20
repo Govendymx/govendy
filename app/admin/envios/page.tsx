@@ -102,13 +102,15 @@ export default function AdminEnviosPage() {
       }
 
       // Subir a Supabase Storage
-      const fileExt = file.name.split('.').pop();
+      const fileExt = file.name.split('.').pop()?.toLowerCase();
       const fileName = `${optionId}-${Date.now()}.${fileExt}`;
       const filePath = `shipping-logos/${fileName}`;
+      const contentType = fileExt === 'svg' ? 'image/svg+xml' : undefined;
 
       const { error: uploadErr } = await supabase.storage.from('upload').upload(filePath, file, {
         cacheControl: '3600',
-        upsert: true
+        upsert: true,
+        contentType: contentType
       });
 
       if (uploadErr) {
