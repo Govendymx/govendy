@@ -294,7 +294,6 @@ export default function DashboardPerfilPage() {
     { key: 'phone' as const, label: 'Teléfono' },
     { key: 'address_street' as const, label: 'Calle' },
     { key: 'ext_number' as const, label: 'No. exterior' },
-    { key: 'int_number' as const, label: 'No. interior' },
     { key: 'neighborhood' as const, label: 'Colonia' },
     { key: 'zip_code' as const, label: 'CP' },
     { key: 'state' as const, label: 'Estado' },
