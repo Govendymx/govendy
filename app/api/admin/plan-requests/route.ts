@@ -37,21 +37,34 @@ export async function GET(req: NextRequest) {
     if (!guard.ok) return NextResponse.json({ error: guard.error }, { status: guard.status });
     const { admin } = guard;
 
-    const { data: requests, error } = await admin
+    const { data: rawRequests, error } = await admin
       .from('plan_requests')
-      .select(`
-        *,
-        user:user_id (
-          id,
-          email,
-          raw_user_meta_data
-        )
-      `)
+      .select('*')
       .order('created_at', { ascending: false });
 
     if (error) throw error;
 
-    return NextResponse.json({ requests: requests || [] });
+    const requests = rawRequests || [];
+    
+    // Fetch users manually since we can't join auth.users directly
+    const requestsWithUsers = await Promise.all(
+      requests.map(async (req) => {
+        let user = null;
+        if (req.user_id) {
+          const { data: userData } = await admin.auth.admin.getUserById(req.user_id);
+          if (userData?.user) {
+            user = {
+              id: userData.user.id,
+              email: userData.user.email,
+              raw_user_meta_data: userData.user.user_metadata,
+            };
+          }
+        }
+        return { ...req, user };
+      })
+    );
+
+    return NextResponse.json({ requests: requestsWithUsers });
   } catch (e: any) {
     console.error('[plan-requests GET]', e);
     return NextResponse.json({ error: e.message || 'Error fetching requests' }, { status: 500 });
