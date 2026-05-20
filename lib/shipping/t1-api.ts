@@ -214,8 +214,10 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
             const mappedCarrierId = idMapping[carrierId] || carrierId;
             const carrierConfig = config.carriers_config?.[mappedCarrierId];
             
-            // Si la paquetería está explícitamente desactivada en la config, no la mostramos
-            if (carrierConfig && carrierConfig.active === false) {
+            // Si la paquetería no está explícitamente configurada y activa, no la mostramos.
+            // Esto asegura que si una paquetería se desactiva en el panel (donde por defecto
+            // se muestra como inactiva si no existe en la BD), no aparezca en el checkout.
+            if (!carrierConfig || carrierConfig.active !== true) {
                 continue;
             }
 
