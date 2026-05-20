@@ -42,6 +42,15 @@ export interface T1Config {
     markup_pro: number;       // e.g. 50
     markup_platinum: number;  // e.g. 40
     carriers_config?: Record<string, T1CarrierConfig>;
+    access_basic?: boolean;
+    access_pro?: boolean;
+    access_platinum?: boolean;
+    token_cache?: {
+        token: string;
+        expiresAt: number;
+        refreshToken: string;
+        configHash: string;
+    };
 }
 
 export const DEFAULT_T1_CONFIG: T1Config = {

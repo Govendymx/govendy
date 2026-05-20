@@ -30,8 +30,18 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
 
-        // Build the config object
+        // Retrieve existing config to merge/preserve fields like carriers_config or api_secret
+        const { data: existingRow } = await supabaseAdmin()
+            .from('app_settings')
+            .select('t1_envios_config')
+            .eq('id', 1)
+            .maybeSingle();
+
+        const existing = (existingRow as any)?.t1_envios_config || {};
+
+        // Build the config object by merging
         const configUpdate: Record<string, any> = {
+            ...existing,
             enabled: Boolean(body.enabled),
             api_url: String(body.api_url || 'https://apiv2.t1envios.com'),
             auth_url: String(body.auth_url || 'https://id.t1.com/auth/realms/T1/protocol/openid-connect/token'),
@@ -49,15 +59,11 @@ export async function POST(req: NextRequest) {
         // Only update password if provided (not masked)
         if (body.password && body.password !== '••••••••') {
             configUpdate.password = String(body.password);
-        } else {
-            // Preserve existing password
-            const { data: existing } = await supabaseAdmin()
-                .from('app_settings')
-                .select('t1_envios_config')
-                .eq('id', 1)
-                .maybeSingle();
+        }
 
-            configUpdate.password = (existing as any)?.t1_envios_config?.password || '';
+        // If carriers_config is explicitly sent, update it
+        if (body.carriers_config) {
+            configUpdate.carriers_config = body.carriers_config;
         }
 
         const { error } = await supabaseAdmin()

@@ -17,6 +17,7 @@ interface T1FormData {
     access_basic: boolean;
     access_pro: boolean;
     access_platinum: boolean;
+    carriers_config?: Record<string, { id: string; active: boolean; logo_url?: string }>;
 }
 
 const DEFAULT_FORM: T1FormData = {
@@ -33,7 +34,17 @@ const DEFAULT_FORM: T1FormData = {
     access_basic: false,
     access_pro: true,
     access_platinum: true,
+    carriers_config: {},
 };
+
+const CARRIERS_META = [
+    { id: 'dhl_express', name: 'DHL Express', desc: 'Envíos rápidos nacionales e internacionales.', logo: '🟡' },
+    { id: 'fedex', name: 'FedEx', desc: 'Servicio confiable de cobertura amplia nacional.', logo: '🟣' },
+    { id: '99_minutos', name: '99 Minutos', desc: 'Entregas express el mismo día o al día siguiente en zonas metropolitanas.', logo: '⚡' },
+    { id: 'paquete_express', name: 'Paquete Express', desc: 'Excelente opción terrestre con gran cobertura nacional.', logo: '🚚' },
+    { id: 'estafeta', name: 'Estafeta', desc: 'Servicio tradicional eficiente de entrega nacional.', logo: '🔴' },
+    { id: 'am_pm', name: 'AM/PM', desc: 'Envíos locales y nacionales altamente eficientes y económicos.', logo: '⏰' },
+];
 
 export default function AdminT1EnviosPage() {
     const [isBooting, setIsBooting] = useState(true);
@@ -273,6 +284,87 @@ export default function AdminT1EnviosPage() {
                         {testResult.success ? '✅' : '❌'} {testResult.message}
                     </div>
                 )}
+            </div>
+
+            {/* Control de Paqueterías */}
+            <div className="rounded-3xl bg-white/80 p-6 shadow-sm ring-1 ring-black/5 sm:p-8">
+                <h2 className="text-base font-bold text-gray-900 mb-1 flex items-center gap-2">
+                    🚚 Control de Paqueterías (Activar / Desactivar)
+                </h2>
+                <p className="text-sm text-gray-500 mb-5">
+                    Activa o desactiva de forma individual cada paquetería de T1 Envíos para el checkout de los compradores.
+                </p>
+
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {CARRIERS_META.map((carrier) => {
+                        const configVal = form.carriers_config?.[carrier.id] || { id: carrier.id, active: false, logo_url: '' };
+                        const isActive = configVal.active;
+
+                        return (
+                            <div
+                                key={carrier.id}
+                                className={`rounded-2xl border p-4 transition-all duration-200 ${
+                                    isActive ? 'border-orange-300 bg-orange-50/50 shadow-sm' : 'border-gray-200 bg-gray-50/30'
+                                }`}
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-2">
+                                        {configVal.logo_url ? (
+                                            <img
+                                                src={configVal.logo_url}
+                                                alt={carrier.name}
+                                                className="h-8 w-8 rounded-lg object-contain bg-white p-1 ring-1 ring-black/5"
+                                            />
+                                        ) : (
+                                            <span className="text-2xl">{carrier.logo}</span>
+                                        )}
+                                        <span className="font-bold text-sm text-gray-900">{carrier.name}</span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            const updatedCarriers = {
+                                                ...(form.carriers_config || {}),
+                                                [carrier.id]: {
+                                                    ...configVal,
+                                                    active: !isActive,
+                                                },
+                                            };
+                                            update('carriers_config', updatedCarriers);
+                                        }}
+                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${
+                                            isActive ? 'bg-orange-500' : 'bg-gray-300'
+                                        }`}
+                                    >
+                                        <span
+                                            className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${
+                                                isActive ? 'translate-x-6' : 'translate-x-1'
+                                            }`}
+                                        />
+                                    </button>
+                                </div>
+                                <p className="text-xs text-gray-500 mb-3 min-h-[32px] line-clamp-2">{carrier.desc}</p>
+                                <div className="flex items-center justify-between mt-auto pt-1">
+                                    <span
+                                        className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${
+                                            isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'
+                                        }`}
+                                    >
+                                        {isActive ? '🟢 Activo' : '⚪ Inactivo'}
+                                    </span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <button
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className="mt-5 rounded-xl bg-orange-500 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 disabled:opacity-50 transition-colors"
+                >
+                    {isSaving ? '💾 Guardando...' : '💾 Guardar paqueterías'}
+                </button>
             </div>
 
             {/* Markup por Plan */}

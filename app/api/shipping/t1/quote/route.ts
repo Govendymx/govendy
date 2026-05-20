@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getT1Quotes } from '@/lib/shipping/t1-api';
-import { supabaseAdmin } from '@/lib/supabase/admin';
+import { getT1ConfigFromDB } from '@/lib/shipping/t1-auth';
 
 export async function POST(req: NextRequest) {
     try {
@@ -13,13 +13,7 @@ export async function POST(req: NextRequest) {
 
         // ── Plan access check ──────────────────────────────────────────────
         // Fetch global plan-level access settings from app_settings
-        const { data: settingsRow } = await supabaseAdmin()
-            .from('app_settings')
-            .select('t1_envios_config')
-            .eq('id', 1)
-            .maybeSingle();
-
-        const t1Config = (settingsRow as any)?.t1_envios_config || {};
+        const t1Config = await getT1ConfigFromDB();
         const plan = (seller_plan || 'basic').toLowerCase();
 
         // Determine access: Pro and Platinum default to true if not explicitly set

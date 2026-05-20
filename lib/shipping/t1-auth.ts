@@ -69,6 +69,10 @@ export async function getT1ConfigFromDB(): Promise<T1Config> {
                 markup_pro: Number(raw.markup_pro ?? defaultConfig.markup_pro),
                 markup_platinum: Number(raw.markup_platinum ?? defaultConfig.markup_platinum),
                 carriers_config: raw.carriers_config || defaultConfig.carriers_config,
+                access_basic: raw.access_basic !== undefined ? Boolean(raw.access_basic) : false,
+                access_pro: raw.access_pro !== undefined ? Boolean(raw.access_pro) : true,
+                access_platinum: raw.access_platinum !== undefined ? Boolean(raw.access_platinum) : true,
+                token_cache: raw.token_cache,
             };
             configCache = { config, loadedAt: Date.now() };
             return config;
@@ -88,6 +92,29 @@ export function clearT1ConfigCache(): void {
 
 // ─── Token Management ───────────────────────────────────
 
+async function saveTokenToDB(token: string, expiresAt: number, refreshToken: string, configHash: string) {
+    try {
+        const { data: row } = await supabaseAdmin()
+            .from('app_settings')
+            .select('t1_envios_config')
+            .eq('id', 1)
+            .maybeSingle();
+        const existing = (row as any)?.t1_envios_config || {};
+        existing.token_cache = {
+            token,
+            expiresAt,
+            refreshToken,
+            configHash,
+        };
+        await supabaseAdmin()
+            .from('app_settings')
+            .update({ t1_envios_config: existing })
+            .eq('id', 1);
+    } catch (err) {
+        console.error('[T1Config] Failed to save token cache to DB:', err);
+    }
+}
+
 export async function getT1AccessToken(forceRefresh = false): Promise<string> {
     const config = await getT1ConfigFromDB();
     if (!config.enabled) throw new Error('T1 Envíos no está habilitado');
@@ -100,15 +127,27 @@ export async function getT1AccessToken(forceRefresh = false): Promise<string> {
         tokenCache = null;
     }
 
-    // Return cached token if valid
+    // Return cached token if valid (in-memory)
     if (!forceRefresh && tokenCache && Date.now() < tokenCache.expiresAt) {
         return tokenCache.token;
     }
 
-    // Try refresh token
-    if (tokenCache?.refreshToken && !forceRefresh) {
+    // Try persistent DB token cache if memory is cold
+    if (!forceRefresh && config.token_cache && config.token_cache.configHash === currentHash && Date.now() < config.token_cache.expiresAt) {
+        tokenCache = {
+            token: config.token_cache.token,
+            expiresAt: config.token_cache.expiresAt,
+            refreshToken: config.token_cache.refreshToken,
+            configHash: config.token_cache.configHash,
+        };
+        return tokenCache.token;
+    }
+
+    // Try refresh token (in-memory or from DB cache)
+    const activeRefreshToken = tokenCache?.refreshToken || config.token_cache?.refreshToken;
+    if (activeRefreshToken && !forceRefresh) {
         try {
-            return await refreshT1Token(config.auth_url, tokenCache.refreshToken, currentHash);
+            return await refreshT1Token(config.auth_url, activeRefreshToken, currentHash);
         } catch {
             // Fall through to get new token
         }
@@ -134,12 +173,16 @@ export async function getT1AccessToken(forceRefresh = false): Promise<string> {
     }
 
     const data: T1AuthResponse = await response.json();
+    const expiresAt = Date.now() + (data.expires_in * 1000) - 60_000;
     tokenCache = {
         token: data.access_token,
-        expiresAt: Date.now() + (data.expires_in * 1000) - 60_000,
+        expiresAt,
         refreshToken: data.refresh_token,
         configHash: currentHash,
     };
+
+    // Save to DB asynchronously to avoid blocking the API response
+    void saveTokenToDB(data.access_token, expiresAt, data.refresh_token, currentHash);
 
     return data.access_token;
 }
@@ -160,12 +203,16 @@ async function refreshT1Token(authUrl: string, refreshToken: string, configHash:
     if (!response.ok) throw new Error(`Refresh failed: ${response.status}`);
 
     const data: T1AuthResponse = await response.json();
+    const expiresAt = Date.now() + (data.expires_in * 1000) - 60_000;
     tokenCache = {
         token: data.access_token,
-        expiresAt: Date.now() + (data.expires_in * 1000) - 60_000,
+        expiresAt,
         refreshToken: data.refresh_token,
         configHash,
     };
+
+    // Save to DB asynchronously
+    void saveTokenToDB(data.access_token, expiresAt, data.refresh_token, configHash);
 
     return data.access_token;
 }
