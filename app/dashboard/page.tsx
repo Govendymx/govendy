@@ -1180,12 +1180,10 @@ export default function DashboardPage() {
                   </div>
                 )}
                 {/* Explicación clara: retenido vs liberado */}
-                <div className="mt-3 rounded-xl border border-amber-100 bg-amber-50/60 px-3 py-2 text-[11px] text-amber-900">
-                  <strong>¿Por qué está retenido o liberado?</strong>
-                  <p className="mt-1 text-amber-800">
-                    El dinero se <strong>libera</strong> cuando el comprador confirma que recibió su pedido o cuando un
-                    administrador marca la orden como entregada. Hasta entonces aparece como <em>Por liberar</em> o{' '}
-                    <em>Estimado</em>. Lo <strong>liberado</strong> está en «Dinero disponible» y puedes solicitar retiro.
+                <div className="mt-3 rounded-xl border border-emerald-100 bg-emerald-50/60 px-3 py-2 text-[11px] text-emerald-900">
+                  <strong>Tu dinero siempre disponible</strong>
+                  <p className="mt-1 text-emerald-800">
+                    Tu dinero está <strong>seguro y siempre disponible</strong> para ti. Gestiona tus ganancias con total libertad y liquidez inmediata después de cada venta exitosa. En <strong>GoVendy</strong>, tú tienes el control absoluto.
                   </p>
                 </div>
                 <div className="mt-3 text-right text-xs font-semibold text-brand-emerald">Ver pagos →</div>
@@ -1209,7 +1207,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="text-right">
                     <div className="text-lg font-bold italic tracking-wider">PocketCash</div>
-                    <div className="text-[10px] font-medium opacity-80">DEBIT</div>
+                    <div className="text-[10px] font-medium opacity-80">DÉBITO</div>
                   </div>
                 </div>
 
