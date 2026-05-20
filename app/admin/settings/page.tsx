@@ -1714,7 +1714,9 @@ export default function AdminSettingsPage() {
                               Eliminar
                             </button>
                           </div>
-                        ))}
+                            );
+                          });
+                        })()}
                       </div>
                     </div>
               </div>
