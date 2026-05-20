@@ -59,19 +59,20 @@ export default function EnviosPage() {
         const buyerIds = Array.from(new Set(sales.map((s: any) => s.buyer_id).filter(Boolean)));
 
         // Enriquecer con profiles de compradores (con fallback seguro)
-        let { data: buyers, error: buyersErr } = await supabase
+        const { data: buyersData, error: buyersErr } = await supabase
           .from('profiles')
           .select('id, full_name, nickname, username, zip_code')
           .in('id', buyerIds);
         
+        let finalBuyers: any[] = buyersData || [];
         if (buyersErr) {
           // Si falla por columna zip_code inexistente u otra cosa
           const fb = await supabase.from('profiles').select('id, full_name').in('id', buyerIds);
-          buyers = fb.data;
+          finalBuyers = fb.data || [];
         }
         
         const buyerMap: Record<string, any> = {};
-        buyers?.forEach((b: any) => {
+        finalBuyers.forEach((b: any) => {
           buyerMap[b.id] = {
             ...b,
             full_name: b.full_name || b.nickname || b.username || `Usuario ${b.id.substring(0,6)}`
