@@ -20,6 +20,7 @@ function mimeFromFilename(name: string): string | null {
     png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg',
     jfif: 'image/jpeg', webp: 'image/webp', gif: 'image/gif',
     bmp: 'image/bmp', avif: 'image/avif', tif: 'image/tiff', tiff: 'image/tiff',
+    svg: 'image/svg+xml',
   };
   return map[ext] ?? null;
 }
@@ -30,6 +31,13 @@ function mimeFromMagic(buf: Buffer): string | null {
   if (buf[0] === 0xff && buf[1] === 0xd8 && buf[2] === 0xff) return 'image/jpeg';
   if (buf[0] === 0x47 && buf[1] === 0x49 && buf[2] === 0x46) return 'image/gif';
   if (buf[0] === 0x52 && buf[1] === 0x49 && buf[2] === 0x46 && buf[8] === 0x57 && buf[9] === 0x45 && buf[10] === 0x42 && buf[11] === 0x50) return 'image/webp';
+  
+  // SVG detection by looking at text contents
+  const startText = buf.slice(0, 100).toString('utf-8').trim().toLowerCase();
+  if (startText.includes('<svg') || startText.includes('<?xml')) {
+    return 'image/svg+xml';
+  }
+  
   return null;
 }
 
@@ -48,7 +56,8 @@ async function uploadToSupabaseAdmin(file: File, folder: string, bucket: string)
   }
   const buf  = Buffer.from(await file.arrayBuffer());
   const path = `${sanitize(folder)}/${Date.now()}-${Math.random().toString(16).slice(2)}-${sanitize(file.name || 'image')}`;
-  const up   = await admin.storage.from(bucket).upload(path, buf, { contentType: file.type || 'application/octet-stream', upsert: false });
+  const contentType = file.type || mimeFromFilename(file.name) || mimeFromMagic(buf) || 'application/octet-stream';
+  const up   = await admin.storage.from(bucket).upload(path, buf, { contentType, upsert: false });
   if (up.error) throw up.error;
   const pub = admin.storage.from(bucket).getPublicUrl(path);
   if (!pub.data.publicUrl) throw new Error('No public URL from Supabase Storage');

@@ -91,6 +91,24 @@ export async function uploadImageToR2(
   const bucket   = cleanEnv(process.env.R2_BUCKET_NAME);
   const safeName = filename.replace(/[^a-zA-Z0-9.-]/g, '-').slice(0, 50);
   const ts       = Date.now();
+
+  // Detect SVG files by extension or contents
+  const isSvg = filename.toLowerCase().endsWith('.svg') || 
+                (buffer.length >= 4 && buffer.slice(0, 100).toString('utf-8').trim().toLowerCase().includes('<svg'));
+
+  if (isSvg) {
+    const key = `govendy/${folder}/${ts}-${safeName}`;
+    await client.send(new PutObjectCommand({
+      Bucket: bucket, Key: key, Body: buffer, ContentType: 'image/svg+xml',
+    }));
+    const url = getPublicUrl(key);
+    return {
+      url,
+      key,
+      variants: { thumb: url, medium: url, large: url },
+    };
+  }
+
   const variants: Record<string, string> = {};
 
   for (const v of VARIANTS) {
@@ -127,15 +145,16 @@ export async function deleteR2Keys(keys: string[]): Promise<number> {
 }
 
 /**
- * Dado el base-key devuelto por uploadImageToR2 (sin sufijo), borra las 3 variantes WebP.
+ * Dado el base-key devuelto por uploadImageToR2 (sin sufijo), borra las 3 variantes WebP o el archivo original (SVG).
  * Ej. key = "govendy/products/1716777777-foto-jpg" 
- * → borra -thumb.webp / -medium.webp / -large.webp
+ * → borra el archivo base directamente y las 3 variantes si existen.
  */
 export async function deleteR2ImageVariants(baseKey: string): Promise<void> {
   const p = (baseKey || '').trim().replace(/\/$/, '');
   if (!p) return;
   try {
-    await deleteR2Keys([`${p}-thumb.webp`, `${p}-medium.webp`, `${p}-large.webp`]);
+    // Para asegurar que borramos tanto el archivo original (si es SVG) como las 3 variantes comprimidas WebP
+    await deleteR2Keys([p, `${p}-thumb.webp`, `${p}-medium.webp`, `${p}-large.webp`]);
   } catch (e) {
     console.warn('[R2] deleteR2ImageVariants failed:', e);
   }

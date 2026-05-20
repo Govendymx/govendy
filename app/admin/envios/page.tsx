@@ -415,7 +415,7 @@ export default function AdminEnviosPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Logo (PNG)</label>
+                  <label className="block text-sm font-medium text-gray-700">Logo (PNG, JPEG, SVG)</label>
                   <div className="mt-1 flex items-center gap-3">
                     {opt.logo_url ? (
                       <div className="flex items-center gap-2">
@@ -427,7 +427,7 @@ export default function AdminEnviosPage() {
                     <input
                       id={fileInputId}
                       type="file"
-                      accept="image/png"
+                      accept="image/png,image/jpeg,image/svg+xml"
                       className="hidden"
                       disabled={isUploading[opt.id] || !opt.id}
                       onChange={(e) => {
