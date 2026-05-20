@@ -556,6 +556,7 @@ export function AccountTopMenu() {
         items: [
           { label: 'Monedero', href: '/dashboard/monedero', tone: 'pink', badge: walletBalance ?? undefined },
           { label: 'Ventas', href: '/dashboard/ventas' },
+          { label: '🚚 Envíos GoVendy', href: '/dashboard/envios', tone: 'pink' },
           { label: 'Compras', href: '/dashboard/compras' },
           { label: 'Pagos', href: '/dashboard/pagos' },
           { label: 'Métodos de Pago', href: '/dashboard/settings/payment-methods' },
