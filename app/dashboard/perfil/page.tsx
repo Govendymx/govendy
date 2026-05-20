@@ -360,7 +360,11 @@ export default function DashboardPerfilPage() {
       };
 
       const { data: saved, error: upErr } = await supabase.from('profiles').upsert([payload]).select('*').single();
-      if (upErr) throw upErr;
+      if (upErr) {
+        console.error('Supabase Update Error:', upErr);
+        throw new Error(upErr.message || 'Error en la base de datos al guardar.');
+      }
+      
       setProfile(saved as any);
       setSuccess('Perfil actualizado.');
 
@@ -369,9 +373,9 @@ export default function DashboardPerfilPage() {
           window.location.href = returnTo;
         }, 700);
       }
-    } catch (e: unknown) {
-      console.error(e);
-      setError(e instanceof Error ? e.message : 'No se pudo guardar tu perfil.');
+    } catch (e: any) {
+      console.error('Save Profile Error:', e);
+      setError(e.message || 'No se pudo guardar tu perfil.');
     } finally {
       setIsSaving(false);
     }
