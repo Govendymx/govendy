@@ -180,6 +180,8 @@ export default function EnviosPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error cotizando');
+      if (data.reason === 'plan_no_access') throw new Error('plan_no_access');
+      
       setQuotesByOrderId(prev => ({ ...prev, [orderId]: { loading: false, quotes: data.quotes || [], error: null } }));
     } catch (err: any) {
       setQuotesByOrderId(prev => ({ ...prev, [orderId]: { loading: false, quotes: [], error: err.message } }));
