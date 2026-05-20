@@ -1,16 +1,22 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { supabase } from '@/lib/supabase/client';
 import { formatMoney } from '@/lib/utils/format';
 
 interface T1Quote {
-  rate_id: string;
-  carrier: string;
-  service: string;
-  total_price: number;
-  currency: string;
-  estimated_delivery_days: number;
+  rate_id?: string;
+  carrier?: string;
+  service?: string;
+  total_price?: number;
+  currency?: string;
+  estimated_delivery_days?: number;
+  carrier_name: string;
+  service_level: string;
+  cost: number;
+  delivery_days: number;
+  logo_url?: string;
 }
 
 export default function EnviosPage() {
@@ -20,6 +26,10 @@ export default function EnviosPage() {
   const [sellerPlan, setSellerPlan] = useState<string>('basic');
   const [quotesByOrderId, setQuotesByOrderId] = useState<Record<string, { loading: boolean, quotes: T1Quote[], error: string | null }>>({});
   const [expandedOrders, setExpandedOrders] = useState<Record<string, boolean>>({});
+
+  // Estados de paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 5; // Mostrar 5 ventas por página para mantener la lista compacta y limpia
 
   useEffect(() => {
     loadData();
@@ -43,12 +53,12 @@ export default function EnviosPage() {
       setSellerZip(zip);
       setSellerPlan(plan);
 
-      // Cargar ventas (orders) usando la API robusta
+      // Cargar ventas (orders) usando la API robusta, aumentando el límite a 100 para paginación
       const { data: sess } = await supabase.auth.getSession();
       const token = sess.session?.access_token;
       if (!token) return;
 
-      const res = await fetch(`/api/orders/seller-dashboard?limit=20&t=${Date.now()}`, {
+      const res = await fetch(`/api/orders/seller-dashboard?limit=100&t=${Date.now()}`, {
         headers: { authorization: `Bearer ${token}` },
         cache: 'no-store',
       });
@@ -67,7 +77,6 @@ export default function EnviosPage() {
         
         let finalBuyers: any[] = buyersData || [];
         if (buyersErr) {
-          // Si falla por columna zip_code inexistente u otra cosa
           const fb = await supabase.from('profiles').select('id, full_name').in('id', buyerIds);
           finalBuyers = fb.data || [];
         }
@@ -149,15 +158,7 @@ export default function EnviosPage() {
         });
 
         setOrders(enrichedSales);
-
-        // Disparar cotizaciones automáticamente
-        enrichedSales.forEach((order: any) => {
-          if (zip && order.destZip) {
-            quoteShipping(order.id, zip, order.destZip, order.dims.weight_kg, order.dims.length_cm, order.dims.width_cm, order.dims.height_cm, plan);
-          } else {
-            setQuotesByOrderId(prev => ({ ...prev, [order.id]: { loading: false, quotes: [], error: 'Falta código postal de origen o destino' }}));
-          }
-        });
+        setCurrentPage(1); // Reset a primera página
       }
     } catch (e) {
       console.error('Error loading envios:', e);
@@ -192,6 +193,32 @@ export default function EnviosPage() {
     }
   };
 
+  // Cargar cotizaciones de envío de forma inteligente SOLO para la página actual visible
+  useEffect(() => {
+    if (orders.length === 0) return;
+
+    const indexOfLastOrder = currentPage * pageSize;
+    const indexOfFirstOrder = indexOfLastOrder - pageSize;
+    const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+    currentOrders.forEach((order) => {
+      // Evitar llamadas duplicadas si ya está cargando o ya se cotizó
+      if (quotesByOrderId[order.id]) return;
+
+      if (sellerZip && order.destZip) {
+        quoteShipping(order.id, sellerZip, order.destZip, order.dims.weight_kg, order.dims.length_cm, order.dims.width_cm, order.dims.height_cm, sellerPlan);
+      } else {
+        setQuotesByOrderId(prev => ({ ...prev, [order.id]: { loading: false, quotes: [], error: 'Falta código postal de origen o destino' } }));
+      }
+    });
+  }, [currentPage, orders, sellerZip, sellerPlan]);
+
+  // Paginación
+  const indexOfLastOrder = currentPage * pageSize;
+  const indexOfFirstOrder = indexOfLastOrder - pageSize;
+  const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const totalPages = Math.ceil(orders.length / pageSize);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -202,15 +229,17 @@ export default function EnviosPage() {
 
   return (
     <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">🚚 Envíos GoVendy</h1>
-        <p className="mt-2 text-gray-600">
-          Gestiona las cotizaciones automáticas para tus ventas mediante <strong className="text-brand-emerald">T1 Envíos</strong>.
-        </p>
+      <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight flex items-center gap-2">🚚 Envíos GoVendy</h1>
+          <p className="mt-2 text-gray-600">
+            Gestiona las cotizaciones automáticas para tus ventas mediante <strong className="text-brand-emerald">T1 Envíos</strong>.
+          </p>
+        </div>
       </div>
 
       {!sellerZip && (
-        <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6 rounded-r-lg">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6 rounded-r-lg shadow-xs">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg className="h-5 w-5 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
@@ -227,134 +256,245 @@ export default function EnviosPage() {
       )}
 
       {orders.length === 0 ? (
-        <div className="text-center py-12 bg-white rounded-3xl shadow-sm border border-gray-100">
-          <svg className="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="text-center py-16 bg-white rounded-3xl shadow-sm border border-gray-100">
+          <svg className="mx-auto h-12 w-12 text-gray-300 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
           </svg>
-          <h3 className="mt-2 text-sm font-medium text-gray-900">No hay ventas recientes</h3>
-          <p className="mt-1 text-sm text-gray-500">Cuando realices una venta, aparecerá aquí con sus opciones de envío.</p>
+          <h3 className="mt-4 text-base font-bold text-gray-900">No hay ventas recientes</h3>
+          <p className="mt-1.5 text-sm text-gray-500">Cuando realices una venta, aparecerá aquí con sus opciones de envío.</p>
         </div>
       ) : (
-        <div className="space-y-6">
-          {orders.map((order, index) => {
+        <div className="space-y-5">
+          {currentOrders.map((order) => {
             const quoteData = quotesByOrderId[order.id];
-            const isExpanded = expandedOrders[order.id] ?? (index === 0);
+            const isExpanded = expandedOrders[order.id] ?? false; // Cerrado por defecto como pide el usuario
             
             return (
               <div key={order.id} className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                {/* Cabecera / Vista Compacta (Siempre Visible) */}
                 <div 
-                  className="cursor-pointer border-b border-gray-100 bg-gray-50/50 p-4 sm:px-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:bg-gray-100 transition-colors"
+                  className="border-b border-gray-100 bg-gray-50/30 p-4 sm:p-6 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 cursor-pointer hover:bg-gray-50/70 transition-colors"
                   onClick={() => setExpandedOrders(prev => ({ ...prev, [order.id]: !isExpanded }))}
                 >
-                  <div className="flex-1">
-                    <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">
-                      Orden #{order.id.slice(0,8)} • {new Date(order.created_at).toLocaleDateString('es-MX')}
+                  {/* Número de Venta & ID */}
+                  <div className="flex-1 min-w-[200px]" onClick={(e) => e.stopPropagation()}>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      {new Date(order.created_at).toLocaleDateString('es-MX')}
                     </div>
-                    <div className="font-semibold text-gray-900 text-lg">
-                      Comprador: <span className="text-brand-emerald">{order.addressName || order.buyer?.full_name || `#${order.id.slice(0,8)}`}</span>
+                    <Link href={`/dashboard/ventas?order=${order.id}`} className="block group">
+                      <span className="font-extrabold text-gray-900 text-lg group-hover:text-brand-emerald transition-colors block">
+                        Venta #{order.id.slice(0,8).toUpperCase()}
+                      </span>
+                      <span className="font-mono text-xs text-gray-400 block break-all group-hover:text-brand-emerald transition-colors">
+                        ID: {order.id}
+                      </span>
+                    </Link>
+                  </div>
+
+                  {/* Nombre del Comprador */}
+                  <div className="flex-1 min-w-[150px]" onClick={(e) => e.stopPropagation()}>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
+                      Comprador
+                    </div>
+                    <Link 
+                      href={`/profile/${order.buyer_id}`} 
+                      className="font-bold text-brand-emerald hover:text-emerald-700 transition-colors text-base hover:underline block"
+                    >
+                      {order.addressName || order.buyer?.full_name || `Usuario #${order.id.slice(0,8)}`}
+                    </Link>
+                  </div>
+
+                  {/* Artículos Comprados (Lista Compacta Siempre Visible) */}
+                  <div className="flex-1 min-w-[240px]" onClick={(e) => e.stopPropagation()}>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">
+                      Artículos ({order.items?.length || 0})
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      {order.items?.map((item: any, i: number) => {
+                        const img = Array.isArray(item.listings?.images) ? item.listings.images[0] : null;
+                        return (
+                          <Link 
+                            key={i} 
+                            href={`/listings/${item.listing_id}`}
+                            className="flex items-center gap-2 hover:bg-white p-1 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-xs transition-all group"
+                          >
+                            {img ? (
+                              <img src={img} alt="" className="w-8 h-8 object-cover rounded-lg border border-gray-100" />
+                            ) : (
+                              <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center border border-gray-100">
+                                <span className="text-gray-400 text-[9px] font-bold">S/I</span>
+                              </div>
+                            )}
+                            <div className="text-xs min-w-0 flex-1">
+                              <p className="font-semibold text-gray-800 group-hover:text-brand-emerald line-clamp-1 transition-colors">
+                                {item.listings?.title || 'Producto'}
+                              </p>
+                              <p className="text-[10px] text-gray-400 font-medium">Cant: {item.quantity}</p>
+                            </div>
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-2xl shadow-sm ring-1 ring-gray-200">
+
+                  {/* Origen/Destino & Botón de Expandir */}
+                  <div className="flex flex-row lg:flex-col items-center lg:items-end justify-between lg:justify-center w-full lg:w-auto gap-4 self-stretch lg:self-auto border-t lg:border-t-0 pt-4 lg:pt-0 border-gray-100">
+                    <div className="flex items-center gap-3 bg-white px-3 py-1.5 rounded-2xl shadow-sm ring-1 ring-gray-150">
                       <div className="text-center">
-                        <div className="text-[10px] text-gray-500 uppercase font-bold">Origen</div>
-                        <div className="text-sm font-mono font-medium text-gray-800">{sellerZip || '----'}</div>
+                        <div className="text-[8px] text-gray-400 uppercase font-bold">Origen</div>
+                        <div className="text-xs font-mono font-bold text-gray-700">{sellerZip || '----'}</div>
                       </div>
-                      <div className="text-gray-300">→</div>
+                      <div className="text-gray-300 text-xs">→</div>
                       <div className="text-center">
-                        <div className="text-[10px] text-gray-500 uppercase font-bold">Destino</div>
-                        <div className="text-sm font-mono font-medium text-gray-800">{order.destZip || '----'}</div>
+                        <div className="text-[8px] text-gray-400 uppercase font-bold">Destino</div>
+                        <div className="text-xs font-mono font-bold text-gray-700">{order.destZip || '----'}</div>
                       </div>
                     </div>
-                    <div className="text-gray-400 p-2">
-                      <svg className={`w-6 h-6 transform transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    
+                    <button
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 hover:border-brand-emerald text-xs font-extrabold text-gray-600 hover:text-brand-emerald bg-white transition-all shadow-xs"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedOrders(prev => ({ ...prev, [order.id]: !isExpanded }));
+                      }}
+                    >
+                      <span>{isExpanded ? 'Ocultar cotización' : 'Cotizar / Detalles'}</span>
+                      <svg className={`w-4 h-4 text-gray-400 transform transition-transform duration-250 ${isExpanded ? 'rotate-180 text-brand-emerald' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                       </svg>
-                    </div>
+                    </button>
                   </div>
                 </div>
 
+                {/* Sección Desplegable (Solo visible al expandir) */}
                 {isExpanded && (
-                  <div className="p-4 sm:p-6 flex flex-col gap-6 bg-white animate-in slide-in-from-top-2">
-                  {/* Detalles de productos */}
-                  <div className="flex-1 space-y-4">
-                    <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">Productos ({order.items?.length || 0})</h3>
-                    {order.items?.map((item: any, i: number) => {
-                      const img = Array.isArray(item.listings?.images) ? item.listings.images[0] : null;
-                      return (
-                        <div key={i} className="flex gap-4 items-center">
-                          {img ? (
-                            <img src={img} alt="" className="w-16 h-16 object-cover rounded-xl border border-gray-100" />
-                          ) : (
-                            <div className="w-16 h-16 bg-gray-100 rounded-xl border border-gray-100 flex items-center justify-center">
-                              <span className="text-gray-400 text-xs">Sin img</span>
-                            </div>
-                          )}
-                          <div>
-                            <p className="font-semibold text-gray-900 line-clamp-2">{item.listings?.title || 'Producto'}</p>
-                            <p className="text-sm text-gray-500">Cant: {item.quantity}</p>
+                  <div className="p-4 sm:p-6 flex flex-col md:flex-row gap-6 bg-white animate-in slide-in-from-top-2 border-t border-gray-100">
+                    {/* Detalles del paquete y envío */}
+                    <div className="md:w-1/3 space-y-4">
+                      <div className="bg-gray-50/50 rounded-2xl p-4 border border-gray-100">
+                        <h4 className="text-xs font-bold text-gray-700 uppercase tracking-wider mb-3">Detalles del Envío</h4>
+                        <div className="space-y-2.5 text-xs text-gray-600">
+                          <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                            <span className="font-medium">Peso volumétrico:</span>
+                            <span className="font-extrabold text-gray-900">{order.dims?.weight_kg} kg</span>
+                          </div>
+                          <div className="flex justify-between border-b border-gray-100 pb-1.5">
+                            <span className="font-medium">Dimensiones:</span>
+                            <span className="font-extrabold text-gray-900">{order.dims?.length_cm}x{order.dims?.width_cm}x{order.dims?.height_cm} cm</span>
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <span className="font-medium text-gray-500">Dirección del comprador:</span>
+                            <span className="font-bold text-gray-900 leading-normal break-words">{order.addressName || order.buyer?.full_name || 'No especificada'}</span>
                           </div>
                         </div>
-                      )
-                    })}
-                    <div className="mt-4 inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-lg text-xs font-semibold">
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
-                      </svg>
-                      Peso volumétrico: {order.dims?.weight_kg}kg ({order.dims?.length_cm}x{order.dims?.width_cm}x{order.dims?.height_cm}cm)
-                    </div>
-                  </div>
-
-                  {/* Cotizaciones T1 en formato Lista Compacta */}
-                  <div className="w-full bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
-                    <div className="flex justify-between items-center mb-3">
-                      <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide flex items-center gap-2">
-                        <svg className="w-4 h-4 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                        Opciones de Envío
-                      </h3>
-                      {quoteData?.loading && <div className="w-3 h-3 border-2 border-brand-emerald border-t-transparent rounded-full animate-spin"></div>}
-                    </div>
-
-                    {quoteData?.error && (
-                      <div className="text-xs text-red-600 bg-red-50 p-2 rounded-lg border border-red-100">
-                        {quoteData.error === 'plan_no_access' ? 'Tu plan no incluye acceso a T1 Envíos.' : quoteData.error}
                       </div>
-                    )}
-
-                    {!quoteData?.loading && !quoteData?.error && quoteData?.quotes?.length === 0 && (
-                      <div className="text-xs text-gray-500 text-center py-4 bg-gray-50 rounded-lg">No hay opciones para esta ruta.</div>
-                    )}
-
-                    <div className="space-y-0 divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
-                      {quoteData?.quotes?.map((q: any, i: number) => (
-                        <div key={i} className="bg-white p-3 flex justify-between items-center hover:bg-gray-50 transition-colors cursor-pointer group">
-                          <div className="flex flex-col">
-                            <div className="text-sm font-bold text-gray-900 group-hover:text-brand-emerald transition-colors flex items-center gap-2">
-                              {q.logo_url && (
-                                <img src={q.logo_url} alt={q.carrier_name} className="h-5 w-auto object-contain rounded-sm mix-blend-multiply" />
-                              )}
-                              <span>{q.carrier_name}</span>
-                              <span className="text-[9px] font-semibold text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">{q.service_level}</span>
-                            </div>
-                            <div className="text-[11px] text-gray-400 mt-0.5">Entrega est. {q.delivery_days} días</div>
-                          </div>
-                          <div className="text-right flex items-center gap-3">
-                            <div className="text-sm font-black text-gray-900">{formatMoney(q.cost)}</div>
-                            <button className="text-[10px] font-bold text-white bg-brand-emerald px-2 py-1 rounded hover:bg-emerald-600 transition-colors shadow-sm">
-                              Elegir
-                            </button>
-                          </div>
-                        </div>
-                      ))}
                     </div>
-                  </div>
+
+                    {/* Cotizaciones T1 */}
+                    <div className="flex-1">
+                      <div className="bg-white rounded-2xl p-4 border border-gray-100 shadow-xs">
+                        <div className="flex justify-between items-center mb-3">
+                          <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                            <svg className="w-4 h-4 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Opciones de Envío (T1 Envíos)
+                          </h4>
+                          {quoteData?.loading && <div className="w-3.5 h-3.5 border-2 border-brand-emerald border-t-transparent rounded-full animate-spin"></div>}
+                        </div>
+
+                        {quoteData?.error && (
+                          <div className="text-xs text-red-600 bg-red-50 p-3 rounded-xl border border-red-100">
+                            {quoteData.error === 'plan_no_access' ? 'Tu plan no incluye acceso a T1 Envíos.' : quoteData.error}
+                          </div>
+                        )}
+
+                        {!quoteData?.loading && !quoteData?.error && (!quoteData?.quotes || quoteData?.quotes?.length === 0) && (
+                          <div className="text-xs text-gray-500 text-center py-6 bg-gray-50 rounded-xl border border-dashed border-gray-200">
+                            No hay opciones disponibles para esta ruta.
+                          </div>
+                        )}
+
+                        {!quoteData?.loading && !quoteData?.error && quoteData?.quotes && quoteData.quotes.length > 0 && (
+                          <div className="space-y-2 border border-gray-100 rounded-2xl overflow-hidden shadow-xs">
+                            {quoteData.quotes.map((q: any, i: number) => (
+                              <div key={i} className="bg-white p-3.5 flex justify-between items-center hover:bg-gray-50/70 transition-colors border-b last:border-b-0 border-gray-100 group">
+                                <div className="flex flex-col">
+                                  <div className="text-sm font-bold text-gray-900 group-hover:text-brand-emerald transition-colors flex items-center gap-2">
+                                    {q.logo_url && (
+                                      <img src={q.logo_url} alt={q.carrier_name} className="h-5 w-auto object-contain rounded-xs mix-blend-multiply" />
+                                    )}
+                                    <span>{q.carrier_name}</span>
+                                    <span className="text-[9px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">{q.service_level}</span>
+                                  </div>
+                                  <div className="text-[10px] text-gray-400 font-medium mt-1">
+                                    Entrega estimada: {q.delivery_days} {q.delivery_days === 1 ? 'día' : 'días'}
+                                  </div>
+                                </div>
+                                <div className="text-right flex items-center gap-3">
+                                  <div className="text-sm font-black text-gray-900">{formatMoney(q.cost)}</div>
+                                  <button className="text-[10px] font-black text-white bg-brand-emerald px-3 py-1.5 rounded-xl hover:bg-emerald-600 transition-colors shadow-xs cursor-pointer">
+                                    Elegir
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
             );
           })}
+        </div>
+      )}
+
+      {/* Paginación Premium */}
+      {totalPages > 1 && (
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-white px-6 py-4 rounded-3xl border border-gray-100 shadow-sm mt-6">
+          <div className="text-sm text-gray-500 font-medium">
+            Mostrando <span className="font-bold text-gray-800">{indexOfFirstOrder + 1}</span>-
+            <span className="font-bold text-gray-800">{Math.min(indexOfLastOrder, orders.length)}</span> de{' '}
+            <span className="font-bold text-gray-800">{orders.length}</span> ventas
+          </div>
+          
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="flex items-center justify-center p-2 rounded-xl border border-gray-200 hover:border-brand-emerald hover:text-brand-emerald bg-white disabled:opacity-40 disabled:hover:border-gray-200 disabled:hover:text-gray-400 transition-all cursor-pointer disabled:cursor-not-allowed text-gray-600 shadow-xs animate-in fade-in"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`w-9 h-9 rounded-xl font-extrabold text-sm transition-all shadow-xs ${
+                  currentPage === page
+                    ? 'bg-brand-emerald text-white border border-brand-emerald'
+                    : 'bg-white text-gray-600 border border-gray-200 hover:border-brand-emerald hover:text-brand-emerald cursor-pointer'
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="flex items-center justify-center p-2 rounded-xl border border-gray-200 hover:border-brand-emerald hover:text-brand-emerald bg-white disabled:opacity-40 disabled:hover:border-gray-250 disabled:hover:text-gray-400 transition-all cursor-pointer disabled:cursor-not-allowed text-gray-600 shadow-xs animate-in fade-in"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       )}
     </div>
