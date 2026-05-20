@@ -42,53 +42,74 @@ export default function EnviosPage() {
       setSellerZip(zip);
       setSellerPlan(plan);
 
-      // Cargar ventas (orders)
-      const { data: sales, error } = await supabase
-        .from('orders')
-        .select(`
-          id, 
-          created_at, 
-          status, 
-          total,
-          shipping_address,
-          buyer_id
-        `)
-        .eq('seller_id', userId)
-        .order('created_at', { ascending: false })
-        .limit(20);
+      // Cargar ventas (orders) usando la API robusta
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token;
+      if (!token) return;
 
-      if (error) throw error;
+      const res = await fetch(`/api/orders/seller-dashboard?limit=20&t=${Date.now()}`, {
+        headers: { authorization: `Bearer ${token}` },
+        cache: 'no-store',
+      });
+      const json = await res.json().catch(() => ({}));
+      const sales = json?.orders || [];
 
       if (sales && sales.length > 0) {
-        // Enriquecer con profiles de compradores
-        const buyerIds = Array.from(new Set(sales.map(s => s.buyer_id).filter(Boolean)));
-        const { data: buyers } = await supabase
+        const orderIds = sales.map((s: any) => s.id);
+        const buyerIds = Array.from(new Set(sales.map((s: any) => s.buyer_id).filter(Boolean)));
+
+        // Enriquecer con profiles de compradores (con fallback seguro)
+        let { data: buyers, error: buyersErr } = await supabase
           .from('profiles')
-          .select('id, full_name, zip_code')
+          .select('id, full_name, nickname, username, zip_code')
           .in('id', buyerIds);
         
+        if (buyersErr) {
+          // Si falla por columna zip_code inexistente u otra cosa
+          const fb = await supabase.from('profiles').select('id, full_name').in('id', buyerIds);
+          buyers = fb.data;
+        }
+        
         const buyerMap: Record<string, any> = {};
-        buyers?.forEach(b => buyerMap[b.id] = b);
-
-        // Enriquecer con items y listings para pesos
-        const orderIds = sales.map(s => s.id);
-        const { data: items } = await supabase
-          .from('order_items')
-          .select('order_id, quantity, listings(title, images, weight_kg, length_cm, width_cm, height_cm)')
-          .in('order_id', orderIds);
-
-        const itemsMap: Record<string, any[]> = {};
-        items?.forEach(item => {
-          if (!itemsMap[item.order_id]) itemsMap[item.order_id] = [];
-          itemsMap[item.order_id].push(item);
+        buyers?.forEach((b: any) => {
+          buyerMap[b.id] = {
+            ...b,
+            full_name: b.full_name || b.nickname || b.username || `Usuario ${b.id.substring(0,6)}`
+          };
         });
 
-        const enrichedSales = sales.map(s => {
+        // Cargar order_items SIN join directo a listings (para evitar bloqueos RLS)
+        const { data: items } = await supabase
+          .from('order_items')
+          .select('order_id, listing_id, quantity, title')
+          .in('order_id', orderIds);
+
+        // Cargar listings separados
+        const listingIds = Array.from(new Set(items?.map((it: any) => it.listing_id).filter(Boolean)));
+        let listingsMap: Record<string, any> = {};
+        if (listingIds.length > 0) {
+          const { data: listingsData } = await supabase
+            .from('listings')
+            .select('id, title, images, weight_kg, length_cm, width_cm, height_cm')
+            .in('id', listingIds);
+          listingsData?.forEach((l: any) => { listingsMap[l.id] = l; });
+        }
+
+        const itemsMap: Record<string, any[]> = {};
+        items?.forEach((item: any) => {
+          if (!itemsMap[item.order_id]) itemsMap[item.order_id] = [];
+          itemsMap[item.order_id].push({
+             ...item,
+             listings: listingsMap[item.listing_id] || { title: item.title }
+          });
+        });
+
+        const enrichedSales = sales.map((s: any) => {
           const sItems = itemsMap[s.id] || [];
           let totalWeight = 0;
           let maxL = 10, maxW = 10, maxH = 10;
           
-          sItems.forEach(it => {
+          sItems.forEach((it: any) => {
             const l = it.listings;
             if (l) {
               const w = Number(l.weight_kg) || 1;
@@ -125,7 +146,7 @@ export default function EnviosPage() {
         setOrders(enrichedSales);
 
         // Disparar cotizaciones automáticamente
-        enrichedSales.forEach(order => {
+        enrichedSales.forEach((order: any) => {
           if (zip && order.destZip) {
             quoteShipping(order.id, zip, order.destZip, order.dims.weight_kg, order.dims.length_cm, order.dims.width_cm, order.dims.height_cm, plan);
           } else {
