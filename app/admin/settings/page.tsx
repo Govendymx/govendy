@@ -1598,86 +1598,102 @@ export default function AdminSettingsPage() {
                       </div>
 
                       <div className="space-y-3">
-                        {Object.values(settings.t1_envios_config?.carriers_config || {}).map((carrier) => (
-                          <div key={carrier.id} className="flex flex-wrap items-center gap-4 rounded-xl border border-gray-200 p-4">
-                            <div className="flex-1 min-w-[200px]">
-                              <div className="text-sm font-bold capitalize">{carrier.id.replace(/_/g, ' ')}</div>
-                              <div className="mt-2 flex items-center gap-2">
-                                <input
-                                  type="text"
-                                  placeholder="URL del logo (ej. https://.../logo.png)"
-                                  value={carrier.logo_url || ''}
-                                  onChange={(e) => {
-                                    setSettings((p) => ({
-                                      ...p,
-                                      t1_envios_config: {
-                                        ...p.t1_envios_config!,
-                                        carriers_config: {
-                                          ...p.t1_envios_config!.carriers_config,
-                                          [carrier.id]: { ...carrier, logo_url: e.target.value },
-                                        },
-                                      },
-                                    }));
-                                  }}
-                                  className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-xs outline-none focus:ring-1 focus:ring-brand-emerald"
-                                />
-                                <span className="text-xs text-gray-500">o</span>
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  onChange={async (e) => {
-                                    const file = e.target.files?.[0];
-                                    if (!file) return;
-                                    try {
-                                      // Usamos window.supabase si está disponible, o el ya importado
-                                      const ext = file.name.split('.').pop();
-                                      const filePath = `carriers/${carrier.id}-${Date.now()}.${ext}`;
-                                      const { error: uploadErr } = await supabase.storage.from('upload').upload(filePath, file, {
-                                        cacheControl: '3600',
-                                        upsert: true
-                                      });
-                                      if (uploadErr) throw uploadErr;
-                                      const { data: { publicUrl } } = supabase.storage.from('upload').getPublicUrl(filePath);
+                        {(() => {
+                          const existing = settings.t1_envios_config?.carriers_config || {};
+                          const standard = ['dhl_express', 'fedex', '99_minutos', 'paquete_express', 'estafeta', 'am_pm'];
+                          const allIds = Array.from(new Set([...standard, ...Object.keys(existing)]));
+                          
+                          return allIds.map((id) => {
+                            const carrier = existing[id] || { id, active: false, logo_url: '' };
+                            return (
+                              <div key={id} className="flex flex-wrap items-center gap-4 rounded-xl border border-gray-200 p-4">
+                                <div className="flex-1 min-w-[200px]">
+                                  <div className="text-sm font-bold capitalize">{id.replace(/_/g, ' ')}</div>
+                                  <div className="mt-2 flex items-center gap-2">
+                                    <input
+                                      type="text"
+                                      placeholder="URL del logo (ej. https://.../logo.png)"
+                                      value={carrier.logo_url || ''}
+                                      onChange={(e) => {
+                                        setSettings((p) => ({
+                                          ...p,
+                                          t1_envios_config: {
+                                            ...p.t1_envios_config!,
+                                            carriers_config: {
+                                              ...p.t1_envios_config!.carriers_config,
+                                              [id]: { ...carrier, logo_url: e.target.value },
+                                            },
+                                          },
+                                        }));
+                                      }}
+                                      className="w-full rounded-lg border border-gray-300 px-3 py-1.5 text-xs outline-none focus:ring-1 focus:ring-brand-emerald"
+                                    />
+                                    <span className="text-xs text-gray-500">o</span>
+                                    <input
+                                      type="file"
+                                      accept="image/*"
+                                      onChange={async (e) => {
+                                        const file = e.target.files?.[0];
+                                        if (!file) return;
+                                        try {
+                                          const { data: { session } } = await supabase.auth.getSession();
+                                          if (!session) throw new Error('Sesión expirada');
+                                          
+                                          const formData = new FormData();
+                                          formData.append('file', file);
+                                          formData.append('kind', 'banner');
+                                          
+                                          const res = await fetch('/api/upload', {
+                                            method: 'POST',
+                                            headers: { authorization: `Bearer ${session.access_token}` },
+                                            body: formData
+                                          });
+                                          
+                                          const data = await res.json();
+                                          if (!res.ok) throw new Error(data.error || 'Error al subir');
+                                          
+                                          setSettings((p) => ({
+                                            ...p,
+                                            t1_envios_config: {
+                                              ...p.t1_envios_config!,
+                                              carriers_config: {
+                                                ...p.t1_envios_config!.carriers_config,
+                                                [id]: { ...carrier, logo_url: data.url },
+                                              },
+                                            },
+                                          }));
+                                        } catch (err: any) {
+                                          alert('Error al subir imagen: ' + err.message);
+                                        } finally {
+                                          e.target.value = '';
+                                        }
+                                      }}
+                                      className="w-full text-xs text-gray-600 file:mr-2 file:cursor-pointer file:rounded-lg file:border-0 file:bg-brand-emerald file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-brand-emerald/90"
+                                    />
+                                  </div>
+                                </div>
+                                <label className="flex items-center gap-2">
+                                  <input
+                                    type="checkbox"
+                                    checked={carrier.active}
+                                    onChange={(e) => {
                                       setSettings((p) => ({
                                         ...p,
                                         t1_envios_config: {
                                           ...p.t1_envios_config!,
                                           carriers_config: {
                                             ...p.t1_envios_config!.carriers_config,
-                                            [carrier.id]: { ...carrier, logo_url: publicUrl },
+                                            [id]: { ...carrier, active: e.target.checked },
                                           },
                                         },
                                       }));
-                                    } catch (err: any) {
-                                      alert('Error al subir imagen: ' + err.message);
-                                    }
-                                  }}
-                                  className="w-full text-xs text-gray-600 file:mr-2 file:cursor-pointer file:rounded-lg file:border-0 file:bg-brand-emerald file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-white hover:file:bg-brand-emerald/90"
-                                />
-                              </div>
-                            </div>
-                            <label className="flex items-center gap-2">
-                              <input
-                                type="checkbox"
-                                checked={carrier.active}
-                                onChange={(e) => {
-                                  setSettings((p) => ({
-                                    ...p,
-                                    t1_envios_config: {
-                                      ...p.t1_envios_config!,
-                                      carriers_config: {
-                                        ...p.t1_envios_config!.carriers_config,
-                                        [carrier.id]: { ...carrier, active: e.target.checked },
-                                      },
-                                    },
-                                  }));
-                                }}
-                                className="rounded text-brand-emerald focus:ring-brand-emerald"
-                              />
-                              <span className="text-xs text-gray-700">Activo</span>
-                            </label>
-                            <button
-                              type="button"
+                                    }}
+                                    className="rounded text-brand-emerald focus:ring-brand-emerald"
+                                  />
+                                  <span className="text-xs text-gray-700">Activo</span>
+                                </label>
+                                <button
+                                  type="button"
                               onClick={() => {
                                 if (window.confirm(`¿Eliminar la paquetería ${carrier.id}?`)) {
                                   setSettings((p) => {
