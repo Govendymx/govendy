@@ -121,12 +121,14 @@ export default function EnviosPage() {
             }
           });
 
-          // Obtener CP destino
+          // Obtener CP y Nombre de la dirección de envío
           let destZip = '';
+          let addressName = '';
           if (s.shipping_address) {
             try {
               const addr = typeof s.shipping_address === 'string' ? JSON.parse(s.shipping_address) : s.shipping_address;
               destZip = addr.zip_code || addr.zip || '';
+              addressName = addr.full_name || `${addr.first_name || ''} ${addr.last_name || ''}`.trim() || '';
             } catch (e) {
               // Ignore
             }
@@ -138,6 +140,7 @@ export default function EnviosPage() {
           return {
             ...s,
             buyer: buyerMap[s.buyer_id],
+            addressName,
             items: sItems,
             destZip,
             dims: { weight_kg: totalWeight || 1, length_cm: maxL, width_cm: maxW, height_cm: maxH }
@@ -243,7 +246,7 @@ export default function EnviosPage() {
                       Orden #{order.id.slice(0,8)} • {new Date(order.created_at).toLocaleDateString('es-MX')}
                     </div>
                     <div className="font-semibold text-gray-900">
-                      Comprador: <span className="text-brand-emerald">{order.buyer?.full_name || 'Desconocido'}</span>
+                      Comprador: <span className="text-brand-emerald">{order.buyer?.full_name || order.addressName || `#${order.id.slice(0,8)}`}</span>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-2xl shadow-sm ring-1 ring-gray-200">
@@ -285,44 +288,47 @@ export default function EnviosPage() {
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                       </svg>
-                      Peso volumétrico estimado: {order.dims?.weight_kg}kg ({order.dims?.length_cm}x{order.dims?.width_cm}x{order.dims?.height_cm}cm)
+                      Peso volumétrico: {order.dims?.weight_kg}kg ({order.dims?.length_cm}x{order.dims?.width_cm}x{order.dims?.height_cm}cm)
                     </div>
                   </div>
 
-                  {/* Cotizaciones T1 */}
-                  <div className="flex-1 lg:max-w-md bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                    <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide flex items-center gap-2">
+                  {/* Cotizaciones T1 en formato Lista Compacta */}
+                  <div className="flex-1 lg:max-w-sm bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+                    <div className="flex justify-between items-center mb-3">
+                      <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wide flex items-center gap-2">
                         <svg className="w-4 h-4 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
-                        Opciones T1 Envíos
+                        Opciones de Envío
                       </h3>
-                      {quoteData?.loading && <div className="w-4 h-4 border-2 border-brand-emerald border-t-transparent rounded-full animate-spin"></div>}
+                      {quoteData?.loading && <div className="w-3 h-3 border-2 border-brand-emerald border-t-transparent rounded-full animate-spin"></div>}
                     </div>
 
                     {quoteData?.error && (
-                      <div className="text-sm text-red-600 bg-red-50 p-3 rounded-xl border border-red-100">
+                      <div className="text-xs text-red-600 bg-red-50 p-2 rounded-lg border border-red-100">
                         {quoteData.error === 'plan_no_access' ? 'Tu plan no incluye acceso a T1 Envíos.' : quoteData.error}
                       </div>
                     )}
 
                     {!quoteData?.loading && !quoteData?.error && quoteData?.quotes?.length === 0 && (
-                      <div className="text-sm text-gray-500 text-center py-4">No hay opciones disponibles para esta ruta.</div>
+                      <div className="text-xs text-gray-500 text-center py-4 bg-gray-50 rounded-lg">No hay opciones para esta ruta.</div>
                     )}
 
-                    <div className="space-y-3">
+                    <div className="space-y-0 divide-y divide-gray-100 border border-gray-100 rounded-xl overflow-hidden">
                       {quoteData?.quotes?.map((q: any, i: number) => (
-                        <div key={i} className="bg-white border border-gray-200 rounded-xl p-4 flex justify-between items-center hover:border-brand-emerald transition-colors cursor-pointer shadow-sm group">
-                          <div>
-                            <div className="font-bold text-gray-900 group-hover:text-brand-emerald transition-colors">
-                              {q.carrier_name} <span className="text-xs font-normal text-gray-500 ml-1">{q.service_level}</span>
+                        <div key={i} className="bg-white p-3 flex justify-between items-center hover:bg-gray-50 transition-colors cursor-pointer group">
+                          <div className="flex flex-col">
+                            <div className="text-sm font-bold text-gray-900 group-hover:text-brand-emerald transition-colors flex items-center gap-1.5">
+                              {q.carrier_name}
+                              <span className="text-[9px] font-semibold text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded-full">{q.service_level}</span>
                             </div>
-                            <div className="text-xs text-gray-500 mt-0.5">Entrega est. {q.delivery_days} días</div>
+                            <div className="text-[11px] text-gray-400 mt-0.5">Entrega est. {q.delivery_days} días</div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-lg font-black text-gray-900">{formatMoney(q.cost)}</div>
-                            <button className="text-[10px] font-bold text-brand-emerald uppercase tracking-wider mt-1 hover:underline">Seleccionar</button>
+                          <div className="text-right flex items-center gap-3">
+                            <div className="text-sm font-black text-gray-900">{formatMoney(q.cost)}</div>
+                            <button className="text-[10px] font-bold text-white bg-brand-emerald px-2 py-1 rounded hover:bg-emerald-600 transition-colors shadow-sm">
+                              Elegir
+                            </button>
                           </div>
                         </div>
                       ))}
