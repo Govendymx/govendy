@@ -359,10 +359,23 @@ export default function DashboardPerfilPage() {
         nickname: form.nickname.trim() || null,
       };
 
-      const { data: saved, error: upErr } = await supabase.from('profiles').upsert([payload]).select('*').single();
-      if (upErr) {
-        console.error('Supabase Update Error:', upErr);
-        throw new Error(upErr.message || 'Error en la base de datos al guardar.');
+      let saved;
+      if (profile?.id) {
+        // Si el perfil ya existe, hacemos UPDATE para no disparar las validaciones NOT NULL del INSERT
+        const { data, error: upErr } = await supabase.from('profiles').update(payload).eq('id', user.id).select('*').single();
+        if (upErr) {
+          console.error('Supabase Update Error:', upErr);
+          throw new Error(upErr.message || 'Error en la base de datos al guardar.');
+        }
+        saved = data;
+      } else {
+        // Si no existe, es un perfil nuevo (inserción inicial)
+        const { data, error: upErr } = await supabase.from('profiles').upsert([payload]).select('*').single();
+        if (upErr) {
+          console.error('Supabase Insert Error:', upErr);
+          throw new Error(upErr.message || 'Error en la base de datos al crear perfil.');
+        }
+        saved = data;
       }
       
       setProfile(saved as any);
