@@ -107,6 +107,52 @@ export async function getT1Quotes(input: QuoteInput): Promise<T1UnifiedQuote[]> 
     const config = await getT1ConfigFromDB();
     if (!config.enabled) throw new Error('T1 Envíos no está habilitado');
 
+    const markup = input.seller_plan === 'platinum' ? config.markup_platinum
+        : input.seller_plan === 'pro' ? config.markup_pro
+            : config.markup_basic;
+
+    // --- MOCK QUOTES PARA DEMOSTRACIÓN SI NO HAY CREDENCIALES ---
+    if (!config.username || !config.password) {
+        console.warn('[T1 API] Credenciales no configuradas. Retornando cotizaciones simuladas.');
+        const base = 150 + Math.random() * 50; // Random base price 150-200
+        return [
+            {
+                carrier_name: 'Estafeta',
+                carrier_id: 'estafeta',
+                service_level: 'Terrestre',
+                cost: Math.round((base + markup) * 100) / 100,
+                base_cost: Math.round(base * 100) / 100,
+                markup,
+                delivery_days: 3,
+                estimated_delivery: null,
+                token: 'mock-estafeta-token',
+            },
+            {
+                carrier_name: 'FedEx',
+                carrier_id: 'fedex',
+                service_level: 'Express Saver',
+                cost: Math.round((base + 30 + markup) * 100) / 100,
+                base_cost: Math.round((base + 30) * 100) / 100,
+                markup,
+                delivery_days: 2,
+                estimated_delivery: null,
+                token: 'mock-fedex-token',
+            },
+            {
+                carrier_name: 'DHL Express',
+                carrier_id: 'dhl',
+                service_level: 'Express 12:00',
+                cost: Math.round((base + 80 + markup) * 100) / 100,
+                base_cost: Math.round((base + 80) * 100) / 100,
+                markup,
+                delivery_days: 1,
+                estimated_delivery: null,
+                token: 'mock-dhl-token',
+            }
+        ].sort((a, b) => a.cost - b.cost);
+    }
+    // -----------------------------------------------------------
+
     const t1Req: T1QuoteRequest = {
         codigo_postal_origen: input.origin_zip,
         codigo_postal_destino: input.dest_zip,
