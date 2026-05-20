@@ -1085,6 +1085,89 @@ export default function DashboardVentasPage() {
     }
   };
 
+  const handleUploadOwnLabelPDF = async (orderId: string, file: File | null) => {
+    if (!file) return;
+
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      setError('Por favor, selecciona un archivo PDF válido.');
+      return;
+    }
+
+    setError(null);
+    setSuccess(null);
+    setIsMarking((p) => ({ ...p, [`${orderId}_own_pdf`]: true }));
+    try {
+      const { data: sess, error: sessErr } = await supabase.auth.getSession();
+      if (sessErr) throw sessErr;
+      const token = sess.session?.access_token;
+      if (!token) throw new Error('Auth session missing');
+
+      // 1. Get signed upload URL
+      const signedRes = await fetch('/api/orders/signed-upload', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          orderId,
+          fileName: file.name,
+          contentType: 'application/pdf',
+        }),
+      });
+      const signedJson = await signedRes.json().catch(() => ({}));
+      if (!signedRes.ok) throw new Error(signedJson?.error || 'No se pudo preparar la subida.');
+
+      // 2. Upload file to Supabase storage
+      const uploadRes = await fetch(signedJson.signedUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/pdf' },
+        body: file,
+      });
+      if (!uploadRes.ok) throw new Error('Error al subir el PDF de la guía.');
+
+      const publicUrl = signedJson.publicUrl;
+
+      // 3. Automatically submit to mark-shipped
+      const trackingNum = String(trackingDraft[orderId] || 'VER_GUIA_PDF').trim();
+      const carrierName = String(carrierDraft[orderId] || 'Propio').trim();
+
+      const markRes = await fetch('/api/orders/mark-shipped', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
+        body: JSON.stringify({
+          orderId,
+          tracking_number: trackingNum,
+          shipping_carrier: carrierName,
+          shipping_label_url: publicUrl,
+        }),
+      });
+      const markJson = await markRes.json().catch(() => ({}));
+      if (!markRes.ok) throw new Error(markJson?.error || 'No se pudo marcar como enviado.');
+
+      // 4. Update local React state
+      setOrders((prev) =>
+        prev.map((o) => {
+          if (String(o?.id || '') !== orderId) return o;
+          return {
+            ...o,
+            status: 'shipped',
+            tracking_number: trackingNum,
+            shipping_carrier: carrierName,
+            shipping_label_url: publicUrl,
+            shipped_at: new Date().toISOString(),
+          };
+        })
+      );
+      setSuccess('¡Guía de envío subida con éxito! Se notificó al comprador.');
+    } catch (e: unknown) {
+      console.error(e);
+      setError(e instanceof Error ? e.message : 'No se pudo subir la guía de envío.');
+    } finally {
+      setIsMarking((p) => ({ ...p, [`${orderId}_own_pdf`]: false }));
+    }
+  };
+
   const markShipped = async (orderId: string) => {
     setError(null);
     setSuccess(null);
@@ -1618,26 +1701,66 @@ export default function DashboardVentasPage() {
                             </div>
 
                             {!isOrderCompleted && !isDigitalOrder && !isPersonalDelivery && (
-                              <div className="mt-2.5 p-3 rounded-2xl bg-gray-50 border border-gray-150 shadow-xs max-w-md">
-                                <div className="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                                  <svg className="w-3.5 h-3.5 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                                  </svg>
-                                  Paga y genera tu etiqueta de envío:
+                              <div className="mt-2.5 flex flex-wrap gap-3 max-w-2xl w-full">
+                                {/* Panel A: Paga y genera tu etiqueta de envío */}
+                                <div className="flex-1 min-w-[280px] p-3 rounded-2xl bg-gray-50 border border-gray-150 shadow-xs">
+                                  <div className="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5 text-brand-emerald" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                    Paga y genera tu etiqueta de envío:
+                                  </div>
+                                  <div className="flex flex-wrap gap-2">
+                                    <Link 
+                                      href="/estafeta/cotizar" 
+                                      className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100/80 border border-red-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
+                                    >
+                                      <span>🏪 Tienda Estafeta</span>
+                                    </Link>
+                                    <Link 
+                                      href="/dashboard/envios" 
+                                      className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-emerald-600 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
+                                    >
+                                      <span>🚚 Envíos GoVendy</span>
+                                    </Link>
+                                  </div>
                                 </div>
-                                <div className="flex flex-wrap gap-2">
-                                  <Link 
-                                    href="/estafeta/cotizar" 
-                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100/80 border border-red-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
-                                  >
-                                    <span>🏪 Tienda Estafeta</span>
-                                  </Link>
-                                  <Link 
-                                    href="/dashboard/envios" 
-                                    className="flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-emerald-600 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5"
-                                  >
-                                    <span>🚚 Envíos GoVendy</span>
-                                  </Link>
+
+                                {/* Panel B: Deseo enviar por mi propia cuenta */}
+                                <div className="flex-1 min-w-[280px] p-3 rounded-2xl bg-gray-50 border border-gray-150 shadow-xs">
+                                  <div className="text-[10px] font-black text-gray-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <svg className="w-3.5 h-3.5 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                    </svg>
+                                    Deseo enviar por mi propia cuenta:
+                                  </div>
+                                  <div>
+                                    {o?.shipping_label_url ? (
+                                      <div className="flex items-center gap-1.5 rounded-xl bg-green-50 border border-green-200 px-3 py-2 text-xs font-bold text-green-700">
+                                        <svg className="w-4 h-4 text-green-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                                          <polyline points="20 6 9 17 4 12" />
+                                        </svg>
+                                        Guía propia subida ✓
+                                      </div>
+                                    ) : (
+                                      <label className={`flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-purple-700 bg-purple-50 hover:bg-purple-100/80 border border-purple-200 transition-all shadow-xs hover:shadow-sm transform hover:-translate-y-0.5 cursor-pointer ${isMarking[`${orderId}_own_pdf`] ? 'opacity-50 cursor-wait' : ''}`}>
+                                        <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                        </svg>
+                                        <span>{isMarking[`${orderId}_own_pdf`] ? 'Subiendo...' : 'Subir Guía (PDF)'}</span>
+                                        <input
+                                          type="file"
+                                          accept=".pdf,application/pdf"
+                                          className="hidden"
+                                          disabled={Boolean(isMarking[`${orderId}_own_pdf`])}
+                                          onChange={(e) => {
+                                            const f = e.target.files?.[0] || null;
+                                            handleUploadOwnLabelPDF(orderId, f);
+                                          }}
+                                        />
+                                      </label>
+                                    )}
+                                  </div>
                                 </div>
                               </div>
                             )}

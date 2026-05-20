@@ -2348,6 +2348,19 @@ export default function DashboardComprasPage() {
                                     <div className="truncate"><span className="text-gray-500">Cód:</span> <span className="font-semibold">{tracking}</span></div>
                                     <div className="text-gray-500 text-[9px]">{formatDateTime(shippedAt)}</div>
                                   </div>
+                                  {o?.shipping_label_url && (
+                                    <a
+                                      href={o.shipping_label_url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl bg-purple-50 hover:bg-purple-100/80 text-purple-700 font-bold border border-purple-200 py-2 px-3 text-xs transition shadow-xs hover:shadow-sm transform hover:-translate-y-0.5 animate-subtle-pulse"
+                                    >
+                                      <svg className="w-4 h-4 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                      </svg>
+                                      Descargar Guía de Envío (PDF)
+                                    </a>
+                                  )}
                                 </div>
                               ) : !isDigitalOrder ? (
                                 <div className="mt-2 text-[10px] text-gray-500">Sin rastreo aún</div>
