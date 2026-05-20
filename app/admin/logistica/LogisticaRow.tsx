@@ -225,8 +225,9 @@ export function LogisticaRow({
                                 <div className="rounded-lg border border-gray-200 bg-white p-3 shadow-sm">
                                     <div className="text-[10px] font-bold uppercase text-gray-400 mb-1">Envío</div>
                                     {(() => {
+                                        const smVal = String(o?.shipping_method || '').trim().toLowerCase();
                                         const isGoVendyCarrier = ['gopocket', 'estafeta', 'fedex', 'tuenvio', 'dhl', 'ups'].includes(carrierVal);
-                                        const isSellerRow = Boolean(o?.shipping_by_seller) || (carrierVal && carrierVal !== 'pickup' && !o?.shipping_option_id && !isGoVendyCarrier);
+                                        const isSellerRow = smVal === 'seller_managed' || Boolean(o?.shipping_by_seller) || (carrierVal && carrierVal !== 'pickup' && !o?.shipping_option_id && !isGoVendyCarrier);
                                         const isFreeRow = fee === 0 && subsidy > 0;
                                         if (isDigitalProduct) {
                                             return (
@@ -414,16 +415,26 @@ function RastreoContent({ o, oid, items, tracking, carrier, shippedAt, delivered
     const anyGoVendyCfg = items.some((it: any) => it?.shipping_by_seller === false);
     const isSellerManagedDirect = orderShippingBySeller === true;
     const isGoVendyDirect = orderShippingBySeller === false;
-    const isGoVendyConfigured = (isGoVendyDirect || (anyGoVendyCfg && !anySellerManagedCfg));
-    const isPickup2 = o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup';
-    const isGoVendyOrder = (!isPickup2) && (
-        isGoVendyConfigured ||
-        (o?.shipping_option_id && o?.shipping_option_id !== 'pickup') ||
-        hasLabel2 ||
-        subsidy2 > 0 ||
-        o?.shipping_carrier === 'gopocket'
-    );
-    const isSellerManaged = (isSellerManagedDirect || (anySellerManagedCfg && !anyGoVendyCfg)) || (!isPickup2 && !isGoVendyOrder && !isDigitalProduct);
+    const smVal = String(o?.shipping_method || '').trim().toLowerCase();
+    const isPickup2 = smVal === 'personal_delivery' || o?.shipping_option_id === 'pickup' || o?.shipping_carrier === 'pickup';
+    let isSellerManaged = false;
+    let isGoVendyOrder = false;
+
+    if (smVal) {
+        isSellerManaged = smVal === 'seller_managed';
+        isGoVendyOrder = !isPickup2 && !isSellerManaged && (smVal.startsWith('gopocket') || smVal === 't1');
+    } else {
+        const isGoVendyConfigured = (isGoVendyDirect || (anyGoVendyCfg && !anySellerManagedCfg));
+        const rawGoVendy = (!isPickup2) && (
+            isGoVendyConfigured ||
+            (o?.shipping_option_id && o?.shipping_option_id !== 'pickup') ||
+            hasLabel2 ||
+            subsidy2 > 0 ||
+            o?.shipping_carrier === 'gopocket'
+        );
+        isGoVendyOrder = Boolean(rawGoVendy);
+        isSellerManaged = (isSellerManagedDirect || (anySellerManagedCfg && !anyGoVendyCfg)) || (!isPickup2 && !isGoVendyOrder && !isDigitalProduct);
+    }
     const isGoVendyFree = isGoVendyOrder && shippingFee2 === 0;
     const isSellerFree = isSellerManaged && shippingFee2 === 0 && !isPickup2;
 

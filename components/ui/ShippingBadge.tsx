@@ -28,10 +28,11 @@ function ShippingTypeChip({
     isDigital,
     isGoVendyFree,
 }: ShippingBadgeProps) {
+    const method = String(shippingMethod || '').toLowerCase().trim();
     const optId = String(shippingOptionId || '').toLowerCase().trim();
     const carrier = String(shippingCarrier || '').trim();
     const carrierLower = carrier.toLowerCase();
-    const bySeller = Boolean(shippingBySeller);
+    const bySeller = Boolean(shippingBySeller) || method === 'seller_managed';
     const fee = Number(shippingFee || 0);
     const isPickup = optId === 'pickup' || carrierLower === 'pickup';
 
@@ -52,7 +53,6 @@ function ShippingTypeChip({
     }
 
     // ── T1 / GoVendy PREMIUM ──
-    const method = String(shippingMethod || '').toLowerCase().trim();
     if (optId === 't1' || method === 'gopocket_premium') {
         const carrierLabel = carrier && carrierLower !== 't1' ? ` · ${carrier}` : '';
         return (

@@ -82,6 +82,7 @@ type Body = {
   tracking_number: string;
   shipping_carrier?: string;
   shipping_label_url?: string;
+  shipping_method?: string;
 };
 
 export async function POST(req: NextRequest) {
@@ -93,6 +94,7 @@ export async function POST(req: NextRequest) {
     const tracking = String(body?.tracking_number || '').trim();
     const carrier = String(body?.shipping_carrier || '').trim();
     const labelUrl = String(body?.shipping_label_url || '').trim();
+    const method = String(body?.shipping_method || '').trim();
 
     if (!orderId || !isUuid(orderId)) return NextResponse.json({ error: 'orderId inválido' }, { status: 400 });
     if (tracking.length < 4) return NextResponse.json({ error: 'Ingresa un código de rastreo válido.' }, { status: 400 });
@@ -115,6 +117,10 @@ export async function POST(req: NextRequest) {
 
     if (labelUrl) {
       updatePayload.shipping_label_url = labelUrl;
+    }
+
+    if (method) {
+      updatePayload.shipping_method = method;
     }
 
     const upd: any = await admin.from('orders').update(updatePayload).eq('id', orderId);

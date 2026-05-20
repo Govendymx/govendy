@@ -1140,6 +1140,7 @@ export default function DashboardVentasPage() {
           tracking_number: trackingNum,
           shipping_carrier: carrierName,
           shipping_label_url: publicUrl,
+          shipping_method: 'seller_managed',
         }),
       });
       const markJson = await markRes.json().catch(() => ({}));
@@ -1155,6 +1156,7 @@ export default function DashboardVentasPage() {
             tracking_number: trackingNum,
             shipping_carrier: carrierName,
             shipping_label_url: publicUrl,
+            shipping_method: 'seller_managed',
             shipped_at: new Date().toISOString(),
           };
         })
@@ -1185,6 +1187,12 @@ export default function DashboardVentasPage() {
       return;
     }
 
+    let determinedMethod = 'seller_managed';
+    const carrierLower = carrier.toLowerCase().trim();
+    if (carrierLower === 'pickup' || carrierLower === 'personal_delivery' || carrierLower === 'entrega personal') {
+      determinedMethod = 'personal_delivery';
+    }
+
     // Optimistic Update
     setOrders((prev) =>
       prev.map((o) =>
@@ -1194,6 +1202,7 @@ export default function DashboardVentasPage() {
             status: 'shipped',
             tracking_number: tracking,
             shipping_carrier: carrier || null,
+            shipping_method: determinedMethod,
             shipped_at: new Date().toISOString()
           }
           : o,
@@ -1209,7 +1218,12 @@ export default function DashboardVentasPage() {
       const res = await fetch('/api/orders/mark-shipped', {
         method: 'POST',
         headers: { 'content-type': 'application/json', authorization: `Bearer ${token}` },
-        body: JSON.stringify({ orderId, tracking_number: tracking, shipping_carrier: carrier }),
+        body: JSON.stringify({ 
+          orderId, 
+          tracking_number: tracking, 
+          shipping_carrier: carrier,
+          shipping_method: determinedMethod,
+        }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json?.error || 'No se pudo marcar como enviado.');
@@ -1687,7 +1701,7 @@ export default function DashboardVentasPage() {
                                     {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍOS GOVENDY'}
                                   </div>
                                 )
-                              ) : o?.self_ship_evidence_url ? (
+                              ) : (o?.shipping_method === 'seller_managed' || o?.self_ship_evidence_url) ? (
                                 <div className="inline-flex items-center gap-2 rounded-lg bg-green-100 px-3 py-1.5 text-xs font-bold text-green-800 ring-1 ring-green-600/20 shadow-sm w-fit">
                                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
                                   {hasSubsidy ? 'ENVÍO GRATIS POR EL VENDEDOR' : 'ENVÍO GESTIONADO POR EL VENDEDOR'}

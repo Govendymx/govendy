@@ -314,10 +314,10 @@ function OperationViewContent() {
                 <div className="flex justify-between">
                   <span className="text-sm text-gray-600">Método de Envío:</span>
                   {(() => {
-                    const isPickup = order.shipping_option_id === 'pickup' || order.shipping_carrier === 'pickup';
-                    const isGoVendyCarrier = String(order.shipping_carrier).toLowerCase() === 'gopocket' || String((order as any).shipping_method).toLowerCase().startsWith('gopocket');
-                    const isGoVendy = !isPickup && (isGoVendyCarrier || Boolean(order.shipping_option_id) || Boolean(order.shipping_label_url));
-                    const isSellerManaged = !isPickup && !isGoVendy && Boolean(order.shipping_carrier);
+                    const sm = String((order as any).shipping_method || '').trim().toLowerCase();
+                    const isPickup = sm === 'personal_delivery' || order.shipping_option_id === 'pickup' || order.shipping_carrier === 'pickup';
+                    const isSellerManaged = !isPickup && (sm === 'seller_managed' || (!sm && !order.shipping_option_id && Boolean(order.shipping_carrier) && String(order.shipping_carrier).toLowerCase() !== 'gopocket'));
+                    const isGoVendy = !isPickup && !isSellerManaged && (sm.startsWith('gopocket') || sm === 't1' || String(order.shipping_carrier).toLowerCase() === 'gopocket' || Boolean(order.shipping_option_id) || Boolean(order.shipping_label_url));
                     if (isPickup) {
                       return (
                         <span className="inline-flex items-center gap-1 rounded-md bg-purple-50 px-2 py-1 text-xs font-bold text-purple-800 ring-1 ring-inset ring-purple-600/20">
