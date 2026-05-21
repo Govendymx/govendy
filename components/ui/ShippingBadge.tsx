@@ -62,7 +62,7 @@ function ShippingTypeChip({
     }
 
     // ── T1 / GoVendy PREMIUM ──
-    if (optId === 't1' || method === 'gopocket_premium') {
+    if ((optId === 't1' || method === 'gopocket_premium') && !bySeller) {
         const carrierLabel = carrier && carrierLower !== 't1' ? ` · ${carrier}` : '';
         return (
             <span className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[10px] font-bold bg-gradient-to-r from-orange-100 to-amber-100 text-orange-800 ring-1 ring-orange-300">

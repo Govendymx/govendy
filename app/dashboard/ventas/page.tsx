@@ -1608,7 +1608,7 @@ export default function DashboardVentasPage() {
                     isSellerManagedOrder = !isPersonalDelivery && !isGoVendyOrder;
                   }
                   const showGreenButton = isSellerManagedOrder;
-                  const isT1Order = sm === 't1';
+                  const isT1Order = sm === 't1' && !isSellerManagedOrder;
                   const isDigitalOrder = sm === 'digital' || productTypeByListingId[listingId] === 'digital';
                   const digitalFields = digitalFieldsByListingId[listingId] || [];
 

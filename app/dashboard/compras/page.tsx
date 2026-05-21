@@ -1377,7 +1377,13 @@ export default function DashboardComprasPage() {
     Boolean((shippingSnapshotPayment as any)?.allow_personal_delivery) ||
     listingsForPayment.some((l: any) => Boolean(l?.allow_personal_delivery));
 
+  const trackingValForPayment = currentOrderForPayment ? String(currentOrderForPayment.tracking_number || '').trim() : '';
+  const labelUrlValForPayment = currentOrderForPayment ? String(currentOrderForPayment.shipping_label_url || '').trim() : '';
+  const smValForPayment = currentOrderForPayment ? String((currentOrderForPayment as any).shipping_method || '').trim() : '';
+  const isSellerManagedUploadedPayment = smValForPayment === 'seller_managed' || trackingValForPayment === 'VER_GUIA_PDF' || labelUrlValForPayment.includes('/delivery-proofs/');
+
   const isSellerShippingPayment =
+    isSellerManagedUploadedPayment ||
     Boolean((shippingSnapshotPayment as any)?.shipping_by_seller) ||
     listingsForPayment.some((l: any) => Boolean(l?.shipping_by_seller));
 
@@ -2498,11 +2504,11 @@ export default function DashboardComprasPage() {
                                   {!canConfirmReceived && alreadyRated ? (
                                     <div className="space-y-1">
                                       <span className="inline-flex w-full items-center justify-center rounded-lg bg-white px-2.5 py-1.5 text-[11px] font-semibold text-green-800 ring-1 ring-green-100">
-                                        ? Calificado
+                                        ⭐ Calificado
                                       </span>
                                       {bothRated && (
                                         <div className="rounded-lg border border-green-300 bg-green-100 px-2.5 py-1.5">
-                                          <div className="text-[10px] font-extrabold text-green-900">? Excelente</div>
+                                          <div className="text-[10px] font-extrabold text-green-900">✅ Excelente</div>
                                         </div>
                                       )}
                                     </div>

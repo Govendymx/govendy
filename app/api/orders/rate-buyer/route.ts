@@ -79,8 +79,38 @@ export async function POST(req: NextRequest) {
 
     const admin = supabaseAdmin();
 
-  const { data: order, error: oErr } = await admin.from('orders').select('id,buyer_id,seller_id,status,shipping_label_url,shipping_option_id,shipping_carrier,delivery_proof_url,tracking_number').eq('id', orderId).maybeSingle();
-    if (oErr) return NextResponse.json({ error: oErr.message }, { status: 400 });
+    let order: any = null;
+    let oErr: any = null;
+
+    // Primer intento: seleccionar incluyendo delivery_proof_url
+    const resFirst = await admin
+      .from('orders')
+      .select('id,buyer_id,seller_id,status,shipping_label_url,shipping_option_id,shipping_carrier,delivery_proof_url,tracking_number')
+      .eq('id', orderId)
+      .maybeSingle();
+
+    if (resFirst.error) {
+      const msg = String(resFirst.error.message || '').toLowerCase();
+      // Si la base de datos se queja de que la columna no existe, hacemos fallback sin ella
+      if (msg.includes('delivery_proof_url') && (msg.includes('does not exist') || msg.includes('column') || resFirst.error.code === '42703')) {
+        console.warn('[rate-buyer] La columna delivery_proof_url no existe en la BD. Reintentando consulta de orden sin ella.');
+        const resSecond = await admin
+          .from('orders')
+          .select('id,buyer_id,seller_id,status,shipping_label_url,shipping_option_id,shipping_carrier,tracking_number')
+          .eq('id', orderId)
+          .maybeSingle();
+        
+        if (resSecond.error) {
+          return NextResponse.json({ error: resSecond.error.message }, { status: 400 });
+        }
+        order = resSecond.data;
+      } else {
+        return NextResponse.json({ error: resFirst.error.message }, { status: 400 });
+      }
+    } else {
+      order = resFirst.data;
+    }
+
     if (!order) return NextResponse.json({ error: 'Orden no encontrada.' }, { status: 404 });
 
     const buyerId = String((order as any)?.buyer_id || '').trim();
@@ -90,8 +120,8 @@ export async function POST(req: NextRequest) {
     const shippingOptionId = String((order as any)?.shipping_option_id || '');
     const shippingCarrier = String((order as any)?.shipping_carrier || '');
     const deliveryProofUrl = String((order as any)?.delivery_proof_url || '');
-  const trackingNumber = String((order as any)?.tracking_number || '').trim();
-  const isPickup = shippingOptionId === 'pickup' || shippingCarrier === 'pickup';
+    const trackingNumber = String((order as any)?.tracking_number || '').trim();
+    const isPickup = shippingOptionId === 'pickup' || shippingCarrier === 'pickup';
 
     if (!buyerId || !sellerId) return NextResponse.json({ error: 'Orden inválida (sin buyer/seller).' }, { status: 400 });
     if (sellerId !== effectiveUserId) return NextResponse.json({ error: 'No autorizado.' }, { status: 403 });
