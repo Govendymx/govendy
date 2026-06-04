@@ -509,20 +509,17 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
     });
   }, [isEdit]);
 
+  // Hidratación inicial del editor rico para modo "create" o "clone" (evita el re-render loop que borraba el formato)
   useEffect(() => {
-    const blocks = parseDescriptionBlocks(
-      initialData?.description_blocks ?? initialNorm.description_blocks,
-    );
+    if (isEdit) return; // Edit ya hidrata en el useEffect principal
+    const blocks = parseDescriptionBlocks(initialNorm.description_blocks);
     const rtBlock = blocks.find((b) => b.type === 'richtext') as { content?: string } | undefined;
     if (rtBlock?.content) {
       setRichTextContent(rtBlock.content);
-      return;
+    } else if (initialNorm.description) {
+      setRichTextContent(String(initialNorm.description).replace(/\n/g, '<br>'));
     }
-    const desc = initialData?.description || description;
-    if (desc) {
-      setRichTextContent(desc.replace(/\n/g, '<br>'));
-    }
-  }, [initialData?.id, initialData?.description_blocks, initialData?.description, description, initialNorm.description_blocks]);
+  }, []); // Solo al montar
 
   // Hidratar todos los campos al editar (una vez por publicación)
   useEffect(() => {
@@ -1712,9 +1709,10 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
               )}
 
               {/* Variantes de Talla - Solo para Ropa (NO Calzado ni Accesorios sin talla) */}
-              {IS_FASHION_ROOT(gender) &&
-                !['Calzado', 'Zapatos', 'Tenis', 'Botas', 'Sandalias'].includes(category) &&
-                !['Bolsos', 'Joyería', 'Lentes', 'Relojes', 'Accesorios de Cabello', 'Carteras', 'Mochilas', 'Maletas', 'Paraguas'].includes(category) && (
+              {((IS_FASHION_ROOT(gender) || (detectClothingType(category, subcategory, mlCategoryId) && detectClothingType(category, subcategory, mlCategoryId) !== 'footwear')) &&
+                detectClothingType(category, subcategory, mlCategoryId) !== 'footwear' &&
+                !['Calzado', 'Zapatos', 'Tenis', 'Botas', 'Sandalias', 'Tacos y Tenis'].includes(category) &&
+                !['Bolsos', 'Joyería', 'Lentes', 'Relojes', 'Accesorios de Cabello', 'Carteras', 'Mochilas', 'Maletas', 'Paraguas'].includes(category)) && (
                   <div className="rounded-2xl border-2 border-gray-200 bg-gradient-to-br from-emerald-50/50 to-white p-6">
                     <h3 className="mb-4 text-lg font-bold text-gray-900">
                       👕 Variantes de Talla (Ropa)
@@ -1733,7 +1731,8 @@ export default function ListingForm({ mode, initialData, listingId }: ListingFor
                 )}
 
               {/* Variantes de Talla - Solo para Calzado */}
-              {(category === 'Zapatos' || category === 'Calzado' || category === 'Tenis' || category === 'Botas' || category === 'Sandalias') && (
+              {(detectClothingType(category, subcategory, mlCategoryId) === 'footwear' || 
+                ['Zapatos', 'Calzado', 'Tenis', 'Botas', 'Sandalias', 'Tacos y Tenis'].includes(category)) && (
                 <div className="rounded-2xl border-2 border-gray-200 bg-gradient-to-br from-blue-50/50 to-white p-6">
                   <h3 className="mb-4 text-lg font-bold text-gray-900">
                     👟 Variantes de Talla (Calzado)
