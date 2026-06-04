@@ -2702,7 +2702,7 @@ export default function DashboardComprasPage() {
                 <div className="text-4xl mb-3">📦</div>
                 <div className="text-sm font-semibold text-gray-500">No tienes guías de envío</div>
                 <p className="mt-1 text-xs text-gray-400">Cuando compres guías Estafeta en la tienda, aparecerán aquí</p>
-                <Link href="/dashboard/estafeta" className="mt-4 inline-block rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition">
+                <Link href="/estafeta/cotizar" className="mt-4 inline-block rounded-xl bg-blue-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-blue-700 transition">
                   Ir a Tienda Estafeta
                 </Link>
               </div>
